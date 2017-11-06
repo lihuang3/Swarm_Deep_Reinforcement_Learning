@@ -1,8 +1,11 @@
 import numpy as np
 import matplotlib.pyplot as plt
-mazeData = np.loadtxt('map1.txt').astype(int)
 
-scaling_ratio = 5
+filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
+
+mazeData = np.loadtxt(filename + 'map1.txt').astype(int)
+
+scaling_ratio = 1
 
 tmpMaze = np.zeros((mazeData.shape[0]*scaling_ratio,mazeData.shape[1]))
 MazeAugment = np.zeros((mazeData.shape[0]*scaling_ratio,mazeData.shape[1]*scaling_ratio))
