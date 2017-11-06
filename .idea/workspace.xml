@@ -2,19 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5add5774-6de1-4ce6-8fd2-2769fe9a9576" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/CenterlineMap1.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/EnvTest.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/NewCostMap1.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/NewMap1.csv" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/PGMazeEnv.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/map1.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/map2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/mapAugment.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/maze_env.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/save.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/test_input.py" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/test_map.py" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Prototype/Env/RGBEnvTest.py" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/Env/mapAugment.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/Env/maze_env.py" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Prototype/Env/test_input.py" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/Prototype/Env/NewCostMap1.csv" afterPath="$PROJECT_DIR$/Prototype/Env/MapData/NewCostMap1.csv" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Prototype/Env/test_map.py" afterPath="$PROJECT_DIR$/Prototype/Env/test_map.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -36,12 +30,34 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="PGMazeEnv.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Prototype/Env/PGMazeEnv.py">
+      <file leaf-file-name="test_map.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Prototype/Env/test_map.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="705">
-              <caret line="47" column="44" lean-forward="false" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+            <state relative-caret-position="0">
+              <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EnvTest.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Prototype/Env/EnvTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="24" column="56" lean-forward="false" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RGBEnvTest.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Prototype/Env/RGBEnvTest.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="382">
+              <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+              <folding>
+                <element signature="e#1#19#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -83,6 +99,8 @@
         <option value="$PROJECT_DIR$/Prototype/PGMazeEnv1.py" />
         <option value="$PROJECT_DIR$/Prototype/PGMazeEnv.py" />
         <option value="$PROJECT_DIR$/Prototype/Env/PGMazeEnv.py" />
+        <option value="$PROJECT_DIR$/Prototype/Env/test_map.py" />
+        <option value="$PROJECT_DIR$/Prototype/Env/RGBEnvTest.py" />
       </list>
     </option>
   </component>
@@ -157,6 +175,28 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwarmDRL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="SwarmDRL" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Prototype" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Env" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="MapData" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
@@ -171,11 +211,12 @@
     <property name="js.eslint.eslintPackage" value="" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Prototype/Env/MapData" />
+      <recent name="$PROJECT_DIR$/References" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$USER_HOME$" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/References" />
     </key>
   </component>
   <component name="RunManager" selected="Python.PGMazeEnv">
@@ -592,18 +633,53 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Prototype/Env/PGMazeEnv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="480">
+          <caret line="32" column="33" lean-forward="true" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Prototype/Env/mapAugment.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Prototype/Env/PGMazeEnv.py">
+    <entry file="file://$PROJECT_DIR$/Prototype/Env/maze_env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="705">
-          <caret line="47" column="44" lean-forward="false" selection-start-line="47" selection-start-column="44" selection-end-line="47" selection-end-column="44" />
+        <state relative-caret-position="-1717">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Prototype/Env/test_map.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="12" lean-forward="false" selection-start-line="0" selection-start-column="12" selection-end-line="0" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Prototype/Env/EnvTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="24" column="56" lean-forward="false" selection-start-line="24" selection-start-column="56" selection-end-line="24" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Prototype/Env/RGBEnvTest.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="104" column="24" lean-forward="true" selection-start-line="104" selection-start-column="24" selection-end-line="104" selection-end-column="24" />
+          <folding>
+            <element signature="e#1#19#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

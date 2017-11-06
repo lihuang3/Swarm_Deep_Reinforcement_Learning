@@ -1,4 +1,4 @@
-from maze_env import MazeEnv
+from EnvTest import MazeEnv
 import time
 import numpy as np
 env = MazeEnv()
