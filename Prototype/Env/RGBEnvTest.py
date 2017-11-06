@@ -4,9 +4,12 @@ import random
 import sys
 import matplotlib.pyplot as plt
 import time
-mazeData = np.loadtxt('NewMap1.csv').astype(int)
-centerline = np.loadtxt('CenterlineMap1.csv').astype(int)
-costData = np.loadtxt('NewCostMap1.csv').astype(int)
+
+filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
+
+mazeData = np.loadtxt(filename + 'NewMap1.csv').astype(int)
+centerline = np.loadtxt(filename + 'CenterlineMap1.csv').astype(int)
+costData = np.loadtxt(filename + 'NewCostMap1.csv').astype(int)
 
 
 

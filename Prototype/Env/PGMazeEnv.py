@@ -35,8 +35,8 @@ THE SOFTWARE.
 # =================INIT====================
 import pygame, sys, os.path, time, numpy as np, random
 
-filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/map1.txt'
-mazeData = np.loadtxt(filename).astype(int)
+filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
+mazeData = np.loadtxt(filename + 'map1.txt').astype(int)
 obsX, obsY = np.nonzero(np.ones([mazeData.shape[0],mazeData.shape[1]])-mazeData)
 freeX, freeY = np.nonzero(mazeData)
 sys.setrecursionlimit(10000)

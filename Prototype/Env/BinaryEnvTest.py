@@ -3,8 +3,11 @@ import numpy as np
 import random
 import sys
 import time
-mazeData = np.loadtxt('map1.txt').astype(int)
-costData = np.loadtxt('costMap.txt').astype(int)
+
+filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
+
+mazeData = np.loadtxt(filename + 'map1.txt').astype(int)
+costData = np.loadtxt(filename + 'costMap.txt').astype(int)
 costData = costData - mazeData
 
 
