@@ -34,7 +34,9 @@ THE SOFTWARE.
 
 # =================INIT====================
 import pygame, sys, os.path, time, numpy as np, random
-mazeData = np.loadtxt('map1.txt').astype(int)
+
+filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/map1.txt'
+mazeData = np.loadtxt(filename).astype(int)
 obsX, obsY = np.nonzero(np.ones([mazeData.shape[0],mazeData.shape[1]])-mazeData)
 freeX, freeY = np.nonzero(mazeData)
 sys.setrecursionlimit(10000)
@@ -60,16 +62,17 @@ level = 1
 
 # Corner variables - gameplay
 checks = 0
-goal = [10,9]
+goal =  np.array(zip(freeX,freeY)[np.random.choice(len(freeX))])
+
 
 # Player variables
 score = 0
 robot_num = 5
-robot_id = random.sample(range(freeX.shape[0]), robot_num)
-playerx = np.zeros(len(robot_id)).astype(int)
-playery = np.copy(playerx).astype(int)
-for i in range(len(robot_id)):
-    playerx[i], playery[i] = freeX[i],freeY[i]
+# robot_id = random.sample(range(freeX.shape[0]), robot_num)
+# playerx = np.zeros([len(robot_id),1]).astype(int)
+# playery = np.copy(playerx).astype(int)
+# for i in range(len(robot_id)):
+#     playerx[i], playery[i] = freeX[robot_id[i]],freeY[robot_id[i]]
 
 frames = 0
 fps = 14
@@ -190,10 +193,11 @@ def cellGen(x, y):
 # resets player position and the level
 def resetPlayer():
     global checks, playerx, playery, secondsLevel
-    playerx = np.zeros(len(robot_id))
-    playery = np.copy(playerx)
+    robot_id = random.sample(range(freeX.shape[0]), robot_num)
+    playerx = np.zeros([len(robot_id), 1]).astype(int)
+    playery = np.copy(playerx).astype(int)
     for i in range(len(robot_id)):
-        playerx[i], playery [i] = freeX[i], freeY[i]
+        playerx[i], playery[i] = freeX[robot_id[i]], freeY[robot_id[i]]
 
     checks = 0
 
