@@ -92,23 +92,23 @@ class MazeEnv():
 
 
 
-# np.random.seed(10)
-# env = MazeEnv()
-# env.render()
-# n_epochs = 1000
-#
-#
-# for i in range(n_epochs):
-#     next_action = np.random.randint(4,size = 1)
-#     state_img,reward, _, _ = env.step(next_action)
-#     if i % 100 == 1:
-#         plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
-#         plt.axis('off')
-#         plt.title('Step = ' + str(i) )
-#         env.render()
-#         #plt.subplots_adjust(wspace = 0.1)
-#
-# plt.show()
-#
+np.random.seed(10)
+env = MazeEnv()
+env.render()
+n_epochs = 1000
+
+
+for i in range(n_epochs):
+    next_action = np.random.randint(4,size = 1)
+    state_img,reward, _, _ = env.step(next_action)
+    if i % 100 == 1:
+        plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
+        plt.axis('off')
+        plt.title('Step = ' + str(i) )
+        env.render()
+        #plt.subplots_adjust(wspace = 0.1)
+
+plt.show()
+
 
 

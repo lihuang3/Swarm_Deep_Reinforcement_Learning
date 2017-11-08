@@ -221,6 +221,8 @@ def playerMove(x, y):
     global level, secondsLevel, minutes, seconds
     global checks, goal
     checkAgg = 1
+
+
     for i in range(playerx.shape[0]):
         playerx[i] += int(x)
         playery[i] += int(y)
@@ -284,7 +286,7 @@ generate()
 while True:
     # Handle events:
     events = 0
-    time.sleep(0.1)
+    time.sleep(0.2)
 
     for event in pygame.event.get():
 

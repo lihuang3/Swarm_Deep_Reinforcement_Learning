@@ -149,6 +149,7 @@ class Estimator():
         """
         return sess.run(self.predictions, { self.X_pl: s })
 
+
     def update(self, sess, s, a, y):
         """
         Updates the estimator towards the given targets.

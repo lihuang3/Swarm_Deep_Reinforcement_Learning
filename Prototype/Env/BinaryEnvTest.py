@@ -59,10 +59,11 @@ class MazeEnv():
         cost_to_go = -np.sum(self.state/10*costData)
         if cost_to_go ==0:
             done = True
-            reward = 10
+            reward = 10.0
         else:
             done = False
-            reward = cost_to_go
+            #reward = cost_to_go
+            reward = -1.0
 
         return(output_img,reward,done,1)
 
@@ -72,17 +73,19 @@ class MazeEnv():
     def reset(self):
         return self._build_robot()
 
-
-np.random.seed(10)
-
-env = MazeEnv()
-
-for i in range(100):
-    next_action = np.random.randint(4,size = 1)
-    env.step(next_action)
-#     # if i % 100 == 1:
-
-   # sys.stdout.flush()
-
-
-
+#
+# np.random.seed(10)
+#
+# env = MazeEnv()
+#
+# for i in range(5000):
+#     next_action = np.random.randint(4,size = 1)
+#     state, reward, done, _ = env.step(next_action)
+# #     # if i % 100 == 1:
+#     print 'action = {}, reward = {}, done = {}'.format(next_action, reward, done )
+#     env.reset()
+#
+#    # sys.stdout.flush()
+#
+#
+#
