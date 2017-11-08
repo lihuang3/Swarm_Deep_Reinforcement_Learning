@@ -1,29 +1,28 @@
 
-import numpy as np
-import random
-import sys
-import matplotlib.pyplot as plt
-import time
+import numpy as np, random, sys, matplotlib.pyplot as plt, time
 
-filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
+ROOT_PATH = '/home/lihuang/SwarmDRL/Prototype'
 
-mazeData = np.loadtxt(filename + 'NewMap1.csv').astype(int)
-centerline = np.loadtxt(filename + 'CenterlineMap1.csv').astype(int)
-costData = np.loadtxt(filename + 'NewCostMap1.csv').astype(int)
-
-
+map_data_dir = ROOT_PATH + '/Env/MapData/'
 
 class MazeEnv():
     def __init__(self):
+        global mazeData, costData, centerline, mazeHeight, mazeWidth
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
-        self.maze = np.ones((mazeData.shape[0],mazeData.shape[1]))-mazeData
-        self.mazeHeight = mazeData.shape[0]
-        self.mazeWidth = mazeData.shape[1]
-        self.centerline = np.ones((mazeData.shape[0],mazeData.shape[1]))-centerline
+        mazeData, costData, centerline = self._load_data(map_data_dir)
+        mazeHeight, mazeWidth = mazeData.shape
+
+        self.maze = np.ones((mazeHeight, mazeWidth))-mazeData
+        self.centerline = np.ones((mazeHeight, mazeWidth))-centerline
         self.goal = np.array([52, 7])
         self._build_robot()
 
+    def _load_data(self, data_directory):
+        mazeData = np.loadtxt(data_directory + 'NewMap1.csv').astype(int)
+        costData = np.loadtxt(data_directory + 'NewCostMap1.csv').astype(int)
+        centerline = np.loadtxt(data_directory + 'CenterlineMap1.csv').astype(int)
+        return mazeData, costData, centerline
 
     def _build_robot(self):
         row, col = np.nonzero(centerline)
@@ -65,7 +64,7 @@ class MazeEnv():
 
         row, col = np.nonzero(next_state)
 
-        self.state_img  = np.zeros([self.mazeHeight,self.mazeWidth])
+        self.state_img  = np.zeros([mazeHeight,mazeWidth])
 
         for i in range(row.shape[0]):
             self.state_img[row[i] - 2:row[i] + 3,col[i] - 2:col[i] + 3] += 20 *next_state[row[i],col[i]]*np.ones([5, 5])
@@ -86,33 +85,30 @@ class MazeEnv():
         return(output_img,reward,done,1)
 
     def render(self):
-        print '\n{}\n'.format(self.state)
-
+        plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
+        #plt.show()
     def reset(self):
         return self._build_robot()
 
-from matplotlib import animation
 
-#np.random.seed(10)
+
+# np.random.seed(10)
 # env = MazeEnv()
+# env.render()
+# n_epochs = 1000
 #
 #
-#
-# #plt.ion()
-# img = plt.imshow(env.state_img,vmin = 0, vmax = 255)
-# t0 = time.clock()
-# for i in range(500):
+# for i in range(n_epochs):
 #     next_action = np.random.randint(4,size = 1)
-#     img,reward, _, _ = env.step(next_action)
-#     print reward
-#     # if i % 100 == 1:
-#     # if i%50 == 0:
-#     #     # img.set_data(env.state_img)
-#     #     plt.imshow(img, vmin=0, vmax=255)
-#     #     plt.show()
-#     #     time.sleep(0.5)
+#     state_img,reward, _, _ = env.step(next_action)
+#     if i % 100 == 1:
+#         plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
+#         plt.axis('off')
+#         plt.title('Step = ' + str(i) )
+#         env.render()
+#         #plt.subplots_adjust(wspace = 0.1)
 #
-# print time.clock()
-#
-# plt.imshow(img, vmin=0, vmax=255)
 # plt.show()
+#
+
+

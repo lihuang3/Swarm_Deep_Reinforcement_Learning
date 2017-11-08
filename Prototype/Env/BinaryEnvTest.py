@@ -1,28 +1,30 @@
-import numpy as np
-import random
-import sys
-import time
+import numpy as np, random, sys, os, time, matplotlib.pyplot as plt
 
-filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
+ROOT_PATH = '/home/lihuang/SwarmDRL/Prototype'
 
-mazeData = np.loadtxt(filename + 'map1.csv').astype(int)
-costData = np.loadtxt(filename + 'costMap.csv').astype(int)
-costData = costData - mazeData
-
+map_data_dir = ROOT_PATH + '/Env/MapData/'
 
 
 class MazeEnv():
     def __init__(self):
+        global mazeData, costData, mazeHeight, mazeWidth
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
-        self.maze = np.ones((mazeData.shape[0],mazeData.shape[1]))-mazeData
+        mazeData, costData = self._load_data(map_data_dir)
+        mazeHeight, mazeWidth = mazeData.shape
+        self.maze = np.ones((mazeHeight, mazeWidth))-mazeData
         self.goal = np.array([1,1])
         self._build_robot()
+
+    def _load_data(self, data_directory):
+        mazeData = np.loadtxt(data_directory + 'map1.csv').astype(int)
+        costData = np.loadtxt(data_directory + 'costMap.csv').astype(int)
+        return mazeData, costData
 
 
     def _build_robot(self):
         row, col = np.nonzero(mazeData)
-        self.robot_num = 10
+        self.robot_num = 1
         self.robot = random.sample(range(row.shape[0]), self.robot_num)
         self.state = np.zeros(np.shape(mazeData)).astype(int)
         for i in range(self.robot_num):
@@ -70,12 +72,14 @@ class MazeEnv():
     def reset(self):
         return self._build_robot()
 
-# np.random.seed(10)
-# env = MazeEnv()
-#
-# for i in range(100):
-#     next_action = np.random.randint(4,size = 1)
-#     env.step(next_action)
+
+np.random.seed(10)
+
+env = MazeEnv()
+
+for i in range(100):
+    next_action = np.random.randint(4,size = 1)
+    env.step(next_action)
 #     # if i % 100 == 1:
 
    # sys.stdout.flush()

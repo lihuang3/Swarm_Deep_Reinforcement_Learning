@@ -3,7 +3,7 @@ from __future__ import print_function
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
-from EnvTest1 import MazeEnv
+from Env.RGBEnvTest import MazeEnv
 import itertools
 import numpy as np
 import os
