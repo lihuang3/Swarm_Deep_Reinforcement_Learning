@@ -6,7 +6,6 @@ os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
 valid_actions = [0, 1, 2, 3]
 
-np.random.seed(10)
 
 env = MazeEnv()
 
@@ -15,8 +14,8 @@ class Q_Network():
 
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
-        self.fc1_num_outputs = 1000
-        self.fc2_num_outputs = 100
+        self.fc1_num_outputs = 100
+        self.fc2_num_outputs = 50
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -40,19 +39,32 @@ class Q_Network():
         # N.A. for binary image
 
         # Flatten the input images and build fully connected layers
-
         X = tf.contrib.layers.flatten(tf.to_float(self.X_tr))
-        fc1 = tf.contrib.layers.fully_connected(X, self.fc1_num_outputs, activation_fn=tf.nn.relu,\
-                                               weights_initializer = tf.random_normal_initializer(), \
-                                               biases_initializer = tf.zeros_initializer())
 
-        fc2 = tf.contrib.layers.fully_connected(fc1, self.fc2_num_outputs, activation_fn=tf.nn.relu,\
-                                               weights_initializer = tf.random_normal_initializer(), \
-                                               biases_initializer = tf.zeros_initializer())
+        # fc1 = tf.contrib.layers.fully_connected(X, self.fc1_num_outputs, activation_fn=tf.nn.relu,\
+        #                                        weights_initializer = tf.random_normal_initializer(0.,0.3), \
+        #                                        biases_initializer = tf.constant_initializer(0.1))
+        #
+        # fc2 = tf.contrib.layers.fully_connected(fc1, self.fc2_num_outputs, activation_fn=tf.nn.relu,\
+        #                                        weights_initializer = tf.random_normal_initializer(0.,0.3), \
+        #                                        biases_initializer = tf.constant_initializer(0.1))
+        #
+        # self.q_val = tf.contrib.layers.fully_connected(fc2, self.n_actions, activation_fn=tf.nn.relu,\
+        #                                        weights_initializer = tf.random_normal_initializer(0.,0.3), \
+        #                                        biases_initializer = tf.constant_initializer(0.1))
 
-        self.q_val = tf.contrib.layers.fully_connected(fc2, self.n_actions, activation_fn=tf.nn.relu,\
-                                               weights_initializer = tf.random_normal_initializer(), \
-                                               biases_initializer = tf.zeros_initializer())
+        fc1 = tf.layers.dense(X, self.fc1_num_outputs, activation= tf.nn.relu, \
+                              kernel_initializer = tf.random_normal_initializer(0.,0.3), \
+                              bias_initializer= tf.constant_initializer(0.1))
+
+        fc2 = tf.layers.dense(fc1, self.fc2_num_outputs, activation=tf.nn.relu, \
+                              kernel_initializer=tf.random_normal_initializer(0., 0.3), \
+                              bias_initializer=tf.constant_initializer(0.1))
+
+
+        self.q_val = tf.layers.dense(fc2, self.n_actions, activation=tf.nn.relu, \
+                              kernel_initializer=tf.random_normal_initializer(0., 0.3), \
+                              bias_initializer=tf.constant_initializer(0.1))
 
         # Make prediction
         # tf.gather_nd(params, indices): map elements in params to the output with given the indices order
@@ -71,6 +83,7 @@ class Q_Network():
         if state.ndim < 3:
             state = np.expand_dims(state, 0)
         return sess.run(self.q_val, feed_dict = {self.X_tr: state})
+
 
     # Update model parameters
     def update_model(self, sess, state, action, target):
@@ -96,7 +109,8 @@ def Policy_Fcn(sess, network, state, n_actions, epsilon):
     q_val = network.model_predict(sess, state)[0]
 
     # Update the priority action probability
-    policy[np.argmax(q_val)] += 1 - epsilon
+    #policy[np.argmax(q_val)] += 1 - epsilon
+    policy = np.argmax(q_val)
     return policy
 
 
@@ -128,14 +142,16 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
         policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
                                epsilon_array[min(total_step, num_episodes-1)])
-        action = np.random.choice(np.arange(env.n_actions), p = policy)
+        # action = np.random.choice(np.arange(env.n_actions), p = policy)
+        action = np.random.choice(np.arange(env.n_actions))
+
         next_state, reward, done, _ = env.step(action)
         replay_memory.append([state, action, reward, next_state, done])
         if done:
             state = env.reset()
         else:
             state = next_state
-        if(i % 100 ==0):
+        if(i % 100 ==1):
             print("\r Populating replay memory {}% completed".format(
                 100*float(i)/replay_memory_initial_size)),
         sys.stdout.flush()
@@ -158,8 +174,11 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             sys.stdout.flush()
 
             policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
-                                epsilon_array[min(total_step, num_episodes - 1)])
-            action = np.random.choice(np.arange(env.n_actions), p=policy)
+                                epsilon_array[min(i_episode, num_episodes - 1)])
+            if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
+                action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
+            else:
+                action = np.random.choice(np.arange(env.n_actions))
             next_state, reward, done, _ = env.step(action)
 
             # If replay memory is full, first-in-first-out
@@ -182,13 +201,25 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
             q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
 
-            target_batch = reward_batch + \
-                           discounted_factor*np.invert(done_batch).astype(float)*( np.amax(q_val_batch, axis = 1,))
+            # q_val_batch_max_idx = np.argmax(q_val_batch,axis = 1)
+            #
+            # q_val_target_batch = target_net.model_predict(sess, next_state_batch)
+
+            # target_batch = reward_batch + \
+            #                discounted_factor * np.invert(done_batch).astype(float) * \
+            #                (q_val_target_batch[np.arange(batch_size), q_val_batch_max_idx] )
+
+            # target_batch = reward_batch + \
+            #             discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
+            #
+            target_batch = reward_batch + discounted_factor * (np.amax(q_val_batch, axis=1))
+
+            #state_batch = np.array(state_batch)
 
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
-            if (done) or (t > 200):
-                print ('  Step = {} Done = {}'.format(t, done))
+            if (done) or (t >= 300):
+                print ('Step = {} Done = {}'.format(t, done) )
                 break
 
             state = next_state
@@ -215,6 +246,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 100000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 4000, discounted_factor = 0.99, \
-               epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 5000, replay_memory_size = 20000,\
+               replay_memory_initial_size = 2000, target_net_update_interval = 3000, discounted_factor = 0.99, \
+               epsilon_s = 0.9, epsilon_f = 0.1, batch_size = 128)

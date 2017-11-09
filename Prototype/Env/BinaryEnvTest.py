@@ -13,7 +13,7 @@ class MazeEnv():
         mazeData, costData = self._load_data(map_data_dir)
         mazeHeight, mazeWidth = mazeData.shape
         self.maze = np.ones((mazeHeight, mazeWidth))-mazeData
-        self.goal = np.array([1,1])
+        self.goal = np.array([10,1])
         self._build_robot()
 
     def _load_data(self, data_directory):
@@ -25,11 +25,12 @@ class MazeEnv():
     def _build_robot(self):
         row, col = np.nonzero(mazeData)
         self.robot_num = 1
-        self.robot = random.sample(range(row.shape[0]), self.robot_num)
+        #self.robot = random.sample(range(row.shape[0]), self.robot_num)
         self.state = np.zeros(np.shape(mazeData)).astype(int)
         for i in range(self.robot_num):
-            self.state[row[self.robot[i]], col[self.robot[i]]] = 10
-        output_img = self.state + self.maze * 255
+            #self.state[row[self.robot[i]], col[self.robot[i]]] = 10
+            self.state[1,1] = 10
+        output_img = self.state + self.maze
         return output_img
 
     def step(self,action):
@@ -55,9 +56,9 @@ class MazeEnv():
         next_state += np.roll(collision, -next_direction, axis=next_axis)
 
         self.state = next_state
-        output_img = self.state + self.maze*255
+        output_img = self.state + self.maze
         cost_to_go = -np.sum(self.state/10*costData)
-        if cost_to_go ==0:
+        if cost_to_go == 0:
             done = True
             reward = 10.0
         else:
@@ -73,19 +74,20 @@ class MazeEnv():
     def reset(self):
         return self._build_robot()
 
-#
+# # #
 # np.random.seed(10)
 #
 # env = MazeEnv()
 #
 # for i in range(5000):
 #     next_action = np.random.randint(4,size = 1)
+#     next_action = 2
 #     state, reward, done, _ = env.step(next_action)
 # #     # if i % 100 == 1:
 #     print 'action = {}, reward = {}, done = {}'.format(next_action, reward, done )
-#     env.reset()
+#
 #
 #    # sys.stdout.flush()
-#
-#
-#
+
+
+
