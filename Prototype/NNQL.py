@@ -14,8 +14,8 @@ class Q_Network():
 
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
-        self.fc1_num_outputs = 100
-        self.fc2_num_outputs = 50
+        self.fc1_num_outputs = 144
+        self.fc2_num_outputs = 144
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -138,6 +138,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
     # Populate the replay memory with random states
     state = env.reset()
+
     for i in range(replay_memory_initial_size):
 
         policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
@@ -160,17 +161,19 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
         state = env.reset()
         loss = None
+        transition = []
+        # Maybe update the target estimator
+        if i_episode % target_net_update_interval == 0:
+            Copy_Network(sess, q_eval_net, target_net)
+            print("\nCopied model parameters to target network.")
 
         for t in itertools.count():
 
-            # Maybe update the target estimator
-            if total_step % target_net_update_interval == 0:
-                Copy_Network(sess, q_eval_net, target_net)
-                print("\nCopied model parameters to target network.")
+
 
             # Print out which step we're on, useful for debugging.
-            print("\rStep {} ({}) @ Episode {}/{}, loss: {}".format(
-                t, total_step, i_episode + 1, num_episodes, loss) ),
+            print("\rStep {} ({}) Scene {} @ Episode {}/{}, loss: {}".format(
+                t % 300, total_step, t/300+1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
             policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
@@ -181,15 +184,12 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
                 action = np.random.choice(np.arange(env.n_actions))
             next_state, reward, done, _ = env.step(action)
 
+            transition.append([state, action, reward, next_state, done])
             # If replay memory is full, first-in-first-out
-            if len(replay_memory) == replay_memory_size:
-                replay_memory.pop(0)
-            replay_memory.append([state, action, reward, next_state, done])
+            # if len(replay_memory) == replay_memory_size:
+            #     replay_memory.pop(0)
+            # replay_memory.append([state, action, reward, next_state, done])
 
-            if done:
-                state = env.reset()
-            else:
-                state = next_state
 
             # Minibatch Training
 
@@ -218,12 +218,22 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
-            if (done) or (t >= 300):
-                print ('Step = {} Done = {}'.format(t, done) )
+            if (done):
+                print ('Step = {} Done = {}'.format(t%300+1, done) )
+                for ti in range(len(transition)):
+                    if len(replay_memory) == replay_memory_size:
+                        replay_memory.pop(0)
+                    replay_memory.append(transition[ti])
                 break
 
             state = next_state
             total_step += 1
+
+            if t > 300 and t % 300 == 1:
+                state = env.reset()
+                transition = []
+                loss = None
+
 
 
 #=======================
@@ -246,6 +256,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 5000, replay_memory_size = 20000,\
-               replay_memory_initial_size = 2000, target_net_update_interval = 3000, discounted_factor = 0.99, \
-               epsilon_s = 0.9, epsilon_f = 0.1, batch_size = 128)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 5000,\
+               replay_memory_initial_size = 2000, target_net_update_interval = 20, discounted_factor = 0.99, \
+               epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32)

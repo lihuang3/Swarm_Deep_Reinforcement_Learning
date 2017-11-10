@@ -53,8 +53,8 @@ class Qmaze(object):
         nrows, ncols = self.maze.shape
         row, col = rat
         self.maze[row, col] = rat_mark
-        self.state = (row, col, 'start')
-        self.min_reward = -0.5 * self.maze.size
+        self.state = (row, col, 'valid')
+        self.min_reward = -0.5* self.maze.size
         self.total_reward = 0
         self.visited = set()
 
@@ -399,17 +399,17 @@ maze =  np.array([
     [ 1.,  0.,  1.,  1.,  1.,  1.,  1.],
     [ 1.,  1.,  1.,  0.,  1.,  1.,  1.]
 ])
+# #
+# ROOT_PATH = '/home/lihuang/SwarmDRL/Prototype'
 #
-ROOT_PATH = '/home/lihuang/SwarmDRL/Prototype'
-
-map_data_dir = ROOT_PATH + '/Env/MapData/'
-
-
-def _load_data(data_directory):
-    mazeData = np.loadtxt(data_directory + 'mapK.txt').astype(int)
-    return mazeData
-
-maze= _load_data(map_data_dir)
+# map_data_dir = ROOT_PATH + '/Env/MapData/'
+#
+#
+# def _load_data(data_directory):
+#     mazeData = np.loadtxt(data_directory + 'mapK.txt').astype(int)
+#     return mazeData
+#
+# maze= _load_data(map_data_dir)
 
 
 
