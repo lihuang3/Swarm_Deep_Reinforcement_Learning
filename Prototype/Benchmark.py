@@ -73,21 +73,3 @@ class MazeEnv():
 
     def reset(self):
         return self._build_robot()
-
-# # #
-# np.random.seed(10)
-#
-# env = MazeEnv()
-#
-# for i in range(5000):
-#     next_action = np.random.randint(4,size = 1)
-#     next_action = 2
-#     state, reward, done, _ = env.step(next_action)
-# #     # if i % 100 == 1:
-#     print 'action = {}, reward = {}, done = {}'.format(next_action, reward, done )
-#
-#
-#    # sys.stdout.flush()
-
-
-
