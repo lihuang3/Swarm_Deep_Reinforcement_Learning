@@ -22,19 +22,19 @@ for i in range(MazeAugment.shape[1]):
 # MazeAugment *= np.roll(MazeAugment, 1, axis = 1)
 # MazeAugment *= np.roll(MazeAugment, -1, axis = 1)
 
-np.savetxt('NewMap1.csv', MazeAugment, fmt = '%3d')
+np.savetxt('map1.csv', MazeAugment, fmt = '%3d')
 # plt.imshow(MazeAugment)
 # plt.show()
 
 centerline = np.copy(MazeAugment)
-centerline *= np.roll(centerline, 2, axis = 0)
-centerline *= np.roll(centerline, -2, axis = 0)
-centerline *= np.roll(centerline, 2, axis = 1)
-centerline *= np.roll(centerline, -2, axis = 1)
-
-
-
-np.savetxt('CenterlineMap1.csv', centerline, fmt = '%3d')
+# centerline *= np.roll(centerline, 2, axis = 0)
+# centerline *= np.roll(centerline, -2, axis = 0)
+# centerline *= np.roll(centerline, 2, axis = 1)
+# centerline *= np.roll(centerline, -2, axis = 1)
+#
+#
+#
+# np.savetxt('CenterlineMap.csv', centerline, fmt = '%3d')
 
 
 # plt.imshow(Centerline)
@@ -43,7 +43,8 @@ np.savetxt('CenterlineMap1.csv', centerline, fmt = '%3d')
 # Breadth-first search for cost-to-go map
 
 BSF_Frontier = []
-goal = np.array([52, 7]).astype(int)
+# goal = np.array([52, 7]).astype(int)
+goal = np.array([10,1])
 costMap = np.copy(centerline)
 BSF_Frontier.append(goal)
 cost = 100
@@ -59,7 +60,7 @@ while len(BSF_Frontier)>0:
     BSF_Frontier.pop(0)
 
 
-costMap -= 100*centerline
-costMap /= 5
+costMap -= 99*centerline
+#costMap /= 5
 
-np.savetxt('NewCostMap1.csv', costMap, fmt = '%3d')
+np.savetxt('costMap.csv', costMap, fmt = '%3d')

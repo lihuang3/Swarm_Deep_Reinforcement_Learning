@@ -14,8 +14,9 @@ class Q_Network():
 
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
-        self.fc1_num_outputs = 144
-        self.fc2_num_outputs = 144
+        self.keep_prob = 1.0
+        self.fc1_num_outputs = 50
+        self.fc2_num_outputs = 50
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -56,11 +57,13 @@ class Q_Network():
         fc1 = tf.layers.dense(X, self.fc1_num_outputs, activation= tf.nn.relu, \
                               kernel_initializer = tf.random_normal_initializer(0.,0.3), \
                               bias_initializer= tf.constant_initializer(0.1))
+       # fc1_dropout = tf.contrib.layers.dropout(fc1, self.keep_prob)
 
         fc2 = tf.layers.dense(fc1, self.fc2_num_outputs, activation=tf.nn.relu, \
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
+        #fc2_dropout = tf.contrib.layers.dropout(fc2, self.keep_prob)
 
         self.q_val = tf.layers.dense(fc2, self.n_actions, activation=tf.nn.relu, \
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
@@ -138,7 +141,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     epsilon_array = np.linspace(epsilon_s, epsilon_f, num_episodes)
 
     # Populate the replay memory with random states
-    state = env.reset()
+    state, init_reward = env.reset()
 
     for i in range(replay_memory_initial_size):
 
@@ -150,17 +153,17 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         next_state, reward, done, _ = env.step(action)
         replay_memory.append([state, action, reward, next_state, done])
         if done:
-            state = env.reset()
+            state, init_reward = env.reset()
         else:
             state = next_state
-        if(i % 100 ==1):
+        if(i % 100 == 0):
             print("\r Populating replay memory {}% completed".format(
                 100*float(i)/replay_memory_initial_size)),
         sys.stdout.flush()
 
     for i_episode in range(num_episodes):
 
-        state = env.reset()
+        state, init_reward = env.reset()
         loss = None
         transition = []
         # Maybe update the target estimator
@@ -220,19 +223,28 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
             if (done):
-                print ('Step = {} Done = {}'.format(t%300+1, done) )
+                print ('Step = {} (init cost: {}) Done = {}'.format(t%300+1, init_reward, done) )
+
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
                         replay_memory.pop(0)
                     replay_memory.append(transition[ti])
                     total_step_ += 1
+
+                if range(len(transition)<80):
+                    for _ in range(2):
+                        for ti in range(len(transition)):
+                            if len(replay_memory) == replay_memory_size:
+                                replay_memory.pop(0)
+                            replay_memory.append(transition[ti])
+
                 break
 
             state = next_state
             total_step += 1
 
             if t > 300 and t % 300 == 1:
-                state = env.reset()
+                state, init_reward = env.reset()
                 transition = []
                 loss = None
 
@@ -258,6 +270,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 100000,\
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 50000, replay_memory_size = 100000,\
                replay_memory_initial_size = 10000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 0.9, epsilon_f = 0.1, batch_size = 32)
+               epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32)

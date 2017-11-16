@@ -28,17 +28,19 @@ class MazeEnv():
         self.robot = random.sample(range(row.shape[0]), self.robot_num)
         self.state = np.zeros(np.shape(mazeData)).astype(int)
         for i in range(self.robot_num):
-            self.state[row[self.robot[i]], col[self.robot[i]]] = 10
-            # self.state[1,1] = 10
+           self.state[row[self.robot[i]], col[self.robot[i]]] = 10
+           #self.state[1,1] = 10
         output_img = self.state + self.maze
-        return output_img
+        init_reward = np.sum(self.state/10*costData)-self.robot_num
+
+        return output_img, init_reward
 
     def step(self,action):
-        if action == 0:   # up
-            next_direction = 1
-            next_axis = 0
-        elif action == 1:   # down
+        if action == 0:   # down
             next_direction = -1
+            next_axis = 0
+        elif action == 1:   # up
+            next_direction = 1
             next_axis = 0
         elif action == 2:   # left
             next_direction = -1
@@ -57,13 +59,12 @@ class MazeEnv():
 
         self.state = next_state
         output_img = self.state + self.maze
-        cost_to_go = -np.sum(self.state/10*costData)
+        cost_to_go = np.sum(self.state/10*costData)-self.robot_num
         if cost_to_go == 0:
             done = True
             reward = 10.0
         else:
             done = False
-            #reward = cost_to_go
             reward = -1.0
 
         return(output_img,reward,done,1)
