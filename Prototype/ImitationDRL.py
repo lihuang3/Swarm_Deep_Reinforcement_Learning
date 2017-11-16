@@ -15,8 +15,8 @@ class Q_Network():
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
         self.keep_prob = 1.0
-        self.fc1_num_outputs = 500
-        self.fc2_num_outputs = 500
+        self.fc1_num_outputs = 200
+        self.fc2_num_outputs = 200
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -278,6 +278,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 100000, replay_memory_size = 500000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 50, discounted_factor = 0.99, \
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 100000,\
+               replay_memory_initial_size = 10000, target_net_update_interval = 20, discounted_factor = 0.99, \
                epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32)
