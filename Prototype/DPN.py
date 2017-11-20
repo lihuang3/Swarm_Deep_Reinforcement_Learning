@@ -1,4 +1,4 @@
-from __future__ import print_function
+# from __future__ import print_function
 
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
@@ -98,7 +98,7 @@ class Estimator():
 
         # shape = (?,21,21,32)
         conv1 = tf.contrib.layers.conv2d(
-           X, 32, 8, 4, activation_fn=tf.nn.relu)
+           X, 16, 5, 5, activation_fn=tf.nn.relu)
         # # shape = (?,11,11,64)
         conv2 = tf.contrib.layers.conv2d(
            conv1, 32, 4, 2, activation_fn=tf.nn.relu)
@@ -342,7 +342,7 @@ def deep_q_learning(sess,
     total_t = sess.run(tf.contrib.framework.get_global_step())
 
     # The epsilon decay schedule
-    epsilons = np.linspace(epsilon_start, epsilon_end, epsilon_decay_steps)
+    epsilons = np.linspace(epsilon_start, epsilon_end, num_episodes)
 
     # The policy we're following
     policy = make_epsilon_greedy_policy(
@@ -355,7 +355,7 @@ def deep_q_learning(sess,
     state = state_processor.process(sess, state)
     # state = np.stack([state] * 4, axis=2)
     for i in range(replay_memory_init_size):
-        action_probs = policy(sess, state, epsilons[min(total_t, epsilon_decay_steps - 1)])
+        action_probs = policy(sess, state, epsilons[min(total_t, num_episodes - 1)])
         action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
         next_state, reward, done, _ = env.step(VALID_ACTIONS[action])
         next_state = state_processor.process(sess, next_state)
@@ -364,7 +364,7 @@ def deep_q_learning(sess,
 
         if(i%100 ==0):
             print("\rPopulating replay memory {}% completed".format(
-                100*float(i)/50000,replay_memory_init_size), end="")
+                100*float(i)/replay_memory_init_size)),
 
         if done:
             state = env.reset()
@@ -380,6 +380,7 @@ def deep_q_learning(sess,
     # env = Monitor(env, directory=monitor_path, video_callable=lambda count: count % record_video_every == 0,
     #              resume=True)
 
+    total_step_ = 0
 
     for i_episode in range(num_episodes):
 
@@ -391,21 +392,24 @@ def deep_q_learning(sess,
         state = state_processor.process(sess, state)
         # state = np.stack([state] * 4, axis=2)
         loss = None
-
+        transition = []
         # One step in the environment
+
+        # Maybe update the target estimator
+        if i_episode % update_target_estimator_every == 0:
+            estimator_copy.make(sess)
+            print("\nCopied model parameters to target network.")
+
+
         for t in itertools.count():
 
             # Epsilon for this time step
-            epsilon = epsilons[min(i_episode, epsilon_decay_steps - 1)]  # total_t --> i_episode
+            epsilon = epsilons[i_episode]  # total_t --> i_episode
 
-            # Maybe update the target estimator
-            if total_t % update_target_estimator_every == 0:
-                estimator_copy.make(sess)
-                print("\nCopied model parameters to target network.")
 
             # Print out which step we're on, useful for debugging.
-            print("\rStep {} ({}) @ Episode {}/{}, loss: {}".format(
-                t, total_t, i_episode + 1, num_episodes, loss), end="")
+            print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
+                t % 500, total_step_, total_t, t / 500 + 1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
             # Take a step
@@ -415,12 +419,9 @@ def deep_q_learning(sess,
             next_state = state_processor.process(sess, next_state)
             # next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
 
-            # If our replay memory is full, pop the first element
-            if len(replay_memory) == replay_memory_size:
-                replay_memory.pop(0)
 
             # Save transition to replay memory
-            replay_memory.append(Transition(state, action, reward, next_state, done))
+            transition.append([state, action, reward, next_state, done])
 
             # Update statistics
             # stats.episode_rewards[i_episode] += reward
@@ -439,12 +440,26 @@ def deep_q_learning(sess,
             states_batch = np.array(states_batch)
             loss = q_estimator.update(sess, states_batch, action_batch, targets_batch)
 
-            if (done) or (t>2500):
-                print ('  Step = {} Reward = {}'.format(t, reward))
+
+            if (done):
+                print ('Step = {}'.format(t % 500) )
+
+                for ti in range(len(transition)):
+                    if len(replay_memory) == replay_memory_size:
+                        replay_memory.pop(0)
+                    replay_memory.append(transition[ti])
+                    total_step_ += 1
+
+
                 break
 
             state = next_state
             total_t += 1
+
+            if t > 500 and t % 500 == 1:
+                state = env.reset()
+                transition = []
+                loss = None
 
         # Add summaries to tensorboard
         # episode_summary = tf.Summary()
@@ -488,12 +503,12 @@ with tf.Session() as sess:
                                     target_estimator=target_estimator,
                                     state_processor=state_processor,
 
-                                    num_episodes=10000,
+                                    num_episodes=20000,
                                     replay_memory_size=500000,
                                     replay_memory_init_size=50000,
-                                    update_target_estimator_every=10000,
+                                    update_target_estimator_every=25,
                                     epsilon_start=1.0,
-                                    epsilon_end=0.1,
+                                    epsilon_end=0.0,
                                     epsilon_decay_steps=10000,
                                     discount_factor=0.99,
                                     batch_size=32):

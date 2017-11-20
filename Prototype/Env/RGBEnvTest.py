@@ -16,6 +16,7 @@ class MazeEnv():
         self.maze = np.ones((mazeHeight, mazeWidth))-mazeData
         self.centerline = np.ones((mazeHeight, mazeWidth))-centerline
         self.goal = np.array([52, 7])
+        self.init_state = []
         self._build_robot()
 
     def _load_data(self, data_directory):
@@ -29,23 +30,42 @@ class MazeEnv():
         idx = np.logical_and(col%5 ==2, row%5==2)
         row = row[idx]
         col = col[idx]
-        self.robot_num = 10
-        self.robot = random.sample(range(row.shape[0]), self.robot_num)
-        self.state = np.zeros(np.shape(mazeData)).astype(int)
-        self.state_img = np.copy(self.state)
-        for i in range(self.robot_num):
-            self.state[row[self.robot[i]], col[self.robot[i]]] = 1
-            self.state_img[row[self.robot[i]]-2:row[self.robot[i]]+3, col[self.robot[i]]-2:col[self.robot[i]]+3] = 20*np.ones([5,5])
+
+        if len(self.init_state)==0:
+            self.robot_num = row.shape[0]
+            #self.robot = random.sample(range(row.shape[0]), self.robot_num)
+            self.state = np.zeros(np.shape(mazeData)).astype(int)
+            self.state_img = np.copy(self.state)
+            for i in range(self.robot_num):
+               #self.state[row[self.robot[i]], col[self.robot[i]]] = 10
+                self.state[row[i], col[i]]= 5
+                self.state_img[row[i]-2:row[i]+3, col[i]-2:col[i]+3] = 5*np.ones([5,5])
+
+            #self.state[1,1] = 10
+            self.init_state = self.state
+            self.init_state_img = self.state_img
+        else:
+            self.state = self.init_state
+            self.state_img = self.init_state_img
+
+        # self.robot_num = row.shape[0]
+        # self.robot = random.sample(range(row.shape[0]), self.robot_num)
+        # self.state = np.zeros(np.shape(mazeData)).astype(int)
+        # self.state_img = np.copy(self.state)
+        # for i in range(self.robot_num):
+        #     self.state[row[self.robot[i]], col[self.robot[i]]] = 1
+        #     self.state_img[row[self.robot[i]]-2:row[self.robot[i]]+3, col[self.robot[i]]-2:col[self.robot[i]]+3] = 5*np.ones([5,5])
+        #
         output_img = self.state_img + self.maze * 255
 
         return output_img
 
     def step(self,action):
         if action == 0:   # up
-            next_direction = 5
+            next_direction = -5
             next_axis = 0
         elif action == 1:   # down
-            next_direction = -5
+            next_direction = 5
             next_axis = 0
         elif action == 2:   # left
             next_direction = -5
@@ -67,13 +87,13 @@ class MazeEnv():
         self.state_img  = np.zeros([mazeHeight,mazeWidth])
 
         for i in range(row.shape[0]):
-            self.state_img[row[i] - 2:row[i] + 3,col[i] - 2:col[i] + 3] += 20 *next_state[row[i],col[i]]*np.ones([5, 5])
+            self.state_img[row[i] - 2:row[i] + 3,col[i] - 2:col[i] + 3] += next_state[row[i],col[i]]*np.ones([5, 5])
 
         self.state = next_state
 
         output_img = self.state_img + self.maze*255
 
-        cost_to_go = -np.sum(self.state*costData)
+        cost_to_go = np.sum(self.state/5*costData)-self.robot_num
 
         if cost_to_go ==0:
             done = True
@@ -86,29 +106,30 @@ class MazeEnv():
 
     def render(self):
         plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
-        #plt.show()
+        plt.show()
+
     def reset(self):
         return self._build_robot()
 
 
-
-np.random.seed(10)
-env = MazeEnv()
-env.render()
-n_epochs = 1000
-
-
-for i in range(n_epochs):
-    next_action = np.random.randint(4,size = 1)
-    state_img,reward, _, _ = env.step(next_action)
-    if i % 100 == 1:
-        plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
-        plt.axis('off')
-        plt.title('Step = ' + str(i) )
-        env.render()
-        #plt.subplots_adjust(wspace = 0.1)
-
-plt.show()
-
-
+#
+# np.random.seed(10)
+# env = MazeEnv()
+# env.render()
+# n_epochs = 1000
+#
+#
+# for i in range(n_epochs):
+#     next_action = np.random.randint(4,size = 1)
+#     state_img,reward, _, _ = env.step(next_action)
+#     if i % 100 == 1:
+#         plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
+#         plt.axis('off')
+#         plt.title('Step = ' + str(i) )
+#         env.render()
+#         #plt.subplots_adjust(wspace = 0.1)
+#
+# plt.show()
+#
+#
 

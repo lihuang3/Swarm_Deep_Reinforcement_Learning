@@ -15,8 +15,8 @@ class Q_Network():
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
         self.keep_prob = 1.0
-        self.fc1_num_outputs = 500
-        self.fc2_num_outputs = 500
+        self.fc1_num_outputs = 100
+        self.fc2_num_outputs = 100
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -141,7 +141,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     epsilon_array = np.linspace(epsilon_s, epsilon_f, num_episodes)
 
     # Populate the replay memory with random states
-    state, init_reward = env.reset()
+    state = env.reset()
 
     for i in range(replay_memory_initial_size):
 
@@ -153,7 +153,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         next_state, reward, done, _ = env.step(action)
         replay_memory.append([state, action, reward, next_state, done])
         if done:
-            state, init_reward = env.reset()
+            state = env.reset()
         else:
             state = next_state
         if(i % 100 == 0):
@@ -163,7 +163,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
     for i_episode in range(num_episodes):
 
-        state, init_reward = env.reset()
+        state= env.reset()
         loss = None
         transition = []
         # Maybe update the target estimator
@@ -226,24 +226,13 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
             if (done):
-                print ('Step = {} (init cost: {}) Done = {}'.format(t%300+1, init_reward, done) )
+                print ('Step = {}'.format(t%300) )
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
                         replay_memory.pop(0)
                     replay_memory.append(transition[ti])
                     total_step_ += 1
-
-                # if range(len(transition)<80):
-                #     for _ in range(2):
-                #         for ti in range(len(transition)):
-                #             if len(replay_memory) == replay_memory_size:
-                #                 replay_memory.pop(0)
-                #             replay_memory.append(transition[ti])
-
-
-                if len(transition) <= 20:
-                    print "Possible Error!"
 
 
                 break
@@ -252,7 +241,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             total_step += 1
 
             if t > 300 and t % 300 == 1:
-                state, init_reward = env.reset()
+                state = env.reset()
                 transition = []
                 loss = None
 
@@ -278,6 +267,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 100000, replay_memory_size = 500000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 50, discounted_factor = 0.99, \
-               epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 20000, replay_memory_size = 200000,\
+               replay_memory_initial_size = 20000, target_net_update_interval = 25, discounted_factor = 0.99, \
+               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32)

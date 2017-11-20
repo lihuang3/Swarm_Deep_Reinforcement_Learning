@@ -5,7 +5,7 @@ filename = '/home/lihuang/SwarmDRL/Prototype/Env/MapData/'
 
 mazeData = np.loadtxt(filename + 'map1.txt').astype(int)
 
-scaling_ratio = 1
+scaling_ratio = 9
 
 tmpMaze = np.zeros((mazeData.shape[0]*scaling_ratio,mazeData.shape[1]))
 MazeAugment = np.zeros((mazeData.shape[0]*scaling_ratio,mazeData.shape[1]*scaling_ratio))
@@ -22,19 +22,19 @@ for i in range(MazeAugment.shape[1]):
 # MazeAugment *= np.roll(MazeAugment, 1, axis = 1)
 # MazeAugment *= np.roll(MazeAugment, -1, axis = 1)
 
-np.savetxt('map1.csv', MazeAugment, fmt = '%3d')
+np.savetxt('NewMap2.csv', MazeAugment, fmt = '%3d')
 # plt.imshow(MazeAugment)
 # plt.show()
 
 centerline = np.copy(MazeAugment)
-# centerline *= np.roll(centerline, 2, axis = 0)
-# centerline *= np.roll(centerline, -2, axis = 0)
-# centerline *= np.roll(centerline, 2, axis = 1)
-# centerline *= np.roll(centerline, -2, axis = 1)
+centerline *= np.roll(centerline, 2, axis = 0)
+centerline *= np.roll(centerline, -2, axis = 0)
+centerline *= np.roll(centerline, 2, axis = 1)
+centerline *= np.roll(centerline, -2, axis = 1)
+
+
 #
-#
-#
-# np.savetxt('CenterlineMap.csv', centerline, fmt = '%3d')
+np.savetxt('CenterlineMap1.csv', centerline, fmt = '%3d')
 
 
 # plt.imshow(Centerline)
@@ -44,7 +44,7 @@ centerline = np.copy(MazeAugment)
 
 BSF_Frontier = []
 # goal = np.array([52, 7]).astype(int)
-goal = np.array([10,1])
+goal = np.array([52,7])
 costMap = np.copy(centerline)
 BSF_Frontier.append(goal)
 cost = 100
@@ -60,7 +60,7 @@ while len(BSF_Frontier)>0:
     BSF_Frontier.pop(0)
 
 
-costMap -= 99*centerline
-#costMap /= 5
+costMap -= 95*centerline
+costMap /= 5
 
-np.savetxt('costMap.csv', costMap, fmt = '%3d')
+np.savetxt('NewCostMap.csv', costMap, fmt = '%3d')
