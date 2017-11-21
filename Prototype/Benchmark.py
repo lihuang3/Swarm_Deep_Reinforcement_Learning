@@ -76,8 +76,10 @@ class MazeEnv():
         self.robot_num = robot_num
         return self._build_robot()
 
-    def motion_planning(self):
+    def motion_planning(self, init_state):
         motion_step = 0
+        transition = []
+        state = init_state
         while( np.sum(self.state / 10 * costData) > self.robot_num):
             robot_loc = np.unravel_index(np.argmax( (self.state>0) * costData),self.state.shape)
 
@@ -94,30 +96,43 @@ class MazeEnv():
                             action.append(np.amax([2,2+(new_pt-robot_loc)[1]]))
                         break
                 robot_loc = new_pt
-                while len(action)>0:
-                    motion_step += 1
-                    self.step(action[0])
-                    action.pop(0)
+
+                motion_step += 1
+                observation, reward, done, _ = self.step(action[0])
+                transition.append([state, action[0], reward, observation, done])
+                state = observation
 
 
-        return motion_step
+        return motion_step, transition
 
-# Main Program
+#Main Program
 
 np.random.seed(10)
 
 env = MazeEnv()
-
-exp_data = np.zeros([1001,len(np.arange(5,31,5))]).astype(int)
+total_epochs = 1000
+exp_data = np.zeros([total_epochs+1,len(np.arange(5,31,5))]).astype(int)
 exp_data[0,] = np.arange(5,31,5)
-
+transition_log = []
+step = 0
 for j in np.arange(5,31,5):
-    for i in range(1000):
-        env.reset(j)
-        total_step = env.motion_planning()
+    for i in range(total_epochs):
+
+        init_state = env.reset(j)
+        total_step, transition_tmp = env.motion_planning(init_state)
+        step+=total_step
         exp_data[i+1,j/5-1] = total_step
+        transition_log.append(transition_tmp)
         sys.stdout.flush()
+print 'total_step = {}'.format(step)
 print('Mean: {}'.format(np.mean(exp_data,0)))
 print('Std: {}'.format(np.std(exp_data,0)))
 
-np.savetxt('exp_data.txt', exp_data, fmt = '%3d')
+#np.savetxt('exp_data.txt', exp_data, fmt = '%3d')
+
+
+np.save('transition_log.npy', transition_log)
+
+#
+# transition = np.load('transition_log.npy')
+
