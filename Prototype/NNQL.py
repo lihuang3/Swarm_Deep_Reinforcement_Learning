@@ -15,8 +15,8 @@ class Q_Network():
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
         self.keep_prob = 1.0
-        self.fc1_num_outputs = 100
-        self.fc2_num_outputs = 100
+        self.fc1_num_outputs = 500
+        self.fc2_num_outputs = 500
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -42,17 +42,6 @@ class Q_Network():
         # Flatten the input images and build fully connected layers
         X = tf.contrib.layers.flatten(tf.to_float(self.X_tr))
 
-        # fc1 = tf.contrib.layers.fully_connected(X, self.fc1_num_outputs, activation_fn=tf.nn.relu,\
-        #                                        weights_initializer = tf.random_normal_initializer(0.,0.3), \
-        #                                        biases_initializer = tf.constant_initializer(0.1))
-        #
-        # fc2 = tf.contrib.layers.fully_connected(fc1, self.fc2_num_outputs, activation_fn=tf.nn.relu,\
-        #                                        weights_initializer = tf.random_normal_initializer(0.,0.3), \
-        #                                        biases_initializer = tf.constant_initializer(0.1))
-        #
-        # self.q_val = tf.contrib.layers.fully_connected(fc2, self.n_actions, activation_fn=tf.nn.relu,\
-        #                                        weights_initializer = tf.random_normal_initializer(0.,0.3), \
-        #                                        biases_initializer = tf.constant_initializer(0.1))
 
         fc1 = tf.layers.dense(X, self.fc1_num_outputs, activation= tf.nn.relu, \
                               kernel_initializer = tf.random_normal_initializer(0.,0.3), \
@@ -216,12 +205,12 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             #                discounted_factor * np.invert(done_batch).astype(float) * \
             #                (q_val_target_batch[np.arange(batch_size), q_val_batch_max_idx] )
 
-            # target_batch = reward_batch + \
-            #             discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
-            #
-            target_batch = reward_batch + discounted_factor * (np.amax(q_val_batch, axis=1))
+            target_batch = reward_batch + \
+                        discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
 
-            #state_batch = np.array(state_batch)
+            # target_batch = reward_batch + discounted_factor * (np.amax(q_val_batch, axis=1))
+
+            state_batch = np.array(state_batch)
 
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
@@ -267,6 +256,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 20000, replay_memory_size = 200000,\
-               replay_memory_initial_size = 20000, target_net_update_interval = 25, discounted_factor = 0.99, \
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 2500, replay_memory_size = 250000,\
+               replay_memory_initial_size = 10000, target_net_update_interval = 20, discounted_factor = 0.99, \
                epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32)

@@ -7,7 +7,8 @@ map_data_dir = ROOT_PATH + '/Env/MapData/'
 
 class MazeEnv():
     def __init__(self):
-        global mazeData, costData, centerline, mazeHeight, mazeWidth
+        global mazeData, costData, centerline, mazeHeight, mazeWidth, robot_marker
+        robot_marker = 150
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
         mazeData, costData, centerline = self._load_data(map_data_dir)
@@ -39,7 +40,7 @@ class MazeEnv():
             for i in range(self.robot_num):
                #self.state[row[self.robot[i]], col[self.robot[i]]] = 10
                 self.state[row[i], col[i]]= 5
-                self.state_img[row[i]-2:row[i]+3, col[i]-2:col[i]+3] = 5*np.ones([5,5])
+                self.state_img[row[i]-2:row[i]+3, col[i]-2:col[i]+3] = robot_marker*np.ones([5,5])
 
             #self.state[1,1] = 10
             self.init_state = self.state
@@ -75,12 +76,18 @@ class MazeEnv():
             next_axis = 1
 
         next_state = np.roll(self.state, next_direction, axis=next_axis)
+
         # Collision check
         collision = np.logical_and(next_state, self.centerline)*next_state
 
         next_state *= np.logical_xor(next_state, self.centerline)
 
-        next_state += np.roll(collision, -next_direction, axis=next_axis)
+        # Move robots in the obstacle area back to previous grids and obtain the next state
+        ## Case 1: overlapping with population index
+        # next_state += np.roll(collision, -next_direction, axis=next_axis)
+        ## Case 2: overlapping w/o population index (0: no robot; 1: robot(s) exits)
+        next_state = np.logical_or(np.roll(collision, -next_direction, axis=next_axis), next_state).astype(int)
+        next_state *= robot_marker   # Mark robot with intensity 150
 
         row, col = np.nonzero(next_state)
 
@@ -93,7 +100,7 @@ class MazeEnv():
 
         output_img = self.state_img + self.maze*255
 
-        cost_to_go = np.sum(self.state/5*costData)-self.robot_num
+        cost_to_go = np.sum(self.state/robot_marker*costData)-self.robot_num
 
         if cost_to_go ==0:
             done = True
@@ -106,30 +113,30 @@ class MazeEnv():
 
     def render(self):
         plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
-        plt.show()
+#         plt.show()
 
     def reset(self):
         return self._build_robot()
 
 
-#
-# np.random.seed(10)
-# env = MazeEnv()
-# env.render()
-# n_epochs = 1000
-#
-#
-# for i in range(n_epochs):
-#     next_action = np.random.randint(4,size = 1)
-#     state_img,reward, _, _ = env.step(next_action)
-#     if i % 100 == 1:
-#         plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
-#         plt.axis('off')
-#         plt.title('Step = ' + str(i) )
-#         env.render()
-#         #plt.subplots_adjust(wspace = 0.1)
-#
-# plt.show()
-#
+
+np.random.seed(10)
+env = MazeEnv()
+env.render()
+n_epochs = 1000
+
+
+for i in range(n_epochs):
+    next_action = np.random.randint(4,size = 1)
+    state_img,reward, _, _ = env.step(next_action)
+    if i % 100 == 1:
+        plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
+        plt.axis('off')
+        plt.title('Step = ' + str(i) )
+        env.render()
+        #plt.subplots_adjust(wspace = 0.1)
+
+plt.show()
+
 #
 
