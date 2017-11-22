@@ -1,8 +1,6 @@
 import numpy as np, random, sys, os, time, matplotlib.pyplot as plt
 
-ROOT_PATH = '/home/lihuang/SwarmDRL/Prototype'
-
-map_data_dir = ROOT_PATH + '/Env/MapData/'
+map_data_dir = os.path.abspath('./Env/MapData')
 
 
 class MazeEnv():
@@ -19,8 +17,8 @@ class MazeEnv():
         self._build_robot()
 
     def _load_data(self, data_directory):
-        mazeData = np.loadtxt(data_directory + 'map1.csv').astype(int)
-        costData = np.loadtxt(data_directory + 'costMap.csv').astype(int)
+        mazeData = np.loadtxt(data_directory + '/map1.csv').astype(int)
+        costData = np.loadtxt(data_directory + '/costMap.csv').astype(int)
         return mazeData, costData
 
 
@@ -94,7 +92,7 @@ class MazeEnv():
         return self._build_robot()
 
 # # #
-
+#
 # env = MazeEnv()
 # env.reset()
 #
@@ -108,8 +106,8 @@ class MazeEnv():
 #         print i
 #         break
 #
-
+#
 #    # sys.stdout.flush()
-
+#
 
 

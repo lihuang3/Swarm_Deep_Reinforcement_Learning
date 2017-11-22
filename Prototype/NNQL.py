@@ -169,7 +169,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             # Print out which step we're on, useful for debugging.
             print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
-                t % 300, total_step_, total_step, t/300+1, i_episode + 1, num_episodes, loss) ),
+                t % 500, total_step_, total_step, t/500+1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
             policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
@@ -215,7 +215,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
             if (done):
-                print ('Step = {}'.format(t%300) )
+                print ('Step = {}'.format(t%500) )
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -229,7 +229,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
-            if t > 300 and t % 300 == 1:
+            if t > 500 and t % 500 == 1:
                 state = env.reset()
                 transition = []
                 loss = None
@@ -256,6 +256,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 2500, replay_memory_size = 250000,\
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 250000,\
                replay_memory_initial_size = 10000, target_net_update_interval = 20, discounted_factor = 0.99, \
                epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32)
