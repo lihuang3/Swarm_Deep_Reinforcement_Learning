@@ -2,6 +2,7 @@ import numpy as np, os
 import matplotlib.pyplot as plt
 
 ROOT_PATH = os.path.abspath('./MapData')
+
 # Load hand-craft binary maze
 mazeData = np.loadtxt(ROOT_PATH + '/map1.txt').astype(int)
 
@@ -80,7 +81,7 @@ freespace_pts = np.transpose(freespace_pts)
 
 query_result = np.transpose(tree.query(freespace_pts))
 tree_idx = query_result[:,1].astype(int)
-
+tree_dist = np.ceil(query_result[:,0])
 
 # Object: assign cost-to-go to elements of the free space
 
@@ -88,7 +89,8 @@ tree_idx = query_result[:,1].astype(int)
 costMap = np.copy(scaled_maze)
 
 for i in range(freespace_pts.shape[0]):
-    costMap[freespace_pts[i,0], freespace_pts[i,1]] = cl_costMap[cl_x[tree_idx[i]], cl_y[tree_idx[i]]]
+    costMap[freespace_pts[i,0], freespace_pts[i,1]] = cl_costMap[cl_x[tree_idx[i]], cl_y[tree_idx[i]]]+\
+                                                       tree_dist[i]
 
 np.savetxt('scaled_maze{}_costmap.csv'.format(scaling_ratio), costMap, fmt = '%3d')
 
