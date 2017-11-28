@@ -2,7 +2,7 @@
 import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
 
 random.seed(10)
-map_data_dir =os.path.abspath('./MapData')
+map_data_dir =os.path.abspath('./Env/MapData')
 
 class MazeEnv():
     def __init__(self):
@@ -32,7 +32,7 @@ class MazeEnv():
         row, col = np.nonzero(freespace)
 
         if not len(self.init_state):
-            self.robot_num = 10
+            self.robot_num = 1
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             self.state_img = np.copy(self.state)
@@ -112,23 +112,24 @@ class MazeEnv():
 
     def expert(self, robot_loc):
 
-        if not len(robot_loc):
+        _cost_to_goal = np.sum(self.state*costData/robot_marker)
+        if not len(robot_loc) or _cost_to_goal<=self.robot_num*goal_range:
             return self.expert_restart_session()
 
-        cost_to_goal = costData[robot_loc[0], robot_loc[1]]
-        if cost_to_goal >1:
-            cost_to_goal -= 1
+        _cost_to_goal = costData[robot_loc[0], robot_loc[1]]
+        if _cost_to_goal >1:
+            _cost_to_goal -= 1
 
             for i in range(4):
                 new_pt = robot_loc + np.array([np.cos(i * np.pi / 2), np.sin(i * np.pi / 2)]).astype(int)
-                if (costData[new_pt[0], new_pt[1]] == cost_to_goal):
+                if (costData[new_pt[0], new_pt[1]] == _cost_to_goal):
                     if np.absolute(new_pt - robot_loc)[0]:
                         action = (np.amax([0, (new_pt - robot_loc)[0]]))
                     if np.absolute(new_pt - robot_loc)[1]:
                         action = (np.amax([2, 2 + (new_pt - robot_loc)[1]]))
                     robot_loc = new_pt
                     return action, robot_loc
-                elif(costData[new_pt[0], new_pt[1]] == cost_to_goal+1):
+                elif(costData[new_pt[0], new_pt[1]] == _cost_to_goal+1):
                     if np.absolute(new_pt - robot_loc)[0]:
                         action = (np.amax([0, (new_pt - robot_loc)[0]]))
                     if np.absolute(new_pt - robot_loc)[1]:
@@ -142,8 +143,9 @@ class MazeEnv():
             return self.expert_restart_session()
 
     def expert_restart_session(self):
-        if (np.sum(self.state*costData/robot_marker)>self.robot_num*goal_range):
-            robot_loc = np.unravel_index(np.argmax((self.state > 0) * costData), self.state.shape)
+        if (np.sum(self.state*costData/robot_marker)<=self.robot_num*goal_range):
+            self.reset()
+        robot_loc = np.unravel_index(np.argmax((self.state > 0) * costData), self.state.shape)
         return self.expert(robot_loc)
 
 
@@ -171,7 +173,6 @@ class MazeEnv():
 #     if done:
 #         env.render()
 #         plt.show()
-#         print i
-#         break
-#
-#
+
+
+

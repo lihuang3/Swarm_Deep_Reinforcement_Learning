@@ -1,8 +1,16 @@
-from Env.BinaryEnvTest import MazeEnv
+from Env.RGBEnv_v1 import MazeEnv
 from collections import namedtuple
 
 import random, time, numpy as np, sys, os, tensorflow as tf, itertools
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+
+'''
+This imitation learning uses grayscale images as the input. We first populate 
+the memory with MDP tuples of the expert (benchmark). Then, we train the CNN for 10 episodes to 
+intialize. Then switch to DRL to improve the benchmaark algorithm. Note this test does not intend for
+general robots initial distributions. We use the same initial distributin each episode. 
+'''
+
 
 valid_actions = [0, 1, 2, 3]
 
@@ -40,17 +48,36 @@ class Q_Network():
 
         X = tf.to_float(self.X_tr)
 
-        conv1 = tf.contrib.layers.conv2d(X, 32, 8, 4, activation_fn=tf.nn.relu)
+        # Convolutional layer #1
+        conv1 = tf.layers.conv2d(
+            inputs=X,
+            filters=32,
+            kernel_size=[5, 5],
+            padding='same',
+            activation=tf.nn.relu,
+            strides=2)
 
-        conv2 = tf.contrib.layers.conv2d(conv1, 64, 4, 2, activation_fn=tf.nn.relu)
+        # Pooling Layer #1
+        pool1 = tf.layers.max_pooling2d(inputs=conv1, pool_size=[2, 2], strides=2)
 
-        conv3 = tf.contrib.layers.conv2d(conv2, 64, 3, 1, activation_fn=tf.nn.relu)
+        # Convolutional Layer #2 and Pooling Layer #2
+        conv2 = tf.layers.conv2d(
+            inputs=pool1,
+            filters=64,
+            kernel_size=[3, 3],
+            padding='same',
+            activation=tf.nn.relu)
+
+        # Pooling layer #2
+        pool2 = tf.layers.max_pooling2d(inputs=conv2, pool_size=[2, 2], strides=2)
+
+
 
         # Flatten the input images and build fully connected layers
-        flattened_layer = tf.contrib.layers.flatten(conv3)
+        flattened_layer = tf.contrib.layers.flatten(pool2)
 
 
-        fc = tf.layers.dense(flattened_layer, self.fc1_num_outputs, activation= tf.nn.relu, \
+        fc = tf.layers.dense(flattened_layer, self.fc_num_outputs, activation= tf.nn.relu, \
                               kernel_initializer = tf.random_normal_initializer(0.,0.3), \
                               bias_initializer= tf.constant_initializer(0.1))
        # fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
@@ -85,13 +112,7 @@ class Q_Network():
         loss, _ = sess.run([self.loss, self.train_op], \
                            feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
         return loss
-        # # Tensorboard Summary
-        # self.summary = tf.summary.merger([
-        #     tf.summary.scalar('loss', self.loss),
-        #     tf.summary.histogram('lost_hist', self.loss_vector),
-        #     tf.summary.histogram('q_eval_hist', self.q_eval),
-        #     tf.summary.scaler('q_pred', self.q_pred)
-        # ])
+
 
 # Epsilon-greedy action selection policy
 def Policy_Fcn(sess, network, state, n_actions, epsilon):
@@ -117,7 +138,7 @@ def Copy_Network(sess, network1, network2):
 
 
 def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_size, replay_memory_initial_size, \
-               target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size):
+               target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size, max_iter_num, expert_demo_num_episodes):
 
     # Initialize a MDP tuple
     MDP_tuple = namedtuple('MDP_tuple',['state', 'action', 'reward', 'next_state', 'terminate'])
@@ -136,28 +157,39 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     # Stack 4 successive frames for POMDP
     state = np.stack([state] * 4, axis=2)
 
+    # Initialize the target robot loction for the expert demo
+    robot_loc = []
+
     for i in range(replay_memory_initial_size):
 
-        policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
-                               epsilon_array[min(total_step, num_episodes-1)])
-        # action = np.random.choice(np.arange(env.n_actions), p = policy)
-        action = np.random.choice(np.arange(env.n_actions))
+        # policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
+        #                        epsilon_array[min(total_step, num_episodes-1)])
+        # # action = np.random.choice(np.arange(env.n_actions), p = policy)
+        # action = np.random.choice(np.arange(env.n_actions))
+        #
+        # next_state, reward, done, _ = env.step(action)
 
+        action, robot_loc = env.expert(robot_loc)
         next_state, reward, done, _ = env.step(action)
+
         next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
 
         replay_memory.append([state, action, reward, next_state, done])
+
         if done:
             state = env.reset()
+            robot_loc = []
 
             # Stack 4 successive frames for POMDP
             state = np.stack([state] * 4, axis=2)
         else:
             state = next_state
         if(i % 100 == 0):
-            print("\r Populating replay memory {}% completed".format(
+            print("\rPopulating replay memory {}% completed".format(
                 100*float(i)/replay_memory_initial_size)),
         sys.stdout.flush()
+
+        print("\r Populating replay memory 100% completed"),
 
     for i_episode in range(num_episodes):
 
@@ -166,29 +198,37 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         state = np.stack([state] * 4, axis=2)
         loss = None
         transition = []
+
+        # Initialize the target robot loction for the expert demo
+        robot_loc = []
+
         # Maybe update the target estimator
         if i_episode % target_net_update_interval == 0:
             Copy_Network(sess, q_eval_net, target_net)
             print("\nCopied model parameters to target network.")
 
-
-
+        if i_episode==expert_demo_num_episodes:
+            print("\nEnd of expert demonstration.\n")
 
         for t in itertools.count():
 
-
-
             # Print out which step we're on, useful for debugging.
             print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
-                t % 500, total_step_, total_step, t/500+1, i_episode + 1, num_episodes, loss) ),
+                t % max_iter_num, total_step_, total_step, t/max_iter_num+1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
-            policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
-                                epsilon_array[min(i_episode, num_episodes - 1)])
-            if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
-                action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
+            if i_episode<expert_demo_num_episodes:
+                action, robot_loc = env.expert(robot_loc)
             else:
-                action = np.random.choice(np.arange(env.n_actions))
+                policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
+                                    epsilon_array[min(i_episode, num_episodes - 1)])
+                if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
+                    action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
+                else:
+                    action = np.random.choice(np.arange(env.n_actions))
+
+
+
             next_state, reward, done, _ = env.step(action)
 
             # Stack 4 successive frames for POMDP
@@ -229,7 +269,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
             if (done):
-                print ('Step = {}'.format(t%500) )
+                print ('Step = {}'.format(t%max_iter_num) )
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -243,7 +283,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
-            if t > 500 and t % 500 == 1:
+            if t > max_iter_num and t % max_iter_num == 1:
                 state = env.reset()
                 # Stack 4 successive frames for POMDP
                 state = np.stack([state] * 4, axis=2)
@@ -272,6 +312,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 250000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 20000,\
+               replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
+               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 500)

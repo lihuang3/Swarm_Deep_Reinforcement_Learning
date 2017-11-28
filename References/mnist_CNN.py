@@ -46,13 +46,14 @@ pool1 = tf.layers.max_pooling2d(inputs = conv1, pool_size= [2, 2], strides = 2)
 
 # Convolutional Layer #2 and Pooling Layer #2
 conv2 = tf.layers.conv2d(
-    inputs = conv1,
+    inputs = pool1,
     filters= 64,
     kernel_size = [5, 5],
     padding= 'same',
     activation=tf.nn.relu)
 
 pool2 = tf.layers.max_pooling2d(inputs = conv2, pool_size= [2, 2], strides = 2)
+
 
 # Dense layer or fully connected layer
 flattened_layer = tf.contrib.layers.flatten(inputs = pool2)

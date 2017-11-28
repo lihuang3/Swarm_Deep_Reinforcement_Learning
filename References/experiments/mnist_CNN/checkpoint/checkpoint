@@ -1,0 +1,2 @@
+model_checkpoint_path: "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/References/experiments/mnist_CNN/checkpoint/model-0"
+all_model_checkpoint_paths: "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/References/experiments/mnist_CNN/checkpoint/model-0"
