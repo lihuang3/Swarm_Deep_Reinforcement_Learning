@@ -146,6 +146,9 @@ class MazeEnv():
             robot_loc = np.unravel_index(np.argmax((self.state > 0) * costData), self.state.shape)
         return self.expert(robot_loc)
 
+
+
+## To run benchmark test, uncomment the following lines
 # env = MazeEnv()
 # env.render()
 # n_epochs = 1000
@@ -155,7 +158,7 @@ class MazeEnv():
 #     #next_action = np.random.randint(4,size = 1)
 #     next_action, robot_loc = env.expert(robot_loc)
 #     state_img,reward, done, _ = env.step(next_action)
-#     print i, reward, done
+#     print('Step = {}, reward = {}, done = {}'.format(i, reward, done))
 #     if i % 100 == 1:
 #         print ''
 #     #     plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
@@ -170,5 +173,5 @@ class MazeEnv():
 #         plt.show()
 #         print i
 #         break
-
-
+#
+#

@@ -15,8 +15,7 @@ class Q_Network():
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
         self.keep_prob = 1.0
-        self.fc1_num_outputs = 1000
-        self.fc2_num_outputs = 500
+        self.fc_num_outputs = 512
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -30,7 +29,7 @@ class Q_Network():
     def _build_model(self):
 
         # Placeholder for input binary images
-        self.X_tr = tf.placeholder(shape = [None, 12, 12, 4], dtype = tf.uint8, name = 'X')
+        self.X_tr = tf.placeholder(shape = [None, 84, 84, 4], dtype = tf.uint8, name = 'X')
         # Placeholder for approxiamate target (labels)
         self.y_tr = tf.placeholder(shape = [None], dtype = tf.float32, name = 'y')
         # Placeholder for action choices
@@ -39,22 +38,25 @@ class Q_Network():
         # Input data normalization
         # N.A. for binary image
 
+        X = tf.to_float(self.X_tr)
+
+        conv1 = tf.contrib.layers.conv2d(X, 32, 8, 4, activation_fn=tf.nn.relu)
+
+        conv2 = tf.contrib.layers.conv2d(conv1, 64, 4, 2, activation_fn=tf.nn.relu)
+
+        conv3 = tf.contrib.layers.conv2d(conv2, 64, 3, 1, activation_fn=tf.nn.relu)
+
         # Flatten the input images and build fully connected layers
-        X = tf.contrib.layers.flatten(tf.to_float(self.X_tr))
+        flattened_layer = tf.contrib.layers.flatten(conv3)
 
 
-        fc1 = tf.layers.dense(X, self.fc1_num_outputs, activation= tf.nn.relu, \
+        fc = tf.layers.dense(flattened_layer, self.fc1_num_outputs, activation= tf.nn.relu, \
                               kernel_initializer = tf.random_normal_initializer(0.,0.3), \
                               bias_initializer= tf.constant_initializer(0.1))
-       # fc1_dropout = tf.contrib.layers.dropout(fc1, self.keep_prob)
+       # fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
 
-        fc2 = tf.layers.dense(fc1, self.fc2_num_outputs, activation=tf.nn.relu, \
-                              kernel_initializer=tf.random_normal_initializer(0., 0.3), \
-                              bias_initializer=tf.constant_initializer(0.1))
 
-        #fc2_dropout = tf.contrib.layers.dropout(fc2, self.keep_prob)
-
-        self.q_val = tf.layers.dense(fc2, self.n_actions, activation=tf.nn.relu, \
+        self.q_val = tf.layers.dense(fc, self.n_actions, activation=tf.nn.relu, \
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
@@ -131,6 +133,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
     # Populate the replay memory with random states
     state = env.reset()
+    # Stack 4 successive frames for POMDP
     state = np.stack([state] * 4, axis=2)
 
     for i in range(replay_memory_initial_size):
@@ -146,6 +149,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         replay_memory.append([state, action, reward, next_state, done])
         if done:
             state = env.reset()
+
+            # Stack 4 successive frames for POMDP
             state = np.stack([state] * 4, axis=2)
         else:
             state = next_state
@@ -157,6 +162,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     for i_episode in range(num_episodes):
 
         state= env.reset()
+        # Stack 4 successive frames for POMDP
         state = np.stack([state] * 4, axis=2)
         loss = None
         transition = []
@@ -184,6 +190,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             else:
                 action = np.random.choice(np.arange(env.n_actions))
             next_state, reward, done, _ = env.step(action)
+
+            # Stack 4 successive frames for POMDP
             next_state = np.append(state[:,:,1:], np.expand_dims(next_state, 2), axis=2)
 
             transition.append([state, action, reward, next_state, done])
@@ -237,6 +245,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             if t > 500 and t % 500 == 1:
                 state = env.reset()
+                # Stack 4 successive frames for POMDP
                 state = np.stack([state] * 4, axis=2)
                 transition = []
                 loss = None
