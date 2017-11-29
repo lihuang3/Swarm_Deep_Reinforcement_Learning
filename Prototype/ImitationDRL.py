@@ -22,8 +22,8 @@ class Q_Network():
 
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
-        self.keep_prob = 1.0
-        self.fc_num_outputs = 512
+        self.keep_prob = 0.5
+        self.fc_num_outputs = 1024
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -43,10 +43,13 @@ class Q_Network():
         # Placeholder for action choices
         self.action_tr = tf.placeholder(shape = [None], dtype = tf.int32, name = 'action')
 
+        # Placeholder for expert actions (one-hot)
+        self.expert_action = tf.placeholder(shape = [None, 4], dtype = tf.float32, name = 'expert_action')
+
         # Input data normalization
         # N.A. for binary image
 
-        X = tf.to_float(self.X_tr)
+        X = tf.to_float(self.X_tr)/255
 
         # Convolutional layer #1
         conv1 = tf.layers.conv2d(
@@ -80,12 +83,12 @@ class Q_Network():
         fc = tf.layers.dense(flattened_layer, self.fc_num_outputs, activation= tf.nn.relu, \
                               kernel_initializer = tf.random_normal_initializer(0.,0.3), \
                               bias_initializer= tf.constant_initializer(0.1))
-       # fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
+        fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
 
 
-        self.q_val = tf.layers.dense(fc, self.n_actions, activation=tf.nn.relu, \
-                              kernel_initializer=tf.random_normal_initializer(0., 0.3), \
-                              bias_initializer=tf.constant_initializer(0.1))
+        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, activation=tf.nn.sigmoid, \
+                              kernel_initializer=None, \
+                              bias_initializer=tf.zeros_initializer())
 
         # Make prediction
         # tf.gather_nd(params, indices): map elements in params to the output with given the indices order
@@ -95,9 +98,18 @@ class Q_Network():
         # Loss function
         self.loss_vector = tf.squared_difference(self.y_tr, self.q_pred)
         self.loss = tf.reduce_mean(self.loss_vector, name = 'TD_error')
+
+
+        # Loss function (for expert demo)
+        self.losses_exp = tf.squared_difference(self.expert_action, self.q_val)
+        self.loss_exp = tf.reduce_sum(self.losses_exp, name = 'Supervised_error')
+        #self.loss_exp = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(labels=self.expert_action, logits=self.q_val))
+
         # Optimizer and train operations
-        self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)
+        # self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)
+        self.optimizer = tf.train.AdamOptimizer(0.0001)
         self.train_op = self.optimizer.minimize(self.loss, global_step = tf.contrib.framework.get_global_step() )
+        self.train_op_expert_demo = self.optimizer.minimize(self.loss_exp, global_step = tf.contrib.framework.get_global_step() )
 
     # Predict q values
     def model_predict(self, sess, state):
@@ -108,9 +120,15 @@ class Q_Network():
 
     # Update model parameters
     def update_model(self, sess, state, action, target):
-
-        loss, _ = sess.run([self.loss, self.train_op], \
+        if target.shape[1] == 4:
+            loss, _ = sess.run([self.loss_exp, self.train_op_expert_demo], \
+                               feed_dict={self.X_tr: state, self.action_tr: action, self.expert_action: target})
+        else:
+            loss, _ = sess.run([self.loss, self.train_op], \
                            feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
+        # loss, _ = sess.run([self.loss, self.train_op], \
+        #                    feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
+
         return loss
 
 
@@ -203,12 +221,15 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         robot_loc = []
 
         # Maybe update the target estimator
-        if i_episode % target_net_update_interval == 0:
-            Copy_Network(sess, q_eval_net, target_net)
-            print("\nCopied model parameters to target network.")
+        # if i_episode % target_net_update_interval == 0:
+        #     Copy_Network(sess, q_eval_net, target_net)
+        #     print("\nCopied model parameters to target network.")
 
         if i_episode==expert_demo_num_episodes:
             print("\nEnd of expert demonstration.\n")
+
+        if i_episode % 50 == 0:
+            print " "
 
         for t in itertools.count():
 
@@ -217,16 +238,18 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
                 t % max_iter_num, total_step_, total_step, t/max_iter_num+1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
+
+
             if i_episode<expert_demo_num_episodes:
                 action, robot_loc = env.expert(robot_loc)
             else:
                 policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
                                     epsilon_array[min(i_episode, num_episodes - 1)])
+
                 if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
                     action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
                 else:
                     action = np.random.choice(np.arange(env.n_actions))
-
 
 
             next_state, reward, done, _ = env.step(action)
@@ -251,18 +274,29 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
             q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
 
+            if i_episode < expert_demo_num_episodes:
+                target_batch = np.zeros((q_val_batch.shape[0],q_val_batch.shape[1]))
+                target_batch[np.arange(batch_size), action_batch] = 1.0
+
+            else:
+                target_batch = reward_batch + \
+                         discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
+
+            # target_batch = reward_batch + \
+            #                discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
+
+            ## Double Q Network
             # q_val_batch_max_idx = np.argmax(q_val_batch,axis = 1)
             #
             # q_val_target_batch = target_net.model_predict(sess, next_state_batch)
-
+            #
             # target_batch = reward_batch + \
             #                discounted_factor * np.invert(done_batch).astype(float) * \
             #                (q_val_target_batch[np.arange(batch_size), q_val_batch_max_idx] )
 
-            target_batch = reward_batch + \
-                        discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
 
-            # target_batch = reward_batch + discounted_factor * (np.amax(q_val_batch, axis=1))
+
+
 
             state_batch = np.array(state_batch)
 
@@ -314,4 +348,4 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 20000,\
                replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 500)
+               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 150)

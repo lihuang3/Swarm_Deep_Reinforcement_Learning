@@ -1,7 +1,7 @@
 
 import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
 
-random.seed(10)
+random.seed(140)
 map_data_dir =os.path.abspath('./Env/MapData')
 
 class MazeEnv():
@@ -32,7 +32,7 @@ class MazeEnv():
         row, col = np.nonzero(freespace)
 
         if not len(self.init_state):
-            self.robot_num = 1
+            self.robot_num = 5
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             self.state_img = np.copy(self.state)
@@ -95,7 +95,7 @@ class MazeEnv():
         cost_to_go = np.sum(self.state * costData / robot_marker)
         if cost_to_go <= goal_range * self.robot_num:
             done = True
-            reward = 100.0
+            reward = 10.0
         else:
             done = False
             reward = -1
