@@ -3,6 +3,7 @@ from collections import namedtuple
 
 import random, time, numpy as np, sys, os, tensorflow as tf, itertools
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
+from decimal import Decimal
 
 '''
 This imitation learning uses grayscale images as the input. We first populate 
@@ -207,7 +208,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
                 100*float(i)/replay_memory_initial_size)),
         sys.stdout.flush()
 
-        print("\r Populating replay memory 100% completed"),
+    print("\r Populating replay memory 100% completed")
 
     for i_episode in range(num_episodes):
 
@@ -220,6 +221,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         # Initialize the target robot loction for the expert demo
         robot_loc = []
 
+        loss = np.NaN
+        local_loss = None
         # Maybe update the target estimator
         # if i_episode % target_net_update_interval == 0:
         #     Copy_Network(sess, q_eval_net, target_net)
@@ -228,20 +231,27 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         if i_episode==expert_demo_num_episodes:
             print("\nEnd of expert demonstration.\n")
 
-        if i_episode % 50 == 0:
-            print " "
+
 
         for t in itertools.count():
 
+            if total_step % 2500 == 0 and i_episode>1:
+                time.sleep(0.5)
+
             # Print out which step we're on, useful for debugging.
             print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
-                t % max_iter_num, total_step_, total_step, t/max_iter_num+1, i_episode + 1, num_episodes, loss) ),
+                t % max_iter_num, total_step_, total_step, t/max_iter_num+1, i_episode + 1, \
+                num_episodes, local_loss) ),
             sys.stdout.flush()
 
 
 
             if i_episode<expert_demo_num_episodes:
                 action, robot_loc = env.expert(robot_loc)
+                if i_episode % 20 == 0 and i_episode>1:
+                    policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
+                                        epsilon_array[min(i_episode, num_episodes - 1)])
+                    action = policy
             else:
                 policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
                                     epsilon_array[min(i_episode, num_episodes - 1)])
@@ -300,10 +310,13 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             state_batch = np.array(state_batch)
 
-            loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
+            local_loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
+
+            loss = np.append(loss, np.array(local_loss))
 
             if (done):
-                print ('Step = {}'.format(t%max_iter_num) )
+                print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format(\
+                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))) )
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -317,12 +330,18 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
+            if t > max_iter_num and i_episode %20 ==0 and i_episode>1:
+                print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format( \
+                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))))
+                break
+
             if t > max_iter_num and t % max_iter_num == 1:
                 state = env.reset()
                 # Stack 4 successive frames for POMDP
                 state = np.stack([state] * 4, axis=2)
                 transition = []
-                loss = None
+                local_loss = None
+                loss = np.NaN
 
 
 
@@ -348,4 +367,4 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 20000,\
                replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 150)
+               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 600, expert_demo_num_episodes = 150)
