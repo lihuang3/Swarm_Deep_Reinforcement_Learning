@@ -248,7 +248,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             if i_episode<expert_demo_num_episodes:
                 action, robot_loc = env.expert(robot_loc)
-                if i_episode % 20 == 0 and i_episode>1:
+                if i_episode % 10 == 0 and i_episode>1:
                     policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
                                         epsilon_array[min(i_episode, num_episodes - 1)])
                     action = policy
@@ -330,7 +330,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
-            if t > max_iter_num and i_episode %20 ==0 and i_episode>1:
+            if t > max_iter_num and i_episode %10 ==0 and i_episode>1:
                 print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format( \
                     Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))))
                 break
@@ -367,4 +367,4 @@ with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
     Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 20000,\
                replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 600, expert_demo_num_episodes = 150)
+               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 64, max_iter_num = 600, expert_demo_num_episodes = 150)
