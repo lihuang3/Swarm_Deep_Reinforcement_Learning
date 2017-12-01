@@ -26,7 +26,7 @@ class MazeEnv():
     def _build_robot(self):
         row, col = np.nonzero(mazeData)
         if not len(self.init_state):
-            self.robot_num = 5
+            self.robot_num = 10
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             for i in range(self.robot_num):

@@ -278,6 +278,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 50000,\
-               replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 300)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 100000,\
+               replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
+               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500)
