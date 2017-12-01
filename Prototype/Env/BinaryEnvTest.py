@@ -1,25 +1,25 @@
 import numpy as np, random, sys, os, time, matplotlib.pyplot as plt
 
-map_data_dir = os.path.abspath('./MapData')
-random.seed(10)
+map_data_dir = os.path.abspath('./Env/MapData')
+random.seed(138)
 
 class MazeEnv():
     def __init__(self):
         global mazeData, costData, mazeHeight, mazeWidth, robot_marker, goal_range
-        goal_range = 15
+        goal_range = 1
         self.action_space = ['u', 'd', 'l', 'r']
         robot_marker = 150
         self.n_actions = len(self.action_space)
         mazeData, costData = self._load_data(map_data_dir)
         mazeHeight, mazeWidth = mazeData.shape
         self.maze = np.ones((mazeHeight, mazeWidth))-mazeData
-        self.goal = np.array([73,10])
+        self.goal = np.array([10, 2])
         self.init_state = []
         self._build_robot()
 
     def _load_data(self, data_directory):
-        mazeData = np.loadtxt(data_directory + '/scaled_maze7_freespace.csv').astype(int)
-        costData = np.loadtxt(data_directory + '/scaled_maze7_costmap.csv').astype(int)
+        mazeData = np.loadtxt(data_directory + '/map1.csv').astype(int)
+        costData = np.loadtxt(data_directory + '/costMap.csv').astype(int)
         return mazeData, costData
 
 
@@ -37,10 +37,10 @@ class MazeEnv():
         else:
             self.state = self.init_state
 
-        output_img = self.state + 255*self.maze
+        self.output_img = self.state + 255*self.maze
 
 
-        return output_img
+        return self.output_img
 
     def step(self,action):
         if action == 0:   # down
@@ -75,7 +75,7 @@ class MazeEnv():
         # next_state *= robot_marker   # Mark robot with intensity 150
 
         self.state = next_state
-        output_img = (self.state>0)*robot_marker + 255*self.maze
+        self.output_img = (self.state>0)*robot_marker + 255*self.maze
         cost_to_go = np.sum(self.state*costData/robot_marker)
         if cost_to_go <= goal_range*self.robot_num:
             done = True
@@ -84,10 +84,12 @@ class MazeEnv():
             done = False
             reward = -1
 
-        return(output_img,reward,done,1)
+        return(self.output_img,reward,done,1)
 
     def render(self):
-        print '\n{}\n'.format(self.state)
+        # print '\n{}\n'.format(self.state)
+        plt.imshow(self.output_img)
+        plt.pause(0.005)
 
     def reset(self):
         return self._build_robot()
@@ -137,15 +139,19 @@ class MazeEnv():
 # env = MazeEnv()
 # env.reset()
 # robot_loc = []
+# plt.ion()
+#
 # for i in range(1000):
 #     # next_action = np.random.randint(4,size = 1)
 #     next_action, robot_loc = env.expert(robot_loc)
 #
 #     state, reward, done, _ = env.step(next_action)
-#     if i%100 ==0:
-#         print ' '
+#     plt.imshow(state)
+#     plt.show()
+#     plt.pause(0.05)
 #     print 'step = {}, action = {}, reward = {}, done = {}'.format(i, next_action, reward, done )
 #     if done:
+#         plt.pause(1)
 #         break
 
 

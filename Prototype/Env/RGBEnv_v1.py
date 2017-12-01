@@ -1,6 +1,7 @@
 
 import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
 
+plt.ion()
 random.seed(140)
 map_data_dir =os.path.abspath('./Env/MapData')
 
@@ -48,9 +49,9 @@ class MazeEnv():
             self.state_img = self.init_state_img
 
 
-        output_img = self.state_img + self.maze * 255
+        self.output_img = self.state_img + self.maze * 255
 
-        return output_img
+        return self.output_img
 
     def step(self,action):
         if action == 0:   # up
@@ -90,7 +91,7 @@ class MazeEnv():
 
         self.state = next_state
 
-        output_img = self.state_img + self.maze*255
+        self.output_img = self.state_img + self.maze*255
 
         cost_to_go = np.sum(self.state * costData / robot_marker)
         if cost_to_go <= goal_range * self.robot_num:
@@ -100,11 +101,13 @@ class MazeEnv():
             done = False
             reward = -1
 
-        return(output_img,reward,done,1)
+        return(self.output_img,reward,done,1)
 
     def render(self):
-        plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
+        # plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
+        plt.imshow(self.output_img)
         plt.show()
+        plt.pause(0.005)
 
     def reset(self):
         return self._build_robot()
@@ -149,8 +152,8 @@ class MazeEnv():
         return self.expert(robot_loc)
 
 
-
-## To run benchmark test, uncomment the following lines
+#
+# ## To run benchmark test, uncomment the following lines
 # env = MazeEnv()
 # env.render()
 # n_epochs = 1000
@@ -161,18 +164,12 @@ class MazeEnv():
 #     next_action, robot_loc = env.expert(robot_loc)
 #     state_img,reward, done, _ = env.step(next_action)
 #     print('Step = {}, reward = {}, done = {}'.format(i, reward, done))
-#     if i % 100 == 1:
-#         print ''
-#     #     plt.subplot( (n_epochs/100+1)/3+1,3, (i/100+1))
-#     #     plt.axis('off')
-#     #     plt.title('Step = ' + str(i) )
-#         env.render()
-#         plt.show()
-#     #     #plt.subplots_adjust(wspace = 0.1)
+#
+#     env.render()
 #
 #     if done:
-#         env.render()
-#         plt.show()
-
-
+#         env.reset()
+#         plt.pause(1)
+#
+#
 

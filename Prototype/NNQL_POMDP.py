@@ -4,18 +4,21 @@ from collections import namedtuple
 import random, time, numpy as np, sys, os, tensorflow as tf, itertools
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 
+from matplotlib import pyplot as plt
+
 valid_actions = [0, 1, 2, 3]
 
 
 env = MazeEnv()
 
+plt.ion()
 
 class Q_Network():
 
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
-        self.keep_prob = 1.0
-        self.fc1_num_outputs = 1000
+        self.keep_prob = 0.5
+        self.fc1_num_outputs = 500
         self.fc2_num_outputs = 500
         self.n_actions = env.n_actions
 
@@ -40,7 +43,7 @@ class Q_Network():
         # N.A. for binary image
 
         # Flatten the input images and build fully connected layers
-        X = tf.contrib.layers.flatten(tf.to_float(self.X_tr))
+        X = tf.contrib.layers.flatten(tf.to_float(self.X_tr)/255)
 
 
         fc1 = tf.layers.dense(X, self.fc1_num_outputs, activation= tf.nn.relu, \
@@ -52,9 +55,9 @@ class Q_Network():
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
-        #fc2_dropout = tf.contrib.layers.dropout(fc2, self.keep_prob)
+        fc2_dropout = tf.contrib.layers.dropout(fc2, self.keep_prob)
 
-        self.q_val = tf.layers.dense(fc2, self.n_actions, activation=tf.nn.relu, \
+        self.q_val = tf.layers.dense(fc2_dropout, self.n_actions, \
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
@@ -115,7 +118,7 @@ def Copy_Network(sess, network1, network2):
 
 
 def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_size, replay_memory_initial_size, \
-               target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size):
+               target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size, max_iter_num):
 
     # Initialize a MDP tuple
     MDP_tuple = namedtuple('MDP_tuple',['state', 'action', 'reward', 'next_state', 'terminate'])
@@ -174,7 +177,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             # Print out which step we're on, useful for debugging.
             print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
-                t % 500, total_step_, total_step, t/500+1, i_episode + 1, num_episodes, loss) ),
+                t % max_iter_num, total_step_, total_step, t/max_iter_num+1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
             policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
@@ -184,6 +187,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             else:
                 action = np.random.choice(np.arange(env.n_actions))
             next_state, reward, done, _ = env.step(action)
+
             next_state = np.append(state[:,:,1:], np.expand_dims(next_state, 2), axis=2)
 
             transition.append([state, action, reward, next_state, done])
@@ -221,7 +225,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
             if (done):
-                print ('Step = {}'.format(t%500) )
+                print ('Step = {}'.format(t%max_iter_num) )
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -235,7 +239,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
-            if t > 500 and t % 500 == 1:
+            if t > max_iter_num and t % max_iter_num == 1:
                 state = env.reset()
                 state = np.stack([state] * 4, axis=2)
                 transition = []
@@ -263,6 +267,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 250000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 50000,\
+               replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
+               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 300)

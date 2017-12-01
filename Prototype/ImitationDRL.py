@@ -43,13 +43,10 @@ class Q_Network():
         self.y_tr = tf.placeholder(shape = [None], dtype = tf.float32, name = 'y')
         # Placeholder for action choices
         self.action_tr = tf.placeholder(shape = [None], dtype = tf.int32, name = 'action')
-
         # Placeholder for expert actions (one-hot)
         self.expert_action = tf.placeholder(shape = [None, 4], dtype = tf.float32, name = 'expert_action')
 
         # Input data normalization
-        # N.A. for binary image
-
         X = tf.to_float(self.X_tr)/255
 
         # Convolutional layer #1
@@ -112,6 +109,16 @@ class Q_Network():
         self.train_op = self.optimizer.minimize(self.loss, global_step = tf.contrib.framework.get_global_step() )
         self.train_op_expert_demo = self.optimizer.minimize(self.loss_exp, global_step = tf.contrib.framework.get_global_step() )
 
+        # Summaries for Tensorboard
+        self.global_step = tf.contrib.framework.get_global_step()
+
+        tf.summary.scalar("loss", self.loss_exp),
+        tf.summary.histogram("loss_hist", self.losses_exp),
+        tf.summary.histogram("q_values_hist", self.q_pred),
+        tf.summary.scalar("max_q_value", tf.reduce_max(self.q_pred))
+
+        self.summaries = tf.summary.merge_all()
+
     # Predict q values
     def model_predict(self, sess, state):
         if state.ndim < 3:
@@ -122,14 +129,16 @@ class Q_Network():
     # Update model parameters
     def update_model(self, sess, state, action, target):
         if target.shape[1] == 4:
-            loss, _ = sess.run([self.loss_exp, self.train_op_expert_demo], \
+            global_step, summaries, loss, _ = sess.run([self.global_step, self.summaries, self.loss_exp, self.train_op_expert_demo], \
                                feed_dict={self.X_tr: state, self.action_tr: action, self.expert_action: target})
         else:
-            loss, _ = sess.run([self.loss, self.train_op], \
+            global_step, summaries, loss, _ = sess.run([self.global_step, self.summaries, self.loss, self.train_op], \
                            feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
         # loss, _ = sess.run([self.loss, self.train_op], \
         #                    feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
 
+        if self.summary_writer:
+            self.summary_writer.add_summary(summaries, global_step)
         return loss
 
 
@@ -159,8 +168,23 @@ def Copy_Network(sess, network1, network2):
 def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_size, replay_memory_initial_size, \
                target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size, max_iter_num, expert_demo_num_episodes):
 
+    # Create directories for the experiments and checkpoints
+    experiment_dir = os.path.abspath('./experiments/ImitationDRL')
+    checkpoint_dir = os.path.join(experiment_dir, 'checkpoint')
+    if not os.path.exists(checkpoint_dir):
+        os.makedirs(checkpoint_dir)
+    checkpoint_path = os.path.join(checkpoint_dir, 'model')
+
+    # Create a saver object
+    saver = tf.train.Saver()
+    # Load the latest checkpoint
+    latest_checkpoint = tf.train.latest_checkpoint(checkpoint_dir)
+    if latest_checkpoint:
+        print('Loading the latest checkpoint from ... \n {}'.format(latest_checkpoint))
+        saver.restore(sess, latest_checkpoint)
+
     # Initialize a MDP tuple
-    MDP_tuple = namedtuple('MDP_tuple',['state', 'action', 'reward', 'next_state', 'terminate'])
+    # MDP_tuple = namedtuple('MDP_tuple',['state', 'action', 'reward', 'next_state', 'terminate'])
 
     # Initialize replay memory
     replay_memory = []
@@ -189,6 +213,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         # next_state, reward, done, _ = env.step(action)
 
         action, robot_loc = env.expert(robot_loc)
+
         next_state, reward, done, _ = env.step(action)
 
         next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
@@ -211,7 +236,9 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     print("\r Populating replay memory 100% completed")
 
     for i_episode in range(num_episodes):
-
+        # Save the current checkpoint
+        saver.save(sess, checkpoint_path)
+        episode_summary = tf.summary()
         state= env.reset()
         # Stack 4 successive frames for POMDP
         state = np.stack([state] * 4, axis=2)
