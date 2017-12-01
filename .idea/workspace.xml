@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2f814aa7-6325-42ab-b136-51e00c9df9a2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Prototype/Env/RGBEnv_v1.py" afterPath="$PROJECT_DIR$/Prototype/Env/RGBEnv_v1.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Prototype/ImitationDRL.py" afterPath="$PROJECT_DIR$/Prototype/ImitationDRL.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py" afterPath="$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Prototype/NNQL.py" afterPath="$PROJECT_DIR$/Prototype/NNQL.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -29,21 +29,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="BinaryEnvTest.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="BinaryEnvTest.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="287">
-              <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BinarMapResize.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Prototype/Env/BinarMapResize.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="37" column="11" lean-forward="false" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
+            <state relative-caret-position="2268">
+              <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,6 +44,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="450">
               <caret line="34" column="31" lean-forward="false" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BinarMapResize.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Prototype/Env/BinarMapResize.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="648">
+              <caret line="37" column="11" lean-forward="false" selection-start-line="37" selection-start-column="11" selection-end-line="37" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -74,18 +74,20 @@
       <file leaf-file-name="NNQL.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Prototype/NNQL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
-              <folding />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#37#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImitationDRL.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ImitationDRL.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Prototype/ImitationDRL.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="198">
-              <caret line="90" column="56" lean-forward="true" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
+              <caret line="90" column="56" lean-forward="false" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
               <folding>
                 <element signature="e#0#33#0" expanded="true" />
               </folding>
@@ -128,15 +130,15 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/Prototype/Env/RGBEnvTest.py" />
-        <option value="$PROJECT_DIR$/Prototype/NNQL.py" />
         <option value="$PROJECT_DIR$/Prototype/NNQL_POMDP.py" />
         <option value="$PROJECT_DIR$/Prototype/Expert_Action.py" />
         <option value="$PROJECT_DIR$/Prototype/Expert_Demo.py" />
         <option value="$PROJECT_DIR$/Prototype/Env/BinarMapResize.py" />
-        <option value="$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py" />
         <option value="$PROJECT_DIR$/References/mnist_CNN.py" />
         <option value="$PROJECT_DIR$/Prototype/Env/RGBEnv_v1.py" />
         <option value="$PROJECT_DIR$/Prototype/ImitationDRL.py" />
+        <option value="$PROJECT_DIR$/Prototype/NNQL.py" />
+        <option value="$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py" />
       </list>
     </option>
   </component>
@@ -167,7 +169,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -189,13 +191,20 @@
             <path>
               <item name="SwarmDRL" type="b2602c69:ProjectViewProjectNode" />
               <item name="SwarmDRL" type="462c0819:PsiDirectoryNode" />
+              <item name="Prototype" type="462c0819:PsiDirectoryNode" />
+              <item name="Env" type="462c0819:PsiDirectoryNode" />
+              <item name="MapData" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SwarmDRL" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SwarmDRL" type="462c0819:PsiDirectoryNode" />
               <item name="References" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -215,25 +224,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.ImitationDRL">
-    <configuration name="BinarMapResize" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Prototype/Env" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="SwarmDRL" />
-      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Prototype/Env/BinarMapResize.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-    </configuration>
+  <component name="RunManager" selected="Python.NNQL">
     <configuration name="BinaryEnvTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -284,6 +275,24 @@
       <module name="SwarmDRL" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Prototype/ImitationDRL.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+    </configuration>
+    <configuration name="NNQL" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Prototype" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SwarmDRL" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" enabled="false" sample_coverage="true" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Prototype/NNQL.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -573,19 +582,19 @@
       <option name="EMULATE_TERMINAL" value="false" />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.BinarMapResize" />
-      <item index="1" class="java.lang.String" itemvalue="Python.BinaryEnvTest" />
-      <item index="2" class="java.lang.String" itemvalue="Python.RGBEnv_v1" />
-      <item index="3" class="java.lang.String" itemvalue="Python.ImitationDRL" />
-      <item index="4" class="java.lang.String" itemvalue="Python.mnist_CNN" />
+      <item index="0" class="java.lang.String" itemvalue="Python.BinaryEnvTest" />
+      <item index="1" class="java.lang.String" itemvalue="Python.RGBEnv_v1" />
+      <item index="2" class="java.lang.String" itemvalue="Python.ImitationDRL" />
+      <item index="3" class="java.lang.String" itemvalue="Python.mnist_CNN" />
+      <item index="4" class="java.lang.String" itemvalue="Python.NNQL" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.ImitationDRL" />
-        <item index="1" class="java.lang.String" itemvalue="Python.mnist_CNN" />
-        <item index="2" class="java.lang.String" itemvalue="Python.RGBEnv_v1" />
-        <item index="3" class="java.lang.String" itemvalue="Python.BinaryEnvTest" />
-        <item index="4" class="java.lang.String" itemvalue="Python.BinarMapResize" />
+        <item index="0" class="java.lang.String" itemvalue="Python.NNQL" />
+        <item index="1" class="java.lang.String" itemvalue="Python.ImitationDRL" />
+        <item index="2" class="java.lang.String" itemvalue="Python.mnist_CNN" />
+        <item index="3" class="java.lang.String" itemvalue="Python.RGBEnv_v1" />
+        <item index="4" class="java.lang.String" itemvalue="Python.BinaryEnvTest" />
       </list>
     </recent_temporary>
   </component>
@@ -614,7 +623,7 @@
   <component name="ToolWindowManager">
     <frame x="557" y="223" width="1560" height="1257" extended-state="0" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22948718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22948718" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279396" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3364632" sideWeight="0.5020576" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3279396" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -869,14 +878,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="142" column="0" lean-forward="false" selection-start-line="142" selection-start-column="0" selection-end-line="142" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Prototype/Expert_Demo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -908,19 +909,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Prototype/NNQL.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="75" column="23" lean-forward="false" selection-start-line="75" selection-start-column="23" selection-end-line="75" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Prototype/DPN.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
           <caret line="111" column="24" lean-forward="false" selection-start-line="111" selection-start-column="24" selection-end-line="111" selection-end-column="24" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Prototype/ImitationDRL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="90" column="56" lean-forward="false" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#33#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Prototype/NNQL.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#37#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -932,13 +944,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Prototype/ImitationDRL.py">
+    <entry file="file://$PROJECT_DIR$/Prototype/Env/BinaryEnvTest.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="90" column="56" lean-forward="true" selection-start-line="90" selection-start-column="56" selection-end-line="90" selection-end-column="56" />
-          <folding>
-            <element signature="e#0#33#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="2268">
+          <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

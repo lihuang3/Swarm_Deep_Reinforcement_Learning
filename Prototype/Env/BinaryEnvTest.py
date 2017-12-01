@@ -134,19 +134,19 @@ class MazeEnv():
 # #
 
 
-env = MazeEnv()
-env.reset()
-robot_loc = []
-for i in range(1000):
-    # next_action = np.random.randint(4,size = 1)
-    next_action, robot_loc = env.expert(robot_loc)
-
-    state, reward, done, _ = env.step(next_action)
-    if i%100 ==0:
-        print ' '
-    print 'step = {}, action = {}, reward = {}, done = {}'.format(i, next_action, reward, done )
-    if done:
-        break
+# env = MazeEnv()
+# env.reset()
+# robot_loc = []
+# for i in range(1000):
+#     # next_action = np.random.randint(4,size = 1)
+#     next_action, robot_loc = env.expert(robot_loc)
+#
+#     state, reward, done, _ = env.step(next_action)
+#     if i%100 ==0:
+#         print ' '
+#     print 'step = {}, action = {}, reward = {}, done = {}'.format(i, next_action, reward, done )
+#     if done:
+#         break
 
 
    # sys.stdout.flush()
