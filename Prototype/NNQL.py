@@ -54,7 +54,7 @@ class Q_Network():
 
         #fc2_dropout = tf.contrib.layers.dropout(fc2, self.keep_prob)
 
-        self.q_val = tf.layers.dense(fc2, self.n_actions, activation=tf.nn.relu, \
+        self.q_val = tf.layers.dense(fc2, self.n_actions, \
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
