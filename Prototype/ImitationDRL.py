@@ -159,9 +159,20 @@ def Policy_Fcn(sess, network, state, n_actions, epsilon):
 
 
 def Copy_Network(sess, network1, network2):
-        t_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope= network1.scope)
-        e_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope= network2.scope)
-        copy_op = [tf.assign(t, e) for t, e in zip(t_params, e_params)]
+        # t_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope= network1.scope)
+        # e_params = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope= network2.scope)
+        # copy_op = [tf.assign(t, e) for t, e in zip(t_params, e_params)]
+
+        e1_params = [t for t in tf.trainable_variables() if t.name.startswith(network1.scope)]
+        e1_params = sorted(e1_params, key=lambda v: v.name)
+        e2_params = [t for t in tf.trainable_variables() if t.name.startswith(network2.scope)]
+        e2_params = sorted(e2_params, key=lambda v: v.name)
+
+        copy_op = []
+        for e1_v, e2_v in zip(e1_params, e2_params):
+            op = e2_v.assign(e1_v)
+            copy_op.append(op)
+
         return sess.run(copy_op)
 
 
@@ -169,7 +180,6 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
                target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size, max_iter_num, expert_demo_num_episodes):
 
     # Create directories for the experiments and checkpoints
-    experiment_dir = os.path.abspath('./experiments/ImitationDRL')
     checkpoint_dir = os.path.join(experiment_dir, 'checkpoint')
     if not os.path.exists(checkpoint_dir):
         os.makedirs(checkpoint_dir)
@@ -238,7 +248,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     for i_episode in range(num_episodes):
         # Save the current checkpoint
         saver.save(sess, checkpoint_path)
-        episode_summary = tf.summary()
+        episode_summary = tf.Summary()
         state= env.reset()
         # Stack 4 successive frames for POMDP
         state = np.stack([state] * 4, axis=2)
@@ -251,19 +261,14 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         loss = np.NaN
         local_loss = None
         # Maybe update the target estimator
-        # if i_episode % target_net_update_interval == 0:
-        #     Copy_Network(sess, q_eval_net, target_net)
-        #     print("\nCopied model parameters to target network.")
+        if i_episode+1 % target_net_update_interval == 0:
+            Copy_Network(sess, q_eval_net, target_net)
+            print("\nCopied model parameters to target network.")
 
-        if i_episode==expert_demo_num_episodes:
+        if i_episode + 1==expert_demo_num_episodes:
             print("\nEnd of expert demonstration.\n")
 
-
-
         for t in itertools.count():
-
-            if total_step % 2500 == 0 and i_episode>1:
-                time.sleep(0.5)
 
             # Print out which step we're on, useful for debugging.
             print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
@@ -272,10 +277,9 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             sys.stdout.flush()
 
 
-
-            if i_episode<expert_demo_num_episodes:
+            if i_episode+1<expert_demo_num_episodes:
                 action, robot_loc = env.expert(robot_loc)
-                if i_episode % 10 == 0 and i_episode>1:
+                if i_episode+1 % 5 == 0 and i_episode>1:
                     policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
                                         epsilon_array[min(i_episode, num_episodes - 1)])
                     action = policy
@@ -311,7 +315,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
             q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
 
-            if i_episode < expert_demo_num_episodes:
+            if i_episode+1 < expert_demo_num_episodes:
                 target_batch = np.zeros((q_val_batch.shape[0],q_val_batch.shape[1]))
                 target_batch[np.arange(batch_size), action_batch] = 1.0
 
@@ -357,18 +361,24 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
-            if t > max_iter_num and i_episode %10 ==0 and i_episode>1:
+            if i_episode+1 %5 ==0 and t >= max_iter_num and i_episode>1:
                 print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format( \
                     Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))))
                 break
 
-            if t > max_iter_num and t % max_iter_num == 1:
+            if t >= max_iter_num and t % max_iter_num == 0:
                 state = env.reset()
                 # Stack 4 successive frames for POMDP
                 state = np.stack([state] * 4, axis=2)
                 transition = []
                 local_loss = None
                 loss = np.NaN
+        episode_reward = -len(transition)+ int(done)*reward
+        episode_summary.value.add(simple_value=episode_reward, tag='episode/reward')
+        episode_summary.value.add(simple_value=t, tag='episode/episode_total_steps')
+        episode_summary.value.add(simple_value=total_step_, tag='episode/total_effective_length')
+        q_eval_net.summary_writer.add_summary(episode_summary, i_episode+1)
+        q_eval_net.summary_writer.flush()
 
 
 
@@ -377,6 +387,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 #=======================
 
 tf.reset_default_graph()
+experiment_dir = os.path.abspath('./experiments/ImitationDRL')
+
 
 # Create a glboal step variable
 global_step = tf.Variable(0, name='global_step', trainable=False)
@@ -386,12 +398,15 @@ state = env.reset()
 
 action = np.random.randint(4,size = 1)
 
-q_eval_net= Q_Network(scope = 'q_eval_net')
+q_eval_net= Q_Network(scope = 'q_eval_net', summary_dir0=experiment_dir)
 
 target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 20000,\
-               replay_memory_initial_size = 5000, target_net_update_interval = 20, discounted_factor = 0.99, \
-               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 64, max_iter_num = 600, expert_demo_num_episodes = 150)
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 50, replay_memory_size = 100000,\
+               replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
+               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 64, max_iter_num = 2000, expert_demo_num_episodes = 50)
+
+
+# tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006

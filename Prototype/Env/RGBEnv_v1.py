@@ -3,6 +3,7 @@ import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
 
 plt.ion()
 random.seed(140)
+
 map_data_dir =os.path.abspath('./Env/MapData')
 
 class MazeEnv():
@@ -33,7 +34,7 @@ class MazeEnv():
         row, col = np.nonzero(freespace)
 
         if not len(self.init_state):
-            self.robot_num = 50
+            self.robot_num = len(row)
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             self.state_img = np.copy(self.state)
@@ -152,10 +153,11 @@ class MazeEnv():
         return self.expert(robot_loc)
 
 
-#
+
 # ## To run benchmark test, uncomment the following lines
 # env = MazeEnv()
 # env.render()
+# plt.pause(2)
 # n_epochs = 1000
 # robot_loc =[]
 #

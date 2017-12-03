@@ -18,8 +18,9 @@ class Q_Network():
     def __init__(self, scope, summary_dir0 = None):
         self.scope = scope
         self.keep_prob = 0.5
-        self.fc1_num_outputs = 500
-        self.fc2_num_outputs = 500
+        self.fc1_num_outputs = 1000
+        self.fc2_num_outputs = 1000
+        self.fc3_num_outputs = 500
         self.n_actions = env.n_actions
 
         with tf.variable_scope(scope):
@@ -55,9 +56,13 @@ class Q_Network():
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
-        fc2_dropout = tf.contrib.layers.dropout(fc2, self.keep_prob)
+        fc3 = tf.layers.dense(fc2, self.fc3_num_outputs, activation=tf.nn.relu, \
+                              kernel_initializer=tf.random_normal_initializer(0., 0.3), \
+                              bias_initializer=tf.constant_initializer(0.1))
 
-        self.q_val = tf.layers.dense(fc2_dropout, self.n_actions, \
+        fc3_dropout = tf.contrib.layers.dropout(fc3, self.keep_prob)
+
+        self.q_val = tf.layers.dense(fc3_dropout, self.n_actions, \
                               kernel_initializer=tf.random_normal_initializer(0., 0.3), \
                               bias_initializer=tf.constant_initializer(0.1))
 
@@ -278,6 +283,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
     sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 3000, replay_memory_size = 100000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
+    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 200000,\
+               replay_memory_initial_size = 20000, target_net_update_interval = 10, discounted_factor = 0.99, \
                epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500)

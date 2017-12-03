@@ -26,7 +26,7 @@ class MazeEnv():
     def _build_robot(self):
         row, col = np.nonzero(mazeData)
         if not len(self.init_state):
-            self.robot_num = 10
+            self.robot_num = 20
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             for i in range(self.robot_num):
@@ -148,7 +148,7 @@ class MazeEnv():
 #     state, reward, done, _ = env.step(next_action)
 #     plt.imshow(state)
 #     plt.show()
-#     plt.pause(0.05)
+#     plt.pause(0.01)
 #     print 'step = {}, action = {}, reward = {}, done = {}'.format(i, next_action, reward, done )
 #     if done:
 #         plt.pause(1)
