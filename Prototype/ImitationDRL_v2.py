@@ -84,7 +84,7 @@ class Q_Network():
         fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
 
 
-        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, activation=tf.nn.tanh, \
+        self.q_val = tf.layers.dense(fc_dropout, self.n_actions,  \
                               kernel_initializer=None, \
                               bias_initializer=tf.zeros_initializer())
 
@@ -311,20 +311,9 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             state_batch, action_batch, reward_batch, next_state_batch, done_batch = map(np.array, zip(*training_set))
 
-
-            if (i_episode+1)<=expert_demo_num_episodes:
-                # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
-                q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
-                target_batch = np.zeros((q_val_batch.shape[0],q_val_batch.shape[1]))
-                target_batch[np.arange(batch_size), action_batch] = 1.0
-            else:
-                # Use the "target network" to estimate q values of the next states (of the training set)
-                q_val_batch = target_net.model_predict(sess, next_state_batch)
-                target_batch = reward_batch + \
-                                   discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
-                target_batch = np.tanh(target_batch)
-
-
+            q_val_batch = target_net.model_predict(sess, next_state_batch)
+            target_batch = reward_batch + \
+                           discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
 
             # target_batch = reward_batch + \
             #                discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
@@ -394,7 +383,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 #=======================
 
 tf.reset_default_graph()
-experiment_dir = os.path.abspath('./experiments/ImitationDRL_v1')
+experiment_dir = os.path.abspath('./experiments/ImitationDRL_v2')
 
 
 # Create a glboal step variable
@@ -411,9 +400,9 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 20, replay_memory_size = 50000,\
-                   replay_memory_initial_size = 5000, target_net_update_interval = 10, discounted_factor = 0.99, \
-                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 0)
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 100000,\
+                   replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
+                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 1000)
 
 
 # tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006
