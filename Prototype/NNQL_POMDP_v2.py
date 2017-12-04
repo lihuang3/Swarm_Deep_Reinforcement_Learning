@@ -76,7 +76,7 @@ class Q_Network():
         self.loss = tf.reduce_mean(self.loss_vector, name = 'TD_error')
         # Optimizer and train operations
         self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)
-        self.train_op = self.optimizer.minimize(self.loss, global_step = tf.contrib.framework.get_global_step() )
+        self.train_op = self.optimizer.minimize(self.loss, global_step = tf.train.get_global_step() )
 
     # Predict q values
     def model_predict(self, sess, state):
@@ -142,7 +142,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     # Initialize replay memory
     replay_memory = []
 
-    total_step = sess.run(tf.contrib.framework.get_global_step())
+    total_step = sess.run(tf.train.get_global_step())
 
     total_step_ = 1
 
@@ -220,8 +220,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             state_batch, action_batch, reward_batch, next_state_batch, done_batch = map(np.array, zip(*training_set))
 
-            # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
-            q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
+            # Use the "target network" to estimate q values of the next states (of the training set)
+            q_val_batch = target_net.model_predict(sess, next_state_batch)
 
             # q_val_batch_max_idx = np.argmax(q_val_batch,axis = 1)
             #
@@ -282,7 +282,7 @@ q_eval_net= Q_Network(scope = 'q_eval_net')
 target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 200000,\
-               replay_memory_initial_size = 20000, target_net_update_interval = 10, discounted_factor = 0.99, \
-               epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500)
+        sess.run(tf.global_variables_initializer())
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 5000, replay_memory_size = 100000,\
+                   replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
+                   epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500)
