@@ -13,6 +13,8 @@ env = MazeEnv()
 
 plt.ion()
 
+start_time = time.time()
+
 class Q_Network():
 
     def __init__(self, scope, summary_dir0 = None):
@@ -100,9 +102,8 @@ class Q_Network():
         # ])
 
 # Epsilon-greedy action selection policy
-def Policy_Fcn(sess, network, state, n_actions, epsilon):
-    # Initialize uniform policy
-    policy = np.ones(n_actions, dtype = float)*epsilon/n_actions
+def Policy_Fcn(sess, network, state, n_actions):
+
     # Augment the state since training input is of shape [?, 12, 12]
     state = np.expand_dims(state,0)
     # Evaluate q values and squeeze the 1-element dimension since the output is of shape [?, 4]
@@ -136,8 +137,19 @@ def Copy_Network(sess, network1, network2):
 def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_size, replay_memory_initial_size, \
                target_net_update_interval, discounted_factor, epsilon_s, epsilon_f, batch_size, max_iter_num):
 
-    # Initialize a MDP tuple
-    MDP_tuple = namedtuple('MDP_tuple',['state', 'action', 'reward', 'next_state', 'terminate'])
+    # Create directories for the experiments and checkpoints
+    checkpoint_dir = os.path.join(experiment_dir, 'checkpoint')
+    if not os.path.exists(checkpoint_dir):
+        os.makedirs(checkpoint_dir)
+    checkpoint_path = os.path.join(checkpoint_dir, 'model')
+
+    # Create a saver object
+    saver = tf.train.Saver()
+    # Load the latest checkpoint
+    latest_checkpoint = tf.train.latest_checkpoint(checkpoint_dir)
+    if latest_checkpoint:
+        print('Loading the latest checkpoint from ... \n {}'.format(latest_checkpoint))
+        saver.restore(sess, latest_checkpoint)
 
     # Initialize replay memory
     replay_memory = []
@@ -146,7 +158,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
     total_step_ = 1
 
-    epsilon_array = np.linspace(epsilon_s, epsilon_f, num_episodes)
+    epsilon_array = np.linspace(epsilon_s, epsilon_f, 0.6*num_episodes)
 
     # Populate the replay memory with random states
     state = env.reset()
@@ -154,8 +166,6 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
     for i in range(replay_memory_initial_size):
 
-        policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
-                               epsilon_array[min(total_step, num_episodes-1)])
         # action = np.random.choice(np.arange(env.n_actions), p = policy)
         action = np.random.choice(np.arange(env.n_actions))
 
@@ -174,7 +184,10 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         sys.stdout.flush()
 
     for i_episode in range(num_episodes):
+        # Save the current checkpoint
+        saver.save(sess, checkpoint_path)
 
+        episode_start_time = time.time()
         state= env.reset()
         state = np.stack([state] * 4, axis=2)
         loss = None
@@ -182,23 +195,18 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         # Maybe update the target estimator
         if i_episode % target_net_update_interval == 0:
             Copy_Network(sess, q_eval_net, target_net)
-            print("\nCopied model parameters to target network.")
-
-
+            print("\nCopied model parameters to target network. Program running time: {}".format(time.time()-start_time))
 
 
         for t in itertools.count():
 
-
-
-            # Print out which step we're on, useful for debugging.
+           # Print out which step we're on, useful for debugging.
             print("\rStep {} ({} of {}) Scene {} @ Episode {}/{}, loss: {}".format(
                 t % max_iter_num, total_step_, total_step, t/max_iter_num+1, i_episode + 1, num_episodes, loss) ),
             sys.stdout.flush()
 
-            policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
-                                epsilon_array[min(i_episode, num_episodes - 1)])
-            if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
+            policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions)
+            if np.random.uniform() > epsilon_array[min(i_episode, 0.6*num_episodes)]:
                 action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
             else:
                 action = np.random.choice(np.arange(env.n_actions))
@@ -241,7 +249,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
             if (done):
-                print ('Step = {}'.format(t%max_iter_num) )
+                print ('episode time = {}'.format(time.time()-episode_start_time) )
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -268,6 +276,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 #=======================
 
 tf.reset_default_graph()
+experiment_dir = os.path.abspath('./experiments/NNQL_POMDP_v2')
 
 # Create a glboal step variable
 global_step = tf.Variable(0, name='global_step', trainable=False)
@@ -283,6 +292,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 5000, replay_memory_size = 100000,\
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 100000,\
                    replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
-                   epsilon_s = 1.0, epsilon_f = 0.0, batch_size = 32, max_iter_num = 500)
+                   epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32, max_iter_num = 300)

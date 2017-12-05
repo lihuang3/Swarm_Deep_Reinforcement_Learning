@@ -1,16 +1,19 @@
-from Env.RGBEnv_v1 import MazeEnv
+'''
+- Inherited from ImitationDRL_v1
+- Try to use rl with expert action to train CNN,
+but does not work after 1000 episodes w/o expert instruction
+- Now trying with the reward based on total path length
+- Linear fcn for output layer
+'''
+
+from Env.RGBEnv_v2 import MazeEnv
 from collections import namedtuple
 
 import random, time, numpy as np, sys, os, tensorflow as tf, itertools
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 from decimal import Decimal
+start_time = time.time()
 
-'''
-This imitation learning uses grayscale images as the input. We first populate 
-the memory with MDP tuples of the expert (benchmark). Then, we train the CNN for 10 episodes to 
-intialize. Then switch to DRL to improve the benchmark algorithm. Note this test does not intend for
-general robots initial distributions. We use the same initial distributin each episode. 
-'''
 
 
 valid_actions = [0, 1, 2, 3]
@@ -84,9 +87,9 @@ class Q_Network():
         fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
 
 
-        self.q_val = tf.layers.dense(fc_dropout, self.n_actions,  \
-                              kernel_initializer=None, \
-                              bias_initializer=tf.zeros_initializer())
+        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, \
+                             kernel_initializer=tf.random_normal_initializer(0., 0.3), \
+                             bias_initializer=tf.constant_initializer(0.1))
 
 
         # Make prediction
@@ -248,6 +251,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     for i_episode in range(num_episodes):
         # Save the current checkpoint
         saver.save(sess, checkpoint_path)
+        episode_start_time = time.time()
         episode_summary = tf.Summary()
         state= env.reset()
         # Stack 4 successive frames for POMDP
@@ -263,7 +267,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         # Maybe update the target estimator
         if (i_episode+1) % target_net_update_interval == 0:
             Copy_Network(sess, q_eval_net, target_net)
-            print("\nCopied model parameters to target network.")
+            print("\nCopied model parameters to target network. Program running time: {}".format( round(time.time()-start_time),2))
 
 
         for t in itertools.count():
@@ -293,7 +297,6 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
 
             next_state, reward, done, _ = env.step(action)
-
             # Stack 4 successive frames for POMDP
             next_state = np.append(state[:,:,1:], np.expand_dims(next_state, 2), axis=2)
 
@@ -338,8 +341,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = np.append(loss, np.array(local_loss))
 
             if (done):
-                print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format(\
-                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))) )
+                print ('loss_mean: {:.4E}, max: {:.4E}, episode time: {}'.format( \
+                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), round(time.time() - episode_start_time, 2)))
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -402,7 +405,7 @@ with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
         Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 100000,\
                    replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
-                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 1000)
+                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 600, expert_demo_num_episodes = 800)
 
 
 # tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006

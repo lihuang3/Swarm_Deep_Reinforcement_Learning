@@ -1,15 +1,19 @@
-from Env.RGBEnv_v1 import MazeEnv
+'''
+- Try to use DRL wih a path-length based reward fcn to train CNN,
+- Suffered from large sampling space
+- Requiring too many interactions with the env
+'''
+
+from Env.RGBEnv_v2 import MazeEnv
 from collections import namedtuple
 
 import random, time, numpy as np, sys, os, tensorflow as tf, itertools
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 from decimal import Decimal
-
+start_time = time.time()
 '''
-This imitation learning uses grayscale images as the input. We first populate 
-the memory with MDP tuples of the expert (benchmark). Then, we train the CNN for 10 episodes to 
-intialize. However, this version is not capable of doing reinforcement learning. Note this test does not intend for
-general robots initial distributions. We use the same initial distributin each episode. 
+-This imitation learning uses grayscale images as the input. 
+-Using expert action for demo with rl to train CNN
 '''
 
 
@@ -84,9 +88,10 @@ class Q_Network():
         fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
 
 
-        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, activation=tf.nn.softmax, \
-                              kernel_initializer=None, \
-                              bias_initializer=tf.zeros_initializer())
+        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, \
+                                     kernel_initializer=tf.random_normal_initializer(0., 0.3), \
+                                     bias_initializer=tf.constant_initializer(0.1))
+
 
         # Make prediction
         # tf.gather_nd(params, indices): map elements in params to the output with given the indices order
@@ -106,14 +111,14 @@ class Q_Network():
         # Optimizer and train operations
         # self.optimizer = tf.train.RMSPropOptimizer(0.00025, 0.99, 0.0, 1e-6)
         self.optimizer = tf.train.AdamOptimizer(0.0001)
-        self.train_op = self.optimizer.minimize(self.loss, global_step = tf.contrib.framework.get_global_step() )
-        self.train_op_expert_demo = self.optimizer.minimize(self.loss_exp, global_step = tf.contrib.framework.get_global_step() )
+        self.train_op = self.optimizer.minimize(self.loss, global_step = tf.train.get_global_step() )
+        self.train_op_expert_demo = self.optimizer.minimize(self.loss_exp, global_step = tf.train.get_global_step() )
 
         # Summaries for Tensorboard
-        self.global_step = tf.contrib.framework.get_global_step()
+        self.global_step = tf.train.get_global_step()
 
-        tf.summary.scalar("loss", self.loss_exp),
-        tf.summary.histogram("loss_hist", self.losses_exp),
+        # tf.summary.scalar("loss", self.loss_exp),
+        # tf.summary.histogram("loss_hist", self.losses_exp),
         tf.summary.histogram("q_values_hist", self.q_pred),
         tf.summary.scalar("max_q_value", tf.reduce_max(self.q_pred))
 
@@ -134,8 +139,7 @@ class Q_Network():
         else:
             global_step, summaries, loss, _ = sess.run([self.global_step, self.summaries, self.loss, self.train_op], \
                            feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
-        # loss, _ = sess.run([self.loss, self.train_op], \
-        #                    feed_dict={self.X_tr: state, self.action_tr: action, self.y_tr: target})
+
 
         if self.summary_writer:
             self.summary_writer.add_summary(summaries, global_step)
@@ -143,9 +147,8 @@ class Q_Network():
 
 
 # Epsilon-greedy action selection policy
-def Policy_Fcn(sess, network, state, n_actions, epsilon):
-    # Initialize uniform policy
-    policy = np.ones(n_actions, dtype = float)*epsilon/n_actions
+def Policy_Fcn(sess, network, state):
+
     # Augment the state since training input is of shape [?, 12, 12]
     state = np.expand_dims(state,0)
     # Evaluate q values and squeeze the 1-element dimension since the output is of shape [?, 4]
@@ -199,7 +202,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     # Initialize replay memory
     replay_memory = []
 
-    total_step = sess.run(tf.contrib.framework.get_global_step())
+    total_step = sess.run(tf.train.get_global_step())
 
     total_step_ = 1
 
@@ -248,6 +251,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     for i_episode in range(num_episodes):
         # Save the current checkpoint
         saver.save(sess, checkpoint_path)
+        episode_start_time = time.time()
         episode_summary = tf.Summary()
         state= env.reset()
         # Stack 4 successive frames for POMDP
@@ -261,10 +265,9 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         loss = np.NaN
         local_loss = None
         # Maybe update the target estimator
-        if i_episode+1 % target_net_update_interval == 0:
+        if (i_episode+1) % target_net_update_interval == 0:
             Copy_Network(sess, q_eval_net, target_net)
-            print("\nCopied model parameters to target network.")
-
+            print("\nCopied model parameters to target network. Program running time: {}".format( round(time.time()-start_time),2))
 
 
         for t in itertools.count():
@@ -276,24 +279,22 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             sys.stdout.flush()
 
 
-            if i_episode+1<=expert_demo_num_episodes:
+            if (i_episode+1)<=expert_demo_num_episodes:
                 action, robot_loc = env.expert(robot_loc)
-                if i_episode+1 % 5 == 0 and i_episode>1:
-                    policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
-                                        epsilon_array[min(i_episode, num_episodes - 1)])
+                if (i_episode+1)%5 ==0 and i_episode>1:
+                    policy = Policy_Fcn(sess, q_eval_net, state)
                     action = policy
             else:
-                policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
-                                    epsilon_array[min(i_episode, num_episodes - 1)])
-                action = policy
-                # if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
-                #     action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
-                # else:
-                #     action = np.random.choice(np.arange(env.n_actions))
+
+                policy = Policy_Fcn(sess, q_eval_net, state)
+
+                if np.random.uniform() > epsilon_array[min(i_episode, 0.6*num_episodes)]:
+                    action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
+                else:
+                    action = np.random.choice(np.arange(env.n_actions))
 
 
             next_state, reward, done, _ = env.step(action)
-
             # Stack 4 successive frames for POMDP
             next_state = np.append(state[:,:,1:], np.expand_dims(next_state, 2), axis=2)
 
@@ -311,11 +312,9 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             state_batch, action_batch, reward_batch, next_state_batch, done_batch = map(np.array, zip(*training_set))
 
-            # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
-            q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
-
-            target_batch = np.zeros((q_val_batch.shape[0],q_val_batch.shape[1]))
-            target_batch[np.arange(batch_size), action_batch] = 1.0
+            q_val_batch = target_net.model_predict(sess, next_state_batch)
+            target_batch = reward_batch + \
+                           discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
 
             # target_batch = reward_batch + \
             #                discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
@@ -340,8 +339,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             loss = np.append(loss, np.array(local_loss))
 
             if (done):
-                print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format(\
-                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))) )
+                print ('loss_mean: {:.4E}, max: {:.4E}, episode time: {}'.format( \
+                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), round(time.time() - episode_start_time, 2)))
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -355,7 +354,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             state = next_state
             total_step += 1
 
-            if i_episode+1 %5 ==0 and t >= max_iter_num and i_episode>1:
+            if (i_episode+1)<=expert_demo_num_episodes and (i_episode+1)%5==0 and t >= max_iter_num and i_episode>1:
                 print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format( \
                     Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))))
                 break
@@ -368,7 +367,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
                 local_loss = None
                 loss = np.NaN
 
-        if i_episode + 1==expert_demo_num_episodes:
+        if (i_episode+1)==expert_demo_num_episodes:
             print("\nEnd of expert demonstration.\n")
 
         episode_reward = -len(transition)+ int(done)*reward
@@ -385,7 +384,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 #=======================
 
 tf.reset_default_graph()
-experiment_dir = os.path.abspath('./experiments/ImitationDRL')
+experiment_dir = os.path.abspath('./experiments/DQN')
 
 
 # Create a glboal step variable
@@ -401,10 +400,10 @@ q_eval_net= Q_Network(scope = 'q_eval_net', summary_dir0=experiment_dir)
 target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
-    sess.run(tf.global_variables_initializer())
-    Q_learning(sess, env, q_eval_net, target_net, num_episodes = 20, replay_memory_size = 100000,\
-               replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
-               epsilon_s = 0.0, epsilon_f = 0.0, batch_size = 64, max_iter_num = 2000, expert_demo_num_episodes = 15)
+        sess.run(tf.global_variables_initializer())
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 100000,\
+                   replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
+                   epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32, max_iter_num = 600, expert_demo_num_episodes = 0)
 
 
 # tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006

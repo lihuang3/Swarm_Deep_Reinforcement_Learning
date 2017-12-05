@@ -1,16 +1,20 @@
+'''
+- This imitation learning uses grayscale images as the input. We first populate
+the memory with MDP tuples of the expert (benchmark).
+- We train the CNN for 10 episodes to intialize with supervised learning.
+- Note this test does not intend for general robots initial distributions. We use the same initial distributin each episode.
+- Output layer activation fcn: tf.nn.softmax
+'''
+
+
 from Env.RGBEnv_v1 import MazeEnv
 from collections import namedtuple
 
 import random, time, numpy as np, sys, os, tensorflow as tf, itertools
 os.environ['TF_CPP_MIN_LOG_LEVEL']='2'
 from decimal import Decimal
+start_time = time.time()
 
-'''
-This imitation learning uses grayscale images as the input. We first populate 
-the memory with MDP tuples of the expert (benchmark). Then, we train the CNN for 10 episodes to 
-intialize. Then switch to DRL to improve the benchmark algorithm. Note this test does not intend for
-general robots initial distributions. We use the same initial distributin each episode. 
-'''
 
 
 valid_actions = [0, 1, 2, 3]
@@ -84,10 +88,9 @@ class Q_Network():
         fc_dropout = tf.contrib.layers.dropout(fc, self.keep_prob)
 
 
-        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, activation=tf.nn.tanh, \
-                              kernel_initializer=None, \
-                              bias_initializer=tf.zeros_initializer())
-
+        self.q_val = tf.layers.dense(fc_dropout, self.n_actions, activation=tf.nn.softmax, \
+                                     kernel_initializer=tf.random_normal_initializer(0., 0.3), \
+                                     bias_initializer=tf.constant_initializer(0.1))
 
         # Make prediction
         # tf.gather_nd(params, indices): map elements in params to the output with given the indices order
@@ -213,41 +216,42 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     # Initialize the target robot loction for the expert demo
     robot_loc = []
 
-    for i in range(replay_memory_initial_size):
-
-        # policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
-        #                        epsilon_array[min(total_step, num_episodes-1)])
-        # # action = np.random.choice(np.arange(env.n_actions), p = policy)
-        # action = np.random.choice(np.arange(env.n_actions))
-        #
-        # next_state, reward, done, _ = env.step(action)
-
-        action, robot_loc = env.expert(robot_loc)
-
-        next_state, reward, done, _ = env.step(action)
-
-        next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
-
-        replay_memory.append([state, action, reward, next_state, done])
-
-        if done:
-            state = env.reset()
-            robot_loc = []
-
-            # Stack 4 successive frames for POMDP
-            state = np.stack([state] * 4, axis=2)
-        else:
-            state = next_state
-        if(i % 100 == 0):
-            print("\rPopulating replay memory {}% completed".format(
-                100*float(i)/replay_memory_initial_size)),
-        sys.stdout.flush()
+    # for i in range(replay_memory_initial_size):
+    #
+    #     # policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
+    #     #                        epsilon_array[min(total_step, num_episodes-1)])
+    #     # # action = np.random.choice(np.arange(env.n_actions), p = policy)
+    #     # action = np.random.choice(np.arange(env.n_actions))
+    #     #
+    #     # next_state, reward, done, _ = env.step(action)
+    #
+    #     action, robot_loc = env.expert(robot_loc)
+    #
+    #     next_state, reward, done, _ = env.step(action)
+    #
+    #     next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
+    #
+    #     replay_memory.append([state, action, reward, next_state, done])
+    #
+    #     if done:
+    #         state = env.reset()
+    #         robot_loc = []
+    #
+    #         # Stack 4 successive frames for POMDP
+    #         state = np.stack([state] * 4, axis=2)
+    #     else:
+    #         state = next_state
+    #     if(i % 100 == 0):
+    #         print("\rPopulating replay memory {}% completed".format(
+    #             100*float(i)/replay_memory_initial_size)),
+    #     sys.stdout.flush()
 
     print("\r Populating replay memory 100% completed")
 
     for i_episode in range(num_episodes):
         # Save the current checkpoint
         saver.save(sess, checkpoint_path)
+        episode_start_time = time.time()
         episode_summary = tf.Summary()
         state= env.reset()
         # Stack 4 successive frames for POMDP
@@ -263,7 +267,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
         # Maybe update the target estimator
         if (i_episode+1) % target_net_update_interval == 0:
             Copy_Network(sess, q_eval_net, target_net)
-            print("\nCopied model parameters to target network.")
+            print("\nCopied model parameters to target network. Program running time: {}".format( round(time.time()-start_time),2))
 
 
         for t in itertools.count():
@@ -285,17 +289,18 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
                 policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions,
                                         epsilon_array[min(i_episode, num_episodes - 1)])
-                #action = policy
-                if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
-                    action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
-                else:
-                    action = np.random.choice(np.arange(env.n_actions))
+                action = policy
+                # if np.random.uniform() > epsilon_array[min(i_episode, num_episodes - 1)]:
+                #     action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
+                # else:
+                #     action = np.random.choice(np.arange(env.n_actions))
 
 
             next_state, reward, done, _ = env.step(action)
 
             # Stack 4 successive frames for POMDP
             next_state = np.append(state[:,:,1:], np.expand_dims(next_state, 2), axis=2)
+            env.render()
 
             transition.append([state, action, reward, next_state, done])
             # If replay memory is full, first-in-first-out
@@ -305,52 +310,52 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
 
             # Minibatch Training
-
-            # Sample the training set from replay memory
-            training_set = random.sample(replay_memory, batch_size)
-
-            state_batch, action_batch, reward_batch, next_state_batch, done_batch = map(np.array, zip(*training_set))
-
-
             if (i_episode+1)<=expert_demo_num_episodes:
+                # Sample the training set from replay memory
+                training_set = random.sample(replay_memory, batch_size)
+
+                state_batch, action_batch, reward_batch, next_state_batch, done_batch = map(np.array, zip(*training_set))
+
+
+
                 # Use the "Q evaluation network" to estimate q values of the next states (of the training set)
                 q_val_batch = q_eval_net.model_predict(sess, next_state_batch)
                 target_batch = np.zeros((q_val_batch.shape[0],q_val_batch.shape[1]))
                 target_batch[np.arange(batch_size), action_batch] = 1.0
-            else:
+
                 # Use the "target network" to estimate q values of the next states (of the training set)
-                q_val_batch = target_net.model_predict(sess, next_state_batch)
-                target_batch = reward_batch + \
-                                   discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
-                target_batch = np.tanh(target_batch)
+                # q_val_batch = target_net.model_predict(sess, next_state_batch)
+                # target_batch = reward_batch + \
+                #                    discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
+                # target_batch = np.tanh(target_batch)
 
 
 
-            # target_batch = reward_batch + \
-            #                discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
+                # target_batch = reward_batch + \
+                #                discounted_factor * np.invert(done_batch).astype(float) * (np.amax(q_val_batch, axis=1))
 
-            ## Double Q Network
-            # q_val_batch_max_idx = np.argmax(q_val_batch,axis = 1)
-            #
-            # q_val_target_batch = target_net.model_predict(sess, next_state_batch)
-            #
-            # target_batch = reward_batch + \
-            #                discounted_factor * np.invert(done_batch).astype(float) * \
-            #                (q_val_target_batch[np.arange(batch_size), q_val_batch_max_idx] )
-
-
+                ## Double Q Network
+                # q_val_batch_max_idx = np.argmax(q_val_batch,axis = 1)
+                #
+                # q_val_target_batch = target_net.model_predict(sess, next_state_batch)
+                #
+                # target_batch = reward_batch + \
+                #                discounted_factor * np.invert(done_batch).astype(float) * \
+                #                (q_val_target_batch[np.arange(batch_size), q_val_batch_max_idx] )
 
 
 
-            state_batch = np.array(state_batch)
 
-            local_loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
 
-            loss = np.append(loss, np.array(local_loss))
+                state_batch = np.array(state_batch)
+
+                local_loss = q_eval_net.update_model(sess, state_batch, action_batch, target_batch)
+
+                loss = np.append(loss, np.array(local_loss))
 
             if (done):
-                print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format(\
-                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))) )
+                print ('loss_mean: {:.4E}, max: {:.4E}, episode time: {}'.format( \
+                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), round(time.time() - episode_start_time, 2)))
 
                 for ti in range(len(transition)):
                     if len(replay_memory) == replay_memory_size:
@@ -365,8 +370,8 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             total_step += 1
 
             if (i_episode+1)<=expert_demo_num_episodes and (i_episode+1)%5==0 and t >= max_iter_num and i_episode>1:
-                print ('loss_mean: {:.4E}, max: {:.4E}, min: {:.4E}'.format( \
-                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)), Decimal(np.nanmin(loss))))
+                print ('loss_mean: {:.4E}, max: {:.4E}, episode time: {}'.format( \
+                    Decimal(np.nanmean(loss)), Decimal(np.nanmax(loss)),round(time.time()-episode_start_time,2) ))
                 break
 
             if t >= max_iter_num and t % max_iter_num == 0:
@@ -411,9 +416,9 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 20, replay_memory_size = 50000,\
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 2, replay_memory_size = 50000,\
                    replay_memory_initial_size = 5000, target_net_update_interval = 10, discounted_factor = 0.99, \
-                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 500, expert_demo_num_episodes = 0)
+                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 64, max_iter_num = 800, expert_demo_num_episodes = 0)
 
 
 # tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006
