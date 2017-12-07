@@ -111,8 +111,9 @@ class MazeEnv():
     def render(self):
         # plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
         plt.imshow(self.output_img)
-        plt.show()
-        plt.pause(0.005)
+        plt.show(False)
+        plt.pause(0.0001)
+        plt.gcf().clear()
 
     def reset(self):
         return self._build_robot()
