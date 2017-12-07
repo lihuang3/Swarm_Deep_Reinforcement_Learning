@@ -403,9 +403,9 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 1000, replay_memory_size = 100000,\
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 2000, replay_memory_size = 100000,\
                    replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
-                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 600, expert_demo_num_episodes = 800)
+                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 600, expert_demo_num_episodes = 2000)
 
 
 # tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006

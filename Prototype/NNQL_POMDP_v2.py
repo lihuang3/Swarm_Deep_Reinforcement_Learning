@@ -206,7 +206,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
             sys.stdout.flush()
 
             policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions)
-            if np.random.uniform() > epsilon_array[min(i_episode, 0.6*num_episodes)]:
+            if np.random.uniform() > epsilon_array[min(i_episode, num_episodes-1)]:
                 action = policy #np.random.choice(np.arange(env.n_actions), p=policy)
             else:
                 action = np.random.choice(np.arange(env.n_actions))
@@ -292,6 +292,6 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 10000, replay_memory_size = 100000,\
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 5000, replay_memory_size = 100000,\
                    replay_memory_initial_size = 10000, target_net_update_interval = 10, discounted_factor = 0.99, \
                    epsilon_s = 1.0, epsilon_f = 0.1, batch_size = 32, max_iter_num = 300)
