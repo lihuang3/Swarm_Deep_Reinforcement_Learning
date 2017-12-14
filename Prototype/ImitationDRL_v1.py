@@ -216,35 +216,35 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
     # Initialize the target robot loction for the expert demo
     robot_loc = []
 
-    # for i in range(replay_memory_initial_size):
-    #
-    #     # policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
-    #     #                        epsilon_array[min(total_step, num_episodes-1)])
-    #     # # action = np.random.choice(np.arange(env.n_actions), p = policy)
-    #     # action = np.random.choice(np.arange(env.n_actions))
-    #     #
-    #     # next_state, reward, done, _ = env.step(action)
-    #
-    #     action, robot_loc = env.expert(robot_loc)
-    #
-    #     next_state, reward, done, _ = env.step(action)
-    #
-    #     next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
-    #
-    #     replay_memory.append([state, action, reward, next_state, done])
-    #
-    #     if done:
-    #         state = env.reset()
-    #         robot_loc = []
-    #
-    #         # Stack 4 successive frames for POMDP
-    #         state = np.stack([state] * 4, axis=2)
-    #     else:
-    #         state = next_state
-    #     if(i % 100 == 0):
-    #         print("\rPopulating replay memory {}% completed".format(
-    #             100*float(i)/replay_memory_initial_size)),
-    #     sys.stdout.flush()
+    for i in range(replay_memory_initial_size):
+
+        # policy = Policy_Fcn(sess, q_eval_net, state, env.n_actions, \
+        #                        epsilon_array[min(total_step, num_episodes-1)])
+        # # action = np.random.choice(np.arange(env.n_actions), p = policy)
+        # action = np.random.choice(np.arange(env.n_actions))
+        #
+        # next_state, reward, done, _ = env.step(action)
+
+        action, robot_loc = env.expert(robot_loc)
+
+        next_state, reward, done, _ = env.step(action)
+
+        next_state = np.append(state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
+
+        replay_memory.append([state, action, reward, next_state, done])
+
+        if done:
+            state = env.reset()
+            robot_loc = []
+
+            # Stack 4 successive frames for POMDP
+            state = np.stack([state] * 4, axis=2)
+        else:
+            state = next_state
+        if(i % 100 == 0):
+            print("\rPopulating replay memory {}% completed".format(
+                100*float(i)/replay_memory_initial_size)),
+        sys.stdout.flush()
 
     print("\r Populating replay memory 100% completed")
 
@@ -300,7 +300,7 @@ def Q_learning(sess,env, q_eval_net, target_net, num_episodes, replay_memory_siz
 
             # Stack 4 successive frames for POMDP
             next_state = np.append(state[:,:,1:], np.expand_dims(next_state, 2), axis=2)
-            env.render()
+            # env.render()
 
             transition.append([state, action, reward, next_state, done])
             # If replay memory is full, first-in-first-out
@@ -416,9 +416,9 @@ target_net = Q_Network(scope = 'target_net')
 
 with tf.Session() as sess:
         sess.run(tf.global_variables_initializer())
-        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 2, replay_memory_size = 50000,\
+        Q_learning(sess, env, q_eval_net, target_net, num_episodes = 5, replay_memory_size = 50000,\
                    replay_memory_initial_size = 5000, target_net_update_interval = 10, discounted_factor = 0.99, \
-                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 64, max_iter_num = 800, expert_demo_num_episodes = 0)
+                   epsilon_s = 0.3, epsilon_f = 0.1, batch_size = 32, max_iter_num = 800, expert_demo_num_episodes = 5)
 
 
 # tensorboard --logdir='/home/cougarnet.uh.edu/lhuang28/SwarmDRL/Prototype/experiments/ImitationDRL/summary_q_eval_net'  --port 6006
