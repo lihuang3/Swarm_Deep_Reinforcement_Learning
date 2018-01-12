@@ -3,7 +3,7 @@
 import unittest
 import gym
 from RGBEnv_v1 import MazeEnv
-import sys
+import sys, time
 import os
 import numpy as np
 import tensorflow as tf
@@ -25,6 +25,7 @@ from estimators import ValueEstimator, PolicyEstimator
 from policy_monitor import PolicyMonitor
 from worker import Worker
 
+start_time = time.time()
 # An example of tf.flags
 # https://github.com/tdeboissiere/DeepLearningImplementations/blob/master/BEGAN/src/model/flags.py
 
@@ -34,7 +35,7 @@ tf.flags.DEFINE_integer("t_max", 25, "Number of steps before performing an updat
 tf.flags.DEFINE_integer("max_global_steps",None, "Stop training after this many steps in the environment. Defaults to running indefinitely.")
 tf.flags.DEFINE_integer("eval_every", 300, "Evaluate the policy every N seconds")
 tf.flags.DEFINE_boolean("reset", False, "If set, delete the existing model directory and start training from scratch.")
-tf.flags.DEFINE_integer("parallelism", None, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
+tf.flags.DEFINE_integer("parallelism", 40, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
 
 FLAGS = tf.flags.FLAGS
 
@@ -65,6 +66,7 @@ if FLAGS.parallelism:
 
 MODEL_DIR = FLAGS.model_dir
 CHECKPOINT_DIR = os.path.join(MODEL_DIR, "checkpoints")
+checkpoint_path = os.path.join(CHECKPOINT_DIR, 'model')
 
 # Optionally empty model directory
 if FLAGS.reset:
@@ -87,7 +89,8 @@ with tf.device("/cpu:0"):
 
   # Global step iterator
   global_counter = itertools.count()
-
+  # saver = tf.train.Saver(keep_checkpoint_every_n_hours=0.05, max_to_keep=10)
+  saver = tf.train.Saver(max_to_keep=10)
   # Create worker graphs
   workers = []
   for worker_id in range(NUM_WORKERS):
@@ -100,6 +103,9 @@ with tf.device("/cpu:0"):
 
     worker = Worker(
       name="worker_{}".format(worker_id),
+      start_time=start_time,
+      saver=saver,
+      checkpoint_path=checkpoint_path,
       env=make_env(),
       policy_net=policy_net,
       value_net=value_net,
@@ -109,7 +115,6 @@ with tf.device("/cpu:0"):
       max_global_steps=FLAGS.max_global_steps)
     workers.append(worker)
 
-  saver = tf.train.Saver(keep_checkpoint_every_n_hours=2.0, max_to_keep=10)
 
   # Used to occasionally save videos for our policy net
   # and write episode rewards to Tensorboard

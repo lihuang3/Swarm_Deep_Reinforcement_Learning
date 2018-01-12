@@ -3,20 +3,12 @@ Version: RGBENV_v1.py
 Comments: this version of RGB environment uses -1 for non-terminate state reward, 10 for terminate reward
 '''
 
-
 import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
 from time import sleep
 plt.ion()
 random.seed(140)
 
 map_data_dir =os.path.abspath('./MapData')
-
-
-
-fig = plt.gcf()
-fig.show()
-fig.canvas.draw()
-
 
 class MazeEnv():
     def __init__(self):
@@ -46,7 +38,7 @@ class MazeEnv():
         row, col = np.nonzero(freespace)
 
         if not len(self.init_state):
-            self.robot_num = 20 #len(row)
+            self.robot_num = len(row)
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             self.state_img = np.copy(self.state)
@@ -63,7 +55,6 @@ class MazeEnv():
 
 
         self.output_img = self.state_img + self.maze * 255
-
 
         return self.output_img
 
@@ -110,7 +101,7 @@ class MazeEnv():
         cost_to_go = np.sum(self.state * costData / robot_marker)
         if cost_to_go <= goal_range * self.robot_num:
             done = True
-            reward = 10.0
+            reward = 100.0
         else:
             done = False
             reward = -1
@@ -119,7 +110,6 @@ class MazeEnv():
 
     def render(self):
         # plt.imshow(self.state_img + self.maze*255, vmin=0, vmax=255)
-
         plt.imshow(self.output_img)
         plt.show(False)
         plt.pause(0.0001)

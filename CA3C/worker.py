@@ -1,5 +1,5 @@
 import gym
-import sys
+import sys, time
 import os
 import itertools
 import collections
@@ -63,8 +63,11 @@ class Worker(object):
     summary_writer: A tf.train.SummaryWriter for Tensorboard summaries
     max_global_steps: If set, stop coordinator when global_counter > max_global_steps
   """
-  def __init__(self, name, env, policy_net, value_net, global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
+  def __init__(self, name, start_time, saver, checkpoint_path, env, policy_net, value_net, global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
     self.name = name
+    self.start_time = start_time
+    self.saver = saver
+    self.checkpoint_path = checkpoint_path
     self.discount_factor = discount_factor
     self.max_global_steps = max_global_steps
     self.global_step = tf.train.get_global_step()
@@ -114,7 +117,10 @@ class Worker(object):
           # Update the global networks
           pnet_loss, vnet_loss, _, _=self.update(transitions, sess)
           if self.display_flag:
-            print("Global step = {}, pnet_loss = {}, vnet_loss = {}".format(global_t, pnet_loss, vnet_loss))
+            training_time = int(time.time()-self.start_time)
+            print("Training time: {} d {} hr {} min, global step = {}, {}, Episode = {}, pnet_loss = {:.4E}, vnet_loss = {:.4E}".format(training_time/86400,
+                                    (training_time/3600)%24, (training_time/60)%60, global_t, self.name, self.episode, pnet_loss, vnet_loss))
+            self.saver.save(sess, self.checkpoint_path)
             self.display_flag = False
 
       except tf.errors.CancelledError:
@@ -142,8 +148,8 @@ class Worker(object):
       action_probs = self._policy_net_predict(self.state, sess)
       action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
       next_state, reward, done, _ = self.env.step(action)
-      # if self.name == "worker_1" and self.episode%10==0:
-      #   self.env.render()
+
+      # self.env.render()
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
@@ -153,7 +159,7 @@ class Worker(object):
       # Increase local and global counters
       local_t = next(self.local_counter)
       global_t = next(self.global_counter)
-      if global_t%1000==0:
+      if global_t%20000==0:
         self.display_flag = True
 
 
@@ -178,6 +184,9 @@ class Worker(object):
           self.episode_local_step = 0
         else:
           self.state = next_state
+
+
+
     return transitions, local_t, global_t
 
   def update(self, transitions, sess):

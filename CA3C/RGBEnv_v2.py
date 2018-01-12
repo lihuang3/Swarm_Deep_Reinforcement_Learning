@@ -4,7 +4,7 @@ Vomments: this version of RGB environment uses sum of total length for reward
 '''
 
 import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
-
+from time import sleep
 plt.ion()
 random.seed(140)
 
@@ -14,7 +14,7 @@ class MazeEnv():
     def __init__(self):
         global mazeData, costData, centerline, freespace, mazeHeight, mazeWidth, robot_marker, goal_range
         robot_marker = 150
-        goal_range = 10
+        goal_range = 15
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
         mazeData, costData, centerline, freespace = self._load_data(map_data_dir)
@@ -101,10 +101,10 @@ class MazeEnv():
         cost_to_go = np.sum(self.state * costData / robot_marker)
         if cost_to_go <= goal_range * self.robot_num:
             done = True
-            reward = 10.0
+            reward = 100.0
         else:
             done = False
-            reward = 0 #-np.sum(self.state>0 * costData)
+            reward = -cost_to_go #-np.sum(self.state>0 * costData)
 
         return(self.output_img,reward,done,1)
 
