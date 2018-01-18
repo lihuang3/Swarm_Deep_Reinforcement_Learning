@@ -35,7 +35,7 @@ tf.flags.DEFINE_integer("t_max", 25, "Number of steps before performing an updat
 tf.flags.DEFINE_integer("max_global_steps",None, "Stop training after this many steps in the environment. Defaults to running indefinitely.")
 tf.flags.DEFINE_integer("eval_every", 300, "Evaluate the policy every N seconds")
 tf.flags.DEFINE_boolean("reset", False, "If set, delete the existing model directory and start training from scratch.")
-tf.flags.DEFINE_integer("parallelism", 40, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
+tf.flags.DEFINE_integer("parallelism", 1, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
 
 FLAGS = tf.flags.FLAGS
 

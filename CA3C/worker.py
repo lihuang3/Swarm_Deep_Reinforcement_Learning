@@ -120,7 +120,7 @@ class Worker(object):
             training_time = int(time.time()-self.start_time)
             print("Training time: {} d {} hr {} min, global step = {}, {}, Episode = {}, pnet_loss = {:.4E}, vnet_loss = {:.4E}".format(training_time/86400,
                                     (training_time/3600)%24, (training_time/60)%60, global_t, self.name, self.episode, pnet_loss, vnet_loss))
-            self.saver.save(sess, self.checkpoint_path)
+            # self.saver.save(sess, self.checkpoint_path)
             self.display_flag = False
 
       except tf.errors.CancelledError:
@@ -149,7 +149,7 @@ class Worker(object):
       action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
       next_state, reward, done, _ = self.env.step(action)
 
-      # self.env.render()
+      self.env.render()
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
@@ -175,6 +175,7 @@ class Worker(object):
         self.state = np.stack([self.state] * 4, axis=2)
         self.episode += 1
         self.episode_local_step = 0
+
         break
       else:
         if self.episode_local_step > 1000:
