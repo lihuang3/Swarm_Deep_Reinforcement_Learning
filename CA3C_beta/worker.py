@@ -149,7 +149,7 @@ class Worker(object):
       action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
       next_state, reward, done, _ = self.env.step(action)
 
-      self.env.render()
+      # self.env.render()
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition

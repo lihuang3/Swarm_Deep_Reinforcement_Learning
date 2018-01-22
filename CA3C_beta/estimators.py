@@ -1,5 +1,6 @@
 import numpy as np
 import tensorflow as tf
+import tensorflow.contrib.rnn as rnn
 
 def build_shared_network(X, add_summaries=False):
   """
@@ -32,6 +33,58 @@ def build_shared_network(X, add_summaries=False):
     tf.contrib.layers.summarize_activation(fc1)
 
   return fc1
+
+def CNN_LSTM(X):
+    """
+    Builds a 3-layer network conv -> conv -> fc as described
+    in the A3C paper. This network is shared by both the policy and value net.
+
+    Args:
+      X: Inputs [None, 84, 84, 4]
+      add_summaries: If true, add layer summaries to Tensorboard.
+
+    Returns:
+      Final layer activations
+
+    """
+
+    batch_size = tf.shape[X][0]
+
+    # Three convolutional layers
+    conv1 = tf.layers.conv2d(
+        input=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, scope="conv1")
+    conv2 = tf.layers.conv2d(
+        input=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, scope="conv2")
+    conv3 = tf.layers.conv2d(
+        input=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, scope="conv3")
+
+    # Fully connected layer
+    fc1 = tf.layers.dense(
+        inputs=tf.layers.flatten(conv3), num_outputs=512, scope="fc1",activation=tf.nn.relu)
+
+    # Xt is the time series input for LSTMs--> augment a fake batch dimension of 1 to
+    # do LSTMs over time dimension
+    Xt = tf.expand_dims(fc1, [0])
+
+    # Initialize RNN-LSTMs cell
+    lstm = rnn.rnn_cell.BasicLSTMCell(num_units=256, forget_bias=1.0, state_is_tuple=True)
+
+    c_init = np.zeros((1, lstm.state_size.c), np.float32)
+    h_init = np.zeros((1, lstm.state_size.h), np.float32)
+    state_init = [c_init, h_init]
+
+    c_in = tf.placeholder(tf.float32, [1, lstm.state_size.c], name='c_in')
+    h_in = tf.placeholder(tf.float32, [1, lstm.state_size.h], name='h_in')
+
+    state_in = rnn.rnn_cell.LSTMStateTuple(c_in, h_in)
+    lstm_outputs, lstm_state = tf.nn.dynamic_rnn(
+        lstm, Xt, initial_state=state_in, sequence_length=batch_size, time_major=False)
+    lstm_c, lstm_h = lstm_state
+
+    output = tf.reshape(lstm_outputs, [-1, 256])
+    return output
+
+
 
 class PolicyEstimator():
   """

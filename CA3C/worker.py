@@ -171,6 +171,7 @@ class Worker(object):
         #   self.name, self.episode_local_step, local_t, global_t))
 
       if done:
+        print("{}: episode {} reach the goal!".format(self.name, self.episode))
         self.state = self.env.reset()
         self.state = np.stack([self.state] * 4, axis=2)
         self.episode += 1
