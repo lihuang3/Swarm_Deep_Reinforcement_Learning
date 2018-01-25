@@ -100,7 +100,9 @@ class Worker(object):
       # Initial state
       self.state = self.env.reset()
       self.state = np.stack([self.state] * 4, axis=2)
-
+      lstm_c_init = np.zeros((1, 256), np.float32)
+      lstm_h_init = np.zeros((1, 256), np.float32)
+      self.lstm_state = [lstm_c_init, lstm_h_init]
       try:
         while not coord.should_stop():
           # Copy Parameters from the global networks
@@ -126,10 +128,10 @@ class Worker(object):
       except tf.errors.CancelledError:
         return
 
-  def _policy_net_predict(self, state, sess):
-    feed_dict = { self.policy_net.states: [state] }
+  def _policy_net_predict(self, sess, state, c_in, h_in):
+    feed_dict = { self.policy_net.states: [state], self.policy_net.c_in: c_in, self.policy_net.h_in: h_in}
     preds = sess.run(self.policy_net.predictions, feed_dict)
-    return preds["probs"][0]
+    return preds["probs"][0], preds["features"]
 
   def _value_net_predict(self, state, sess):
     feed_dict = { self.value_net.states: [state] }
@@ -145,10 +147,10 @@ class Worker(object):
     transitions = []
     for _ in range(n):
       # Take a step
-      action_probs = self._policy_net_predict(self.state, sess)
+      action_probs, lstm_state = self._policy_net_predict(sess, self.state, *self.lstm_state)
       action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
       next_state, reward, done, _ = self.env.step(action)
-
+      self.lstm_state = lstm_state
       # self.env.render()
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
@@ -172,6 +174,10 @@ class Worker(object):
 
       if done:
         self.state = self.env.reset()
+        lstm_c_init = np.zeros((1, 256), np.float32)
+        lstm_h_init = np.zeros((1, 256), np.float32)
+        self.lstm_state = [lstm_c_init, lstm_h_init]
+
         self.state = np.stack([self.state] * 4, axis=2)
         self.episode += 1
         self.episode_local_step = 0
@@ -179,7 +185,12 @@ class Worker(object):
         break
       else:
         if self.episode_local_step > 1000:
+
           self.state = self.env.reset()
+          lstm_c_init = np.zeros((1, 256), np.float32)
+          lstm_h_init = np.zeros((1, 256), np.float32)
+          self.lstm_state = [lstm_c_init, lstm_h_init]
+
           self.state = np.stack([self.state] * 4, axis=2)
           self.episode += 1
           self.episode_local_step = 0

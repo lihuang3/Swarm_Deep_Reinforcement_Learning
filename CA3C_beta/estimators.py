@@ -34,7 +34,7 @@ def build_shared_network(X, add_summaries=False):
 
   return fc1
 
-def CNN_LSTM(X):
+def CNN_LSTM(X, c_in, h_in):
     """
     Builds a 3-layer network conv -> conv -> fc as described
     in the A3C paper. This network is shared by both the policy and value net.
@@ -67,14 +67,14 @@ def CNN_LSTM(X):
     Xt = tf.expand_dims(fc1, [0])
 
     # Initialize RNN-LSTMs cell
-    lstm = rnn.rnn_cell.BasicLSTMCell(num_units=256, forget_bias=1.0, state_is_tuple=True)
+    lstm = rnn.BasicLSTMCell(num_units=256, forget_bias=1.0, state_is_tuple=True)
 
     c_init = np.zeros((1, lstm.state_size.c), np.float32)
     h_init = np.zeros((1, lstm.state_size.h), np.float32)
     state_init = [c_init, h_init]
 
-    c_in = tf.placeholder(tf.float32, [1, lstm.state_size.c], name='c_in')
-    h_in = tf.placeholder(tf.float32, [1, lstm.state_size.h], name='h_in')
+    # c_in = tf.placeholder(tf.float32, [1, lstm.state_size.c], name='c_in')
+    # h_in = tf.placeholder(tf.float32, [1, lstm.state_size.h], name='h_in')
 
     state_in = rnn.rnn_cell.LSTMStateTuple(c_in, h_in)
     lstm_outputs, lstm_state = tf.nn.dynamic_rnn(
@@ -82,7 +82,8 @@ def CNN_LSTM(X):
     lstm_c, lstm_h = lstm_state
 
     output = tf.reshape(lstm_outputs, [-1, 256])
-    return output
+    state_out = [lstm_c[:1, :], lstm_h[:1, :]]
+    return output, state_out
 
 
 
@@ -110,22 +111,27 @@ class PolicyEstimator():
     # Integer id of which action was selected
     self.actions = tf.placeholder(shape=[None], dtype=tf.int32, name="actions")
 
+    # LSTM feature states:
+    self.c_in = tf.placeholder(tf.float32, [1, 256], name='c_in')
+    self.h_in = tf.placeholder(tf.float32, [1, 256], name='h_in')
+
     # Normalize
     X = tf.to_float(self.states) / 255.0
     batch_size = tf.shape(self.states)[0]
 
     # Graph shared with Value Net
     with tf.variable_scope("shared", reuse=reuse):
-      fc1 = build_shared_network(X, add_summaries=(not reuse))
-
+      # Feature space layer output
+      lstm_output, lstm_state = build_shared_network(X, self.c_in, self.h_in, add_summaries=(not reuse))
 
     with tf.variable_scope("policy_net"):
-      self.logits = tf.contrib.layers.fully_connected(fc1, num_outputs, activation_fn=None)
+      self.logits = tf.contrib.layers.fully_connected(lstm_output, num_outputs, activation_fn=None)
       self.probs = tf.nn.softmax(self.logits) + 1e-8
 
       self.predictions = {
         "logits": self.logits,
-        "probs": self.probs
+        "probs": self.probs,
+        "features": lstm_state
       }
 
       # We add entropy to the loss to encourage exploration
