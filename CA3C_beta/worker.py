@@ -100,6 +100,7 @@ class Worker(object):
       # Initial state
       self.state = self.env.reset()
       self.state = np.stack([self.state] * 4, axis=2)
+      # Init LSTMs state
       lstm_c_init = np.zeros((1, 256), np.float32)
       lstm_h_init = np.zeros((1, 256), np.float32)
       self.lstm_state = [lstm_c_init, lstm_h_init]
@@ -173,7 +174,9 @@ class Worker(object):
         #   self.name, self.episode_local_step, local_t, global_t))
 
       if done:
+        # reset init state
         self.state = self.env.reset()
+        # reset LSTMs memory
         lstm_c_init = np.zeros((1, 256), np.float32)
         lstm_h_init = np.zeros((1, 256), np.float32)
         self.lstm_state = [lstm_c_init, lstm_h_init]
@@ -185,8 +188,9 @@ class Worker(object):
         break
       else:
         if self.episode_local_step > 1000:
-
+          # reset init state
           self.state = self.env.reset()
+          # reset LSTMs memory
           lstm_c_init = np.zeros((1, 256), np.float32)
           lstm_h_init = np.zeros((1, 256), np.float32)
           self.lstm_state = [lstm_c_init, lstm_h_init]
