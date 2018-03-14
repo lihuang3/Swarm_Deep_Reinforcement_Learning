@@ -173,7 +173,7 @@ class Worker(object):
         # print("Worker {} local step: {}, running {} of {} steps".format(
         #   self.name, self.episode_local_step, local_t, global_t))
 
-      if done:
+      if done or self.episode_local_step > 1000:
         # reset init state
         self.state = self.env.reset()
         # reset LSTMs memory
@@ -187,18 +187,6 @@ class Worker(object):
 
         break
       else:
-        if self.episode_local_step > 1000:
-          # reset init state
-          self.state = self.env.reset()
-          # reset LSTMs memory
-          lstm_c_init = np.zeros((1, 256), np.float32)
-          lstm_h_init = np.zeros((1, 256), np.float32)
-          self.lstm_state = [lstm_c_init, lstm_h_init]
-
-          self.state = np.stack([self.state] * 4, axis=2)
-          self.episode += 1
-          self.episode_local_step = 0
-        else:
           self.state = next_state
 
 
