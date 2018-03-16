@@ -1,30 +1,14 @@
 #### This repo is inherited from dennybritz Github reinforcement-learning
 #### Original repo: https://github.com/dennybritz/reinforcement-learning.git
 
-## Implementation of A3C (Asynchronous Advantage Actor-Critic)
+## Implementation of Curiosity of A3C (Asynchronous Advantage Actor-Critic)
 
-#### Running
-
-```
-./train.py --model_dir /tmp/a3c --env Breakout-v0 --t_max 5 --eval_every 300 --parallelism 8
-```
-
-See `./train.py --help` for a full list of options. Then, monitor training progress in Tensorboard:
-
-```
-tensorboard --logdir=/tmp/a3c
-```
-
-
-#### To do list
-- [`train.py`](train.py) (1) Re define  ```def make_env(wrap=True)```; (2) play with ```tf.FLAGS```.
-- [`worker.py`](worker.py) 
+- For each worker, interacts with enviroment for a few (n) steps
+	1. __`run_n_steps`__ In each step, save MDP tuple element `state`, `action`, `next_state`, `reward`, `done` to `Transition` list;
+	2. __`update`__ Loop the element in `Transition` list backwards and prepare for the `feed_in` variables, including 
+	`states`, `actions`, `value fcn targets`, `policy targets`, `feature encoding $\phi_1$`
+	
+	
 
 
 
-#### Components
-
-- [`train.py`](train.py) contains the main method to start training.
-- [`estimators.py`](estimators.py) contains the Tensorflow graph definitions for the Policy and Value networks.
-- [`worker.py`](worker.py) contains code that runs in each worker threads.
-- [`policy_monitor.py`](policy_monitor.py) contains code that evaluates the policy network by running an episode and saving rewards to Tensorboard.
