@@ -55,16 +55,22 @@ class cnn_lstm():
   """
 
   def __init__(self, scope, feature_space, action_space):
-    self.state = X = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X")
 
-    X = tf.to_float(X)/255.0
-    batch_size = tf.shape[X][0]
+    self.state = X1 = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X1")
+    self.next_state = X2 = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X2")
+
+    X1 = tf.to_float(X1)/255.0
+    X2 = tf.to_float(X2)/255.0
+    batch_size = tf.shape[X1][0]
+
+    #  feature encoding phi1, phi2
     with tf.variable_scope(scope, reuse=True):
-       phi = build_shared_network(X)
+      phi1 = build_shared_network(X1)
+      phi2 = build_shared_network(X2)
 
     # Xt is the time series input for LSTMs--> augment a fake batch dimension of 1 to
     # do LSTMs over time dimension
-    Xt = tf.expand_dims(phi, [0])
+    Xt = tf.expand_dims(phi1, [0])
 
     # Initialize RNN-LSTMs cell with feature space size = 256
     lstm = rnn.BasicLSTMCell(num_units=feature_space, forget_bias=1.0, state_is_tuple=True)
@@ -96,17 +102,47 @@ class cnn_lstm():
     self.value_fcn = tf.layers.dense(inputs=psi, num_outputs=1, scope="value_fcn", activation=None)
 
     self.policy_logits = tf.layers.dense(inputs=psi, num_outputs=action_space, scope="policy_fcn", activation=None)
-    self.policy = tf.nn.softmax(logits=self.policy_logits, dim=-1)[0,:]
-    self.action = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.policy), axis=1), action_space)[0,:]
+
+    self.log_probs = tf.nn.log_softmax(self.policy_logits)
+
+    self.probs = tf.nn.softmax(logits=self.policy_logits, dim=-1)[0,:]
+
+    self.actions = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.probs), axis=1), action_space)[0,:]
+
+    # We add entropy to the loss to encourage exploration
+    self.entropy = -tf.reduce_mean(tf.reduce_sum(self.probs * tf.log(self.probs), 1), name="entropy")
+
+    self.advantage = tf.placeholder(shape=[None], dtype=tf.float32)
+    self.reward = tf.placeholder(shape=[None], dtype=tf.float32)
+
+    policy_loss = -tf.reduce_mean(tf.reduce_sum(self.log_probs * self.actions, axis=1) * self.advantage)
+
+    value_fcn_loss = 0.5 * tf.squared_difference(self.value_fcn, self.reward)
+
+    # Final A3C loss
+    self.loss = policy_loss + 0.5 * value_fcn_loss + 0.01 * self.entropy
+
+    self.optimizer = tf.train.RMSPropOptimizer(0.0025, 0.99, 0.0, 1e-6)
+
+    self.grads_and_vars = self.optimizer.compute_gradients(self.loss)
+
+    self.grads_and_vars = [[grad, var] for grad, var in self.grads_and_vars if grad is not None]
+
+    self.train_op = self.optimizer.apply_gradients(self.grads_and_vars,
+                                                   global_step=tf.train.get_global_step())
+
 
 
   def reset_lstm(self):
     return self.state_init
 
-  def predictions(self, env_state, lstm_cin, lstm_hin):
+  def make_action(self, env_state, lstm_cin, lstm_hin):
     sess = tf.get_default_session()
-    return sess.run([self.value_fcn, self.action],
+    return sess.run([self.actions],
                     feed_dict={self.state: env_state, self.state_int[0]:lstm_cin, self.state_init[1]:lstm_hin})
+
+  def make_train_op(self):
+    sess = tf.get_default_session()
 
 
 
@@ -155,7 +191,6 @@ class PolicyEstimator():
       self.predictions = {
         "logits": self.logits,
         "probs": self.probs,
-        "features": lstm_state
       }
 
       # We add entropy to the loss to encourage exploration
