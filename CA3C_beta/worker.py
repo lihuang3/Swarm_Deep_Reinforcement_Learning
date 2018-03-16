@@ -14,8 +14,7 @@ if import_path not in sys.path:
   sys.path.append(import_path)
 
 # from lib import plotting
-from lib.atari import helpers as atari_helpers
-from estimators import ValueEstimator, PolicyEstimator
+from estimators import cnn_lstm
 
 Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state", "done"])
 
@@ -63,7 +62,7 @@ class Worker(object):
     summary_writer: A tf.train.SummaryWriter for Tensorboard summaries
     max_global_steps: If set, stop coordinator when global_counter > max_global_steps
   """
-  def __init__(self, name, start_time, saver, checkpoint_path, env, policy_net, value_net, global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
+  def __init__(self, name, start_time, saver, checkpoint_path, env, cnn_lstm_net, global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
     self.name = name
     self.start_time = start_time
     self.saver = saver
@@ -71,8 +70,7 @@ class Worker(object):
     self.discount_factor = discount_factor
     self.max_global_steps = max_global_steps
     self.global_step = tf.train.get_global_step()
-    self.global_policy_net = policy_net
-    self.global_value_net = value_net
+    self.global_net = cnn_lstm_net
     self.global_counter = global_counter
     self.local_counter = itertools.count()
     self.summary_writer = summary_writer
@@ -82,16 +80,14 @@ class Worker(object):
     self.display_flag = False
     # Create local policy/value nets that are not updated asynchronously
     with tf.variable_scope(name):
-      self.policy_net = PolicyEstimator(policy_net.num_outputs)
-      self.value_net = ValueEstimator(reuse=True)
+      self.local_net = cnn_lstm(feature_space=256, action_space=4)
 
     # Op to copy params from global policy/valuenets
     self.copy_params_op = make_copy_params_op(
       tf.contrib.slim.get_variables(scope="global", collection=tf.GraphKeys.TRAINABLE_VARIABLES),
       tf.contrib.slim.get_variables(scope=self.name+'/', collection=tf.GraphKeys.TRAINABLE_VARIABLES))
 
-    self.vnet_train_op = make_train_op(self.value_net, self.global_value_net)
-    self.pnet_train_op = make_train_op(self.policy_net, self.global_policy_net)
+    self.train_op = make_train_op(self.local_net, self.global_net)
 
     self.state = None
 
@@ -101,9 +97,8 @@ class Worker(object):
       self.state = self.env.reset()
       self.state = np.stack([self.state] * 4, axis=2)
       # Init LSTMs state
-      lstm_c_init = np.zeros((1, 256), np.float32)
-      lstm_h_init = np.zeros((1, 256), np.float32)
-      self.lstm_state = [lstm_c_init, lstm_h_init]
+      self.lstm_state = self.local_net.reset_lstm()
+
       try:
         while not coord.should_stop():
           # Copy Parameters from the global networks
