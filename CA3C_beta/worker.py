@@ -16,7 +16,8 @@ if import_path not in sys.path:
 # from lib import plotting
 from estimators import cnn_lstm
 
-Transition = collections.namedtuple("Transition", ["state", "action", "reward", "next_state", "done"])
+Transition = collections.namedtuple("Transition", ["state", "action", "reward", "value_logits",
+                                                   "next_state", "done", "features"])
 
 
 def make_copy_params_op(v1_list, v2_list):
@@ -62,7 +63,8 @@ class Worker(object):
     summary_writer: A tf.train.SummaryWriter for Tensorboard summaries
     max_global_steps: If set, stop coordinator when global_counter > max_global_steps
   """
-  def __init__(self, name, start_time, saver, checkpoint_path, env, cnn_lstm_net, global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
+  def __init__(self, name, start_time, saver, checkpoint_path, env, cnn_lstm_net,
+               global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
     self.name = name
     self.start_time = start_time
     self.saver = saver
@@ -143,16 +145,17 @@ class Worker(object):
     transitions = []
     for _ in range(n):
       # Take a step
-      action_probs, lstm_state = self._policy_net_predict(sess, self.state, *self.lstm_state)
-      action = np.random.choice(np.arange(len(action_probs)), p=action_probs)
+      fetched = self.local_net.make_action(sess, self.state, *self.lstm_state)
+      action_one_hot, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2:]
+      action = action_one_hot.argmax()
       next_state, reward, done, _ = self.env.step(action)
-      self.lstm_state = lstm_state
       # self.env.render()
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
       transitions.append(Transition(
-        state=self.state, action=action, reward=reward, next_state=next_state, done=done))
+        state=self.state, action=action, reward=reward, value_logits=value_logits, next_state=next_state,
+        done=done, features=self.lstm_state))
 
       # Increase local and global counters
       local_t = next(self.local_counter)
@@ -163,7 +166,7 @@ class Worker(object):
 
       self.episode_local_step += 1
 
-      if local_t % 500 == 0:
+      if local_t % 100 == 0:
         tf.logging.info("{}: local Step {}, global step {}".format(self.name, local_t, global_t))
         # print("Worker {} local step: {}, running {} of {} steps".format(
         #   self.name, self.episode_local_step, local_t, global_t))
@@ -172,10 +175,7 @@ class Worker(object):
         # reset init state
         self.state = self.env.reset()
         # reset LSTMs memory
-        lstm_c_init = np.zeros((1, 256), np.float32)
-        lstm_h_init = np.zeros((1, 256), np.float32)
-        self.lstm_state = [lstm_c_init, lstm_h_init]
-
+        self.lstm_state = self.local_net.reset_lstm()
         self.state = np.stack([self.state] * 4, axis=2)
         self.episode += 1
         self.episode_local_step = 0
@@ -200,7 +200,7 @@ class Worker(object):
     # If we episode was not done we bootstrap the value from the last state
     reward = 0.0
     if not transitions[-1].done:
-      reward = self._value_net_predict(transitions[-1].next_state, sess)
+      reward = transitions[-1].value_logits
 
     # Accumulate minibatch exmaples
     states = []
@@ -215,7 +215,7 @@ class Worker(object):
       reward = transition.reward + self.discount_factor * reward
 
       #>>> Policy target or target diff?
-      policy_target = (reward - self._value_net_predict(transition.state, sess))
+      policy_target = (reward - transition.value_logits)
       # Accumulate updates
       states.append(transition.state)
       actions.append(transition.action)
@@ -241,6 +241,8 @@ class Worker(object):
       self.policy_net.summaries,
       self.value_net.summaries
     ], feed_dict)
+
+
 
     # Write summaries
     if self.summary_writer is not None:

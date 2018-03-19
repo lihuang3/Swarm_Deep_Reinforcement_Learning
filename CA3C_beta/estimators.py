@@ -96,9 +96,10 @@ class cnn_lstm():
 
     # RNN feature-space state
     psi = tf.reshape(lstm_outputs, [-1, feature_space])
+
     self.state_out = [lstm_c[:1, :], lstm_h[:1, :]]
 
-    self.value_fcn = tf.reshape(tf.layers.dense(inputs=psi, num_outputs=1, scope="value_fcn", activation=None),[-1])
+    self.value_logits = tf.reshape(tf.layers.dense(inputs=psi, num_outputs=1, scope="value_fcn", activation=None),[-1])
 
     self.policy_logits = tf.layers.dense(inputs=psi, num_outputs=action_space, scope="policy_fcn", activation=None)
 
@@ -119,7 +120,7 @@ class cnn_lstm():
 
     policy_loss = -tf.reduce_mean(tf.reduce_sum(self.log_probs * self.actions, axis=1) * self.advantage)
 
-    value_fcn_loss = 0.5 * tf.squared_difference(self.value_fcn, self.reward)
+    value_fcn_loss = 0.5 * tf.squared_difference(self.value_logits, self.reward)
 
     # Final A3C loss
     self.loss = policy_loss + 0.5 * value_fcn_loss + 0.01 * self.entropy
@@ -165,10 +166,10 @@ class cnn_lstm():
   def reset_lstm(self):
     return self.state_init
 
-  def make_action(self, env_state, lstm_cin, lstm_hin):
+  def make_action(self, observation, lstm_cin, lstm_hin):
     sess = tf.get_default_session()
-    return sess.run([self.actions],
-                    feed_dict={self.state: env_state, self.state_int[0]:lstm_cin, self.state_init[1]:lstm_hin})
+    return sess.run([self.actions, self.state_out],
+                    feed_dict={self.state: observation, self.state_int[0]:lstm_cin, self.state_init[1]:lstm_hin})
 
   def make_train_op(self):
     sess = tf.get_default_session()
