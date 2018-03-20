@@ -29,15 +29,15 @@ def build_shared_network(X):
 
   # Three convolutional layers
   conv1 = tf.layers.conv2d(
-    input=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, scope="conv1")
+    inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
   conv2 = tf.layers.conv2d(
-    input=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, scope="conv2")
+    inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
   conv3 = tf.layers.conv2d(
-    input=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, scope="conv3")
+    inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
 
   # Fully connected layer
   fc1 = tf.layers.dense(
-    inputs=tf.layers.flatten(conv3), num_outputs=512, scope="fc1", activation=tf.nn.relu)
+    inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
 
   # if add_summaries:
   #   tf.contrib.layers.summarize_activation(conv1)
@@ -54,18 +54,19 @@ class cnn_lstm():
   Args:
   """
 
-  def __init__(self, feature_space, action_space):
+  def __init__(self, feature_space, action_space, reuse=False):
 
     self.state = X1 = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X1")
     self.next_state = X2 = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X2")
-
     X1 = tf.to_float(X1)/255.0
     X2 = tf.to_float(X2)/255.0
-    batch_size = tf.shape[X1][0]
+    # batch_size = tf.shape[X1][0]
 
     #  feature encoding phi1, phi2
-    phi1 = build_shared_network(X1)
-    phi2 = build_shared_network(X2)
+    with tf.variable_scope("shared"):
+      phi1 = build_shared_network(X1)
+    with tf.variable_scope("shared", reuse=reuse):
+      phi2 = build_shared_network(X2)
 
     # Xt is the time series input for LSTMs--> augment a fake batch dimension of 1 to
     # do LSTMs over time dimension
@@ -87,10 +88,10 @@ class cnn_lstm():
     h_in = tf.placeholder(tf.float32, [1, lstm.state_size.h], name='h_in')
     self.state_in = [c_in, h_in]
 
-    init_tuple = rnn.rnn_cell.LSTMStateTuple(c_in, h_in)
+    init_tuple = tf.nn.rnn_cell.LSTMStateTuple(c_in, h_in)
 
     lstm_outputs, lstm_state = tf.nn.dynamic_rnn(
-        lstm, Xt, initial_state=init_tuple, sequence_length=batch_size, time_major=False)
+        lstm, Xt, initial_state=init_tuple, sequence_length=step_size, time_major=False)
 
     lstm_c, lstm_h = lstm_state
 
@@ -99,18 +100,18 @@ class cnn_lstm():
 
     self.state_out = [lstm_c[:1, :], lstm_h[:1, :]]
 
-    self.value_logits = tf.reshape(tf.layers.dense(inputs=psi, num_outputs=1, scope="value_fcn", activation=None),[-1])
+    self.value_logits = tf.squeeze(tf.layers.dense(inputs=psi, units=1, name="value_fcn", activation=None), squeeze_dims=[1])
 
-    self.policy_logits = tf.layers.dense(inputs=psi, num_outputs=action_space, scope="policy_fcn", activation=None)
+    self.policy_logits = tf.layers.dense(inputs=psi, units=action_space, name="policy_fcn", activation=None)
 
     self.log_probs = tf.nn.log_softmax(self.policy_logits)
 
     self.probs = tf.nn.softmax(logits=self.policy_logits, dim=-1)[0,:]
 
-    self.actions = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.probs), axis=1), action_space)[0,:]
+    self.actions = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.policy_logits, num_samples=1), axis=1), action_space) #[0,:]
 
     # We add entropy to the loss to encourage exploration
-    self.entropy = -tf.reduce_mean(tf.reduce_sum(self.probs * tf.log(self.probs), 1), name="entropy")
+    self.entropy = -tf.reduce_mean(tf.reduce_sum(self.probs * self.log_probs, 1), name="entropy")
 
     # Policy targets
     self.advantage = tf.placeholder(shape=[None], dtype=tf.float32)
@@ -135,20 +136,20 @@ class cnn_lstm():
     # Inverse dynamics model g(phi1, phi2) --> pred_act
     g = tf.concat([phi1, phi2], axis=1)
 
-    g = tf.layers.dense(inputs=g, num_outputs=256, activation=tf.nn.relu)
+    g = tf.layers.dense(inputs=g, units=256, activation=tf.nn.relu)
 
-    inv_logits = tf.layers.dense(inputs=g, num_outputs=action_space, activation=None)
+    inv_logits = tf.layers.dense(inputs=g, units=action_space, activation=None)
 
     action_index = tf.argmax(self.actions, axis=1)
 
-    self.inv_loss = tf.reduce_mean(tf.softmax_cross_entropy_with_logits(inv_logits, self.actions), name="inv_loss")
+    self.inv_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=inv_logits, labels=self.actions), name="inv_loss")
 
     # Forward dynamics model f(phi1, action) --> pred_phi2
     f = tf.concat([phi1, self.actions], axis=1)
 
-    f = tf.layers.dense(inputs=f, num_outputs=256, activation=tf.nn.relu)
+    f = tf.layers.dense(inputs=f, units=256, activation=tf.nn.relu)
 
-    pred_phi2 = tf.layers.dense(inputs=f, num_outputs=tf.shape(phi1)[1], activation=None)
+    pred_phi2 = tf.layers.dense(inputs=f, units=phi1.get_shape()[1], activation=None)
 
     self.fwd_loss = tf.reduce_mean(tf.squared_difference(phi2, pred_phi2))
 
@@ -161,15 +162,26 @@ class cnn_lstm():
 
     self.train_op = self.optimizer.apply_gradients(self.grads_and_vars,
                                                    global_step=tf.train.get_global_step())
+    tf.summary.scalar(self.loss.op.name, self.loss)
+    tf.summary.scalar(self.fwd_loss.op.name, self.fwd_loss)
+    tf.summary.scalar(self.inv_loss.op.name, self.inv_loss)
 
+    # Merge summaries from this network and the shared network (but not the value net)
+    var_scope_name = tf.get_variable_scope().name
+    summary_ops = tf.get_collection(tf.GraphKeys.SUMMARIES)
+    #>>> Todo: why is'summaries' defined twice?
+    sumaries = [s for s in summary_ops if "local_net" in s.name or "shared" in s.name]
+    sumaries = [s for s in summary_ops if var_scope_name in s.name]
+    self.summaries = tf.summary.merge(sumaries)
 
   def reset_lstm(self):
     return self.state_init
 
   def make_action(self, observation, lstm_cin, lstm_hin):
     sess = tf.get_default_session()
-    return sess.run([self.actions, self.state_out],
-                    feed_dict={self.state: observation, self.state_int[0]:lstm_cin, self.state_init[1]:lstm_hin})
+
+    return sess.run([self.actions, self.value_logits]+ self.state_out,
+                    feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
 
   def make_train_op(self):
     sess = tf.get_default_session()

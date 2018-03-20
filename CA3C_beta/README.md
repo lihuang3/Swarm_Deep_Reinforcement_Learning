@@ -29,7 +29,7 @@
     `inputs->CNN->lstm->2 fc layers-> policy logits`
     4. __action probability__ `tf.softmax(policy logits, axis=1)`
     5. __one-hot action__
-    6. __advantage/policy target__ `:= reward - value_logits = R - V(s) = r(s) + gamma * V(s+1) - V(s)`
+    6. __policy target/advantage__ `:= reward - value_logits = R - V(s) = r(s) + gamma * V(s+1) - V(s)`
     7. __value target__ `:= reward = r(s) + gamma * V(s+1)` 
     8. __policy loss__
     9. __value loss__

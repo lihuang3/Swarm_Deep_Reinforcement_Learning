@@ -1,4 +1,3 @@
-import gym
 import sys, time
 import os
 import itertools
@@ -17,7 +16,7 @@ if import_path not in sys.path:
 from estimators import cnn_lstm
 
 Transition = collections.namedtuple("Transition", ["state", "action", "reward", "value_logits",
-                                                   "next_state", "done", "features"])
+                                                   "next_state", "done", "feature"])
 
 
 def make_copy_params_op(v1_list, v2_list):
@@ -63,7 +62,7 @@ class Worker(object):
     summary_writer: A tf.train.SummaryWriter for Tensorboard summaries
     max_global_steps: If set, stop coordinator when global_counter > max_global_steps
   """
-  def __init__(self, name, start_time, saver, checkpoint_path, env, cnn_lstm_net,
+  def __init__(self, name, start_time, saver, checkpoint_path, env, global_net,
                global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
     self.name = name
     self.start_time = start_time
@@ -72,7 +71,7 @@ class Worker(object):
     self.discount_factor = discount_factor
     self.max_global_steps = max_global_steps
     self.global_step = tf.train.get_global_step()
-    self.global_net = cnn_lstm_net
+    self.global_net = global_net
     self.global_counter = global_counter
     self.local_counter = itertools.count()
     self.summary_writer = summary_writer
@@ -82,7 +81,7 @@ class Worker(object):
     self.display_flag = False
     # Create local policy/value nets that are not updated asynchronously
     with tf.variable_scope(name):
-      self.local_net = cnn_lstm(feature_space=256, action_space=4)
+      self.local_net = cnn_lstm(feature_space=256, action_space=4, reuse=True)
 
     # Op to copy params from global policy/valuenets
     self.copy_params_op = make_copy_params_op(
@@ -115,26 +114,16 @@ class Worker(object):
             return
 
           # Update the global networks
-          pnet_loss, vnet_loss, _, _=self.update(transitions, sess)
+          loss, _=self.update(transitions, sess)
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
             print("Training time: {} d {} hr {} min, global step = {}, {}, Episode = {}, pnet_loss = {:.4E}, vnet_loss = {:.4E}".format(training_time/86400,
-                                    (training_time/3600)%24, (training_time/60)%60, global_t, self.name, self.episode, pnet_loss, vnet_loss))
+                                    (training_time/3600)%24, (training_time/60)%60, global_t, self.name, self.episode, loss))
             # self.saver.save(sess, self.checkpoint_path)
             self.display_flag = False
 
       except tf.errors.CancelledError:
         return
-
-  def _policy_net_predict(self, sess, state, c_in, h_in):
-    feed_dict = { self.policy_net.states: [state], self.policy_net.c_in: c_in, self.policy_net.h_in: h_in}
-    preds = sess.run(self.policy_net.predictions, feed_dict)
-    return preds["probs"][0], preds["features"]
-
-  def _value_net_predict(self, state, sess):
-    feed_dict = { self.value_net.states: [state] }
-    preds = sess.run(self.value_net.predictions, feed_dict)
-    return preds["logits"][0]
 
   def run_n_steps(self, n, sess):
     """
@@ -145,7 +134,7 @@ class Worker(object):
     transitions = []
     for _ in range(n):
       # Take a step
-      fetched = self.local_net.make_action(sess, self.state, *self.lstm_state)
+      fetched = self.local_net.make_action(self.state, self.lstm_state[0], self.lstm_state[1])
       action_one_hot, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2:]
       action = action_one_hot.argmax()
       next_state, reward, done, _ = self.env.step(action)
@@ -154,8 +143,8 @@ class Worker(object):
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
       transitions.append(Transition(
-        state=self.state, action=action, reward=reward, value_logits=value_logits, next_state=next_state,
-        done=done, features=self.lstm_state))
+        state=self.state, action=action, reward=reward, value_logits=value_logits[0], next_state=next_state,
+        done=done, feature=self.lstm_state))
 
       # Increase local and global counters
       local_t = next(self.local_counter)
@@ -207,47 +196,55 @@ class Worker(object):
     policy_targets = []
     value_targets = []
     actions = []
+    features = []
 
     for transition in transitions[::-1]:
       # The [::-1] slice reverses the list in the for loop
       # (but won't actually modify your list "permanently").
 
+      # Value target
       reward = transition.reward + self.discount_factor * reward
-
-      #>>> Policy target or target diff?
+      # Policy target (advantage)
       policy_target = (reward - transition.value_logits)
       # Accumulate updates
       states.append(transition.state)
       actions.append(transition.action)
       policy_targets.append(policy_target)
       value_targets.append(reward)
-
+      features.append(transition.feature)
     # batch size = 5
     feed_dict = {
-      self.policy_net.states: np.array(states),
-      self.policy_net.targets: policy_targets,
-      self.policy_net.actions: actions,
-      self.value_net.states: np.array(states),
-      self.value_net.targets: value_targets,
+      self.local_net.state: np.array(states[:-1]),
+      self.local_net.next_state: np.array(states[1:]),
+      self.local_net.state_in[0]: np.array(features[0]),
+      self.local_net.state_in[1]: np.array(features[1]),
+      self.local_net.advantage: policy_targets,
+      self.local_net.reward: value_targets
     }
-
     # Train the global estimators using local gradients
-    global_step, pnet_loss, vnet_loss, _, _, pnet_summaries, vnet_summaries = sess.run([
-      self.global_step,
-      self.policy_net.loss,
-      self.value_net.loss,
-      self.pnet_train_op,
-      self.vnet_train_op,
-      self.policy_net.summaries,
-      self.value_net.summaries
-    ], feed_dict)
+    # Use dummy nodes to skip unnecessary communication if the nodes are only needed for dependencies but not output
+    # global_step, pnet_loss, vnet_loss, _, _, pnet_summaries, vnet_summaries = sess.run([
+    #   self.global_step,
+    #   self.policy_net.loss,
+    #   self.value_net.loss,
+    #   self.pnet_train_op,
+    #   self.vnet_train_op,
+    #   self.policy_net.summaries,
+    #   self.value_net.summaries
+    # ], feed_dict)
 
+    global_step, loss, _, summaries = sess.run(
+      [
+        self.global_step,
+        self.local_net.loss,
+        self.train_op,
+        self.local_net.summaries
+      ], feed_dict)
 
 
     # Write summaries
     if self.summary_writer is not None:
-      self.summary_writer.add_summary(pnet_summaries, global_step)
-      self.summary_writer.add_summary(vnet_summaries, global_step)
+      self.summary_writer.add_summary(summaries, global_step)
       self.summary_writer.flush()
 
-    return pnet_loss, vnet_loss, pnet_summaries, vnet_summaries
+    return loss, summaries

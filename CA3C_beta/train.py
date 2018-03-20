@@ -1,7 +1,6 @@
 #! /usr/bin/env python
 
 import unittest
-import gym
 from RGBEnv_v1 import MazeEnv
 import sys, time
 import os
@@ -20,9 +19,8 @@ experiment_dir = os.path.abspath('./experiments/')
 if import_path not in sys.path:
   sys.path.append(import_path)
 
-from lib.atari import helpers as atari_helpers
-from estimators import ValueEstimator, PolicyEstimator
-from policy_monitor import PolicyMonitor
+
+from estimators import cnn_lstm
 from worker import Worker
 
 start_time = time.time()
@@ -84,8 +82,7 @@ with tf.device("/cpu:0"):
 
   # Global policy and value nets
   with tf.variable_scope("global") as vs:
-    policy_net = PolicyEstimator(num_outputs=len(VALID_ACTIONS))
-    value_net = ValueEstimator(reuse=True)
+    global_net = cnn_lstm(feature_space=256, action_space=4, reuse=True)
 
   # Global step iterator
   global_counter = itertools.count()
@@ -107,8 +104,7 @@ with tf.device("/cpu:0"):
       saver=saver,
       checkpoint_path=checkpoint_path,
       env=make_env(),
-      policy_net=policy_net,
-      value_net=value_net,
+      global_net=global_net,
       global_counter=global_counter,
       discount_factor = 0.99,
       summary_writer=worker_summary_writer,
