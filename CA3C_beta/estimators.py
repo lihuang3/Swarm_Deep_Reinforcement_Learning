@@ -16,28 +16,28 @@ def build_shared_network(X):
   """
 
   # Three convolutional layers
-  # conv1 = tf.contrib.layers.conv2d(
-  #   X, 16, 8, 4, activation_fn=tf.nn.relu, scope="conv1")
-  # conv2 = tf.contrib.layers.conv2d(
-  #   conv1, 32, 4, 2, activation_fn=tf.nn.relu, scope="conv2")
-
-  # # Fully connected layer
-  # fc1 = tf.contrib.layers.fully_connected(
-  #   inputs=tf.contrib.layers.flatten(conv2),
-  #   num_outputs=256,
-  #   scope="fc1")
-
-  # Three convolutional layers
-  conv1 = tf.layers.conv2d(
-    inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
-  conv2 = tf.layers.conv2d(
-    inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
-  conv3 = tf.layers.conv2d(
-    inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+  conv1 = tf.contrib.layers.conv2d(
+    X, 16, 8, 4, activation_fn=tf.nn.relu, scope="conv1")
+  conv2 = tf.contrib.layers.conv2d(
+    conv1, 32, 4, 2, activation_fn=tf.nn.relu, scope="conv2")
 
   # Fully connected layer
-  fc1 = tf.layers.dense(
-    inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
+  fc1 = tf.contrib.layers.fully_connected(
+    inputs=tf.contrib.layers.flatten(conv2),
+    num_outputs=256,
+    scope="fc1")
+
+  # Three convolutional layers
+  # conv1 = tf.layers.conv2d(
+  #   inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
+  # conv2 = tf.layers.conv2d(
+  #   inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
+  # conv3 = tf.layers.conv2d(
+  #   inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+  #
+  # # Fully connected layer
+  # fc1 = tf.layers.dense(
+  #   inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
 
   # if add_summaries:
   #   tf.contrib.layers.summarize_activation(conv1)
@@ -96,6 +96,8 @@ class cnn_lstm():
     lstm_c, lstm_h = lstm_state
 
     # RNN feature-space state
+
+
     psi = tf.reshape(lstm_outputs, [-1, feature_space])
 
     self.state_out = [lstm_c[:1, :], lstm_h[:1, :]]
@@ -113,6 +115,7 @@ class cnn_lstm():
     # We add entropy to the loss to encourage exploration
     self.entropy = -tf.reduce_mean(tf.reduce_sum(self.probs * self.log_probs, 1), name="entropy")
 
+
     # Policy targets
     self.advantage = tf.placeholder(shape=[None], dtype=tf.float32)
 
@@ -121,7 +124,7 @@ class cnn_lstm():
 
     policy_loss = -tf.reduce_mean(tf.reduce_sum(self.log_probs * self.actions, axis=1) * self.advantage)
 
-    value_fcn_loss = 0.5 * tf.squared_difference(self.value_logits, self.reward)
+    value_fcn_loss = 0.5 * tf.reduce_mean(tf.squared_difference(self.value_logits, self.reward))
 
     # Final A3C loss
     self.loss = policy_loss + 0.5 * value_fcn_loss + 0.01 * self.entropy
@@ -157,12 +160,16 @@ class cnn_lstm():
 
     self.pred_grads_and_vars =self.optimizer.compute_gradients(self.pred_loss)
 
+    self.pred_grads_and_vars = [[grad, var] for grad, var in self.pred_grads_and_vars if grad is not None]
+
+
     # Traning op
     self.grads_and_vars = self.pred_grads_and_vars + self.grads_and_vars
 
     self.train_op = self.optimizer.apply_gradients(self.grads_and_vars,
                                                    global_step=tf.train.get_global_step())
     tf.summary.scalar(self.loss.op.name, self.loss)
+    tf.summary.scalar(self.pred_loss.op.name, self.pred_loss)
     tf.summary.scalar(self.fwd_loss.op.name, self.fwd_loss)
     tf.summary.scalar(self.inv_loss.op.name, self.inv_loss)
 
@@ -183,6 +190,6 @@ class cnn_lstm():
     return sess.run([self.actions, self.value_logits]+ self.state_out,
                     feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
 
-  def make_train_op(self):
-    sess = tf.get_default_session()
+  # def make_train_op(self):
+  #   sess = tf.get_default_session()
 

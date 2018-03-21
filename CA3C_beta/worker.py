@@ -34,7 +34,7 @@ def make_copy_params_op(v1_list, v2_list):
 
   return update_ops
 #>>> ToDo
-def make_train_op(local_estimator, global_estimator):
+def make_train(local_estimator, global_estimator):
   """
   Creates an op that applies local estimator gradients
   to the global estimator.
@@ -88,7 +88,7 @@ class Worker(object):
       tf.contrib.slim.get_variables(scope="global", collection=tf.GraphKeys.TRAINABLE_VARIABLES),
       tf.contrib.slim.get_variables(scope=self.name+'/', collection=tf.GraphKeys.TRAINABLE_VARIABLES))
 
-    self.train_op = make_train_op(self.local_net, self.global_net)
+    self.make_train_op = make_train(self.local_net, self.global_net)
 
     self.state = None
 
@@ -114,12 +114,12 @@ class Worker(object):
             return
 
           # Update the global networks
-          loss, _=self.update(transitions, sess)
+          loss, pred_loss, _=self.update(transitions, sess)
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
-            print("Training time: {} d {} hr {} min, global step = {}, {}, Episode = {}, pnet_loss = {:.4E}, vnet_loss = {:.4E}".format(training_time/86400,
-                                    (training_time/3600)%24, (training_time/60)%60, global_t, self.name, self.episode, loss))
-            # self.saver.save(sess, self.checkpoint_path)
+            print("Training time: {} d {} hr {} min, local step = {}, global step = {}, {}, Episode = {}, a3c_loss = {:.4E}, fwd_inv_loss = {:.4E}".format(training_time/86400,
+                                    (training_time/3600)%24, (training_time/60)%60, local_t, global_t, self.name, self.episode, loss, pred_loss))
+            self.saver.save(sess, self.checkpoint_path)
             self.display_flag = False
 
       except tf.errors.CancelledError:
@@ -149,7 +149,7 @@ class Worker(object):
       # Increase local and global counters
       local_t = next(self.local_counter)
       global_t = next(self.global_counter)
-      if global_t%20000==0:
+      if global_t%10000==0:
         self.display_flag = True
 
 
@@ -160,7 +160,7 @@ class Worker(object):
         # print("Worker {} local step: {}, running {} of {} steps".format(
         #   self.name, self.episode_local_step, local_t, global_t))
 
-      if done or self.episode_local_step > 1000:
+      if done or self.episode_local_step > 1200:
         # reset init state
         self.state = self.env.reset()
         # reset LSTMs memory
@@ -172,8 +172,6 @@ class Worker(object):
         break
       else:
           self.state = next_state
-
-
 
     return transitions, local_t, global_t
 
@@ -193,6 +191,7 @@ class Worker(object):
 
     # Accumulate minibatch exmaples
     states = []
+    next_states = []
     policy_targets = []
     value_targets = []
     actions = []
@@ -208,14 +207,19 @@ class Worker(object):
       policy_target = (reward - transition.value_logits)
       # Accumulate updates
       states.append(transition.state)
+      next_states.append(transition.next_state)
       actions.append(transition.action)
       policy_targets.append(policy_target)
       value_targets.append(reward)
       features.append(transition.feature)
+    features = features[0]
+
+
+
     # batch size = 5
     feed_dict = {
-      self.local_net.state: np.array(states[:-1]),
-      self.local_net.next_state: np.array(states[1:]),
+      self.local_net.state: np.array(states),
+      self.local_net.next_state: np.array(next_states),
       self.local_net.state_in[0]: np.array(features[0]),
       self.local_net.state_in[1]: np.array(features[1]),
       self.local_net.advantage: policy_targets,
@@ -223,21 +227,13 @@ class Worker(object):
     }
     # Train the global estimators using local gradients
     # Use dummy nodes to skip unnecessary communication if the nodes are only needed for dependencies but not output
-    # global_step, pnet_loss, vnet_loss, _, _, pnet_summaries, vnet_summaries = sess.run([
-    #   self.global_step,
-    #   self.policy_net.loss,
-    #   self.value_net.loss,
-    #   self.pnet_train_op,
-    #   self.vnet_train_op,
-    #   self.policy_net.summaries,
-    #   self.value_net.summaries
-    # ], feed_dict)
 
-    global_step, loss, _, summaries = sess.run(
+    global_step, loss, pred_loss, _, summaries = sess.run(
       [
         self.global_step,
         self.local_net.loss,
-        self.train_op,
+        self.local_net.pred_loss,
+        self.make_train_op,
         self.local_net.summaries
       ], feed_dict)
 
@@ -247,4 +243,4 @@ class Worker(object):
       self.summary_writer.add_summary(summaries, global_step)
       self.summary_writer.flush()
 
-    return loss, summaries
+    return loss, pred_loss, summaries

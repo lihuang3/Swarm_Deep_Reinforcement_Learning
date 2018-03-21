@@ -29,11 +29,11 @@ start_time = time.time()
 
 tf.flags.DEFINE_string("model_dir", experiment_dir, "Directory to write Tensorboard summaries and videos to.")
 tf.flags.DEFINE_string("env", "Breakout-v0", "Name of gym Atari environment, e.g. Breakout-v0")
-tf.flags.DEFINE_integer("t_max", 25, "Number of steps before performing an update")
+tf.flags.DEFINE_integer("t_max", 20, "Number of steps before performing an update")
 tf.flags.DEFINE_integer("max_global_steps",None, "Stop training after this many steps in the environment. Defaults to running indefinitely.")
 tf.flags.DEFINE_integer("eval_every", 300, "Evaluate the policy every N seconds")
 tf.flags.DEFINE_boolean("reset", False, "If set, delete the existing model directory and start training from scratch.")
-tf.flags.DEFINE_integer("parallelism", 1, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
+tf.flags.DEFINE_integer("parallelism", 40, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
 
 FLAGS = tf.flags.FLAGS
 
@@ -80,7 +80,7 @@ with tf.device("/cpu:0"):
   # Keeps track of the number of updates we've performed
   global_step = tf.Variable(0, name="global_step", trainable=False)
 
-  # Global policy and value nets
+  # Global policy and value netsValueError: No gradients provided for any variable
   with tf.variable_scope("global") as vs:
     global_net = cnn_lstm(feature_space=256, action_space=4, reuse=True)
 
