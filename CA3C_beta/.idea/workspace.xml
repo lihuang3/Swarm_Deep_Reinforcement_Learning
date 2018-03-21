@@ -9,35 +9,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="DockManager">
-    <window id="1">
-      <content type="file-editors">
-        <state>
-          <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-            <file leaf-file-name="estimators.py" pinned="false" current-in-tab="true">
-              <entry file="file://$PROJECT_DIR$/estimators.py">
-                <provider selected="true" editor-type-id="text-editor">
-                  <state relative-caret-position="652">
-                    <caret line="171" column="31" lean-forward="false" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
-                    <folding>
-                      <element signature="e#0#18#0" expanded="true" />
-                    </folding>
-                  </state>
-                </provider>
-              </entry>
-            </file>
-          </leaf>
-        </state>
-      </content>
-    </window>
-  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/train.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-651">
-              <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+            <state relative-caret-position="18">
+              <caret line="73" column="29" lean-forward="false" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
               <folding>
                 <element signature="e#24#39#0" expanded="true" />
               </folding>
@@ -45,11 +23,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worker.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="worker.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/worker.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2000">
-              <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+            <state relative-caret-position="1269">
+              <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
               <folding>
                 <element signature="e#0#16#0" expanded="true" />
               </folding>
@@ -66,6 +44,18 @@
                 <folding />
               </first_editor>
               <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="estimators.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/estimators.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="133">
+              <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -91,6 +81,7 @@
       <find>train_op</find>
       <find>make</find>
       <find>tf.varia</find>
+      <find>prop</find>
     </findStrings>
     <replaceStrings>
       <replace>name</replace>
@@ -111,7 +102,7 @@
   <component name="ProjectFrameBounds">
     <option name="x" value="75" />
     <option name="y" value="35" />
-    <option name="width" value="1846" />
+    <option name="width" value="1290" />
     <option name="height" value="1487" />
   </component>
   <component name="ProjectView">
@@ -207,12 +198,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="75" y="35" width="1846" height="1487" extended-state="0" />
+    <frame x="75" y="35" width="1290" height="1487" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11777778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17202573" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3735294" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21176471" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -239,6 +231,37 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1152">
+          <caret line="73" column="29" lean-forward="false" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2520">
+          <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="576">
+            <caret line="32" column="32" lean-forward="false" selection-start-line="32" selection-start-column="32" selection-end-line="32" selection-end-column="32" />
+            <folding />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/worker.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -548,36 +571,35 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="226">
           <caret line="441" column="13" lean-forward="false" selection-start-line="441" selection-start-column="13" selection-end-line="441" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
+    <entry file="file://$PROJECT_DIR$/worker.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-651">
-          <caret line="73" column="29" lean-forward="true" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
+        <state relative-caret-position="1269">
+          <caret line="147" column="0" lean-forward="false" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
           <folding>
-            <element signature="e#24#39#0" expanded="true" />
+            <element signature="e#0#16#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/estimators.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="652">
-          <caret line="171" column="31" lean-forward="false" selection-start-line="171" selection-start-column="31" selection-end-line="171" selection-end-column="31" />
+        <state relative-caret-position="133">
+          <caret line="123" column="0" lean-forward="false" selection-start-line="123" selection-start-column="0" selection-end-line="123" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/worker.py">
+    <entry file="file://$PROJECT_DIR$/train.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2000">
-          <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="147" selection-end-column="0" />
+        <state relative-caret-position="18">
+          <caret line="73" column="29" lean-forward="false" selection-start-line="73" selection-start-column="29" selection-end-line="73" selection-end-column="29" />
           <folding>
-            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#24#39#0" expanded="true" />
           </folding>
         </state>
       </provider>
