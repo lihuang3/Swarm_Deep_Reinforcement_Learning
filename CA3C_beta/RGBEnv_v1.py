@@ -38,7 +38,7 @@ class MazeEnv():
         row, col = np.nonzero(freespace)
 
         if not len(self.init_state):
-            self.robot_num = 20 #len(row)
+            self.robot_num = 100 #len(row)
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             self.state_img = np.copy(self.state)
@@ -98,13 +98,15 @@ class MazeEnv():
 
         self.output_img = self.state_img + self.maze*255
 
-        cost_to_go = np.sum(self.state * costData / robot_marker)
+        state_cost_matrix = self.state * costData
+        cost_to_go = np.sum(state_cost_matrix / robot_marker)
         if cost_to_go <= goal_range * self.robot_num:
             done = True
             reward = 100.0
         else:
             done = False
-            reward = -1
+            reward = -1 + np.sum(np.where(state_cost_matrix < goal_range))/self.robot_num
+
 
         return(self.output_img,reward,done,1)
 

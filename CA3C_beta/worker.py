@@ -79,6 +79,7 @@ class Worker(object):
     self.episode = 1
     self.episode_local_step = 0
     self.display_flag = False
+    self.saver_flag = False
     # Create local policy/value nets that are not updated asynchronously
     with tf.variable_scope(name):
       self.local_net = cnn_lstm(feature_space=256, action_space=4, reuse=True)
@@ -115,12 +116,18 @@ class Worker(object):
 
           # Update the global networks
           loss, pred_loss, _=self.update(transitions, sess)
+
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
             print("Training time: {} d {} hr {} min, local step = {}, global step = {}, {}, Episode = {}, a3c_loss = {:.4E}, fwd_inv_loss = {:.4E}".format(training_time/86400,
                                     (training_time/3600)%24, (training_time/60)%60, local_t, global_t, self.name, self.episode, loss, pred_loss))
-            self.saver.save(sess, self.checkpoint_path)
             self.display_flag = False
+
+          if self.saver_flag:
+            self.saver.save(sess, self.checkpoint_path)
+            self.saver_flag = False
+
+
 
       except tf.errors.CancelledError:
         return
@@ -149,9 +156,10 @@ class Worker(object):
       # Increase local and global counters
       local_t = next(self.local_counter)
       global_t = next(self.global_counter)
-      if global_t%10000==0:
-        self.display_flag = True
-
+      if global_t%5000==0:
+        self.display_flag=True
+      if global_t%200000==0:
+        self.saver_flag=False
 
       self.episode_local_step += 1
 

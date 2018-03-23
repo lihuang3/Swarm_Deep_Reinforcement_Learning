@@ -16,28 +16,28 @@ def build_shared_network(X):
   """
 
   # Three convolutional layers
-  conv1 = tf.contrib.layers.conv2d(
-    X, 16, 8, 4, activation_fn=tf.nn.relu, scope="conv1")
-  conv2 = tf.contrib.layers.conv2d(
-    conv1, 32, 4, 2, activation_fn=tf.nn.relu, scope="conv2")
-
-  # Fully connected layer
-  fc1 = tf.contrib.layers.fully_connected(
-    inputs=tf.contrib.layers.flatten(conv2),
-    num_outputs=256,
-    scope="fc1")
-
-  # Three convolutional layers
-  # conv1 = tf.layers.conv2d(
-  #   inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
-  # conv2 = tf.layers.conv2d(
-  #   inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
-  # conv3 = tf.layers.conv2d(
-  #   inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+  # conv1 = tf.contrib.layers.conv2d(
+  #   X, 16, 8, 4, activation_fn=tf.nn.relu, scope="conv1")
+  # conv2 = tf.contrib.layers.conv2d(
+  #   conv1, 32, 4, 2, activation_fn=tf.nn.relu, scope="conv2")
   #
   # # Fully connected layer
-  # fc1 = tf.layers.dense(
-  #   inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
+  # fc1 = tf.contrib.layers.fully_connected(
+  #   inputs=tf.contrib.layers.flatten(conv2),
+  #   num_outputs=256,
+  #   scope="fc1")
+
+  # Three convolutional layers
+  conv1 = tf.layers.conv2d(
+    inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
+  conv2 = tf.layers.conv2d(
+    inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
+  conv3 = tf.layers.conv2d(
+    inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+
+  # Fully connected layer
+  fc1 = tf.layers.dense(
+    inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
 
   # if add_summaries:
   #   tf.contrib.layers.summarize_activation(conv1)
@@ -108,9 +108,14 @@ class cnn_lstm():
 
     self.log_probs = tf.nn.log_softmax(self.policy_logits)
 
-    self.probs = tf.nn.softmax(logits=self.policy_logits, dim=-1)[0,:]
+    #self.probs = tf.nn.softmax(logits=self.policy_logits, dim=-1)[0,:]
 
-    self.actions = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.policy_logits, num_samples=1), axis=1), action_space) #[0,:]
+    self.probs = tf.nn.softmax(self.policy_logits)
+
+    self.actions = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.log_probs, num_samples=1), axis=1), action_space) #[0,:]
+
+    #self.actions = tf.one_hot(tf.argmax(self.probs, axis=1), action_space)
+
 
     # We add entropy to the loss to encourage exploration
     self.entropy = -tf.reduce_mean(tf.reduce_sum(self.probs * self.log_probs, 1), name="entropy")
@@ -156,7 +161,7 @@ class cnn_lstm():
 
     self.fwd_loss = tf.reduce_mean(tf.squared_difference(phi2, pred_phi2))
 
-    self.pred_loss = 0.8 * self.inv_loss + 0.2 * self.fwd_loss
+    self.pred_loss = 50* (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
 
     self.pred_grads_and_vars =self.optimizer.compute_gradients(self.pred_loss)
 
