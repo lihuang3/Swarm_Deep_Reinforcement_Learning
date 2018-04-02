@@ -115,12 +115,14 @@ class Worker(object):
             return
 
           # Update the global networks
-          loss, pred_loss, _=self.update(transitions, sess)
+          loss, pred_loss, entropy, pi_loss, value_loss,value_logits, _=self.update(transitions, sess)
 
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
-            print("Training time: {} d {} hr {} min, local step = {}, global step = {}, {}, Episode = {}, a3c_loss = {:.4E}, fwd_inv_loss = {:.4E}".format(training_time/86400,
-                                    (training_time/3600)%24, (training_time/60)%60, local_t, global_t, self.name, self.episode, loss, pred_loss))
+            print("Training time: {} d {} hr {} min, local step = {}, global step = {}, {}, Episode = {}, a3c_loss = {:.4E}, "
+                  "entropy = {:.4E}, piloss = {:.4E}, valueloss = {:.4E}, value_logits = {:.4E}, fwd_inv_loss = {:.4E}".format(training_time/86400,
+                                    (training_time/3600)%24, (training_time/60)%60, local_t, global_t, self.name, self.episode,
+                                                                  loss, entropy, pi_loss, value_loss, value_logits, pred_loss))
             self.display_flag = False
 
           if self.saver_flag:
@@ -142,21 +144,21 @@ class Worker(object):
     for _ in range(n):
       # Take a step
       fetched = self.local_net.make_action(self.state, self.lstm_state[0], self.lstm_state[1])
-      action_one_hot, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2:]
-      action = action_one_hot.argmax()
+      action_onehot, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2:]
+      action = action_onehot.argmax()
       next_state, reward, done, _ = self.env.step(action)
-      # self.env.render()
+      self.env.render()
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
       transitions.append(Transition(
-        state=self.state, action=action, reward=reward, value_logits=value_logits[0], next_state=next_state,
+        state=self.state, action=action_onehot, reward=reward, value_logits=value_logits[0], next_state=next_state,
         done=done, feature=self.lstm_state))
 
       # Increase local and global counters
       local_t = next(self.local_counter)
       global_t = next(self.global_counter)
-      if global_t%5000==0:
+      if global_t%200==0:
         self.display_flag=True
       if global_t%200000==0:
         self.saver_flag=False
@@ -219,14 +221,16 @@ class Worker(object):
       actions.append(transition.action)
       policy_targets.append(policy_target)
       value_targets.append(reward)
-      features.append(transition.feature)
-    features = features[0]
+
+    #Todo: try the last feature as lstm state in [c_in, h_in]
+    features = transitions[-1].feature
 
 
 
     # batch size = 5
     feed_dict = {
       self.local_net.state: np.array(states),
+      self.local_net.acs: actions,
       self.local_net.next_state: np.array(next_states),
       self.local_net.state_in[0]: np.array(features[0]),
       self.local_net.state_in[1]: np.array(features[1]),
@@ -236,11 +240,15 @@ class Worker(object):
     # Train the global estimators using local gradients
     # Use dummy nodes to skip unnecessary communication if the nodes are only needed for dependencies but not output
 
-    global_step, loss, pred_loss, _, summaries = sess.run(
+    global_step, loss, pred_loss, entropy, pi_loss, value_loss, value_logits,_, summaries = sess.run(
       [
         self.global_step,
         self.local_net.loss,
         self.local_net.pred_loss,
+        self.local_net.entropy,
+        self.local_net.policy_loss,
+        self.local_net.value_fcn_loss,
+        tf.reduce_mean(self.local_net.reward),
         self.make_train_op,
         self.local_net.summaries
       ], feed_dict)
@@ -251,4 +259,4 @@ class Worker(object):
       self.summary_writer.add_summary(summaries, global_step)
       self.summary_writer.flush()
 
-    return loss, pred_loss, summaries
+    return loss, pred_loss, entropy, pi_loss, value_loss, value_logits, summaries

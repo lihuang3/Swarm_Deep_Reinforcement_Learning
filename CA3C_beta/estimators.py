@@ -93,33 +93,38 @@ class cnn_lstm():
     lstm_outputs, lstm_state = tf.nn.dynamic_rnn(
         lstm, Xt, initial_state=init_tuple, sequence_length=step_size, time_major=False)
 
-    lstm_c, lstm_h = lstm_state
+    c_out, h_out = lstm_state
 
     # RNN feature-space state
 
+    rnn_features = tf.reshape(lstm_outputs, [-1, feature_space])
 
-    psi = tf.reshape(lstm_outputs, [-1, feature_space])
+    self.state_out = [c_out[:1, :], h_out[:1, :]]
 
-    self.state_out = [lstm_c[:1, :], lstm_h[:1, :]]
+    self.value_logits = tf.squeeze(tf.layers.dense(inputs=rnn_features, units=1, name="value_fcn", activation=None), squeeze_dims=[1])
 
-    self.value_logits = tf.squeeze(tf.layers.dense(inputs=psi, units=1, name="value_fcn", activation=None), squeeze_dims=[1])
-
-    self.policy_logits = tf.layers.dense(inputs=psi, units=action_space, name="policy_fcn", activation=None)
-
-    self.log_probs = tf.nn.log_softmax(self.policy_logits)
+    self.policy_logits = tf.layers.dense(inputs=rnn_features, units=action_space, name="policy", activation=None)
 
     #self.probs = tf.nn.softmax(logits=self.policy_logits, dim=-1)[0,:]
 
     self.probs = tf.nn.softmax(self.policy_logits)
 
-    self.actions = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.log_probs, num_samples=1), axis=1), action_space) #[0,:]
+    self.log_probs = tf.nn.log_softmax(self.policy_logits)
 
-    #self.actions = tf.one_hot(tf.argmax(self.probs, axis=1), action_space)
+    # Choose an action based on policy probability
+    self.action = tf.one_hot(tf.squeeze(input=tf.multinomial(logits=self.log_probs, num_samples=1), axis=1), action_space)[0,:]
+
+    #self.action = tf.one_hot(tf.argmax(self.probs, axis=1), action_space)
 
 
+
+
+
+
+
+    # For mini-batch tranining
     # We add entropy to the loss to encourage exploration
     self.entropy = -tf.reduce_mean(tf.reduce_sum(self.probs * self.log_probs, 1), name="entropy")
-
 
     # Policy targets
     self.advantage = tf.placeholder(shape=[None], dtype=tf.float32)
@@ -127,12 +132,15 @@ class cnn_lstm():
     # Value fcn targets
     self.reward = tf.placeholder(shape=[None], dtype=tf.float32)
 
-    policy_loss = -tf.reduce_mean(tf.reduce_sum(self.log_probs * self.actions, axis=1) * self.advantage)
+    # Actions that have been made (one hot)
+    self.acs = tf.placeholder(shape=[None, action_space], dtype=tf.float32)
 
-    value_fcn_loss = 0.5 * tf.reduce_mean(tf.squared_difference(self.value_logits, self.reward))
+    self.policy_loss = -tf.reduce_mean(tf.reduce_sum(self.log_probs * self.acs, axis=1) * self.advantage)
+
+    self.value_fcn_loss = 0.5 * tf.reduce_mean(tf.squared_difference(self.value_logits, self.reward))
 
     # Final A3C loss
-    self.loss = policy_loss + 0.5 * value_fcn_loss + 0.01 * self.entropy
+    self.loss = self.policy_loss + 0.5 * self.value_fcn_loss + 0.01 * self.entropy
 
     self.optimizer = tf.train.RMSPropOptimizer(0.0025, 0.99, 0.0, 1e-6)
 
@@ -148,12 +156,12 @@ class cnn_lstm():
 
     inv_logits = tf.layers.dense(inputs=g, units=action_space, activation=None)
 
-    action_index = tf.argmax(self.actions, axis=1)
+    action_index = tf.argmax(self.acs, axis=1)
 
-    self.inv_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=inv_logits, labels=self.actions), name="inv_loss")
+    self.inv_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=inv_logits, labels=self.acs), name="inv_loss")
 
     # Forward dynamics model f(phi1, action) --> pred_phi2
-    f = tf.concat([phi1, self.actions], axis=1)
+    f = tf.concat([phi1, self.acs], axis=1)
 
     f = tf.layers.dense(inputs=f, units=256, activation=tf.nn.relu)
 
@@ -191,8 +199,7 @@ class cnn_lstm():
 
   def make_action(self, observation, lstm_cin, lstm_hin):
     sess = tf.get_default_session()
-
-    return sess.run([self.actions, self.value_logits]+ self.state_out,
+    return sess.run([self.action, self.value_logits]+ self.state_out,
                     feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
 
   # def make_train_op(self):
