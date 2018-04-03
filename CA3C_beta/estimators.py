@@ -16,6 +16,18 @@ def build_shared_network(X):
   """
 
   # Three convolutional layers
+  conv1 = tf.layers.conv2d(
+    inputs=X, filters=16, kernel_size=5, strides=3, activation=tf.nn.relu, name="conv1")
+  conv2 = tf.layers.conv2d(
+    inputs=conv1, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv2")
+  conv3 = tf.layers.conv2d(
+    inputs=conv2, filters=32, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+
+  # Fully connected layer
+  fc1 = tf.layers.dense(
+    inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
+
+  # # Three convolutional layers
   # conv1 = tf.contrib.layers.conv2d(
   #   X, 16, 8, 4, activation_fn=tf.nn.relu, scope="conv1")
   # conv2 = tf.contrib.layers.conv2d(
@@ -28,16 +40,16 @@ def build_shared_network(X):
   #   scope="fc1")
 
   # Three convolutional layers
-  conv1 = tf.layers.conv2d(
-    inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
-  conv2 = tf.layers.conv2d(
-    inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
-  conv3 = tf.layers.conv2d(
-    inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
-
-  # Fully connected layer
-  fc1 = tf.layers.dense(
-    inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
+  # conv1 = tf.layers.conv2d(
+  #   inputs=X, filters=32, kernel_size=8, strides=4, activation=tf.nn.relu, name="conv1")
+  # conv2 = tf.layers.conv2d(
+  #   inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
+  # conv3 = tf.layers.conv2d(
+  #   inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+  #
+  # # Fully connected layer
+  # fc1 = tf.layers.dense(
+  #   inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
 
   # if add_summaries:
   #   tf.contrib.layers.summarize_activation(conv1)
@@ -56,8 +68,9 @@ class cnn_lstm():
 
   def __init__(self, feature_space, action_space, reuse=False):
 
-    self.state = X1 = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X1")
-    self.next_state = X2 = tf.placeholder(shape=[None, 84, 84, 4], dtype=tf.uint8, name="X2")
+    self.state = X1 = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X1")
+
+    self.next_state = X2 = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X2")
     X1 = tf.to_float(X1)/255.0
     X2 = tf.to_float(X2)/255.0
     # batch_size = tf.shape[X1][0]
@@ -134,7 +147,7 @@ class cnn_lstm():
 
     # Actions that have been made (one hot)
     self.acs = tf.placeholder(shape=[None, action_space], dtype=tf.float32)
-
+    # Maximize policy gradient: log_prob*adv
     self.policy_loss = -tf.reduce_mean(tf.reduce_sum(self.log_probs * self.acs, axis=1) * self.advantage)
 
     self.value_fcn_loss = 0.5 * tf.reduce_mean(tf.squared_difference(self.value_logits, self.reward))
@@ -150,26 +163,26 @@ class cnn_lstm():
 
 
     # Inverse dynamics model g(phi1, phi2) --> pred_act
-    g = tf.concat([phi1, phi2], axis=1)
+    inv_fcn = tf.concat([phi1, phi2], axis=1)
 
-    g = tf.layers.dense(inputs=g, units=256, activation=tf.nn.relu)
+    g = tf.layers.dense(inputs=inv_fcn, units=feature_space, activation=tf.nn.relu)
 
     inv_logits = tf.layers.dense(inputs=g, units=action_space, activation=None)
 
     action_index = tf.argmax(self.acs, axis=1)
 
-    self.inv_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=inv_logits, labels=self.acs), name="inv_loss")
-
+    # self.inv_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=inv_logits, labels=self.acs), name="inv_loss")
+    self.inv_loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=inv_logits, labels=action_index), name="inv_loss")
     # Forward dynamics model f(phi1, action) --> pred_phi2
-    f = tf.concat([phi1, self.acs], axis=1)
+    fwd_fcn = tf.concat([phi1, self.acs], axis=1)
 
-    f = tf.layers.dense(inputs=f, units=256, activation=tf.nn.relu)
+    f = tf.layers.dense(inputs=fwd_fcn, units=feature_space, activation=tf.nn.relu)
 
     pred_phi2 = tf.layers.dense(inputs=f, units=phi1.get_shape()[1], activation=None)
 
     self.fwd_loss = tf.reduce_mean(tf.squared_difference(phi2, pred_phi2))
 
-    self.pred_loss = 50* (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
+    self.pred_loss = 100 * (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
 
     self.pred_grads_and_vars =self.optimizer.compute_gradients(self.pred_loss)
 

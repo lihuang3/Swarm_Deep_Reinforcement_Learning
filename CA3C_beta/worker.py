@@ -63,7 +63,7 @@ class Worker(object):
     max_global_steps: If set, stop coordinator when global_counter > max_global_steps
   """
   def __init__(self, name, start_time, saver, checkpoint_path, env, global_net,
-               global_counter, discount_factor=0.99, summary_writer=None, max_global_steps=None):
+               global_counter, global_success, discount_factor=0.99, summary_writer=None, max_global_steps=None):
     self.name = name
     self.start_time = start_time
     self.saver = saver
@@ -74,6 +74,7 @@ class Worker(object):
     self.global_net = global_net
     self.global_counter = global_counter
     self.local_counter = itertools.count()
+    self.global_success = global_success
     self.summary_writer = summary_writer
     self.env = env
     self.episode = 1
@@ -97,7 +98,8 @@ class Worker(object):
     with sess.as_default(), sess.graph.as_default():
       # Initial state
       self.state = self.env.reset()
-      self.state = np.stack([self.state] * 4, axis=2)
+      self.state = np.expand_dims(self.state, axis=2)
+      # self.state = np.stack([self.state] * 4, axis=2)
       # Init LSTMs state
       self.lstm_state = self.local_net.reset_lstm()
 
@@ -115,14 +117,14 @@ class Worker(object):
             return
 
           # Update the global networks
-          loss, pred_loss, entropy, pi_loss, value_loss,value_logits, _=self.update(transitions, sess)
+          loss, pred_loss, entropy, pi_loss, value_loss, _=self.update(transitions, sess)
 
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
-            print("Training time: {} d {} hr {} min, local step = {}, global step = {}, {}, Episode = {}, a3c_loss = {:.4E}, "
-                  "entropy = {:.4E}, piloss = {:.4E}, valueloss = {:.4E}, value_logits = {:.4E}, fwd_inv_loss = {:.4E}".format(training_time/86400,
+            print("{} d {} hr {} min, step = {}/{}, {}, Ep {}, a3c_loss = {:.4E}, "
+                  "entropy = {:.4E}, piloss = {:.4E}, vloss = {:.4E}, cu_loss = {:.4E}".format(training_time/86400,
                                     (training_time/3600)%24, (training_time/60)%60, local_t, global_t, self.name, self.episode,
-                                                                  loss, entropy, pi_loss, value_loss, value_logits, pred_loss))
+                                                                  loss, entropy, pi_loss, value_loss, pred_loss))
             self.display_flag = False
 
           if self.saver_flag:
@@ -148,8 +150,9 @@ class Worker(object):
       action = action_onehot.argmax()
       next_state, reward, done, _ = self.env.step(action)
       self.env.render()
+      next_state = np.expand_dims(next_state, 2)
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
-      next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
+      # next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
       transitions.append(Transition(
         state=self.state, action=action_onehot, reward=reward, value_logits=value_logits[0], next_state=next_state,
@@ -158,24 +161,28 @@ class Worker(object):
       # Increase local and global counters
       local_t = next(self.local_counter)
       global_t = next(self.global_counter)
-      if global_t%200==0:
+      if global_t%5000==0:
         self.display_flag=True
       if global_t%200000==0:
         self.saver_flag=False
 
       self.episode_local_step += 1
 
-      if local_t % 100 == 0:
+      if local_t % 500 == 0:
         tf.logging.info("{}: local Step {}, global step {}".format(self.name, local_t, global_t))
         # print("Worker {} local step: {}, running {} of {} steps".format(
         #   self.name, self.episode_local_step, local_t, global_t))
 
       if done or self.episode_local_step > 1200:
+        if done:
+          global_success = next(self.global_success)
+          print("Success times: {}, {}, Episode step = {}, Episode = {},".format(global_success, self.name, self.episode_local_step, self.episode))
         # reset init state
         self.state = self.env.reset()
+        self.state = np.expand_dims(self.state, axis=2)
         # reset LSTMs memory
         self.lstm_state = self.local_net.reset_lstm()
-        self.state = np.stack([self.state] * 4, axis=2)
+        # self.state = np.stack([self.state] * 4, axis=2)
         self.episode += 1
         self.episode_local_step = 0
 
@@ -240,7 +247,7 @@ class Worker(object):
     # Train the global estimators using local gradients
     # Use dummy nodes to skip unnecessary communication if the nodes are only needed for dependencies but not output
 
-    global_step, loss, pred_loss, entropy, pi_loss, value_loss, value_logits,_, summaries = sess.run(
+    global_step, loss, pred_loss, entropy, pi_loss, value_loss, _, summaries = sess.run(
       [
         self.global_step,
         self.local_net.loss,
@@ -248,7 +255,6 @@ class Worker(object):
         self.local_net.entropy,
         self.local_net.policy_loss,
         self.local_net.value_fcn_loss,
-        tf.reduce_mean(self.local_net.reward),
         self.make_train_op,
         self.local_net.summaries
       ], feed_dict)
@@ -259,4 +265,4 @@ class Worker(object):
       self.summary_writer.add_summary(summaries, global_step)
       self.summary_writer.flush()
 
-    return loss, pred_loss, entropy, pi_loss, value_loss, value_logits, summaries
+    return loss, pred_loss, entropy, pi_loss, value_loss, summaries

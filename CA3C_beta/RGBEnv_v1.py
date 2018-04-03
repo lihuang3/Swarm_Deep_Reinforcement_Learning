@@ -98,14 +98,14 @@ class MazeEnv():
 
         self.output_img = self.state_img + self.maze*255
 
-        state_cost_matrix = self.state * costData
-        cost_to_go = np.sum(state_cost_matrix / robot_marker)
+        state_cost_matrix = self.state * costData/ robot_marker
+        cost_to_go = np.sum(state_cost_matrix )
         if cost_to_go <= goal_range * self.robot_num:
             done = True
             reward = 100.0
         else:
             done = False
-            reward = -1 + np.sum(np.where(state_cost_matrix < goal_range))/self.robot_num
+            reward = -1 + np.sum(state_cost_matrix[np.where(state_cost_matrix < goal_range)])/float(self.robot_num)
 
 
         return(self.output_img,reward,done,1)
