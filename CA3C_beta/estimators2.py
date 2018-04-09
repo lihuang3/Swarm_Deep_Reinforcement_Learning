@@ -26,7 +26,7 @@ def build_shared_network(X):
   # Fully connected layer
   fc1 = tf.layers.dense(
     inputs=tf.contrib.layers.flatten(conv3), units=1024, name="fc1", activation=tf.nn.relu)
-  fc2 = fc1
+
   # # Three convolutional layers
   # conv1 = tf.contrib.layers.conv2d(
   #   X, 16, 8, 4, activation_fn=tf.nn.relu, scope="conv1")
