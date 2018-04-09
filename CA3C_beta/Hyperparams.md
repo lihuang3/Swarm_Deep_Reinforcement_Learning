@@ -11,7 +11,7 @@ else:
     reward = 0
 ```   
 
-- __[`intrisic reward`](worker.py/run_n_steps)__:
+- __[`intrisic reward`](worker.py#L145)__:
 ```buildoutcfg
 extrinsic_reward = reward
 intrinsic_reward = self.local_model.intrinsic_reward(self.state, next_state, action_onehot)
