@@ -20,7 +20,8 @@ if import_path not in sys.path:
   sys.path.append(import_path)
 
 
-from estimators import cnn_lstm
+from estimators2 import cnn_lstm
+from estimators2 import fwd_inv_model
 from worker import Worker
 
 start_time = time.time()
@@ -29,7 +30,7 @@ start_time = time.time()
 
 tf.flags.DEFINE_string("model_dir", experiment_dir, "Directory to write Tensorboard summaries and videos to.")
 tf.flags.DEFINE_string("env", "Breakout-v0", "Name of gym Atari environment, e.g. Breakout-v0")
-tf.flags.DEFINE_integer("t_max", 10, "Number of steps before performing an update")
+tf.flags.DEFINE_integer("t_max", 5, "Number of steps before performing an update")
 tf.flags.DEFINE_integer("max_global_steps",None, "Stop training after this many steps in the environment. Defaults to running indefinitely.")
 tf.flags.DEFINE_integer("eval_every", 300, "Evaluate the policy every N seconds")
 tf.flags.DEFINE_boolean("reset", False, "If set, delete the existing model directory and start training from scratch.")
@@ -81,8 +82,10 @@ with tf.device("/cpu:0"):
   global_step = tf.Variable(0, name="global_step", trainable=False)
 
   # Global policy and value netsValueError: No gradients provided for any variable
-  with tf.variable_scope("global") as vs:
-    global_net = cnn_lstm(feature_space=256, action_space=4, reuse=True)
+  with tf.variable_scope("global"):
+    global_net = cnn_lstm(feature_space=512, action_space=4)
+    with tf.variable_scope("predictor"):
+      global_model = fwd_inv_model(feature_space=512, action_space=4)
 
   # Global step iterator
   global_counter = itertools.count()
@@ -106,6 +109,7 @@ with tf.device("/cpu:0"):
       checkpoint_path=checkpoint_path,
       env=make_env(),
       global_net=global_net,
+      global_model=global_model,
       global_counter=global_counter,
       global_success=global_success,
       discount_factor = 0.99,

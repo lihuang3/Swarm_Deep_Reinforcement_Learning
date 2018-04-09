@@ -14,7 +14,7 @@ class MazeEnv():
     def __init__(self):
         global mazeData, costData, centerline, freespace, mazeHeight, mazeWidth, robot_marker, goal_range
         robot_marker = 150
-        goal_range = 15
+        goal_range = 50
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
         mazeData, costData, centerline, freespace = self._load_data(map_data_dir)
@@ -105,7 +105,7 @@ class MazeEnv():
             reward = 100.0
         else:
             done = False
-            reward = -1 + np.sum(state_cost_matrix[np.where(state_cost_matrix < goal_range)])/float(self.robot_num)
+            reward = 0 #-1 + np.sum(state_cost_matrix[np.where(state_cost_matrix < goal_range)])/float(self.robot_num)
 
 
         return(self.output_img,reward,done,1)

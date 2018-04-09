@@ -13,7 +13,9 @@ if import_path not in sys.path:
   sys.path.append(import_path)
 
 # from lib import plotting
-from estimators import cnn_lstm
+# from estimators import cnn_lstm
+from estimators2 import cnn_lstm
+from estimators2 import fwd_inv_model
 
 Transition = collections.namedtuple("Transition", ["state", "action", "reward", "value_logits",
                                                    "next_state", "done", "feature"])
@@ -62,7 +64,7 @@ class Worker(object):
     summary_writer: A tf.train.SummaryWriter for Tensorboard summaries
     max_global_steps: If set, stop coordinator when global_counter > max_global_steps
   """
-  def __init__(self, name, start_time, saver, checkpoint_path, env, global_net,
+  def __init__(self, name, start_time, saver, checkpoint_path, env, global_net, global_model,
                global_counter, global_success, discount_factor=0.99, summary_writer=None, max_global_steps=None):
     self.name = name
     self.start_time = start_time
@@ -72,6 +74,7 @@ class Worker(object):
     self.max_global_steps = max_global_steps
     self.global_step = tf.train.get_global_step()
     self.global_net = global_net
+    self.global_model = global_model
     self.global_counter = global_counter
     self.local_counter = itertools.count()
     self.global_success = global_success
@@ -83,14 +86,17 @@ class Worker(object):
     self.saver_flag = False
     # Create local policy/value nets that are not updated asynchronously
     with tf.variable_scope(name):
-      self.local_net = cnn_lstm(feature_space=256, action_space=4, reuse=True)
+      self.local_net = cnn_lstm(feature_space=512, action_space=4)
+      with tf.variable_scope("predictor"):
+        self.local_model = fwd_inv_model(feature_space=512, action_space=4)
 
     # Op to copy params from global policy/valuenets
     self.copy_params_op = make_copy_params_op(
       tf.contrib.slim.get_variables(scope="global", collection=tf.GraphKeys.TRAINABLE_VARIABLES),
       tf.contrib.slim.get_variables(scope=self.name+'/', collection=tf.GraphKeys.TRAINABLE_VARIABLES))
 
-    self.make_train_op = make_train(self.local_net, self.global_net)
+    self.train_global_net = make_train(self.local_net, self.global_net)
+    self.train_global_model = make_train(self.local_model, self.global_model)
 
     self.state = None
 
@@ -117,19 +123,19 @@ class Worker(object):
             return
 
           # Update the global networks
-          loss, pred_loss, entropy, pi_loss, value_loss, _=self.update(transitions, sess)
+          loss, entropy, pi_loss, value_loss, _, fwd_loss, inv_loss, _=self.update(transitions, sess)
 
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
             print("{} d {} hr {} min, step = {}/{}, {}, Ep {}, a3c_loss = {:.4E}, "
-                  "entropy = {:.4E}, piloss = {:.4E}, vloss = {:.4E}, cu_loss = {:.4E}".format(training_time/86400,
+                  "entropy = {:.4E}, piloss = {:.4E}, vloss = {:.4E}, fwd = {:.4E}, inv = {:.4E}".format(training_time/86400,
                                     (training_time/3600)%24, (training_time/60)%60, local_t, global_t, self.name, self.episode,
-                                                                  loss, entropy, pi_loss, value_loss, pred_loss))
+                                                                  loss, entropy, pi_loss, value_loss, fwd_loss, inv_loss))
             self.display_flag = False
 
           if self.saver_flag:
             self.saver.save(sess, self.checkpoint_path)
-            self.saver_flag = False
+            self.saver_flag = True
 
 
 
@@ -146,11 +152,15 @@ class Worker(object):
     for _ in range(n):
       # Take a step
       fetched = self.local_net.make_action(self.state, self.lstm_state[0], self.lstm_state[1])
-      action_onehot, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2:]
+      action_onehot, policy_probs, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2], fetched[3:]
       action = action_onehot.argmax()
       next_state, reward, done, _ = self.env.step(action)
       self.env.render()
       next_state = np.expand_dims(next_state, 2)
+      extrinsic_reward = reward
+      intrinsic_reward = self.local_model.intrinsic_reward(self.state, next_state, action_onehot)
+      reward += 1000*intrinsic_reward
+
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       # next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
@@ -161,19 +171,23 @@ class Worker(object):
       # Increase local and global counters
       local_t = next(self.local_counter)
       global_t = next(self.global_counter)
+
       if global_t%5000==0:
         self.display_flag=True
       if global_t%200000==0:
         self.saver_flag=False
 
       self.episode_local_step += 1
+      if self.name=="worker_0" and self.episode_local_step%200 ==0:
+        print ("Step {} of Ep {}, policy probs = {}, value logits = {:.4E}, inrwd = {:.4E}, exrwd = {}".format(
+          self.episode_local_step, self.episode, policy_probs, value_logits[0], 100*intrinsic_reward, extrinsic_reward))
 
       if local_t % 500 == 0:
         tf.logging.info("{}: local Step {}, global step {}".format(self.name, local_t, global_t))
         # print("Worker {} local step: {}, running {} of {} steps".format(
         #   self.name, self.episode_local_step, local_t, global_t))
 
-      if done or self.episode_local_step > 1200:
+      if done or self.episode_local_step > 600:
         if done:
           global_success = next(self.global_success)
           print("Success times: {}, {}, Episode step = {}, Episode = {},".format(global_success, self.name, self.episode_local_step, self.episode))
@@ -238,31 +252,39 @@ class Worker(object):
     feed_dict = {
       self.local_net.state: np.array(states),
       self.local_net.acs: actions,
-      self.local_net.next_state: np.array(next_states),
       self.local_net.state_in[0]: np.array(features[0]),
       self.local_net.state_in[1]: np.array(features[1]),
       self.local_net.advantage: policy_targets,
-      self.local_net.reward: value_targets
+      self.local_net.reward: value_targets,
+      self.local_model.state: np.array(states),
+      self.local_model.acs: actions,
+      self.local_model.next_state: np.array(next_states),
+
     }
     # Train the global estimators using local gradients
     # Use dummy nodes to skip unnecessary communication if the nodes are only needed for dependencies but not output
 
-    global_step, loss, pred_loss, entropy, pi_loss, value_loss, _, summaries = sess.run(
+    global_step, loss, entropy, pi_loss, value_loss, _, summaries1,\
+      fwd_loss, inv_loss, _, summaries2 = sess.run(
       [
         self.global_step,
         self.local_net.loss,
-        self.local_net.pred_loss,
         self.local_net.entropy,
         self.local_net.policy_loss,
         self.local_net.value_fcn_loss,
-        self.make_train_op,
-        self.local_net.summaries
+        self.train_global_net,
+        self.local_net.summaries,
+        self.local_model.fwd_loss,
+        self.local_model.inv_loss,
+        self.train_global_model,
+        self.local_model.summaries
       ], feed_dict)
 
 
     # Write summaries
     if self.summary_writer is not None:
-      self.summary_writer.add_summary(summaries, global_step)
+      self.summary_writer.add_summary(summaries1, global_step)
+      self.summary_writer.add_summary(summaries2, global_step)
       self.summary_writer.flush()
 
-    return loss, pred_loss, entropy, pi_loss, value_loss, summaries
+    return loss, entropy, pi_loss, value_loss, summaries1, fwd_loss, inv_loss, summaries2
