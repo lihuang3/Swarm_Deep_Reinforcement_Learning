@@ -10,14 +10,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.5137202">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="train.py" pinned="false" current-in-tab="false">
+          <file leaf-file-name="train.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/train.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="486">
-                  <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="87" selection-end-column="69" />
+                <state relative-caret-position="576">
+                  <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
                   <folding>
                     <element signature="e#24#39#0" expanded="true" />
                   </folding>
@@ -28,8 +28,8 @@
           <file leaf-file-name="worker.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/worker.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-471">
-                  <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="26" />
+                <state relative-caret-position="298">
+                  <caret line="177" column="28" lean-forward="false" selection-start-line="177" selection-start-column="28" selection-end-line="177" selection-end-column="28" />
                   <folding>
                     <element signature="e#0#16#0" expanded="true" />
                   </folding>
@@ -37,11 +37,21 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="estimators2.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="RGBEnv_v1.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/RGBEnv_v1.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="18">
+                  <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="estimators2.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/estimators2.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2882">
-                  <caret line="203" column="8" lean-forward="false" selection-start-line="203" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+                <state relative-caret-position="-365">
+                  <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
                   <folding>
                     <element signature="e#0#18#0" expanded="true" />
                   </folding>
@@ -53,12 +63,25 @@
       </split-first>
       <split-second>
         <leaf>
+          <file leaf-file-name="estimators2.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/estimators2.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="540">
+                  <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
+                  <folding>
+                    <element signature="e#0#18#0" expanded="true" />
+                    <marker date="1523306542033" expanded="true" signature="5623:5809" ph="..." />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
           <file leaf-file-name="Hyperparams.md" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Hyperparams.md">
               <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-                <state split_layout="SPLIT">
-                  <first_editor relative-caret-position="961">
-                    <caret line="63" column="14" lean-forward="false" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
+                <state split_layout="SECOND">
+                  <first_editor relative-caret-position="273">
+                    <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
                     <folding />
                   </first_editor>
                   <second_editor />
@@ -79,8 +102,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>prop</find>
-      <find>Env</find>
       <find>multi</find>
       <find>psi</find>
       <find>actions</find>
@@ -95,9 +116,7 @@
       <find>saver_</find>
       <find>env.step</find>
       <find>entrop</find>
-      <find>save</find>
       <find>step</find>
-      <find>rende</find>
       <find>1200</find>
       <find>120</find>
       <find>log</find>
@@ -106,9 +125,13 @@
       <find>reuse</find>
       <find>256</find>
       <find>8006</find>
-      <find>render</find>
       <find>saver</find>
       <find>feature</find>
+      <find>render</find>
+      <find>512</find>
+      <find>optimi</find>
+      <find>rende</find>
+      <find>save</find>
     </findStrings>
     <replaceStrings>
       <replace>name</replace>
@@ -122,19 +145,19 @@
         <option value="$USER_HOME$/self-learning/tf-basics.md" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/estimators.py" />
-        <option value="$PROJECT_DIR$/RGBEnv_v1.py" />
-        <option value="$PROJECT_DIR$/train.py" />
-        <option value="$PROJECT_DIR$/worker.py" />
-        <option value="$PROJECT_DIR$/estimators2.py" />
         <option value="$PROJECT_DIR$/Hyperparams.md" />
+        <option value="$PROJECT_DIR$/RGBEnv_v1.py" />
+        <option value="$PROJECT_DIR$/estimators2.py" />
+        <option value="$PROJECT_DIR$/worker.py" />
+        <option value="$PROJECT_DIR$/train.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="705" />
-    <option name="y" value="57" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="447" />
+    <option name="y" value="223" />
     <option name="width" value="1700" />
-    <option name="height" value="1421" />
+    <option name="height" value="1393" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -229,18 +252,18 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="2495" height="1604" extended-state="6" />
+    <frame x="447" y="223" width="1700" height="1393" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.09228256" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13663845" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32948583" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25321597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25321597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21176471" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28780934" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39945835" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27962086" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947728" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -264,7 +287,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="40" />
+      <option name="time" value="42" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -709,38 +732,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/train.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="87" selection-end-column="69" />
-          <folding>
-            <element signature="e#24#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/RGBEnv_v1.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1882">
-          <caret line="16" column="17" lean-forward="true" selection-start-line="16" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
+        <state relative-caret-position="18">
+          <caret line="16" column="22" lean-forward="false" selection-start-line="16" selection-start-column="22" selection-end-line="16" selection-end-column="22" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/worker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-471">
-          <caret line="168" column="26" lean-forward="false" selection-start-line="168" selection-start-column="19" selection-end-line="168" selection-end-column="26" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/estimators2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2882">
-          <caret line="203" column="8" lean-forward="false" selection-start-line="203" selection-start-column="0" selection-end-line="204" selection-end-column="0" />
+        <state relative-caret-position="-365">
+          <caret line="155" column="0" lean-forward="true" selection-start-line="155" selection-start-column="0" selection-end-line="155" selection-end-column="0" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -749,12 +752,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Hyperparams.md">
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
-        <state split_layout="SPLIT">
-          <first_editor relative-caret-position="961">
-            <caret line="63" column="14" lean-forward="false" selection-start-line="63" selection-start-column="14" selection-end-line="63" selection-end-column="14" />
+        <state split_layout="SECOND">
+          <first_editor relative-caret-position="273">
+            <caret line="32" column="0" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="32" selection-end-column="0" />
             <folding />
           </first_editor>
           <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/worker.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="177" column="28" lean-forward="false" selection-start-line="177" selection-start-column="28" selection-end-line="177" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/train.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="38" lean-forward="false" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+          <folding>
+            <element signature="e#24#39#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

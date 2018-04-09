@@ -86,9 +86,9 @@ class Worker(object):
     self.saver_flag = False
     # Create local policy/value nets that are not updated asynchronously
     with tf.variable_scope(name):
-      self.local_net = cnn_lstm(feature_space=256, action_space=4)
+      self.local_net = cnn_lstm(feature_space=512, action_space=4)
       with tf.variable_scope("predictor"):
-        self.local_model = fwd_inv_model(feature_space=256, action_space=4)
+        self.local_model = fwd_inv_model(feature_space=512, action_space=4)
 
     # Op to copy params from global policy/valuenets
     self.copy_params_op = make_copy_params_op(
@@ -155,11 +155,11 @@ class Worker(object):
       action_onehot, policy_probs, value_logits, self.lstm_state = fetched[0], fetched[1], fetched[2], fetched[3:]
       action = action_onehot.argmax()
       next_state, reward, done, _ = self.env.step(action)
-      # self.env.render()
+      self.env.render()
       next_state = np.expand_dims(next_state, 2)
       extrinsic_reward = reward
       intrinsic_reward = self.local_model.intrinsic_reward(self.state, next_state, action_onehot)
-      reward += 100*intrinsic_reward
+      reward += 1000*intrinsic_reward
 
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       # next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
@@ -175,7 +175,7 @@ class Worker(object):
       if global_t%5000==0:
         self.display_flag=True
       if global_t%200000==0:
-        self.saver_flag=True
+        self.saver_flag=False
 
       self.episode_local_step += 1
       if self.name=="worker_0" and self.episode_local_step%200 ==0:

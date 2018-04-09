@@ -17,16 +17,15 @@ def build_shared_network(X):
 
   # Three convolutional layers
   conv1 = tf.layers.conv2d(
-    inputs=X, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv1")
+    inputs=X, filters=32, kernel_size=5, strides=3, activation=tf.nn.relu, name="conv1")
   conv2 = tf.layers.conv2d(
-    inputs=conv1, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv2")
+    inputs=conv1, filters=64, kernel_size=4, strides=2, activation=tf.nn.relu, name="conv2")
   conv3 = tf.layers.conv2d(
-    inputs=conv2, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv3")
-  conv4 = tf.layers.conv2d(
-    inputs=conv3, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv4")
+    inputs=conv2, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+
   # Fully connected layer
   fc1 = tf.layers.dense(
-    inputs=tf.contrib.layers.flatten(conv4), units=512, name="fc1", activation=tf.nn.relu)
+    inputs=tf.contrib.layers.flatten(conv3), units=1024, name="fc1", activation=tf.nn.relu)
 
   # # Three convolutional layers
   # conv1 = tf.contrib.layers.conv2d(
@@ -148,11 +147,22 @@ class cnn_lstm():
     # Final A3C loss
     self.loss = self.policy_loss + 0.5 * self.value_fcn_loss + 0.01 * self.entropy
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.00005, 0.99, 0.0, 1e-8)
 
     self.grads_and_vars = self.optimizer.compute_gradients(self.loss)
 
     self.grads_and_vars = [[grad, var] for grad, var in self.grads_and_vars if grad is not None]
+
+    # self.policy_grads_and_vars = self.optimizer.compute_gradients(self.policy_loss+0.01*self.entropy)
+    #
+    # self.policy_grads_and_vars = [[grad, var] for grad, var in self.policy_grads_and_vars if grad is not None]
+    #
+    # self.value_grads_and_vars = self.optimizer.compute_gradients(self.value_fcn_loss)
+    #
+    # self.value_grads_and_vars = [[grad, var] for grad, var in self.value_grads_and_vars if grad is not None]
+    #
+    # self.grads_and_vars = self.policy_grads_and_vars + self.value_grads_and_vars
+
 
 
     # Traning op
@@ -207,7 +217,7 @@ class fwd_inv_model():
     # Actions that have been made (one hot)
     self.acs = tf.placeholder(shape=[None, action_space], dtype=tf.float32)
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.00005, 0.99, 0.0, 1e-8)
 
 
     # Inverse dynamics model g(phi1, phi2) --> pred_act

@@ -34,7 +34,7 @@ tf.flags.DEFINE_integer("t_max", 5, "Number of steps before performing an update
 tf.flags.DEFINE_integer("max_global_steps",None, "Stop training after this many steps in the environment. Defaults to running indefinitely.")
 tf.flags.DEFINE_integer("eval_every", 300, "Evaluate the policy every N seconds")
 tf.flags.DEFINE_boolean("reset", False, "If set, delete the existing model directory and start training from scratch.")
-tf.flags.DEFINE_integer("parallelism", 40, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
+tf.flags.DEFINE_integer("parallelism", 1, "Number of threads to run. If not set we run [num_cpu_cores] threads.")
 
 FLAGS = tf.flags.FLAGS
 
@@ -83,9 +83,9 @@ with tf.device("/cpu:0"):
 
   # Global policy and value netsValueError: No gradients provided for any variable
   with tf.variable_scope("global"):
-    global_net = cnn_lstm(feature_space=256, action_space=4)
+    global_net = cnn_lstm(feature_space=512, action_space=4)
     with tf.variable_scope("predictor"):
-      global_model = fwd_inv_model(feature_space=256, action_space=4)
+      global_model = fwd_inv_model(feature_space=512, action_space=4)
 
   # Global step iterator
   global_counter = itertools.count()

@@ -17,16 +17,15 @@ def build_shared_network(X):
 
   # Three convolutional layers
   conv1 = tf.layers.conv2d(
-    inputs=X, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv1")
+    inputs=X, filters=16, kernel_size=5, strides=3, activation=tf.nn.relu, name="conv1")
   conv2 = tf.layers.conv2d(
     inputs=conv1, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv2")
   conv3 = tf.layers.conv2d(
-    inputs=conv2, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv3")
-  conv4 = tf.layers.conv2d(
-    inputs=conv3, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv4")
+    inputs=conv2, filters=32, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv3")
+
   # Fully connected layer
   fc1 = tf.layers.dense(
-    inputs=tf.contrib.layers.flatten(conv4), units=512, name="fc1", activation=tf.nn.relu)
+    inputs=tf.contrib.layers.flatten(conv3), units=512, name="fc1", activation=tf.nn.relu)
 
   # # Three convolutional layers
   # conv1 = tf.contrib.layers.conv2d(
@@ -67,20 +66,24 @@ class cnn_lstm():
   Args:
   """
 
-  def __init__(self, feature_space, action_space):
+  def __init__(self, feature_space, action_space, reuse=False):
 
-    self.state = X = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X")
+    self.state = X1 = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X1")
 
-    X = tf.to_float(X)/255.0
+    self.next_state = X2 = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X2")
+    X1 = tf.to_float(X1)/255.0
+    X2 = tf.to_float(X2)/255.0
+    # batch_size = tf.shape[X1][0]
 
-    # batch_size = tf.shape[X][0]
-
-    #  feature encoding phi
-    phi = build_shared_network(X)
+    #  feature encoding phi1, phi2
+    # with tf.variable_scope("shared"):
+    phi1 = build_shared_network(X1)
+    with tf.variable_scope(tf.get_variable_scope(), reuse=True):
+      phi2 = build_shared_network(X2)
 
     # Xt is the time series input for LSTMs--> augment a fake batch dimension of 1 to
     # do LSTMs over time dimension
-    Xt = tf.expand_dims(phi, [0])
+    Xt = tf.expand_dims(phi1, [0])
 
     # Initialize RNN-LSTMs cell with feature space size = 256
     lstm = rnn.BasicLSTMCell(num_units=feature_space, forget_bias=1.0, state_is_tuple=True)
@@ -146,68 +149,23 @@ class cnn_lstm():
     self.value_fcn_loss = 0.5 * tf.reduce_mean(tf.squared_difference(self.value_logits, self.reward))
 
     # Final A3C loss
-    self.loss = self.policy_loss + 0.5 * self.value_fcn_loss + 0.01 * self.entropy
+    self.loss = self.policy_loss + 0.01*0.5 * self.value_fcn_loss + 0.01 * self.entropy
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.0025, 0.99, 0.0, 1e-6)
 
     self.grads_and_vars = self.optimizer.compute_gradients(self.loss)
 
     self.grads_and_vars = [[grad, var] for grad, var in self.grads_and_vars if grad is not None]
 
-
-    # Traning op
-
-    # self.train_op = self.optimizer.apply_gradients(self.grads_and_vars,
-    #                                                global_step=tf.train.get_global_step())
-    tf.summary.scalar(self.loss.op.name, self.loss)
-
-
-    # Merge summaries from this network and the shared network (but not the value net)
-    var_scope_name = tf.get_variable_scope().name
-    summary_ops = tf.get_collection(tf.GraphKeys.SUMMARIES)
-    #>>> Todo: why is'summaries' defined twice?
-    sumaries = [s for s in summary_ops if "local_net" in s.name]
-    sumaries = [s for s in summary_ops if var_scope_name in s.name]
-    self.summaries = tf.summary.merge(sumaries)
-
-  def reset_lstm(self):
-    return self.state_init
-
-  def make_action(self, observation, lstm_cin, lstm_hin):
-    sess = tf.get_default_session()
-    return sess.run([self.action, self.probs, self.value_logits]+ self.state_out,
-                    feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
-
-  # def make_train_op(self):
-  #   sess = tf.get_default_session()
-
-
-class fwd_inv_model():
-  """
-  Builds a forward model and inverse model using conv layers
-
-  Args:
-  """
-
-  def __init__(self, feature_space, action_space):
-
-    self.state = X1 = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X1")
-    self.next_state = X2 = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X2")
-    X1 = tf.to_float(X1)/255.0
-    X2 = tf.to_float(X2)/255.0
-    # batch_size = tf.shape[X1][0]
-
-    #  feature encoding phi1, phi2
-    # with tf.variable_scope("shared"):
-    phi1 = build_shared_network(X1)
-    with tf.variable_scope(tf.get_variable_scope(), reuse=True):
-      phi2 = build_shared_network(X2)
-
-
-    # Actions that have been made (one hot)
-    self.acs = tf.placeholder(shape=[None, action_space], dtype=tf.float32)
-
-    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
+    # self.policy_grads_and_vars = self.optimizer.compute_gradients(self.policy_loss+0.01*self.entropy)
+    #
+    # self.policy_grads_and_vars = [[grad, var] for grad, var in self.policy_grads_and_vars if grad is not None]
+    #
+    # self.value_grads_and_vars = self.optimizer.compute_gradients(self.value_fcn_loss)
+    #
+    # self.value_grads_and_vars = [[grad, var] for grad, var in self.value_grads_and_vars if grad is not None]
+    #
+    # self.grads_and_vars = self.policy_grads_and_vars + self.value_grads_and_vars
 
 
     # Inverse dynamics model g(phi1, phi2) --> pred_act
@@ -221,7 +179,6 @@ class fwd_inv_model():
 
     # self.inv_loss = tf.reduce_mean(tf.nn.softmax_cross_entropy_with_logits(logits=inv_logits, labels=self.acs), name="inv_loss")
     self.inv_loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(logits=inv_logits, labels=action_index), name="inv_loss")
-
     # Forward dynamics model f(phi1, action) --> pred_phi2
     fwd_fcn = tf.concat([phi1, self.acs], axis=1)
 
@@ -231,14 +188,20 @@ class fwd_inv_model():
 
     self.fwd_loss = tf.reduce_mean(tf.squared_difference(phi2, pred_phi2))
 
-    self.loss = 50 * (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
+    self.pred_loss = 100 * (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
 
-    self.grads_and_vars =self.optimizer.compute_gradients(self.loss)
+    self.pred_grads_and_vars =self.optimizer.compute_gradients(self.pred_loss)
 
-    self.grads_and_vars = [[grad, var] for grad, var in self.grads_and_vars if grad is not None]
+    self.pred_grads_and_vars = [[grad, var] for grad, var in self.pred_grads_and_vars if grad is not None]
 
 
+    # Traning op
+    self.grads_and_vars = self.pred_grads_and_vars + self.grads_and_vars
+    #
+    # self.train_op = self.optimizer.apply_gradients(self.grads_and_vars,
+    #                                                global_step=tf.train.get_global_step())
     tf.summary.scalar(self.loss.op.name, self.loss)
+    tf.summary.scalar(self.pred_loss.op.name, self.pred_loss)
     tf.summary.scalar(self.fwd_loss.op.name, self.fwd_loss)
     tf.summary.scalar(self.inv_loss.op.name, self.inv_loss)
 
@@ -246,14 +209,22 @@ class fwd_inv_model():
     var_scope_name = tf.get_variable_scope().name
     summary_ops = tf.get_collection(tf.GraphKeys.SUMMARIES)
     #>>> Todo: why is'summaries' defined twice?
-    sumaries = [s for s in summary_ops if "local_model" in s.name]
+    sumaries = [s for s in summary_ops if "local_net" in s.name or "shared" in s.name]
     sumaries = [s for s in summary_ops if var_scope_name in s.name]
     self.summaries = tf.summary.merge(sumaries)
 
+  def reset_lstm(self):
+    return self.state_init
+
+  def make_action(self, observation, lstm_cin, lstm_hin):
+    sess = tf.get_default_session()
+    return sess.run([self.action, self.probs, self.value_logits]+ self.state_out,
+                    feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
 
   def intrinsic_reward(self, observation, next_state, action):
     sess = tf.get_default_session()
     return sess.run(self.fwd_loss,
                     feed_dict={self.state: [observation], self.next_state: [next_state], self.acs: [action]})
-
+  # def make_train_op(self):
+  #   sess = tf.get_default_session()
 

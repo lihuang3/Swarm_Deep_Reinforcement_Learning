@@ -14,7 +14,7 @@ class MazeEnv():
     def __init__(self):
         global mazeData, costData, centerline, freespace, mazeHeight, mazeWidth, robot_marker, goal_range
         robot_marker = 150
-        goal_range = 30
+        goal_range = 50
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
         mazeData, costData, centerline, freespace = self._load_data(map_data_dir)

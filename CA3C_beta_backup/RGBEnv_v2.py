@@ -1,6 +1,6 @@
 '''
-Version: RGBENV_v1.py
-Comments: this version of RGB environment uses -1 for non-terminate state reward, 10 for terminate reward
+Version: RGBENV_v2.py
+Vomments: this version of RGB environment uses sum of total length for reward
 '''
 
 import numpy as np, random, sys, matplotlib.pyplot as plt, time, os
@@ -14,7 +14,7 @@ class MazeEnv():
     def __init__(self):
         global mazeData, costData, centerline, freespace, mazeHeight, mazeWidth, robot_marker, goal_range
         robot_marker = 150
-        goal_range = 30
+        goal_range = 15
         self.action_space = ['u', 'd', 'l', 'r']
         self.n_actions = len(self.action_space)
         mazeData, costData, centerline, freespace = self._load_data(map_data_dir)
@@ -38,7 +38,7 @@ class MazeEnv():
         row, col = np.nonzero(freespace)
 
         if not len(self.init_state):
-            self.robot_num = 100 #len(row)
+            self.robot_num = 20 #len(row)
             self.robot = random.sample(range(row.shape[0]), self.robot_num)
             self.state = np.zeros(np.shape(mazeData)).astype(int)
             self.state_img = np.copy(self.state)
@@ -98,15 +98,13 @@ class MazeEnv():
 
         self.output_img = self.state_img + self.maze*255
 
-        state_cost_matrix = self.state * costData/ robot_marker
-        cost_to_go = np.sum(state_cost_matrix )
+        cost_to_go = np.sum(self.state * costData / robot_marker)
         if cost_to_go <= goal_range * self.robot_num:
             done = True
             reward = 100.0
         else:
             done = False
-            reward = 0 #-1 + np.sum(state_cost_matrix[np.where(state_cost_matrix < goal_range)])/float(self.robot_num)
-
+            reward = -cost_to_go #-np.sum(self.state>0 * costData)
 
         return(self.output_img,reward,done,1)
 
@@ -180,5 +178,5 @@ class MazeEnv():
 #         env.reset()
 #         plt.pause(1)
 #
-
-
+#
+#

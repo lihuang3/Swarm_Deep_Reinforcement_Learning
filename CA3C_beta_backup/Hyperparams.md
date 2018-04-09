@@ -17,11 +17,6 @@ extrinsic_reward = reward
 intrinsic_reward = self.local_model.intrinsic_reward(self.state, next_state, action_onehot)
 reward += 1000*intrinsic_reward
 ```
-- __[`t_max`](train.py/#L33)__: (path: train.py)
-```buildoutcfg
-tf.flags.DEFINE_integer("t_max", 5, "Number of steps before performing an update")   
-```
-
 
 - __[`(global) feature_space`](train.py/#L85)__: (path: train.py)
 ```buildoutcfg
