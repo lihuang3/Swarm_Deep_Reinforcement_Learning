@@ -17,16 +17,18 @@ def build_shared_network(X):
 
   # Three convolutional layers
   conv1 = tf.layers.conv2d(
-    inputs=X, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv1")
+    inputs=X, filters=64, kernel_size=3, strides=1, activation=tf.nn.relu, name="conv1")
   conv2 = tf.layers.conv2d(
-    inputs=conv1, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv2")
+    inputs=conv1, filters=128, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv2")
   conv3 = tf.layers.conv2d(
-    inputs=conv2, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv3")
+    inputs=conv2, filters=256, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv3")
   conv4 = tf.layers.conv2d(
-    inputs=conv3, filters=32, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv4")
+    inputs=conv3, filters=512, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv4")
+  conv5 = tf.layers.conv2d(
+    inputs=conv4, filters=256, kernel_size=3, strides=2, activation=tf.nn.relu, name="conv5")
   # Fully connected layer
   fc1 = tf.layers.dense(
-    inputs=tf.contrib.layers.flatten(conv4), units=512, name="fc1", activation=tf.nn.relu)
+    inputs=tf.contrib.layers.flatten(conv5), units=512, name="fc1", activation=tf.nn.relu)
 
   # # Three convolutional layers
   # conv1 = tf.contrib.layers.conv2d(
@@ -148,7 +150,7 @@ class cnn_lstm():
     # Final A3C loss
     self.loss = self.policy_loss + 0.5 * self.value_fcn_loss + 0.01 * self.entropy
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.000001, 0.99, 0.0, 1e-8)
 
     self.grads_and_vars = self.optimizer.compute_gradients(self.loss)
 
@@ -178,6 +180,9 @@ class cnn_lstm():
     return sess.run([self.action, self.probs, self.value_logits]+ self.state_out,
                     feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
 
+  def pred_value(self, observation, lstm_cin, lstm_hin):
+    sess = tf.get_default_session()
+    return sess.run(self.value_logits, feed_dict={self.state: [observation], self.state_in[0]: lstm_cin, self.state_in[1]: lstm_hin})
   # def make_train_op(self):
   #   sess = tf.get_default_session()
 
@@ -207,7 +212,7 @@ class fwd_inv_model():
     # Actions that have been made (one hot)
     self.acs = tf.placeholder(shape=[None, action_space], dtype=tf.float32)
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.000001, 0.99, 0.0, 1e-8)
 
 
     # Inverse dynamics model g(phi1, phi2) --> pred_act
@@ -231,7 +236,7 @@ class fwd_inv_model():
 
     self.fwd_loss = tf.reduce_mean(tf.squared_difference(phi2, pred_phi2))
 
-    self.loss = 50 * (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
+    self.loss =  (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
 
     self.grads_and_vars =self.optimizer.compute_gradients(self.loss)
 

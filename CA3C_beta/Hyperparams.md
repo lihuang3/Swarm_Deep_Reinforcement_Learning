@@ -10,18 +10,25 @@ else:
     done = False
     reward = 0
 ```   
+Defualt `goal_range=15`
+On 04/10/18, `goal_range=30`
+
 
 - __[`intrisic reward`](worker.py#L160)__: (path: worker.py/Worker/run_n_step/)
 ```buildoutcfg
 extrinsic_reward = reward
 intrinsic_reward = self.local_model.intrinsic_reward(self.state, next_state, action_onehot)
-reward += 1000*intrinsic_reward
+reward += 100*intrinsic_reward
 ```
-- __[`t_max`](train.py/#L33)__: (path: train.py)
+
+
+- __[`t_max`](train.py/#L33)__: (path: train.py) 
 ```buildoutcfg
 tf.flags.DEFINE_integer("t_max", 5, "Number of steps before performing an update")   
 ```
-
+Default `t_max=25`
+On 04/10/18, `t_max=10`
+On 04/12/18, `t_max=20`
 
 - __[`(global) feature_space`](train.py/#L85)__: (path: train.py)
 ```buildoutcfg
@@ -59,13 +66,25 @@ fc1 = tf.layers.dense(
 ```buildoutcfg
 self.optimizer = tf.train.RMSPropOptimizer(0.00005, 0.99, 0.0, 1e-8)
 ```
-
+Default `learning_rate=0.00025`
+On 04/10/18, `learning_rate=0.00001`
+On 04/12/18, `learning_rate=0.00008` Failed
+On 04/12/18, `learning_rate=0.000025` Better
+On 04/16/18, `learning_rate=0.00002` 
 - __[`model optimizer`](estimators2.py/#L220)__: (path: estimator2.py/fwd_inv_model/init)
 ```buildoutcfg
 self.optimizer = tf.train.RMSPropOptimizer(0.00005, 0.99, 0.0, 1e-8)
 ```
+Default `learning_rate=0.00025`
+On 04/10/18, `learning_rate=0.00001`
+On 04/12/18, `learning_rate=0.00008` Failed
+On 04/12/18, `learning_rate=0.000025` Better
+On 04/16/18, `learning_rate=0.00002` 
+
+
 _ __[`state`](estimators2.py#L71)__:
 ```buildoutcfg
-self.state = X = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X1")
+self.state = X = tf.placeholder(shape=[None, 84, 84, 1], dtype=tf.uint8, name="X")
 
 ```
+Default `shape = [None, 84, 84, 4]`

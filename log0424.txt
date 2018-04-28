@@ -1,0 +1,1294 @@
+/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/bin/python /home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/train.py
+0 d 0 hr 0 min, step = 14/258, worker_2, Ep 1, a3c_loss = 1.2680E-01, entropy = 1.3863E+00, piloss = 1.1024E-01, vloss = 5.3933E-03, fwd = 9.7598E-04, inv = 1.3842E+00
+Step 200 of Ep 1, policy probs = [[ 0.2533519   0.24762206  0.2509903   0.24803574]], value logits = 2.4660E-02, inrwd = 9.5359E-02, exrwd = 0
+0 d 0 hr 4 min, step = 254/5018, worker_12, Ep 1, a3c_loss = 1.0935E-01, entropy = 1.3863E+00, piloss = 9.3001E-02, vloss = 4.9783E-03, fwd = 9.5701E-04, inv = 1.3880E+00
+Step 400 of Ep 1, policy probs = [[ 0.25400805  0.24702929  0.25075629  0.24820636]], value logits = 2.6768E-02, inrwd = 1.0908E-01, exrwd = 0
+0 d 0 hr 7 min, step = 509/10066, worker_0, Ep 1, a3c_loss = 1.2358E-01, entropy = 1.3863E+00, piloss = 1.0678E-01, vloss = 5.8775E-03, fwd = 9.9116E-04, inv = 1.3811E+00
+Step 600 of Ep 1, policy probs = [[ 0.25342494  0.24642971  0.25146604  0.24867937]], value logits = 2.7665E-02, inrwd = 1.1525E-01, exrwd = 0
+0 d 0 hr 11 min, step = 764/15160, worker_17, Ep 2, a3c_loss = 1.2466E-01, entropy = 1.3863E+00, piloss = 1.0779E-01, vloss = 6.0163E-03, fwd = 1.0472E-03, inv = 1.3872E+00
+Step 200 of Ep 2, policy probs = [[ 0.25264621  0.24679142  0.25209519  0.24846718]], value logits = 2.6348E-02, inrwd = 9.6888E-02, exrwd = 0
+Step 400 of Ep 2, policy probs = [[ 0.25380334  0.24642368  0.25128424  0.24848875]], value logits = 3.5449E-02, inrwd = 1.2553E-01, exrwd = 0
+0 d 0 hr 14 min, step = 1004/20198, worker_18, Ep 2, a3c_loss = 1.3132E-01, entropy = 1.3863E+00, piloss = 1.1424E-01, vloss = 6.4486E-03, fwd = 1.0770E-03, inv = 1.3787E+00
+Step 600 of Ep 2, policy probs = [[ 0.25319368  0.24704902  0.25161588  0.24814147]], value logits = 3.8308E-02, inrwd = 1.3440E-01, exrwd = 0
+0 d 0 hr 17 min, step = 1244/25075, worker_10, Ep 3, a3c_loss = 1.3647E-01, entropy = 1.3863E+00, piloss = 1.1882E-01, vloss = 7.5795E-03, fwd = 1.1662E-03, inv = 1.3760E+00
+Step 200 of Ep 3, policy probs = [[ 0.25418422  0.24664077  0.25168052  0.24749452]], value logits = 4.7194E-02, inrwd = 1.9075E-01, exrwd = 0
+0 d 0 hr 21 min, step = 1514/30020, worker_11, Ep 3, a3c_loss = 3.0758E-01, entropy = 1.3863E+00, piloss = 2.7682E-01, vloss = 3.3786E-02, fwd = 2.6217E-03, inv = 1.3221E+00
+Step 400 of Ep 3, policy probs = [[ 0.25431165  0.2460953   0.25169858  0.2478945 ]], value logits = 7.5331E-02, inrwd = 5.1431E-01, exrwd = 0
+0 d 0 hr 24 min, step = 1769/35079, worker_0, Ep 3, a3c_loss = 1.0248E+00, entropy = 1.3863E+00, piloss = 8.5298E-01, vloss = 3.1592E-01, fwd = 8.2228E-03, inv = 1.3026E+00
+Step 600 of Ep 3, policy probs = [[ 0.25501108  0.24583718  0.25234094  0.24681081]], value logits = 1.4146E-01, inrwd = 9.6593E-01, exrwd = 0
+Step 200 of Ep 4, policy probs = [[ 0.25407496  0.24496624  0.25703084  0.243928  ]], value logits = 4.7241E-01, inrwd = 5.5884E+00, exrwd = 0
+0 d 0 hr 27 min, step = 2009/40028, worker_19, Ep 4, a3c_loss = 1.0870E+01, entropy = 1.3863E+00, piloss = 5.2781E+00, vloss = 1.1155E+01, fwd = 4.9749E-02, inv = 1.0224E+00
+Step 400 of Ep 4, policy probs = [[ 0.23811093  0.40677592  0.16750367  0.18760954]], value logits = 8.5407E+00, inrwd = 9.8958E+00, exrwd = 0
+0 d 0 hr 31 min, step = 2279/45102, worker_11, Ep 4, a3c_loss = 4.8500E+01, entropy = 1.3332E+00, piloss = 1.3471E-01, vloss = 9.6704E+01, fwd = 1.5276E-02, inv = 9.9381E-01
+Step 600 of Ep 4, policy probs = [[ 0.05504565  0.84141684  0.06026134  0.04327613]], value logits = 1.7124E+01, inrwd = 2.4842E+00, exrwd = 0
+0 d 0 hr 34 min, step = 2519/50129, worker_16, Ep 5, a3c_loss = 9.5176E+01, entropy = 1.3658E+00, piloss = 3.3723E+00, vloss = 1.8358E+02, fwd = 4.8255E-02, inv = 6.6034E-01
+Step 200 of Ep 5, policy probs = [[ 0.23169163  0.55735195  0.12441888  0.08653753]], value logits = 1.7656E+01, inrwd = 3.6074E+00, exrwd = 0
+0 d 0 hr 38 min, step = 2759/55184, worker_12, Ep 5, a3c_loss = 1.4576E+02, entropy = 1.3648E+00, piloss = 7.9928E+00, vloss = 2.7550E+02, fwd = 9.0259E-02, inv = 1.2822E-01
+Step 400 of Ep 5, policy probs = [[ 0.38955104  0.48193711  0.07816189  0.05035001]], value logits = 1.8140E+01, inrwd = 8.8611E+00, exrwd = 0
+Step 600 of Ep 5, policy probs = [[ 0.54804629  0.33236364  0.07086678  0.04872334]], value logits = 1.8468E+01, inrwd = 2.4541E+00, exrwd = 0
+0 d 0 hr 41 min, step = 3014/60199, worker_12, Ep 6, a3c_loss = 2.0837E+02, entropy = 1.3620E+00, piloss = 1.6127E+01, vloss = 3.8445E+02, fwd = 1.3746E-01, inv = 9.4449E-02
+Step 200 of Ep 6, policy probs = [[ 0.60922873  0.30001467  0.04596565  0.04479098]], value logits = 1.8933E+01, inrwd = 1.4748E+01, exrwd = 0
+0 d 0 hr 45 min, step = 3269/65070, worker_19, Ep 6, a3c_loss = 2.4358E+02, entropy = 1.3577E+00, piloss = 1.5238E+01, vloss = 4.5666E+02, fwd = 1.4576E-01, inv = 2.3020E-01
+Step 400 of Ep 6, policy probs = [[ 0.17130516  0.72015214  0.05782581  0.05071688]], value logits = 1.9605E+01, inrwd = 1.9723E+01, exrwd = 0
+0 d 0 hr 48 min, step = 3539/70207, worker_11, Ep 6, a3c_loss = 1.1075E+02, entropy = 1.3466E+00, piloss = 2.4280E+00, vloss = 2.1661E+02, fwd = 4.6857E-02, inv = 4.7748E-01
+Step 600 of Ep 6, policy probs = [[ 0.16524826  0.73556691  0.05414747  0.04503734]], value logits = 1.9781E+01, inrwd = 8.2098E+00, exrwd = 0
+0 d 0 hr 52 min, step = 3779/75101, worker_0, Ep 7, a3c_loss = 1.6960E+02, entropy = 1.3636E+00, piloss = 8.1148E+00, vloss = 3.2295E+02, fwd = 8.4296E-02, inv = 1.2001E-01
+Step 200 of Ep 7, policy probs = [[ 0.60765791  0.27995321  0.08228045  0.03010845]], value logits = 2.0127E+01, inrwd = 4.0474E+00, exrwd = 0
+Step 400 of Ep 7, policy probs = [[ 0.57759845  0.33043137  0.06696017  0.02501   ]], value logits = 2.0623E+01, inrwd = 2.3180E+00, exrwd = 0
+0 d 0 hr 55 min, step = 4019/80093, worker_8, Ep 7, a3c_loss = 1.1053E+02, entropy = 1.3589E+00, piloss = 1.2537E+00, vloss = 2.1853E+02, fwd = 2.9865E-02, inv = 3.7050E-01
+Step 600 of Ep 7, policy probs = [[ 0.34615165  0.5859341   0.04897023  0.01894395]], value logits = 2.1055E+01, inrwd = 4.3621E+00, exrwd = 0
+0 d 0 hr 58 min, step = 4259/85042, worker_12, Ep 8, a3c_loss = 2.1511E+02, entropy = 1.3534E+00, piloss = 1.0661E+01, vloss = 4.0887E+02, fwd = 1.1375E-01, inv = 6.0505E-02
+Step 200 of Ep 8, policy probs = [[ 0.41405416  0.53657168  0.03015047  0.01922365]], value logits = 2.1666E+01, inrwd = 1.0863E+01, exrwd = 0
+0 d 1 hr 2 min, step = 4289/90175, worker_2, Ep 8, a3c_loss = 1.5391E+02, entropy = 1.3514E+00, piloss = 4.4076E+00, vloss = 2.9898E+02, fwd = 6.5385E-02, inv = 5.8365E-03
+Step 400 of Ep 8, policy probs = [[ 0.52859235  0.42939791  0.02608825  0.01592157]], value logits = 2.1974E+01, inrwd = 5.6352E+00, exrwd = 0
+0 d 1 hr 5 min, step = 4799/95000, worker_11, Ep 9, a3c_loss = 1.3496E+02, entropy = 1.3495E+00, piloss = 2.1407E+00, vloss = 2.6562E+02, fwd = 3.8285E-02, inv = 1.4400E-01
+Step 600 of Ep 8, policy probs = [[ 0.47089404  0.49652693  0.01830006  0.01427899]], value logits = 2.2286E+01, inrwd = 7.8725E-01, exrwd = 0
+Step 200 of Ep 9, policy probs = [[ 0.47391525  0.49498898  0.01874331  0.0123524 ]], value logits = 2.2586E+01, inrwd = 2.7163E+00, exrwd = 0
+0 d 1 hr 9 min, step = 5039/100130, worker_3, Ep 9, a3c_loss = 1.2257E+02, entropy = 1.3488E+00, piloss = 3.9529E-01, vloss = 2.4431E+02, fwd = 2.7273E-02, inv = 8.8019E-03
+Step 400 of Ep 9, policy probs = [[ 0.50081837  0.47224262  0.01601596  0.01092304]], value logits = 2.2808E+01, inrwd = 3.6268E+00, exrwd = 0
+0 d 1 hr 12 min, step = 5249/105021, worker_7, Ep 9, a3c_loss = 1.3191E+02, entropy = 1.3478E+00, piloss = 1.1149E+00, vloss = 2.6156E+02, fwd = 2.9656E-02, inv = 3.3306E-03
+Step 600 of Ep 9, policy probs = [[ 0.50070721  0.47483283  0.01451498  0.00994505]], value logits = 2.2913E+01, inrwd = 2.3191E+00, exrwd = 0
+0 d 1 hr 16 min, step = 5549/110115, worker_16, Ep 10, a3c_loss = 1.1834E+02, entropy = 1.3469E+00, piloss = -4.0882E-01, vloss = 2.3748E+02, fwd = 1.7201E-02, inv = 1.8736E-02
+Step 200 of Ep 10, policy probs = [[ 0.4825826   0.49520761  0.01310938  0.00910041]], value logits = 2.2919E+01, inrwd = 8.0155E-01, exrwd = 0
+0 d 1 hr 19 min, step = 5699/115078, worker_9, Ep 10, a3c_loss = 1.1558E+02, entropy = 1.3466E+00, piloss = -4.5053E-01, vloss = 2.3203E+02, fwd = 1.7432E-02, inv = 3.1662E-03
+Step 400 of Ep 10, policy probs = [[ 0.50273669  0.47613266  0.01223819  0.00889251]], value logits = 2.2720E+01, inrwd = 2.1410E+00, exrwd = 0
+Step 600 of Ep 10, policy probs = [[ 0.50520432  0.47452337  0.01182174  0.00845047]], value logits = 2.2571E+01, inrwd = 1.5800E+00, exrwd = 0
+0 d 1 hr 23 min, step = 5999/120208, worker_7, Ep 11, a3c_loss = 1.2593E+02, entropy = 1.3455E+00, piloss = 8.9591E-01, vloss = 2.5004E+02, fwd = 2.5865E-02, inv = 4.8073E-01
+Step 200 of Ep 11, policy probs = [[ 0.50975418  0.47310063  0.01008815  0.00705709]], value logits = 2.2381E+01, inrwd = 1.4361E+00, exrwd = 0
+0 d 1 hr 26 min, step = 6299/125104, worker_19, Ep 11, a3c_loss = 1.0615E+02, entropy = 1.3454E+00, piloss = -8.8284E-01, vloss = 2.1404E+02, fwd = 1.3881E-02, inv = 2.0956E-01
+Step 400 of Ep 11, policy probs = [[ 0.48570299  0.49628165  0.01030116  0.00771425]], value logits = 2.1781E+01, inrwd = 1.6585E+00, exrwd = 0
+0 d 1 hr 30 min, step = 6524/130087, worker_14, Ep 11, a3c_loss = 9.6204E+01, entropy = 1.3457E+00, piloss = -1.0272E+00, vloss = 1.9444E+02, fwd = 1.0337E-02, inv = 2.9884E-03
+Step 600 of Ep 11, policy probs = [[ 0.55121154  0.42835578  0.0133925   0.00704022]], value logits = 2.1063E+01, inrwd = 2.6829E+00, exrwd = 0
+0 d 1 hr 33 min, step = 6764/135205, worker_15, Ep 12, a3c_loss = 8.8136E+01, entropy = 1.3450E+00, piloss = -7.3966E-01, vloss = 1.7772E+02, fwd = 1.3074E-02, inv = 5.1115E-04
+Step 200 of Ep 12, policy probs = [[ 0.45270273  0.53202081  0.00984425  0.00543222]], value logits = 2.0148E+01, inrwd = 1.0155E+00, exrwd = 0
+Step 400 of Ep 12, policy probs = [[ 0.43589896  0.55019951  0.00851095  0.00539062]], value logits = 1.9053E+01, inrwd = 2.3097E+00, exrwd = 0
+0 d 1 hr 37 min, step = 7049/140204, worker_1, Ep 12, a3c_loss = 7.8355E+01, entropy = 1.3445E+00, piloss = -5.5663E-01, vloss = 1.5780E+02, fwd = 1.2525E-02, inv = 1.9278E-01
+Step 600 of Ep 12, policy probs = [[ 0.50219208  0.4861429   0.00747016  0.00419497]], value logits = 1.8058E+01, inrwd = 1.1343E+00, exrwd = 0
+0 d 1 hr 40 min, step = 7229/145000, worker_17, Ep 13, a3c_loss = 6.2099E+01, entropy = 1.3430E+00, piloss = 1.3205E-01, vloss = 1.2391E+02, fwd = 1.5555E-02, inv = 2.5944E-04
+Step 200 of Ep 13, policy probs = [[ 0.44319192  0.53918839  0.00967273  0.00794691]], value logits = 1.6324E+01, inrwd = 7.0556E-01, exrwd = 0
+0 d 1 hr 44 min, step = 7544/150000, worker_13, Ep 13, a3c_loss = 4.7859E+01, entropy = 1.3464E+00, piloss = -7.4135E-01, vloss = 9.7173E+01, fwd = 8.3590E-03, inv = 3.7294E-04
+Step 400 of Ep 13, policy probs = [[ 0.52860409  0.45222613  0.00898595  0.01018375]], value logits = 1.4820E+01, inrwd = 8.1168E-01, exrwd = 0
+0 d 1 hr 47 min, step = 7784/155076, worker_1, Ep 13, a3c_loss = 4.6127E+01, entropy = 1.3463E+00, piloss = -3.7234E-01, vloss = 9.2971E+01, fwd = 1.0581E-02, inv = 4.4253E-04
+Step 600 of Ep 13, policy probs = [[ 0.51886177  0.46175849  0.00930049  0.0100793 ]], value logits = 1.4492E+01, inrwd = 4.5767E-01, exrwd = 0
+Step 200 of Ep 14, policy probs = [[ 0.49378151  0.47902849  0.00705181  0.02013819]], value logits = 1.3564E+01, inrwd = 2.1769E+00, exrwd = 0
+0 d 1 hr 51 min, step = 7979/160195, worker_17, Ep 14, a3c_loss = 4.0120E+01, entropy = 1.3480E+00, piloss = -2.2429E-01, vloss = 8.0662E+01, fwd = 1.1857E-02, inv = 7.9175E-02
+Step 400 of Ep 14, policy probs = [[ 0.55945188  0.41437054  0.00655114  0.01962641]], value logits = 1.3428E+01, inrwd = 7.0918E-01, exrwd = 0
+0 d 1 hr 54 min, step = 8279/165079, worker_18, Ep 14, a3c_loss = 3.7709E+01, entropy = 1.3474E+00, piloss = -3.9207E-01, vloss = 7.6175E+01, fwd = 9.6609E-03, inv = 6.6267E-02
+Step 600 of Ep 14, policy probs = [[ 0.360367    0.61626118  0.00570041  0.01767142]], value logits = 1.2950E+01, inrwd = 2.5325E+00, exrwd = 0
+0 d 1 hr 58 min, step = 8534/170061, worker_1, Ep 15, a3c_loss = 3.2581E+01, entropy = 1.3452E+00, piloss = -6.6464E-01, vloss = 6.6465E+01, fwd = 6.4572E-03, inv = 1.7045E-03
+Step 200 of Ep 15, policy probs = [[ 0.37089214  0.60661632  0.0054022   0.01708928]], value logits = 1.2574E+01, inrwd = 1.0777E+00, exrwd = 0
+Step 400 of Ep 15, policy probs = [[ 0.46930107  0.4995479   0.00700779  0.02414327]], value logits = 1.2058E+01, inrwd = 1.0079E+00, exrwd = 0
+0 d 2 hr 1 min, step = 8819/175190, worker_16, Ep 15, a3c_loss = 3.1513E+01, entropy = 1.3492E+00, piloss = -3.1389E-01, vloss = 6.3627E+01, fwd = 8.9996E-03, inv = 9.8444E-04
+Step 600 of Ep 15, policy probs = [[ 0.4863365   0.47599453  0.00812048  0.02954849]], value logits = 1.1779E+01, inrwd = 1.0399E+00, exrwd = 0
+0 d 2 hr 5 min, step = 9029/180122, worker_14, Ep 16, a3c_loss = 2.8980E+01, entropy = 1.3522E+00, piloss = 1.9208E-01, vloss = 5.7549E+01, fwd = 1.4217E-02, inv = 2.8484E-01
+Step 200 of Ep 16, policy probs = [[ 0.45637971  0.50239253  0.00914018  0.03208763]], value logits = 1.1538E+01, inrwd = 2.0946E+00, exrwd = 0
+0 d 2 hr 8 min, step = 9284/185119, worker_18, Ep 16, a3c_loss = 4.5270E+01, entropy = 1.3506E+00, piloss = 2.6134E+00, vloss = 8.5287E+01, fwd = 3.4009E-02, inv = 3.9561E-04
+Step 400 of Ep 16, policy probs = [[ 0.47209924  0.48985463  0.00833935  0.02970668]], value logits = 1.1627E+01, inrwd = 1.5098E+00, exrwd = 0
+0 d 2 hr 12 min, step = 9509/190075, worker_12, Ep 16, a3c_loss = 2.7938E+01, entropy = 1.3502E+00, piloss = -6.4293E-01, vloss = 5.7136E+01, fwd = 5.7110E-03, inv = 4.0902E-03
+Step 600 of Ep 16, policy probs = [[ 0.50574189  0.45916706  0.00772122  0.0273698 ]], value logits = 1.1739E+01, inrwd = 1.5161E+00, exrwd = 0
+Step 200 of Ep 17, policy probs = [[ 0.46689832  0.50036234  0.00767065  0.02506859]], value logits = 1.1822E+01, inrwd = 1.5451E+00, exrwd = 0
+0 d 2 hr 15 min, step = 9794/195114, worker_19, Ep 17, a3c_loss = 3.0935E+01, entropy = 1.3495E+00, piloss = -2.0367E-01, vloss = 6.2251E+01, fwd = 9.1807E-03, inv = 7.1846E-01
+Step 400 of Ep 17, policy probs = [[ 0.4790763   0.49031872  0.0070686   0.02353635]], value logits = 1.1916E+01, inrwd = 1.2360E+00, exrwd = 0
+0 d 2 hr 19 min, step = 10124/200167, worker_6, Ep 17, a3c_loss = 3.2361E+01, entropy = 1.3493E+00, piloss = 4.9524E-02, vloss = 6.4596E+01, fwd = 1.1531E-02, inv = 1.1398E-03
+Step 600 of Ep 17, policy probs = [[ 0.46915498  0.49661487  0.00770325  0.02652683]], value logits = 1.1746E+01, inrwd = 6.3198E-01, exrwd = 0
+0 d 2 hr 23 min, step = 10274/205224, worker_12, Ep 18, a3c_loss = 3.2842E+01, entropy = 1.3503E+00, piloss = 2.4035E-01, vloss = 6.5177E+01, fwd = 1.3571E-02, inv = 1.2922E-03
+Step 200 of Ep 18, policy probs = [[ 0.45076004  0.51449436  0.00824447  0.02650118]], value logits = 1.1786E+01, inrwd = 1.3721E+00, exrwd = 0
+0 d 2 hr 28 min, step = 10544/210165, worker_8, Ep 18, a3c_loss = 2.9012E+01, entropy = 1.3496E+00, piloss = -4.9639E-01, vloss = 5.8990E+01, fwd = 7.0681E-03, inv = 5.1406E-04
+Step 400 of Ep 18, policy probs = [[ 0.48724553  0.47915885  0.00761814  0.02597745]], value logits = 1.1728E+01, inrwd = 3.5411E-01, exrwd = 0
+Step 600 of Ep 18, policy probs = [[ 0.50463033  0.46304557  0.00738917  0.02493502]], value logits = 1.1651E+01, inrwd = 5.6570E-01, exrwd = 0
+0 d 2 hr 32 min, step = 10724/215082, worker_17, Ep 18, a3c_loss = 2.8134E+01, entropy = 1.3493E+00, piloss = -5.1900E-01, vloss = 5.7279E+01, fwd = 6.9021E-03, inv = 1.7322E-02
+Step 200 of Ep 19, policy probs = [[ 0.47591704  0.48885334  0.00811221  0.02711746]], value logits = 1.1489E+01, inrwd = 5.2708E-01, exrwd = 0
+0 d 2 hr 37 min, step = 11039/220011, worker_1, Ep 19, a3c_loss = 3.2170E+01, entropy = 1.3499E+00, piloss = 4.0861E-01, vloss = 6.3496E+01, fwd = 1.4109E-02, inv = 4.6352E-02
+Step 400 of Ep 19, policy probs = [[ 0.49729425  0.46450874  0.00814875  0.03004822]], value logits = 1.1335E+01, inrwd = 3.0091E-01, exrwd = 0
+0 d 2 hr 41 min, step = 11174/225024, worker_9, Ep 19, a3c_loss = 2.6960E+01, entropy = 1.3506E+00, piloss = -3.4676E-01, vloss = 5.4586E+01, fwd = 8.2087E-03, inv = 1.0194E-03
+Step 600 of Ep 19, policy probs = [[ 0.53774118  0.42211378  0.00962347  0.03052154]], value logits = 1.0954E+01, inrwd = 1.2655E+00, exrwd = 0
+0 d 2 hr 46 min, step = 11534/230066, worker_12, Ep 20, a3c_loss = 2.7514E+01, entropy = 1.3518E+00, piloss = -1.1527E-02, vloss = 5.5023E+01, fwd = 1.0691E-02, inv = 5.2524E-04
+Step 200 of Ep 20, policy probs = [[ 0.52191311  0.43382537  0.0117787   0.03248275]], value logits = 1.1003E+01, inrwd = 9.7325E-01, exrwd = 0
+Step 400 of Ep 20, policy probs = [[ 0.52373433  0.43335441  0.01072873  0.03218251]], value logits = 1.0833E+01, inrwd = 1.0190E+00, exrwd = 0
+0 d 2 hr 50 min, step = 11819/235139, worker_0, Ep 20, a3c_loss = 2.4831E+01, entropy = 1.3512E+00, piloss = -3.9020E-01, vloss = 5.0415E+01, fwd = 7.4798E-03, inv = 1.0415E-03
+Step 600 of Ep 20, policy probs = [[ 0.48148364  0.47597063  0.01057465  0.03197106]], value logits = 1.0696E+01, inrwd = 7.4362E-01, exrwd = 0
+0 d 2 hr 55 min, step = 12014/240128, worker_15, Ep 21, a3c_loss = 2.6267E+01, entropy = 1.3533E+00, piloss = 6.7528E-01, vloss = 5.1156E+01, fwd = 8.4219E-03, inv = 2.6175E-04
+Step 200 of Ep 21, policy probs = [[ 0.46402964  0.48508805  0.0127729   0.03810942]], value logits = 1.0785E+01, inrwd = 6.0377E+00, exrwd = 0
+0 d 2 hr 59 min, step = 12284/245023, worker_13, Ep 21, a3c_loss = 3.4967E+01, entropy = 1.3532E+00, piloss = 1.7174E+00, vloss = 6.6472E+01, fwd = 2.6917E-02, inv = 1.0328E-01
+Step 400 of Ep 21, policy probs = [[ 0.46851602  0.47782099  0.01425286  0.03941017]], value logits = 1.0638E+01, inrwd = 2.9460E+00, exrwd = 0
+0 d 3 hr 4 min, step = 12509/250092, worker_15, Ep 21, a3c_loss = 2.7193E+01, entropy = 1.3549E+00, piloss = 3.1561E-01, vloss = 5.3728E+01, fwd = 1.4252E-02, inv = 3.6104E-04
+Step 600 of Ep 21, policy probs = [[ 0.47502407  0.46047723  0.01691109  0.04758764]], value logits = 1.0659E+01, inrwd = 4.9846E-01, exrwd = 0
+Step 200 of Ep 22, policy probs = [[ 0.50264513  0.37218538  0.03446917  0.09070029]], value logits = 1.0842E+01, inrwd = 1.9794E+00, exrwd = 0
+0 d 3 hr 8 min, step = 12809/255066, worker_1, Ep 22, a3c_loss = 2.5895E+01, entropy = 1.3623E+00, piloss = -7.4455E-02, vloss = 5.1911E+01, fwd = 1.0157E-02, inv = 1.3239E-03
+Step 400 of Ep 22, policy probs = [[ 0.45578009  0.3714278   0.05934758  0.11344449]], value logits = 1.1046E+01, inrwd = 4.8700E-01, exrwd = 0
+0 d 3 hr 12 min, step = 13019/260159, worker_10, Ep 22, a3c_loss = 2.6203E+01, entropy = 1.3720E+00, piloss = -3.9758E-01, vloss = 5.3173E+01, fwd = 7.3435E-03, inv = 9.1066E-03
+Step 600 of Ep 22, policy probs = [[ 0.34604973  0.4194757   0.07372458  0.16074996]], value logits = 1.0845E+01, inrwd = 2.8640E+00, exrwd = 0
+0 d 3 hr 17 min, step = 13274/265215, worker_15, Ep 23, a3c_loss = 4.5781E+01, entropy = 1.3831E+00, piloss = 2.7680E+00, vloss = 8.5999E+01, fwd = 3.6494E-02, inv = 2.1201E-02
+Step 200 of Ep 23, policy probs = [[ 0.34825864  0.33870846  0.17947571  0.13355723]], value logits = 1.2388E+01, inrwd = 7.2195E+00, exrwd = 0
+0 d 3 hr 21 min, step = 13529/270204, worker_10, Ep 23, a3c_loss = 4.9177E+01, entropy = 1.3821E+00, piloss = 2.0099E+00, vloss = 9.4307E+01, fwd = 2.9518E-02, inv = 2.5232E-02
+Step 400 of Ep 23, policy probs = [[ 0.27490178  0.195935    0.15199707  0.37716621]], value logits = 1.2997E+01, inrwd = 9.3500E-01, exrwd = 0
+Step 600 of Ep 23, policy probs = [[ 0.21041596  0.23954995  0.22718337  0.32285073]], value logits = 1.3578E+01, inrwd = 2.7992E+00, exrwd = 0
+0 d 3 hr 25 min, step = 13769/275110, worker_7, Ep 23, a3c_loss = 3.9878E+01, entropy = 1.3852E+00, piloss = -1.1116E-01, vloss = 7.9950E+01, fwd = 1.3992E-02, inv = 9.6816E-02
+Step 200 of Ep 24, policy probs = [[ 0.14260799  0.29643491  0.25714016  0.30381703]], value logits = 1.4167E+01, inrwd = 1.1341E+00, exrwd = 0
+0 d 3 hr 30 min, step = 14069/280183, worker_18, Ep 24, a3c_loss = 5.4697E+01, entropy = 1.3839E+00, piloss = 1.1944E+00, vloss = 1.0698E+02, fwd = 3.0313E-02, inv = 2.9580E-01
+Step 400 of Ep 24, policy probs = [[ 0.11679883  0.23812141  0.37091544  0.27416432]], value logits = 1.4724E+01, inrwd = 1.9708E+00, exrwd = 0
+0 d 3 hr 34 min, step = 14279/285123, worker_10, Ep 24, a3c_loss = 5.7757E+01, entropy = 1.3801E+00, piloss = 8.2069E-01, vloss = 1.1385E+02, fwd = 2.2775E-02, inv = 1.1581E-01
+Success times: 0, worker_4, Episode step = 551, Episode = 24,
+    
+Success times: 1, worker_10, Episode step = 568, Episode = 24,
+    
+Step 600 of Ep 24, policy probs = [[ 0.10129265  0.21240129  0.40183556  0.28447059]], value logits = 1.5345E+01, inrwd = 5.0776E-01, exrwd = 0
+0 d 3 hr 39 min, step = 14564/290153, worker_14, Ep 25, a3c_loss = 6.4974E+01, entropy = 1.3796E+00, piloss = 1.3361E+00, vloss = 1.2725E+02, fwd = 2.6597E-02, inv = 8.8157E-02
+Step 200 of Ep 25, policy probs = [[ 0.1044254   0.19438575  0.39433748  0.30685136]], value logits = 1.5774E+01, inrwd = 3.3340E+00, exrwd = 0
+Step 400 of Ep 25, policy probs = [[ 0.07849715  0.28784522  0.30157793  0.33207971]], value logits = 1.6319E+01, inrwd = 1.3673E+00, exrwd = 0
+0 d 3 hr 43 min, step = 14639/295178, worker_6, Ep 25, a3c_loss = 7.9358E+01, entropy = 1.3794E+00, piloss = 2.5484E+00, vloss = 1.5359E+02, fwd = 4.2646E-02, inv = 7.1426E-01
+Step 600 of Ep 25, policy probs = [[ 0.04954297  0.44716027  0.2295737   0.27372307]], value logits = 1.6709E+01, inrwd = 7.2214E-01, exrwd = 0
+Success times: 2, worker_17, Episode step = 531, Episode = 25,
+    
+0 d 3 hr 48 min, step = 15044/300204, worker_7, Ep 26, a3c_loss = 1.1437E+02, entropy = 1.3756E+00, piloss = 6.3531E+00, vloss = 2.1600E+02, fwd = 6.9046E-02, inv = 1.0513E-01
+Step 200 of Ep 26, policy probs = [[ 0.03536745  0.3032681   0.33783728  0.32352707]], value logits = 1.7136E+01, inrwd = 2.6385E+00, exrwd = 0
+0 d 3 hr 52 min, step = 15104/305080, worker_6, Ep 26, a3c_loss = 1.3488E+02, entropy = 1.3746E+00, piloss = 7.8018E+00, vloss = 2.5412E+02, fwd = 8.5623E-02, inv = 7.7400E-02
+Step 400 of Ep 26, policy probs = [[ 0.03884077  0.2540018   0.37956995  0.32758752]], value logits = 1.7459E+01, inrwd = 1.4728E+00, exrwd = 0
+Success times: 3, worker_4, Episode step = 513, Episode = 26,
+    
+Success times: 4, worker_15, Episode step = 450, Episode = 26,
+    
+Success times: 5, worker_19, Episode step = 488, Episode = 26,
+    
+0 d 3 hr 56 min, step = 15569/310113, worker_18, Ep 26, a3c_loss = 7.3146E+01, entropy = 1.3758E+00, piloss = 1.7453E-01, vloss = 1.4591E+02, fwd = 1.6992E-02, inv = 1.8387E-01
+Step 600 of Ep 26, policy probs = [[ 0.05017388  0.27502519  0.38273534  0.29206556]], value logits = 1.7784E+01, inrwd = 1.8286E+00, exrwd = 0
+Success times: 6, worker_6, Episode step = 407, Episode = 26,
+    
+Step 200 of Ep 27, policy probs = [[ 0.08612405  0.17908247  0.42345294  0.31134054]], value logits = 1.8190E+01, inrwd = 2.5441E+00, exrwd = 0
+0 d 4 hr 1 min, step = 15809/315161, worker_12, Ep 27, a3c_loss = 9.1911E+01, entropy = 1.3768E+00, piloss = 2.1020E+00, vloss = 1.7959E+02, fwd = 3.9490E-02, inv = 1.1836E-02
+Step 400 of Ep 27, policy probs = [[ 0.07819974  0.16766717  0.426494    0.32763907]], value logits = 1.8402E+01, inrwd = 2.0609E+00, exrwd = 0
+0 d 4 hr 5 min, step = 16094/320110, worker_3, Ep 27, a3c_loss = 6.9380E+01, entropy = 1.3755E+00, piloss = -1.0750E+00, vloss = 1.4088E+02, fwd = 7.5038E-03, inv = 8.8207E-02
+Step 600 of Ep 27, policy probs = [[ 0.06638912  0.17786235  0.44331557  0.31243289]], value logits = 1.8658E+01, inrwd = 2.4473E+00, exrwd = 0
+0 d 4 hr 9 min, step = 16327/325082, worker_19, Ep 28, a3c_loss = 7.9164E+01, entropy = 1.3723E+00, piloss = -1.9305E-01, vloss = 1.5869E+02, fwd = 1.5469E-02, inv = 5.8520E-03
+Step 200 of Ep 28, policy probs = [[ 0.06064099  0.13104673  0.47574219  0.33257011]], value logits = 1.9023E+01, inrwd = 5.8029E-01, exrwd = 0
+0 d 4 hr 14 min, step = 16574/330078, worker_13, Ep 28, a3c_loss = 9.6431E+01, entropy = 1.3698E+00, piloss = 1.3835E+00, vloss = 1.9007E+02, fwd = 3.0064E-02, inv = 3.1233E-02
+Step 400 of Ep 28, policy probs = [[ 0.05122107  0.12133066  0.46891007  0.35853812]], value logits = 1.9350E+01, inrwd = 3.0014E+00, exrwd = 0
+Step 600 of Ep 28, policy probs = [[ 0.04677584  0.16307813  0.39834145  0.39180461]], value logits = 1.9609E+01, inrwd = 1.0742E+00, exrwd = 0
+0 d 4 hr 18 min, step = 16829/335156, worker_13, Ep 29, a3c_loss = 1.0026E+02, entropy = 1.3698E+00, piloss = 1.7438E+00, vloss = 1.9700E+02, fwd = 3.2760E-02, inv = 4.7500E-03
+Step 200 of Ep 29, policy probs = [[ 0.04819736  0.15003896  0.43265226  0.36911142]], value logits = 1.9937E+01, inrwd = 2.4920E+00, exrwd = 0
+0 d 4 hr 23 min, step = 17069/340084, worker_14, Ep 29, a3c_loss = 1.0176E+02, entropy = 1.3708E+00, piloss = 1.2228E+00, vloss = 2.0104E+02, fwd = 3.0857E-02, inv = 4.1795E-02
+Step 400 of Ep 29, policy probs = [[ 0.0388625   0.14758609  0.40089184  0.41265953]], value logits = 2.0197E+01, inrwd = 9.7034E-01, exrwd = 0
+0 d 4 hr 27 min, step = 17339/345020, worker_1, Ep 29, a3c_loss = 1.1185E+02, entropy = 1.3694E+00, piloss = 2.0305E+00, vloss = 2.1961E+02, fwd = 4.1116E-02, inv = 1.1415E-03
+Step 600 of Ep 29, policy probs = [[ 0.03498509  0.1495218   0.38999924  0.4254939 ]], value logits = 2.0385E+01, inrwd = 6.4518E-01, exrwd = 0
+0 d 4 hr 31 min, step = 17534/350000, worker_15, Ep 30, a3c_loss = 9.5305E+01, entropy = 1.3691E+00, piloss = -2.5060E-01, vloss = 1.9108E+02, fwd = 2.0298E-02, inv = 4.8993E-01
+Step 200 of Ep 30, policy probs = [[ 0.03432667  0.13557744  0.4171651   0.41293076]], value logits = 2.0712E+01, inrwd = 3.2470E+00, exrwd = 0
+Step 400 of Ep 30, policy probs = [[ 0.03143119  0.13492635  0.39463979  0.43900266]], value logits = 2.0891E+01, inrwd = 1.8874E+00, exrwd = 0
+0 d 4 hr 36 min, step = 17714/355173, worker_9, Ep 30, a3c_loss = 9.6796E+01, entropy = 1.3672E+00, piloss = -3.4426E-01, vloss = 1.9425E+02, fwd = 1.7282E-02, inv = 4.9478E-02
+Step 600 of Ep 30, policy probs = [[ 0.02736714  0.12445392  0.41363281  0.43454617]], value logits = 2.1048E+01, inrwd = 6.5607E-01, exrwd = 0
+0 d 4 hr 41 min, step = 18074/360131, worker_13, Ep 31, a3c_loss = 1.0055E+02, entropy = 1.3642E+00, piloss = -1.0935E-01, vloss = 2.0129E+02, fwd = 1.9753E-02, inv = 2.8421E-04
+Step 200 of Ep 31, policy probs = [[ 0.02309121  0.10390991  0.44706634  0.4259325 ]], value logits = 2.1270E+01, inrwd = 2.3290E+00, exrwd = 0
+0 d 4 hr 45 min, step = 18314/365014, worker_0, Ep 31, a3c_loss = 9.6858E+01, entropy = 1.3626E+00, piloss = -8.2327E-01, vloss = 1.9533E+02, fwd = 1.2471E-02, inv = 4.7623E-02
+Step 400 of Ep 31, policy probs = [[ 0.02125092  0.1013411   0.44544926  0.43195876]], value logits = 2.1358E+01, inrwd = 1.6962E+00, exrwd = 0
+0 d 4 hr 49 min, step = 18569/370011, worker_14, Ep 31, a3c_loss = 9.6116E+01, entropy = 1.3624E+00, piloss = -1.0239E+00, vloss = 1.9425E+02, fwd = 1.3995E-02, inv = 3.7427E-02
+Step 600 of Ep 31, policy probs = [[ 0.01969989  0.10484067  0.41005906  0.46540031]], value logits = 2.1463E+01, inrwd = 1.0138E+00, exrwd = 0
+Step 200 of Ep 32, policy probs = [[ 0.01939899  0.09160883  0.4498547   0.43913752]], value logits = 2.1544E+01, inrwd = 1.2265E+00, exrwd = 0
+0 d 4 hr 54 min, step = 18809/375031, worker_7, Ep 32, a3c_loss = 1.0572E+02, entropy = 1.3612E+00, piloss = -1.3874E-02, vloss = 2.1144E+02, fwd = 2.3349E-02, inv = 6.1801E-02
+Step 400 of Ep 32, policy probs = [[ 0.02001138  0.09709056  0.45806196  0.42483613]], value logits = 2.1636E+01, inrwd = 1.0481E+00, exrwd = 0
+0 d 4 hr 58 min, step = 18995/380012, worker_17, Ep 32, a3c_loss = 1.0484E+02, entropy = 1.3616E+00, piloss = -2.5156E-01, vloss = 2.1016E+02, fwd = 1.7936E-02, inv = 7.9543E-03
+Step 600 of Ep 32, policy probs = [[ 0.01745738  0.09912477  0.42371392  0.45970395]], value logits = 2.1591E+01, inrwd = 1.0715E+00, exrwd = 0
+0 d 5 hr 2 min, step = 19364/385077, worker_8, Ep 33, a3c_loss = 1.0116E+02, entropy = 1.3600E+00, piloss = -5.7793E-01, vloss = 2.0345E+02, fwd = 1.9210E-02, inv = 1.1313E-02
+Step 200 of Ep 33, policy probs = [[ 0.01589251  0.0823054   0.42922464  0.47257745]], value logits = 2.1587E+01, inrwd = 4.2509E+00, exrwd = 0
+0 d 5 hr 7 min, step = 19557/390148, worker_10, Ep 33, a3c_loss = 1.0543E+02, entropy = 1.3592E+00, piloss = 3.9426E-02, vloss = 2.1075E+02, fwd = 1.9760E-02, inv = 6.4081E-04
+Step 400 of Ep 33, policy probs = [[ 0.01497774  0.08340079  0.41981921  0.48180231]], value logits = 2.1438E+01, inrwd = 4.9162E+00, exrwd = 0
+Step 600 of Ep 33, policy probs = [[ 0.01502158  0.08763293  0.38378581  0.51355976]], value logits = 2.1224E+01, inrwd = 2.0009E+00, exrwd = 0
+0 d 5 hr 11 min, step = 19829/395150, worker_5, Ep 34, a3c_loss = 9.3241E+01, entropy = 1.3589E+00, piloss = -9.8171E-01, vloss = 1.8842E+02, fwd = 1.1311E-02, inv = 7.7487E-04
+Step 200 of Ep 34, policy probs = [[ 0.01486445  0.07831674  0.43526462  0.47155422]], value logits = 2.1092E+01, inrwd = 1.0584E+00, exrwd = 0
+0 d 5 hr 16 min, step = 19064/400058, worker_2, Ep 32, a3c_loss = 9.4631E+01, entropy = 1.3593E+00, piloss = -6.2293E-01, vloss = 1.9048E+02, fwd = 1.6081E-02, inv = 5.6552E-04
+Step 400 of Ep 34, policy probs = [[ 0.01482734  0.10371278  0.40011266  0.48134726]], value logits = 2.0480E+01, inrwd = 1.5489E+00, exrwd = 0
+0 d 5 hr 20 min, step = 20324/405011, worker_18, Ep 34, a3c_loss = 8.5730E+01, entropy = 1.3622E+00, piloss = -9.6067E-01, vloss = 1.7336E+02, fwd = 1.0930E-02, inv = 6.1600E-03
+Step 600 of Ep 34, policy probs = [[ 0.01415128  0.12276599  0.44388497  0.4191978 ]], value logits = 2.0050E+01, inrwd = 1.1679E+00, exrwd = 0
+0 d 5 hr 25 min, step = 20609/410090, worker_13, Ep 35, a3c_loss = 8.3204E+01, entropy = 1.3630E+00, piloss = -6.8009E-01, vloss = 1.6774E+02, fwd = 1.2617E-02, inv = 2.3182E-02
+Step 200 of Ep 35, policy probs = [[ 0.01869584  0.10957012  0.47421879  0.39751518]], value logits = 1.9731E+01, inrwd = 3.2687E+00, exrwd = 0
+Step 400 of Ep 35, policy probs = [[ 0.01906574  0.11286446  0.43956596  0.42850381]], value logits = 1.9477E+01, inrwd = 3.7956E+00, exrwd = 0
+0 d 5 hr 29 min, step = 20864/415054, worker_3, Ep 35, a3c_loss = 7.9368E+01, entropy = 1.3635E+00, piloss = -8.0550E-01, vloss = 1.6032E+02, fwd = 1.1724E-02, inv = 8.2066E-02
+Step 600 of Ep 35, policy probs = [[ 0.0178145   0.12123735  0.4470652   0.41388297]], value logits = 1.9269E+01, inrwd = 1.5189E+00, exrwd = 0
+0 d 5 hr 34 min, step = 21074/420072, worker_7, Ep 36, a3c_loss = 8.1975E+01, entropy = 1.3630E+00, piloss = -2.8035E-01, vloss = 1.6448E+02, fwd = 1.6360E-02, inv = 2.1305E-02
+Step 200 of Ep 36, policy probs = [[ 0.01930399  0.13498388  0.44742179  0.39829037]], value logits = 1.9098E+01, inrwd = 1.0952E+00, exrwd = 0
+0 d 5 hr 38 min, step = 21344/425206, worker_18, Ep 36, a3c_loss = 7.3736E+01, entropy = 1.3666E+00, piloss = -8.2221E-01, vloss = 1.4909E+02, fwd = 1.0599E-02, inv = 6.9853E-02
+Step 400 of Ep 36, policy probs = [[ 0.02518546  0.19117987  0.44974193  0.33389273]], value logits = 1.8580E+01, inrwd = 8.1838E-01, exrwd = 0
+Success times: 7, worker_12, Episode step = 549, Episode = 36,
+    
+Success times: 8, worker_17, Episode step = 540, Episode = 36,
+    
+Step 600 of Ep 36, policy probs = [[ 0.02401317  0.21224341  0.45996398  0.30377951]], value logits = 1.8333E+01, inrwd = 2.2623E+00, exrwd = 0
+0 d 5 hr 42 min, step = 21614/430030, worker_13, Ep 37, a3c_loss = 7.1965E+01, entropy = 1.3680E+00, piloss = 8.1519E-01, vloss = 1.4227E+02, fwd = 1.2360E-02, inv = 2.7259E-03
+Success times: 9, worker_7, Episode step = 588, Episode = 36,
+    
+Step 200 of Ep 37, policy probs = [[ 0.02835887  0.18747076  0.38978264  0.39438781]], value logits = 1.8179E+01, inrwd = 8.4468E-01, exrwd = 0
+0 d 5 hr 47 min, step = 21869/435181, worker_13, Ep 37, a3c_loss = 6.8235E+01, entropy = 1.3705E+00, piloss = -8.6248E-01, vloss = 1.3817E+02, fwd = 1.0309E-02, inv = 9.5670E-02
+Step 400 of Ep 37, policy probs = [[ 0.02624065  0.20940542  0.38826981  0.37608418]], value logits = 1.8030E+01, inrwd = 4.6840E-01, exrwd = 0
+Success times: 10, worker_12, Episode step = 494, Episode = 37,
+    
+0 d 5 hr 51 min, step = 22117/440144, worker_12, Ep 38, a3c_loss = 8.8377E+01, entropy = 1.3704E+00, piloss = 2.0924E+00, vloss = 1.7254E+02, fwd = 3.1328E-02, inv = 2.8391E-04
+Step 600 of Ep 37, policy probs = [[ 0.02504073  0.2315682   0.39448479  0.34890625]], value logits = 1.7951E+01, inrwd = 6.6233E-01, exrwd = 0
+0 d 5 hr 56 min, step = 22349/445162, worker_18, Ep 38, a3c_loss = 7.9782E+01, entropy = 1.3710E+00, piloss = 9.8430E-01, vloss = 1.5757E+02, fwd = 2.5698E-02, inv = 6.1346E-03
+Step 200 of Ep 38, policy probs = [[ 0.02582175  0.22482008  0.38991857  0.35943964]], value logits = 1.7911E+01, inrwd = 5.2102E-01, exrwd = 0
+Success times: 11, worker_6, Episode step = 517, Episode = 37,
+    
+Step 400 of Ep 38, policy probs = [[ 0.02590984  0.24581377  0.38420847  0.3440679 ]], value logits = 1.7770E+01, inrwd = 9.8117E-01, exrwd = 0
+0 d 6 hr 0 min, step = 22649/450143, worker_1, Ep 38, a3c_loss = 7.5033E+01, entropy = 1.3721E+00, piloss = 5.1482E-01, vloss = 1.4901E+02, fwd = 2.0119E-02, inv = 8.9724E-03
+Success times: 12, worker_4, Episode step = 560, Episode = 38,
+    
+Success times: 13, worker_15, Episode step = 591, Episode = 38,
+    
+Success times: 14, worker_3, Episode step = 567, Episode = 38,
+    
+Step 600 of Ep 38, policy probs = [[ 0.02725844  0.24926069  0.39916435  0.3243165 ]], value logits = 1.7790E+01, inrwd = 5.5531E-01, exrwd = 0
+0 d 6 hr 5 min, step = 22820/455048, worker_15, Ep 39, a3c_loss = 6.8965E+01, entropy = 1.3718E+00, piloss = -3.3454E-01, vloss = 1.3857E+02, fwd = 1.5097E-02, inv = 6.0961E-03
+Step 200 of Ep 39, policy probs = [[ 0.0274709   0.23556621  0.40712631  0.32983661]], value logits = 1.7790E+01, inrwd = 7.7528E-01, exrwd = 0
+Success times: 15, worker_12, Episode step = 383, Episode = 39,
+    
+Success times: 16, worker_6, Episode step = 433, Episode = 38,
+    
+Success times: 17, worker_4, Episode step = 419, Episode = 39,
+    
+0 d 6 hr 9 min, step = 23117/460014, worker_4, Ep 40, a3c_loss = 8.0873E+01, entropy = 1.3687E+00, piloss = 1.3335E+00, vloss = 1.5905E+02, fwd = 3.6023E-02, inv = 4.9952E-03
+Success times: 18, worker_17, Episode step = 423, Episode = 39,
+    
+Step 400 of Ep 39, policy probs = [[ 0.0325946   0.19827591  0.49211851  0.27701095]], value logits = 1.7779E+01, inrwd = 9.4514E-01, exrwd = 0
+Success times: 19, worker_14, Episode step = 503, Episode = 39,
+    
+0 d 6 hr 13 min, step = 23354/465080, worker_0, Ep 39, a3c_loss = 6.6568E+01, entropy = 1.3662E+00, piloss = -5.6352E-01, vloss = 1.3424E+02, fwd = 1.1742E-02, inv = 6.0810E-01
+Step 600 of Ep 39, policy probs = [[ 0.02922816  0.18150315  0.61256361  0.17670509]], value logits = 1.7359E+01, inrwd = 1.7092E+00, exrwd = 0
+Step 200 of Ep 40, policy probs = [[ 0.03112771  0.18512198  0.66999632  0.11375396]], value logits = 1.6434E+01, inrwd = 1.7135E+00, exrwd = 0
+0 d 6 hr 18 min, step = 23609/470158, worker_0, Ep 40, a3c_loss = 5.5943E+01, entropy = 1.3562E+00, piloss = -7.0430E-01, vloss = 1.1327E+02, fwd = 1.1242E-02, inv = 1.8459E-02
+Step 400 of Ep 40, policy probs = [[ 0.05128594  0.11178711  0.68373269  0.15319423]], value logits = 1.5535E+01, inrwd = 5.4395E-01, exrwd = 0
+0 d 6 hr 22 min, step = 23802/475066, worker_10, Ep 40, a3c_loss = 4.8368E+01, entropy = 1.3608E+00, piloss = -4.2558E-01, vloss = 9.7559E+01, fwd = 1.0264E-02, inv = 5.1222E-02
+Step 600 of Ep 40, policy probs = [[ 0.08128501  0.21474333  0.41474912  0.28922245]], value logits = 1.4777E+01, inrwd = 6.6135E-01, exrwd = 0
+0 d 6 hr 26 min, step = 24080/480100, worker_15, Ep 41, a3c_loss = 4.9664E+01, entropy = 1.3768E+00, piloss = -1.0104E-01, vloss = 9.9502E+01, fwd = 1.6885E-02, inv = 2.7446E-01
+Step 200 of Ep 41, policy probs = [[ 0.06465629  0.42802706  0.2800701   0.22724664]], value logits = 1.5030E+01, inrwd = 1.4431E+00, exrwd = 0
+0 d 6 hr 31 min, step = 24390/485158, worker_12, Ep 42, a3c_loss = 6.1526E+01, entropy = 1.3764E+00, piloss = 1.4652E+00, vloss = 1.2009E+02, fwd = 3.1581E-02, inv = 9.8603E-03
+Step 400 of Ep 41, policy probs = [[ 0.05931236  0.46132138  0.25975466  0.21961163]], value logits = 1.5374E+01, inrwd = 1.4915E+00, exrwd = 0
+Success times: 20, worker_16, Episode step = 447, Episode = 41,
+    
+Success times: 21, worker_5, Episode step = 543, Episode = 41,
+    
+Step 600 of Ep 41, policy probs = [[ 0.07674346  0.4637756   0.24350114  0.21597977]], value logits = 1.5916E+01, inrwd = 1.6003E+00, exrwd = 0
+0 d 6 hr 35 min, step = 24548/490202, worker_17, Ep 42, a3c_loss = 6.0886E+01, entropy = 1.3750E+00, piloss = 4.2584E-01, vloss = 1.2089E+02, fwd = 1.8331E-02, inv = 3.8713E-02
+Success times: 22, worker_12, Episode step = 578, Episode = 42,
+    
+Step 200 of Ep 42, policy probs = [[ 0.09332553  0.41406959  0.28405315  0.20855169]], value logits = 1.6376E+01, inrwd = 1.1054E+00, exrwd = 0
+Success times: 23, worker_17, Episode step = 456, Episode = 42,
+    
+0 d 6 hr 40 min, step = 23549/495041, worker_2, Ep 40, a3c_loss = 6.0754E+01, entropy = 1.3798E+00, piloss = -7.9331E-02, vloss = 1.2164E+02, fwd = 1.6197E-02, inv = 7.1903E-03
+Step 400 of Ep 42, policy probs = [[ 0.1021712   0.40159759  0.28073478  0.21549645]], value logits = 1.6574E+01, inrwd = 1.0635E+00, exrwd = 0
+Success times: 24, worker_0, Episode step = 446, Episode = 42,
+    
+Success times: 25, worker_3, Episode step = 502, Episode = 42,
+    
+Success times: 26, worker_14, Episode step = 561, Episode = 42,
+    
+0 d 6 hr 44 min, step = 25143/500198, worker_3, Ep 43, a3c_loss = 9.2561E+01, entropy = 1.3852E+00, piloss = 4.4352E+00, vloss = 1.7622E+02, fwd = 4.7924E-02, inv = 7.9346E-05
+Success times: 27, worker_9, Episode step = 451, Episode = 42,
+    
+Success times: 28, worker_7, Episode step = 579, Episode = 42,
+    
+Success times: 29, worker_12, Episode step = 453, Episode = 43,
+    
+Success times: 30, worker_4, Episode step = 404, Episode = 43,
+    
+Step 200 of Ep 43, policy probs = [[ 0.18250318  0.25922313  0.33296406  0.22530964]], value logits = 1.6822E+01, inrwd = 2.4891E+00, exrwd = 0
+0 d 6 hr 48 min, step = 25357/505028, worker_19, Ep 43, a3c_loss = 6.3500E+01, entropy = 1.3854E+00, piloss = -1.6661E-02, vloss = 1.2701E+02, fwd = 2.0590E-02, inv = 1.3385E-01
+Step 400 of Ep 43, policy probs = [[ 0.24154519  0.27208251  0.24988811  0.23648426]], value logits = 1.6644E+01, inrwd = 2.1497E+00, exrwd = 0
+0 d 6 hr 53 min, step = 25500/510188, worker_9, Ep 43, a3c_loss = 6.4590E+01, entropy = 1.3854E+00, piloss = 3.6076E-01, vloss = 1.2843E+02, fwd = 1.9142E-02, inv = 1.2342E+00
+Step 600 of Ep 43, policy probs = [[ 0.22248337  0.25129655  0.2118573   0.3143627 ]], value logits = 1.6602E+01, inrwd = 1.2966E+00, exrwd = 0
+Step 200 of Ep 44, policy probs = [[ 0.20542634  0.33503726  0.18146192  0.2780745 ]], value logits = 1.6673E+01, inrwd = 1.7632E+00, exrwd = 0
+0 d 6 hr 57 min, step = 24494/515057, worker_2, Ep 41, a3c_loss = 6.3728E+01, entropy = 1.3854E+00, piloss = -1.0150E-01, vloss = 1.2763E+02, fwd = 1.7803E-02, inv = 2.1900E-02
+Step 400 of Ep 44, policy probs = [[ 0.15230779  0.31955618  0.24278688  0.28534916]], value logits = 1.6084E+01, inrwd = 7.2843E-01, exrwd = 0
+0 d 7 hr 2 min, step = 26067/520132, worker_10, Ep 44, a3c_loss = 5.1110E+01, entropy = 1.3837E+00, piloss = -8.9677E-01, vloss = 1.0399E+02, fwd = 7.6480E-03, inv = 4.1174E-04
+Step 600 of Ep 44, policy probs = [[ 0.14527206  0.30827582  0.22745644  0.31899565]], value logits = 1.5660E+01, inrwd = 1.2809E+00, exrwd = 0
+0 d 7 hr 6 min, step = 26372/525194, worker_5, Ep 45, a3c_loss = 5.0321E+01, entropy = 1.3828E+00, piloss = -4.6142E-01, vloss = 1.0154E+02, fwd = 1.0114E-02, inv = 9.9175E-05
+Step 200 of Ep 45, policy probs = [[ 0.15189786  0.25608537  0.20554362  0.38647312]], value logits = 1.5194E+01, inrwd = 8.8785E-01, exrwd = 0
+0 d 7 hr 10 min, step = 26609/530116, worker_18, Ep 45, a3c_loss = 4.8217E+01, entropy = 1.3816E+00, piloss = -6.9697E-01, vloss = 9.7800E+01, fwd = 9.3649E-03, inv = 4.3098E-03
+Step 400 of Ep 45, policy probs = [[ 0.14395487  0.27246711  0.19823518  0.38534281]], value logits = 1.5326E+01, inrwd = 5.7529E-01, exrwd = 0
+Step 600 of Ep 45, policy probs = [[ 0.20771164  0.24699064  0.16812006  0.37717763]], value logits = 1.4994E+01, inrwd = 1.1919E+00, exrwd = 0
+0 d 7 hr 15 min, step = 26896/535154, worker_4, Ep 46, a3c_loss = 4.8626E+01, entropy = 1.3831E+00, piloss = -2.2602E-01, vloss = 9.7675E+01, fwd = 1.0745E-02, inv = 2.9930E-01
+Step 200 of Ep 46, policy probs = [[ 0.37431517  0.15752444  0.12753692  0.34062353]], value logits = 1.5627E+01, inrwd = 6.9082E-01, exrwd = 0
+0 d 7 hr 19 min, step = 27149/540154, worker_1, Ep 46, a3c_loss = 5.6844E+01, entropy = 1.3770E+00, piloss = -4.1448E-02, vloss = 1.1374E+02, fwd = 1.7110E-02, inv = 9.8035E-02
+Step 400 of Ep 46, policy probs = [[ 0.57537806  0.10194368  0.09023509  0.2324432 ]], value logits = 1.6315E+01, inrwd = 1.4386E+00, exrwd = 0
+0 d 7 hr 24 min, step = 27385/545070, worker_0, Ep 46, a3c_loss = 6.4377E+01, entropy = 1.3598E+00, piloss = 2.9703E-01, vloss = 1.2813E+02, fwd = 1.7726E-02, inv = 2.9018E-01
+Step 600 of Ep 46, policy probs = [[ 0.64926058  0.09493255  0.08414928  0.17165753]], value logits = 1.6711E+01, inrwd = 2.1338E+00, exrwd = 0
+0 d 7 hr 28 min, step = 27648/550114, worker_3, Ep 47, a3c_loss = 6.5181E+01, entropy = 1.3677E+00, piloss = 2.8042E-02, vloss = 1.3028E+02, fwd = 1.7105E-02, inv = 2.1058E-01
+Step 200 of Ep 47, policy probs = [[ 0.57210284  0.1219147   0.11963893  0.18634355]], value logits = 1.7163E+01, inrwd = 1.7427E+00, exrwd = 0
+Step 400 of Ep 47, policy probs = [[ 0.56173372  0.11751837  0.11953952  0.20120837]], value logits = 1.7331E+01, inrwd = 1.3320E+00, exrwd = 0
+0 d 7 hr 32 min, step = 27914/555012, worker_13, Ep 47, a3c_loss = 6.8586E+01, entropy = 1.3711E+00, piloss = 1.9519E-01, vloss = 1.3675E+02, fwd = 1.6829E-02, inv = 1.4575E-01
+Step 600 of Ep 47, policy probs = [[ 0.54792279  0.10676425  0.12497589  0.22033711]], value logits = 1.7372E+01, inrwd = 1.6107E+00, exrwd = 0
+0 d 7 hr 36 min, step = 28229/560000, worker_11, Ep 48, a3c_loss = 9.3862E+01, entropy = 1.3737E+00, piloss = 3.5241E+00, vloss = 1.8065E+02, fwd = 4.6054E-02, inv = 1.1750E-02
+Step 200 of Ep 48, policy probs = [[ 0.47320628  0.11399454  0.19267873  0.22012053]], value logits = 1.7663E+01, inrwd = 1.9854E+00, exrwd = 0
+0 d 7 hr 41 min, step = 28454/565096, worker_8, Ep 48, a3c_loss = 7.0168E+01, entropy = 1.3791E+00, piloss = -4.0845E-02, vloss = 1.4039E+02, fwd = 1.6768E-02, inv = 1.0389E-02
+Step 400 of Ep 48, policy probs = [[ 0.43350634  0.11075374  0.2041622   0.25157771]], value logits = 1.7769E+01, inrwd = 6.6943E-01, exrwd = 0
+0 d 7 hr 45 min, step = 28649/570046, worker_1, Ep 48, a3c_loss = 6.8914E+01, entropy = 1.3780E+00, piloss = -1.3009E-01, vloss = 1.3806E+02, fwd = 1.7902E-02, inv = 1.1730E+00
+Step 600 of Ep 48, policy probs = [[ 0.43060535  0.09649374  0.19191524  0.28098568]], value logits = 1.7696E+01, inrwd = 2.9407E+00, exrwd = 0
+Step 200 of Ep 49, policy probs = [[ 0.38083711  0.11865172  0.25488615  0.24562502]], value logits = 1.8064E+01, inrwd = 2.0455E+00, exrwd = 0
+0 d 7 hr 49 min, step = 28850/575036, worker_15, Ep 49, a3c_loss = 7.1368E+01, entropy = 1.3814E+00, piloss = -2.3898E-01, vloss = 1.4319E+02, fwd = 1.4454E-02, inv = 4.8508E-03
+Step 400 of Ep 49, policy probs = [[ 0.39982507  0.09802766  0.24541654  0.25673079]], value logits = 1.8025E+01, inrwd = 8.3800E-01, exrwd = 0
+0 d 7 hr 54 min, step = 29204/580044, worker_8, Ep 49, a3c_loss = 6.7374E+01, entropy = 1.3788E+00, piloss = -6.5158E-01, vloss = 1.3602E+02, fwd = 1.1732E-02, inv = 3.9830E-02
+Step 600 of Ep 49, policy probs = [[ 0.40093771  0.0781899   0.23357227  0.28730008]], value logits = 1.7895E+01, inrwd = 1.3303E+00, exrwd = 0
+0 d 7 hr 58 min, step = 29429/585022, worker_13, Ep 50, a3c_loss = 8.5146E+01, entropy = 1.3782E+00, piloss = 1.8764E+00, vloss = 1.6651E+02, fwd = 3.4800E-02, inv = 9.4934E-04
+Step 200 of Ep 50, policy probs = [[ 0.34093553  0.06516482  0.26830471  0.32559493]], value logits = 1.7931E+01, inrwd = 2.8558E+00, exrwd = 0
+Step 400 of Ep 50, policy probs = [[ 0.33212492  0.06124201  0.25492328  0.35170987]], value logits = 1.7979E+01, inrwd = 2.8737E+00, exrwd = 0
+0 d 8 hr 3 min, step = 29666/590090, worker_16, Ep 50, a3c_loss = 6.6722E+01, entropy = 1.3773E+00, piloss = -7.5661E-01, vloss = 1.3493E+02, fwd = 1.1645E-02, inv = 6.8157E-02
+Step 600 of Ep 50, policy probs = [[ 0.35535666  0.05486536  0.23488557  0.35489237]], value logits = 1.7836E+01, inrwd = 1.0285E+00, exrwd = 0
+0 d 8 hr 7 min, step = 29913/595019, worker_3, Ep 51, a3c_loss = 9.3378E+01, entropy = 1.3762E+00, piloss = 2.9535E+00, vloss = 1.8082E+02, fwd = 4.4066E-02, inv = 9.4908E-05
+Step 200 of Ep 51, policy probs = [[ 0.32269898  0.05245869  0.26346585  0.36137643]], value logits = 1.8032E+01, inrwd = 1.0522E+00, exrwd = 0
+0 d 8 hr 11 min, step = 30148/600066, worker_14, Ep 51, a3c_loss = 7.6276E+01, entropy = 1.3765E+00, piloss = 5.0586E-01, vloss = 1.5151E+02, fwd = 2.3049E-02, inv = 7.5861E-01
+Step 400 of Ep 51, policy probs = [[ 0.31540442  0.05386829  0.25684583  0.37388146]], value logits = 1.8073E+01, inrwd = 1.3348E+00, exrwd = 0
+0 d 8 hr 17 min, step = 30421/605213, worker_4, Ep 52, a3c_loss = 6.6394E+01, entropy = 1.3749E+00, piloss = -6.9163E-01, vloss = 1.3414E+02, fwd = 1.1311E-02, inv = 8.2599E-02
+Step 600 of Ep 51, policy probs = [[ 0.35110289  0.04207852  0.20044237  0.4063763 ]], value logits = 1.7726E+01, inrwd = 1.4019E+00, exrwd = 0
+Step 200 of Ep 52, policy probs = [[ 0.39604107  0.02541387  0.15069722  0.4278478 ]], value logits = 1.6897E+01, inrwd = 7.5007E-01, exrwd = 0
+0 d 8 hr 22 min, step = 30661/610014, worker_4, Ep 53, a3c_loss = 6.8566E+01, entropy = 1.3692E+00, piloss = 1.8029E+00, vloss = 1.3350E+02, fwd = 2.2111E-02, inv = 5.2743E-05
+Step 400 of Ep 52, policy probs = [[ 0.39739057  0.0244577   0.18418765  0.39396411]], value logits = 1.6322E+01, inrwd = 8.0628E-01, exrwd = 0
+0 d 8 hr 27 min, step = 30851/615166, worker_7, Ep 52, a3c_loss = 5.5380E+01, entropy = 1.3695E+00, piloss = -4.5952E-01, vloss = 1.1165E+02, fwd = 1.1938E-02, inv = 1.6336E-01
+Step 600 of Ep 52, policy probs = [[ 0.44269279  0.02925615  0.13403742  0.39401361]], value logits = 1.5853E+01, inrwd = 4.7142E-01, exrwd = 0
+0 d 8 hr 32 min, step = 31196/620205, worker_16, Ep 53, a3c_loss = 5.1691E+01, entropy = 1.3670E+00, piloss = -2.3254E-01, vloss = 1.0382E+02, fwd = 1.1890E-02, inv = 8.8927E-02
+Step 200 of Ep 53, policy probs = [[ 0.45923024  0.02517966  0.15197676  0.36361337]], value logits = 1.5363E+01, inrwd = 1.4329E+00, exrwd = 0
+0 d 8 hr 38 min, step = 31382/625114, worker_5, Ep 53, a3c_loss = 4.8765E+01, entropy = 1.3684E+00, piloss = -4.4328E-01, vloss = 9.8389E+01, fwd = 1.0144E-02, inv = 1.7993E-02
+Step 400 of Ep 53, policy probs = [[ 0.38929412  0.02943387  0.14995901  0.43131298]], value logits = 1.5176E+01, inrwd = 1.1150E+00, exrwd = 0
+Step 600 of Ep 53, policy probs = [[ 0.3860105   0.0221747   0.13942517  0.4523896 ]], value logits = 1.4439E+01, inrwd = 1.6732E+00, exrwd = 0
+0 d 8 hr 43 min, step = 31679/630047, worker_1, Ep 53, a3c_loss = 4.4658E+01, entropy = 1.3631E+00, piloss = -4.3148E-01, vloss = 9.0151E+01, fwd = 1.0555E-02, inv = 6.9928E-01
+Step 200 of Ep 54, policy probs = [[ 0.34864581  0.01192789  0.1148643   0.524562  ]], value logits = 1.3568E+01, inrwd = 8.5459E-01, exrwd = 0
+0 d 8 hr 48 min, step = 31912/635035, worker_19, Ep 54, a3c_loss = 3.9910E+01, entropy = 1.3574E+00, piloss = 1.1774E-01, vloss = 7.9558E+01, fwd = 1.3862E-02, inv = 5.5160E-01
+Step 400 of Ep 54, policy probs = [[ 0.39134991  0.00813415  0.06789464  0.53262126]], value logits = 1.3189E+01, inrwd = 8.3627E-01, exrwd = 0
+0 d 8 hr 54 min, step = 32167/640164, worker_19, Ep 54, a3c_loss = 3.1846E+01, entropy = 1.3572E+00, piloss = -4.4959E-01, vloss = 6.4564E+01, fwd = 8.4244E-03, inv = 6.3998E-01
+Step 600 of Ep 54, policy probs = [[ 0.53715175  0.00673839  0.09179071  0.36431912]], value logits = 1.1816E+01, inrwd = 7.0355E-01, exrwd = 0
+0 d 8 hr 59 min, step = 32431/645028, worker_4, Ep 55, a3c_loss = 2.6402E+01, entropy = 1.3568E+00, piloss = -1.4291E-01, vloss = 5.3062E+01, fwd = 8.8856E-03, inv = 3.5683E-01
+Step 200 of Ep 55, policy probs = [[ 0.47676188  0.0084548   0.12230249  0.39248085]], value logits = 1.1508E+01, inrwd = 4.7578E-01, exrwd = 0
+Step 400 of Ep 55, policy probs = [[ 0.39817044  0.00586918  0.09513815  0.50082225]], value logits = 1.0989E+01, inrwd = 8.4155E-01, exrwd = 0
+0 d 9 hr 4 min, step = 32642/650074, worker_5, Ep 55, a3c_loss = 2.5965E+01, entropy = 1.3587E+00, piloss = 3.9577E-02, vloss = 5.1823E+01, fwd = 1.1465E-02, inv = 7.8718E-01
+Step 600 of Ep 55, policy probs = [[ 0.39329952  0.00729573  0.09914215  0.50026256]], value logits = 1.0555E+01, inrwd = 4.6819E-01, exrwd = 0
+0 d 9 hr 10 min, step = 32879/655188, worker_18, Ep 55, a3c_loss = 1.9358E+01, entropy = 1.3590E+00, piloss = -4.8009E-01, vloss = 3.9648E+01, fwd = 5.5473E-03, inv = 6.9544E-01
+Step 200 of Ep 56, policy probs = [[ 0.39531687  0.01309482  0.14417924  0.44740903]], value logits = 9.9951E+00, inrwd = 1.2480E+00, exrwd = 0
+0 d 9 hr 15 min, step = 31896/660201, worker_6, Ep 54, a3c_loss = 2.3333E+01, entropy = 1.3679E+00, piloss = 1.3827E-01, vloss = 4.6362E+01, fwd = 1.1187E-02, inv = 1.6744E-02
+Step 400 of Ep 56, policy probs = [[ 0.37592864  0.0156411   0.17828819  0.4301421 ]], value logits = 1.0489E+01, inrwd = 1.3835E+00, exrwd = 0
+0 d 9 hr 20 min, step = 32121/665041, worker_6, Ep 55, a3c_loss = 2.8130E+01, entropy = 1.3677E+00, piloss = 9.2554E-01, vloss = 5.4382E+01, fwd = 1.9714E-02, inv = 7.2560E-04
+Step 600 of Ep 56, policy probs = [[ 0.33819833  0.0154233   0.1831577   0.46322069]], value logits = 1.0458E+01, inrwd = 8.8947E-01, exrwd = 0
+Step 200 of Ep 57, policy probs = [[ 0.26772988  0.01483793  0.21715043  0.50028181]], value logits = 1.0451E+01, inrwd = 1.2855E+00, exrwd = 0
+0 d 9 hr 26 min, step = 33691/670025, worker_4, Ep 58, a3c_loss = 2.6679E+01, entropy = 1.3646E+00, piloss = 4.3417E-01, vloss = 5.2463E+01, fwd = 1.4401E-02, inv = 1.4024E-04
+Step 400 of Ep 57, policy probs = [[ 0.26843405  0.01540419  0.23835628  0.47780541]], value logits = 1.0488E+01, inrwd = 1.6085E+00, exrwd = 0
+0 d 9 hr 31 min, step = 33869/675000, worker_17, Ep 58, a3c_loss = 2.2183E+01, entropy = 1.3680E+00, piloss = -3.6403E-01, vloss = 4.5067E+01, fwd = 7.2959E-03, inv = 1.7976E-04
+Step 600 of Ep 57, policy probs = [[ 0.25591111  0.01840753  0.38973257  0.33594871]], value logits = 1.0600E+01, inrwd = 1.1256E+00, exrwd = 0
+0 d 9 hr 36 min, step = 34199/680027, worker_1, Ep 58, a3c_loss = 2.5947E+01, entropy = 1.3669E+00, piloss = -6.1594E-01, vloss = 5.3099E+01, fwd = 5.6426E-03, inv = 2.2761E-03
+Step 200 of Ep 58, policy probs = [[ 0.16867101  0.0116593   0.26506042  0.5546093 ]], value logits = 1.2124E+01, inrwd = 1.0438E+00, exrwd = 0
+0 d 9 hr 42 min, step = 34458/685173, worker_3, Ep 58, a3c_loss = 2.9712E+01, entropy = 1.3626E+00, piloss = -1.8140E-01, vloss = 5.9761E+01, fwd = 8.8402E-03, inv = 3.2170E-02
+Step 400 of Ep 58, policy probs = [[ 0.15148625  0.01505795  0.285941    0.54751474]], value logits = 1.1879E+01, inrwd = 4.9343E-01, exrwd = 0
+Step 600 of Ep 58, policy probs = [[ 0.23081422  0.01496502  0.30657896  0.44764182]], value logits = 1.0878E+01, inrwd = 6.3483E-01, exrwd = 0
+0 d 9 hr 47 min, step = 34646/690152, worker_7, Ep 58, a3c_loss = 2.3442E+01, entropy = 1.3690E+00, piloss = -3.8985E-01, vloss = 4.7636E+01, fwd = 6.9716E-03, inv = 1.3449E-01
+Step 200 of Ep 59, policy probs = [[ 0.22580324  0.01423217  0.37508336  0.38488123]], value logits = 1.1193E+01, inrwd = 1.1226E+00, exrwd = 0
+0 d 9 hr 52 min, step = 34648/695132, worker_14, Ep 58, a3c_loss = 3.3832E+01, entropy = 1.3687E+00, piloss = 1.0049E+00, vloss = 6.5627E+01, fwd = 2.1082E-02, inv = 1.7798E+00
+Step 400 of Ep 59, policy probs = [[ 0.16660838  0.01505795  0.29495624  0.52337748]], value logits = 1.2495E+01, inrwd = 1.3306E+00, exrwd = 0
+0 d 9 hr 58 min, step = 35216/700069, worker_16, Ep 59, a3c_loss = 3.6811E+01, entropy = 1.3566E+00, piloss = 3.6030E-01, vloss = 7.2875E+01, fwd = 1.7501E-02, inv = 1.0609E+00
+Step 600 of Ep 59, policy probs = [[ 0.14369245  0.01193239  0.20634899  0.63802612]], value logits = 1.2690E+01, inrwd = 9.1378E-01, exrwd = 0
+Step 200 of Ep 60, policy probs = [[ 0.15296103  0.01404826  0.2808609   0.55212986]], value logits = 1.2147E+01, inrwd = 8.7549E-01, exrwd = 0
+0 d 10 hr 3 min, step = 35325/705190, worker_9, Ep 60, a3c_loss = 3.1457E+01, entropy = 1.3620E+00, piloss = -1.2088E-01, vloss = 6.3128E+01, fwd = 1.0407E-02, inv = 3.6782E-05
+Step 400 of Ep 60, policy probs = [[ 0.18419097  0.01867769  0.40604812  0.39108324]], value logits = 1.1216E+01, inrwd = 1.1555E+00, exrwd = 0
+0 d 10 hr 8 min, step = 35657/710086, worker_5, Ep 60, a3c_loss = 3.5341E+01, entropy = 1.3682E+00, piloss = 1.2720E+00, vloss = 6.8110E+01, fwd = 2.5469E-02, inv = 2.1689E-01
+Step 600 of Ep 60, policy probs = [[ 0.18293218  0.01719774  0.36523435  0.43463579]], value logits = 1.1597E+01, inrwd = 1.2024E+00, exrwd = 0
+0 d 10 hr 14 min, step = 35947/715092, worker_19, Ep 61, a3c_loss = 3.2932E+01, entropy = 1.3650E+00, piloss = 4.3267E-01, vloss = 6.4972E+01, fwd = 1.5865E-02, inv = 3.1426E-05
+Step 200 of Ep 61, policy probs = [[ 0.13108063  0.01853531  0.36057273  0.48981139]], value logits = 1.2035E+01, inrwd = 2.1817E+00, exrwd = 0
+0 d 10 hr 19 min, step = 36205/720000, worker_0, Ep 61, a3c_loss = 3.3500E+01, entropy = 1.3644E+00, piloss = 6.7657E-01, vloss = 6.5619E+01, fwd = 1.9614E-02, inv = 1.4498E-01
+Step 400 of Ep 61, policy probs = [[ 0.12898889  0.01738541  0.43291447  0.42071119]], value logits = 1.1674E+01, inrwd = 1.5947E+00, exrwd = 0
+Step 600 of Ep 61, policy probs = [[ 0.13020959  0.01588069  0.42708156  0.42682818]], value logits = 1.1715E+01, inrwd = 1.1555E+00, exrwd = 0
+0 d 10 hr 24 min, step = 36460/725071, worker_0, Ep 62, a3c_loss = 2.9890E+01, entropy = 1.3636E+00, piloss = 6.2907E-01, vloss = 5.8496E+01, fwd = 1.1500E-02, inv = 2.9087E-06
+Step 200 of Ep 62, policy probs = [[ 0.11755183  0.01612201  0.48387936  0.38244677]], value logits = 1.2229E+01, inrwd = 8.8226E-01, exrwd = 0
+0 d 10 hr 30 min, step = 36659/730106, worker_17, Ep 62, a3c_loss = 3.0591E+01, entropy = 1.3634E+00, piloss = -2.6310E-01, vloss = 6.1680E+01, fwd = 8.7651E-03, inv = 1.4274E-03
+Step 400 of Ep 62, policy probs = [[ 0.12202211  0.01621439  0.49564165  0.36612183]], value logits = 1.1997E+01, inrwd = 8.6939E-01, exrwd = 0
+0 d 10 hr 35 min, step = 36970/735193, worker_0, Ep 62, a3c_loss = 3.0358E+01, entropy = 1.3630E+00, piloss = -2.6912E-02, vloss = 6.0742E+01, fwd = 1.0912E-02, inv = 3.8316E-01
+Step 600 of Ep 62, policy probs = [[ 0.1133661   0.01596585  0.49793392  0.3727341 ]], value logits = 1.1980E+01, inrwd = 1.2569E+00, exrwd = 0
+0 d 10 hr 41 min, step = 37231/740210, worker_4, Ep 63, a3c_loss = 3.5391E+01, entropy = 1.3608E+00, piloss = 8.3094E-01, vloss = 6.9093E+01, fwd = 1.8171E-02, inv = 4.1544E-01
+Step 200 of Ep 63, policy probs = [[ 0.09253184  0.01639695  0.47175416  0.41931695]], value logits = 1.2188E+01, inrwd = 3.5143E-01, exrwd = 0
+Step 400 of Ep 63, policy probs = [[ 0.09440304  0.01737624  0.50622982  0.38199091]], value logits = 1.1833E+01, inrwd = 2.4495E+00, exrwd = 0
+0 d 10 hr 46 min, step = 37421/745060, worker_7, Ep 63, a3c_loss = 2.9068E+01, entropy = 1.3603E+00, piloss = -1.7973E-01, vloss = 5.8469E+01, fwd = 1.0348E-02, inv = 2.1682E-01
+Step 600 of Ep 63, policy probs = [[ 0.09645943  0.01594638  0.56285679  0.32473743]], value logits = 1.1723E+01, inrwd = 6.7967E-01, exrwd = 0
+0 d 10 hr 51 min, step = 37243/750111, worker_14, Ep 63, a3c_loss = 2.7186E+01, entropy = 1.3562E+00, piloss = -4.3351E-01, vloss = 5.5211E+01, fwd = 7.2174E-03, inv = 1.9573E-04
+Step 200 of Ep 64, policy probs = [[ 0.07377945  0.01472026  0.62364018  0.28786013]], value logits = 1.1483E+01, inrwd = 1.6047E+00, exrwd = 0
+0 d 10 hr 57 min, step = 36381/755069, worker_6, Ep 62, a3c_loss = 2.5453E+01, entropy = 1.3534E+00, piloss = -4.4309E-01, vloss = 5.1765E+01, fwd = 6.5478E-03, inv = 2.2271E-03
+Step 400 of Ep 64, policy probs = [[ 0.08072466  0.01202698  0.5968613   0.31038705]], value logits = 1.1034E+01, inrwd = 2.2177E+00, exrwd = 0
+0 d 11 hr 2 min, step = 38150/760069, worker_15, Ep 64, a3c_loss = 2.3457E+01, entropy = 1.3565E+00, piloss = -3.3062E-01, vloss = 4.7548E+01, fwd = 8.5214E-03, inv = 2.2265E-01
+Step 600 of Ep 64, policy probs = [[ 0.08943006  0.01332386  0.5754233   0.32182273]], value logits = 1.0779E+01, inrwd = 5.0405E-01, exrwd = 0
+Step 200 of Ep 65, policy probs = [[ 0.17430164  0.01032125  0.56384069  0.25153643]], value logits = 1.0135E+01, inrwd = 4.1290E-01, exrwd = 0
+0 d 11 hr 8 min, step = 38519/765084, worker_13, Ep 65, a3c_loss = 2.2673E+01, entropy = 1.3615E+00, piloss = -5.2380E-02, vloss = 4.5423E+01, fwd = 1.0425E-02, inv = 1.4198E-03
+Step 400 of Ep 65, policy probs = [[ 0.17354853  0.01099935  0.56614482  0.24930727]], value logits = 1.0022E+01, inrwd = 4.6897E-01, exrwd = 0
+0 d 11 hr 13 min, step = 38804/770047, worker_8, Ep 65, a3c_loss = 2.1071E+01, entropy = 1.3609E+00, piloss = -1.6906E-01, vloss = 4.2453E+01, fwd = 8.7995E-03, inv = 1.4560E+00
+Step 600 of Ep 65, policy probs = [[ 0.24328068  0.00939256  0.52870065  0.21862607]], value logits = 9.6859E+00, inrwd = 6.7861E-01, exrwd = 0
+0 d 11 hr 18 min, step = 38942/775000, worker_5, Ep 66, a3c_loss = 1.7640E+01, entropy = 1.3669E+00, piloss = -4.0017E-01, vloss = 3.6054E+01, fwd = 8.2687E-03, inv = 4.9096E-01
+Step 200 of Ep 66, policy probs = [[ 0.28882039  0.00874836  0.45724523  0.24518614]], value logits = 9.2156E+00, inrwd = 2.4994E+00, exrwd = 0
+0 d 11 hr 23 min, step = 39232/780033, worker_19, Ep 66, a3c_loss = 1.7666E+01, entropy = 1.3686E+00, piloss = -8.4544E-02, vloss = 3.5473E+01, fwd = 8.9784E-03, inv = 1.6485E-01
+Step 400 of Ep 66, policy probs = [[ 0.321055    0.00975413  0.42420033  0.24499054]], value logits = 9.2978E+00, inrwd = 5.5266E-01, exrwd = 0
+Step 600 of Ep 66, policy probs = [[ 0.43577507  0.00939302  0.37564972  0.17918219]], value logits = 9.2750E+00, inrwd = 1.5734E+00, exrwd = 0
+0 d 11 hr 29 min, step = 37806/785160, worker_6, Ep 64, a3c_loss = 1.7540E+01, entropy = 1.3654E+00, piloss = -1.1608E-01, vloss = 3.5286E+01, fwd = 8.6700E-03, inv = 6.5293E-01
+Step 200 of Ep 67, policy probs = [[ 0.35825032  0.0130286   0.40429068  0.22443041]], value logits = 9.5688E+00, inrwd = 3.8152E+00, exrwd = 0
+0 d 11 hr 34 min, step = 39692/790105, worker_5, Ep 67, a3c_loss = 1.7972E+01, entropy = 1.3687E+00, piloss = -5.1967E-01, vloss = 3.6957E+01, fwd = 5.5652E-03, inv = 2.7729E-03
+Step 400 of Ep 67, policy probs = [[ 0.36972702  0.01244009  0.40577868  0.21205422]], value logits = 9.6790E+00, inrwd = 8.9452E-01, exrwd = 0
+0 d 11 hr 40 min, step = 39885/795191, worker_9, Ep 67, a3c_loss = 1.8082E+01, entropy = 1.3679E+00, piloss = -2.8690E-01, vloss = 3.6711E+01, fwd = 7.5187E-03, inv = 7.1238E-01
+Step 600 of Ep 67, policy probs = [[ 0.39936388  0.01231365  0.40025207  0.18807031]], value logits = 9.5423E+00, inrwd = 1.8657E+00, exrwd = 0
+0 d 11 hr 45 min, step = 40263/800018, worker_3, Ep 68, a3c_loss = 1.8368E+01, entropy = 1.3669E+00, piloss = -2.2321E-01, vloss = 3.7155E+01, fwd = 8.8107E-03, inv = 6.8373E-04
+Step 200 of Ep 68, policy probs = [[ 0.35299915  0.01269326  0.45892924  0.17537838]], value logits = 9.6053E+00, inrwd = 5.5585E-01, exrwd = 0
+Step 400 of Ep 68, policy probs = [[ 0.32559416  0.01187303  0.50850797  0.1540249 ]], value logits = 9.3391E+00, inrwd = 9.2269E-01, exrwd = 0
+0 d 11 hr 51 min, step = 39853/805009, worker_14, Ep 67, a3c_loss = 1.6637E+01, entropy = 1.3632E+00, piloss = -2.8813E-01, vloss = 3.3823E+01, fwd = 6.3879E-03, inv = 1.0578E-01
+Step 600 of Ep 68, policy probs = [[ 0.33835799  0.0107262   0.52498335  0.12593244]], value logits = 9.0601E+00, inrwd = 7.8033E-01, exrwd = 0
+0 d 11 hr 58 min, step = 40685/810106, worker_15, Ep 69, a3c_loss = 1.6960E+01, entropy = 1.3561E+00, piloss = -1.7111E-01, vloss = 3.4235E+01, fwd = 9.4045E-03, inv = 5.2925E-03
+Step 200 of Ep 69, policy probs = [[ 0.23803541  0.01107735  0.64791703  0.10297018]], value logits = 8.8303E+00, inrwd = 1.5288E+00, exrwd = 0
+0 d 12 hr 4 min, step = 40946/815198, worker_7, Ep 69, a3c_loss = 1.4496E+01, entropy = 1.3532E+00, piloss = -2.9776E-01, vloss = 2.9561E+01, fwd = 5.6795E-03, inv = 1.0620E-03
+Step 400 of Ep 69, policy probs = [[ 0.26416001  0.01053548  0.62953186  0.09577264]], value logits = 8.5239E+00, inrwd = 1.1463E+00, exrwd = 0
+Step 600 of Ep 69, policy probs = [[ 0.32659078  0.00963751  0.57841182  0.08535994]], value logits = 8.2882E+00, inrwd = 5.5824E-01, exrwd = 0
+0 d 12 hr 11 min, step = 41204/820184, worker_17, Ep 70, a3c_loss = 1.3586E+01, entropy = 1.3554E+00, piloss = -1.5727E-01, vloss = 2.7460E+01, fwd = 7.0366E-03, inv = 4.3502E-01
+Step 200 of Ep 70, policy probs = [[ 0.35941991  0.00894505  0.54993713  0.081698  ]], value logits = 8.0522E+00, inrwd = 5.9654E-01, exrwd = 0
+0 d 12 hr 17 min, step = 41447/825171, worker_5, Ep 70, a3c_loss = 1.2386E+01, entropy = 1.3564E+00, piloss = -2.1892E-01, vloss = 2.5183E+01, fwd = 6.4050E-03, inv = 1.1296E-03
+Step 400 of Ep 70, policy probs = [[ 0.4107326   0.00957228  0.50430042  0.07539476]], value logits = 7.9835E+00, inrwd = 7.4159E-01, exrwd = 0
+0 d 12 hr 23 min, step = 41703/830008, worker_3, Ep 70, a3c_loss = 1.2706E+01, entropy = 1.3564E+00, piloss = 1.8599E-02, vloss = 2.5347E+01, fwd = 7.8770E-03, inv = 1.0048E+00
+Step 600 of Ep 70, policy probs = [[ 0.42778996  0.00938473  0.49660847  0.06621683]], value logits = 7.9516E+00, inrwd = 7.3979E-01, exrwd = 0
+0 d 12 hr 30 min, step = 42046/835102, worker_4, Ep 72, a3c_loss = 1.1278E+01, entropy = 1.3569E+00, piloss = -1.7591E-01, vloss = 2.2881E+01, fwd = 5.9470E-03, inv = 5.8378E-01
+Step 200 of Ep 71, policy probs = [[ 0.49175757  0.01161665  0.4234733   0.07315256]], value logits = 7.6193E+00, inrwd = 9.0176E-01, exrwd = 0
+Step 400 of Ep 71, policy probs = [[ 0.42439908  0.01081831  0.4705489   0.09423368]], value logits = 7.4838E+00, inrwd = 1.2466E+00, exrwd = 0
+0 d 12 hr 36 min, step = 42374/840157, worker_11, Ep 71, a3c_loss = 1.1214E+01, entropy = 1.3601E+00, piloss = -2.5968E-02, vloss = 2.2452E+01, fwd = 7.3413E-03, inv = 4.2347E-01
+Step 600 of Ep 71, policy probs = [[ 0.45462167  0.00995245  0.44632566  0.08910026]], value logits = 7.4259E+00, inrwd = 3.7948E-01, exrwd = 0
+0 d 12 hr 42 min, step = 42479/845017, worker_18, Ep 71, a3c_loss = 1.0274E+01, entropy = 1.3586E+00, piloss = -1.3243E-01, vloss = 2.0786E+01, fwd = 5.7391E-03, inv = 4.9106E-01
+Step 200 of Ep 72, policy probs = [[ 0.42909142  0.01082939  0.46084258  0.09923659]], value logits = 7.3245E+00, inrwd = 1.0784E+00, exrwd = 0
+0 d 12 hr 49 min, step = 42013/850138, worker_14, Ep 71, a3c_loss = 9.0433E+00, entropy = 1.3604E+00, piloss = -4.8868E-01, vloss = 1.9037E+01, fwd = 3.4119E-03, inv = 6.8971E-03
+Step 400 of Ep 72, policy probs = [[ 0.4105469   0.01025752  0.48288786  0.09630774]], value logits = 7.2063E+00, inrwd = 5.7646E-01, exrwd = 0
+0 d 12 hr 55 min, step = 41151/855191, worker_6, Ep 70, a3c_loss = 8.9441E+00, entropy = 1.3610E+00, piloss = -4.8242E-01, vloss = 1.8826E+01, fwd = 3.1880E-03, inv = 1.4495E-03
+Step 600 of Ep 72, policy probs = [[ 0.42806268  0.0102504   0.46093133  0.10075563]], value logits = 7.2024E+00, inrwd = 5.7699E-01, exrwd = 0
+Step 200 of Ep 73, policy probs = [[ 0.41871369  0.01096427  0.46215853  0.10816349]], value logits = 7.1348E+00, inrwd = 8.4818E-01, exrwd = 0
+0 d 13 hr 2 min, step = 43319/860143, worker_13, Ep 73, a3c_loss = 1.2179E+01, entropy = 1.3622E+00, piloss = 5.1042E-01, vloss = 2.3310E+01, fwd = 1.2643E-02, inv = 6.0583E-04
+Step 400 of Ep 73, policy probs = [[ 0.41189459  0.01161376  0.46544984  0.1110418 ]], value logits = 7.1130E+00, inrwd = 8.3043E-01, exrwd = 0
+0 d 13 hr 8 min, step = 43487/865168, worker_5, Ep 73, a3c_loss = 9.3748E+00, entropy = 1.3619E+00, piloss = -1.9727E-01, vloss = 1.9117E+01, fwd = 5.0320E-03, inv = 6.9887E-01
+Step 600 of Ep 73, policy probs = [[ 0.40686777  0.01131153  0.47044134  0.11137932]], value logits = 7.0478E+00, inrwd = 6.2398E-01, exrwd = 0
+0 d 13 hr 14 min, step = 43730/870033, worker_15, Ep 74, a3c_loss = 8.6081E+00, entropy = 1.3639E+00, piloss = -4.6824E-01, vloss = 1.8125E+01, fwd = 3.7210E-03, inv = 2.4023E-04
+Step 200 of Ep 74, policy probs = [[ 0.42260355  0.01334811  0.42791378  0.13613449]], value logits = 6.9945E+00, inrwd = 6.6657E-01, exrwd = 0
+0 d 13 hr 21 min, step = 44144/875052, worker_11, Ep 74, a3c_loss = 8.6516E+00, entropy = 1.3636E+00, piloss = -2.0163E-01, vloss = 1.7679E+01, fwd = 5.4084E-03, inv = 5.3727E-01
+Step 400 of Ep 74, policy probs = [[ 0.39973763  0.01224134  0.45655987  0.13146114]], value logits = 6.8634E+00, inrwd = 3.1290E-01, exrwd = 0
+Step 600 of Ep 74, policy probs = [[ 0.380337    0.01120432  0.46794006  0.14051862]], value logits = 6.7769E+00, inrwd = 5.0392E-01, exrwd = 0
+0 d 13 hr 27 min, step = 44324/880039, worker_13, Ep 74, a3c_loss = 8.3583E+00, entropy = 1.3637E+00, piloss = -1.7259E-01, vloss = 1.7035E+01, fwd = 5.2250E-03, inv = 1.5656E-01
+Step 200 of Ep 75, policy probs = [[ 0.36564475  0.01410849  0.4243004   0.19594637]], value logits = 6.7062E+00, inrwd = 9.4913E-01, exrwd = 0
+0 d 13 hr 33 min, step = 42576/885112, worker_6, Ep 72, a3c_loss = 9.0689E+00, entropy = 1.3674E+00, piloss = 9.8681E-02, vloss = 1.7913E+01, fwd = 7.7806E-03, inv = 1.3574E-01
+Step 400 of Ep 75, policy probs = [[ 0.35632852  0.01315353  0.42903152  0.20148644]], value logits = 6.7413E+00, inrwd = 7.4400E-01, exrwd = 0
+0 d 13 hr 40 min, step = 44765/890122, worker_15, Ep 75, a3c_loss = 9.1344E+00, entropy = 1.3696E+00, piloss = -5.8499E-03, vloss = 1.8253E+01, fwd = 6.6674E-03, inv = 1.0919E-01
+Step 600 of Ep 75, policy probs = [[ 0.3139081   0.01449154  0.41599512  0.25560528]], value logits = 6.8731E+00, inrwd = 4.2423E-01, exrwd = 0
+0 d 13 hr 46 min, step = 43056/895143, worker_6, Ep 73, a3c_loss = 1.6046E+01, entropy = 1.3713E+00, piloss = 1.3850E+00, vloss = 2.9294E+01, fwd = 1.6347E-02, inv = 9.7286E-04
+Step 200 of Ep 76, policy probs = [[ 0.30324259  0.02309735  0.40736479  0.26629528]], value logits = 7.5530E+00, inrwd = 6.3680E-01, exrwd = 0
+Step 400 of Ep 76, policy probs = [[ 0.31340599  0.02504779  0.36694771  0.29459849]], value logits = 7.6704E+00, inrwd = 1.6241E+00, exrwd = 0
+0 d 13 hr 53 min, step = 45341/900199, worker_12, Ep 77, a3c_loss = 2.5275E+01, entropy = 1.3716E+00, piloss = 3.0671E+00, vloss = 4.4389E+01, fwd = 3.7523E-02, inv = 3.5483E+00
+Step 600 of Ep 76, policy probs = [[ 0.26387653  0.03021858  0.38359588  0.32230905]], value logits = 8.3674E+00, inrwd = 1.9710E+00, exrwd = 0
+0 d 13 hr 59 min, step = 43536/905102, worker_6, Ep 74, a3c_loss = 3.0043E+01, entropy = 1.3723E+00, piloss = 3.1278E+00, vloss = 5.3803E+01, fwd = 4.0006E-02, inv = 8.6138E-01
+Step 200 of Ep 77, policy probs = [[ 0.21786293  0.04781692  0.416278    0.31804207]], value logits = 9.2398E+00, inrwd = 9.5113E-01, exrwd = 0
+0 d 14 hr 6 min, step = 43229/910000, worker_2, Ep 73, a3c_loss = 1.8405E+01, entropy = 1.3734E+00, piloss = 6.5745E-02, vloss = 3.6650E+01, fwd = 8.7869E-03, inv = 2.3847E-04
+Step 400 of Ep 77, policy probs = [[ 0.19826369  0.05166391  0.39237037  0.35770202]], value logits = 9.3479E+00, inrwd = 6.8013E-01, exrwd = 0
+0 d 14 hr 12 min, step = 45768/915008, worker_3, Ep 77, a3c_loss = 1.9019E+01, entropy = 1.3734E+00, piloss = 2.4209E-01, vloss = 3.7526E+01, fwd = 1.0946E-02, inv = 1.1089E-02
+Step 600 of Ep 77, policy probs = [[ 0.20064373  0.05020282  0.42763081  0.32152265]], value logits = 9.3186E+00, inrwd = 4.5976E-01, exrwd = 0
+Step 200 of Ep 78, policy probs = [[ 0.21121891  0.06110116  0.31364951  0.41403037]], value logits = 9.8736E+00, inrwd = 2.7482E+00, exrwd = 0
+0 d 14 hr 19 min, step = 45358/920100, worker_14, Ep 76, a3c_loss = 2.4136E+01, entropy = 1.3761E+00, piloss = 7.5868E-01, vloss = 4.6726E+01, fwd = 1.6811E-02, inv = 3.4995E-03
+Step 400 of Ep 78, policy probs = [[ 0.19165953  0.07496814  0.23931409  0.49405819]], value logits = 1.0124E+01, inrwd = 9.0189E-01, exrwd = 0
+0 d 14 hr 25 min, step = 44496/925128, worker_6, Ep 75, a3c_loss = 2.1327E+01, entropy = 1.3636E+00, piloss = -3.2852E-01, vloss = 4.3285E+01, fwd = 7.4374E-03, inv = 4.9112E-01
+Step 600 of Ep 78, policy probs = [[ 0.1182355   0.07448474  0.11673034  0.69054937]], value logits = 1.0677E+01, inrwd = 8.4651E-01, exrwd = 0
+0 d 14 hr 32 min, step = 46822/930158, worker_19, Ep 79, a3c_loss = 2.2862E+01, entropy = 1.3592E+00, piloss = -4.0208E-01, vloss = 4.6502E+01, fwd = 7.1007E-03, inv = 9.4462E-04
+Step 200 of Ep 79, policy probs = [[ 0.15894879  0.06827445  0.11784489  0.65493184]], value logits = 1.0943E+01, inrwd = 4.8808E-01, exrwd = 0
+Step 400 of Ep 79, policy probs = [[ 0.15946704  0.07313134  0.1173116   0.65008998]], value logits = 1.0619E+01, inrwd = 1.1182E+00, exrwd = 0
+0 d 14 hr 38 min, step = 47114/935152, worker_1, Ep 79, a3c_loss = 2.2308E+01, entropy = 1.3617E+00, piloss = -2.4361E-01, vloss = 4.5076E+01, fwd = 8.0283E-03, inv = 2.2065E-01
+Step 600 of Ep 79, policy probs = [[ 0.21794499  0.08046979  0.10077545  0.60080975]], value logits = 1.0097E+01, inrwd = 3.5228E-01, exrwd = 0
+0 d 14 hr 45 min, step = 47369/940162, worker_8, Ep 79, a3c_loss = 1.9536E+01, entropy = 1.3674E+00, piloss = -2.3988E-01, vloss = 3.9525E+01, fwd = 9.3961E-03, inv = 8.1565E-01
+Step 200 of Ep 80, policy probs = [[ 0.38722453  0.08738007  0.13390931  0.39148605]], value logits = 9.7229E+00, inrwd = 7.4249E-01, exrwd = 0
+0 d 14 hr 51 min, step = 47621/945171, worker_12, Ep 81, a3c_loss = 2.0197E+01, entropy = 1.3758E+00, piloss = 2.7438E-01, vloss = 3.9818E+01, fwd = 1.0454E-02, inv = 1.8930E-01
+Step 400 of Ep 80, policy probs = [[ 0.40964818  0.10068181  0.12279762  0.36687243]], value logits = 9.5433E+00, inrwd = 4.1360E-01, exrwd = 0
+0 d 14 hr 58 min, step = 47876/950183, worker_12, Ep 81, a3c_loss = 1.5820E+01, entropy = 1.3754E+00, piloss = -3.1644E-01, vloss = 3.2246E+01, fwd = 6.3702E-03, inv = 2.4157E-01
+Step 600 of Ep 80, policy probs = [[ 0.4554247   0.10100181  0.13545723  0.30811623]], value logits = 9.0759E+00, inrwd = 6.7238E-01, exrwd = 0
+Step 200 of Ep 81, policy probs = [[ 0.43518364  0.1186405   0.14012298  0.30605286]], value logits = 8.9306E+00, inrwd = 5.9532E-01, exrwd = 0
+0 d 15 hr 4 min, step = 48194/955143, worker_11, Ep 81, a3c_loss = 1.6509E+01, entropy = 1.3787E+00, piloss = -1.2418E-02, vloss = 3.3016E+01, fwd = 7.9638E-03, inv = 2.1767E-01
+Step 400 of Ep 81, policy probs = [[ 0.35188675  0.14450499  0.11635116  0.38725713]], value logits = 9.1494E+00, inrwd = 4.3986E-01, exrwd = 0
+0 d 15 hr 11 min, step = 48272/960104, worker_5, Ep 81, a3c_loss = 1.5157E+01, entropy = 1.3778E+00, piloss = -3.4575E-01, vloss = 3.0978E+01, fwd = 6.1203E-03, inv = 2.0983E-02
+Step 600 of Ep 81, policy probs = [[ 0.37408194  0.1625237   0.10069298  0.36270133]], value logits = 8.9381E+00, inrwd = 4.8640E-01, exrwd = 0
+0 d 15 hr 17 min, step = 48527/965133, worker_5, Ep 81, a3c_loss = 1.5058E+01, entropy = 1.3777E+00, piloss = -2.4999E-01, vloss = 3.0589E+01, fwd = 6.6206E-03, inv = 9.5773E-02
+Step 200 of Ep 82, policy probs = [[ 0.3600409   0.16916208  0.10132405  0.36947301]], value logits = 8.9466E+00, inrwd = 3.2246E-01, exrwd = 0
+0 d 15 hr 24 min, step = 48785/970124, worker_15, Ep 82, a3c_loss = 1.5873E+01, entropy = 1.3774E+00, piloss = -5.0118E-02, vloss = 3.1818E+01, fwd = 9.7398E-03, inv = 6.3249E-01
+Step 400 of Ep 82, policy probs = [[ 0.38585946  0.17769848  0.08707651  0.34936553]], value logits = 8.8946E+00, inrwd = 3.8978E-01, exrwd = 0
+Step 600 of Ep 82, policy probs = [[ 0.39889324  0.18483995  0.07764726  0.33861959]], value logits = 8.7615E+00, inrwd = 5.4988E-01, exrwd = 0
+0 d 15 hr 30 min, step = 48945/975126, worker_9, Ep 82, a3c_loss = 1.4302E+01, entropy = 1.3764E+00, piloss = -2.6728E-01, vloss = 2.9110E+01, fwd = 6.0734E-03, inv = 1.3191E-03
+Step 200 of Ep 83, policy probs = [[ 0.38323146  0.18734223  0.08047425  0.34895205]], value logits = 8.6925E+00, inrwd = 6.9145E-01, exrwd = 0
+0 d 15 hr 37 min, step = 49304/980135, worker_18, Ep 83, a3c_loss = 1.4384E+01, entropy = 1.3773E+00, piloss = -1.7002E-01, vloss = 2.9081E+01, fwd = 7.6710E-03, inv = 4.7975E-05
+Step 400 of Ep 83, policy probs = [[ 0.45673823  0.16075645  0.0741472   0.30835819]], value logits = 8.4120E+00, inrwd = 6.5898E-01, exrwd = 0
+0 d 15 hr 43 min, step = 49559/985094, worker_18, Ep 83, a3c_loss = 1.2250E+01, entropy = 1.3728E+00, piloss = -3.7469E-01, vloss = 2.5222E+01, fwd = 4.5778E-03, inv = 3.3719E-03
+Step 600 of Ep 83, policy probs = [[ 0.50231296  0.12695621  0.06823415  0.3024967 ]], value logits = 8.0386E+00, inrwd = 5.7136E-01, exrwd = 0
+0 d 15 hr 50 min, step = 49921/990061, worker_4, Ep 85, a3c_loss = 1.1247E+01, entropy = 1.3706E+00, piloss = -8.0171E-02, vloss = 2.2627E+01, fwd = 6.2981E-03, inv = 7.3814E-05
+Step 200 of Ep 84, policy probs = [[ 0.507456    0.10567152  0.07878899  0.30808344]], value logits = 7.5929E+00, inrwd = 2.8646E-01, exrwd = 0
+Step 400 of Ep 84, policy probs = [[ 0.53404105  0.07474518  0.07023244  0.32098126]], value logits = 7.1394E+00, inrwd = 6.4503E-01, exrwd = 0
+0 d 15 hr 57 min, step = 50107/995000, worker_19, Ep 84, a3c_loss = 9.6747E+00, entropy = 1.3653E+00, piloss = -2.8210E-02, vloss = 1.9379E+01, fwd = 7.2106E-03, inv = 2.3375E-01
+Step 600 of Ep 84, policy probs = [[ 0.50945377  0.0741358   0.06354123  0.35286921]], value logits = 7.0116E+00, inrwd = 4.9971E-01, exrwd = 0
+0 d 16 hr 3 min, step = 50205/1000104, worker_9, Ep 84, a3c_loss = 8.4523E+00, entropy = 1.3648E+00, piloss = -2.3185E-01, vloss = 1.7341E+01, fwd = 4.8073E-03, inv = 5.1082E-01
+Step 200 of Ep 85, policy probs = [[ 0.48246238  0.07570608  0.06535346  0.37647808]], value logits = 6.8721E+00, inrwd = 2.6946E-01, exrwd = 0
+0 d 16 hr 11 min, step = 50621/1005143, worker_16, Ep 85, a3c_loss = 8.0107E+00, entropy = 1.3656E+00, piloss = -2.1822E-01, vloss = 1.6430E+01, fwd = 4.9353E-03, inv = 7.0510E-01
+Step 400 of Ep 85, policy probs = [[ 0.47193474  0.07382739  0.06035642  0.39388141]], value logits = 6.6882E+00, inrwd = 5.4190E-01, exrwd = 0
+0 d 16 hr 18 min, step = 48576/1010190, worker_6, Ep 82, a3c_loss = 7.3450E+00, entropy = 1.3654E+00, piloss = -2.4426E-01, vloss = 1.5151E+01, fwd = 4.2862E-03, inv = 3.5216E-01
+Step 600 of Ep 85, policy probs = [[ 0.4584482   0.07351623  0.05745257  0.41058305]], value logits = 6.5111E+00, inrwd = 4.0095E-01, exrwd = 0
+Step 200 of Ep 86, policy probs = [[ 0.43571186  0.07626326  0.05580899  0.43221587]], value logits = 6.3234E+00, inrwd = 3.9321E-01, exrwd = 0
+0 d 16 hr 26 min, step = 51149/1015000, worker_1, Ep 86, a3c_loss = 8.5125E+00, entropy = 1.3658E+00, piloss = 3.3383E-01, vloss = 1.6330E+01, fwd = 7.7063E-03, inv = 3.8682E-04
+Step 400 of Ep 86, policy probs = [[ 0.41515046  0.08053875  0.05456557  0.44974521]], value logits = 6.2396E+00, inrwd = 4.6206E-01, exrwd = 0
+0 d 16 hr 33 min, step = 48509/1020162, worker_2, Ep 81, a3c_loss = 6.6209E+00, entropy = 1.3658E+00, piloss = -1.6222E-01, vloss = 1.3539E+01, fwd = 4.7375E-03, inv = 6.7442E-01
+Step 600 of Ep 86, policy probs = [[ 0.41851622  0.08396848  0.05256844  0.44494694]], value logits = 6.0991E+00, inrwd = 3.9573E-01, exrwd = 0
+0 d 16 hr 40 min, step = 51659/1025018, worker_13, Ep 87, a3c_loss = 6.8363E+00, entropy = 1.3675E+00, piloss = -1.5895E-02, vloss = 1.3677E+01, fwd = 5.8423E-03, inv = 1.3456E-03
+Step 200 of Ep 87, policy probs = [[ 0.39507237  0.08701701  0.05403114  0.46387953]], value logits = 5.8878E+00, inrwd = 6.5056E-01, exrwd = 0
+0 d 16 hr 48 min, step = 51835/1030092, worker_0, Ep 87, a3c_loss = 5.7483E+00, entropy = 1.3659E+00, piloss = -1.4076E-01, vloss = 1.1751E+01, fwd = 4.2865E-03, inv = 4.9752E-01
+Step 400 of Ep 87, policy probs = [[ 0.4040195   0.08998557  0.05200163  0.45399332]], value logits = 5.7913E+00, inrwd = 2.7620E-01, exrwd = 0
+Step 600 of Ep 87, policy probs = [[ 0.38988551  0.09197071  0.05481515  0.46332866]], value logits = 5.5650E+00, inrwd = 2.5810E-01, exrwd = 0
+0 d 16 hr 55 min, step = 52062/1035035, worker_10, Ep 87, a3c_loss = 4.7125E+00, entropy = 1.3666E+00, piloss = -2.8164E-01, vloss = 9.9610E+00, fwd = 3.0605E-03, inv = 6.5885E-01
+Step 200 of Ep 88, policy probs = [[ 0.40229085  0.11115822  0.05298921  0.43356168]], value logits = 5.5662E+00, inrwd = 5.4425E-01, exrwd = 0
+0 d 17 hr 3 min, step = 52451/1040029, worker_12, Ep 89, a3c_loss = 4.8425E+00, entropy = 1.3684E+00, piloss = -2.7621E-01, vloss = 1.0210E+01, fwd = 2.8920E-03, inv = 2.8374E-03
+Step 400 of Ep 88, policy probs = [[ 0.41461855  0.12150817  0.05059059  0.41328269]], value logits = 5.4937E+00, inrwd = 4.5344E-01, exrwd = 0
+0 d 17 hr 10 min, step = 52511/1045051, worker_7, Ep 88, a3c_loss = 6.0329E+00, entropy = 1.3693E+00, piloss = 3.0735E-01, vloss = 1.1424E+01, fwd = 8.3648E-03, inv = 6.1088E-04
+Step 600 of Ep 88, policy probs = [[ 0.38926202  0.12969732  0.04789677  0.43314382]], value logits = 5.3394E+00, inrwd = 4.8377E-01, exrwd = 0
+0 d 17 hr 18 min, step = 52961/1050040, worker_12, Ep 90, a3c_loss = 4.7508E+00, entropy = 1.3710E+00, piloss = -2.4852E-01, vloss = 9.9712E+00, fwd = 3.8651E-03, inv = 2.3586E-05
+Step 200 of Ep 89, policy probs = [[ 0.38662553  0.14698097  0.04965373  0.41673976]], value logits = 5.3621E+00, inrwd = 3.0104E-01, exrwd = 0
+Step 400 of Ep 89, policy probs = [[ 0.40167147  0.15087108  0.04808522  0.39937219]], value logits = 5.2953E+00, inrwd = 1.4106E+00, exrwd = 0
+0 d 17 hr 25 min, step = 50189/1055010, worker_2, Ep 84, a3c_loss = 4.9756E+00, entropy = 1.3707E+00, piloss = 2.1241E-02, vloss = 9.8813E+00, fwd = 5.7340E-03, inv = 2.1214E-01
+Step 600 of Ep 89, policy probs = [[ 0.42086548  0.1728636   0.05274396  0.35352695]], value logits = 5.1622E+00, inrwd = 2.8786E-01, exrwd = 0
+0 d 17 hr 33 min, step = 53085/1060023, worker_9, Ep 89, a3c_loss = 3.9134E+00, entropy = 1.3721E+00, piloss = -2.3988E-01, vloss = 8.2791E+00, fwd = 2.9803E-03, inv = 4.8240E-01
+Step 200 of Ep 90, policy probs = [[ 0.42470163  0.1807719   0.05735784  0.33716854]], value logits = 5.2974E+00, inrwd = 5.6472E-01, exrwd = 0
+0 d 17 hr 40 min, step = 53567/1065203, worker_5, Ep 90, a3c_loss = 4.7736E+00, entropy = 1.3736E+00, piloss = -8.1602E-02, vloss = 9.6829E+00, fwd = 5.3402E-03, inv = 2.3732E-03
+Step 400 of Ep 90, policy probs = [[ 0.41830099  0.20469987  0.05308111  0.32391813]], value logits = 5.2665E+00, inrwd = 2.6330E-01, exrwd = 0
+Step 600 of Ep 90, policy probs = [[ 0.42117515  0.21684442  0.04940352  0.31257692]], value logits = 5.1622E+00, inrwd = 2.5711E-01, exrwd = 0
+0 d 17 hr 48 min, step = 53771/1070040, worker_7, Ep 90, a3c_loss = 5.0970E+00, entropy = 1.3733E+00, piloss = 1.4986E-01, vloss = 9.8668E+00, fwd = 5.6447E-03, inv = 1.7240E-01
+Step 200 of Ep 91, policy probs = [[ 0.35022447  0.28264973  0.05095441  0.31617138]], value logits = 5.3819E+00, inrwd = 1.9706E-01, exrwd = 0
+0 d 17 hr 56 min, step = 54077/1075191, worker_5, Ep 91, a3c_loss = 5.6933E+00, entropy = 1.3761E+00, piloss = 6.9220E-02, vloss = 1.1221E+01, fwd = 1.0646E-02, inv = 4.3099E-03
+Step 400 of Ep 91, policy probs = [[ 0.22106199  0.40436536  0.03990024  0.33467233]], value logits = 5.6595E+00, inrwd = 1.1360E+00, exrwd = 0
+0 d 18 hr 3 min, step = 53703/1080210, worker_3, Ep 90, a3c_loss = 8.4074E+00, entropy = 1.3655E+00, piloss = 2.6711E-01, vloss = 1.6253E+01, fwd = 8.4414E-03, inv = 1.5129E+00
+Step 600 of Ep 91, policy probs = [[ 0.12608708  0.57204872  0.03750847  0.26435578]], value logits = 6.8054E+00, inrwd = 4.6690E-01, exrwd = 0
+0 d 18 hr 11 min, step = 54659/1085147, worker_8, Ep 92, a3c_loss = 1.0480E+01, entropy = 1.3628E+00, piloss = 2.2999E-01, vloss = 2.0473E+01, fwd = 1.0320E-02, inv = 3.3660E-04
+Step 200 of Ep 92, policy probs = [[ 0.1128725   0.58729476  0.04281807  0.25701463]], value logits = 7.1345E+00, inrwd = 1.0337E+00, exrwd = 0
+Step 400 of Ep 92, policy probs = [[ 0.11533275  0.59211987  0.03730242  0.25524503]], value logits = 7.1408E+00, inrwd = 8.5425E-01, exrwd = 0
+0 d 18 hr 18 min, step = 54860/1090112, worker_15, Ep 92, a3c_loss = 9.5981E+00, entropy = 1.3606E+00, piloss = -1.0024E-02, vloss = 1.9189E+01, fwd = 6.8569E-03, inv = 3.8051E-01
+Step 600 of Ep 92, policy probs = [[ 0.10103903  0.64542651  0.03121134  0.22232319]], value logits = 7.0702E+00, inrwd = 4.7743E-01, exrwd = 0
+0 d 18 hr 26 min, step = 52124/1095145, worker_2, Ep 87, a3c_loss = 8.7966E+00, entropy = 1.3557E+00, piloss = -1.8221E-01, vloss = 1.7931E+01, fwd = 5.2558E-03, inv = 7.4099E-01
+Step 200 of Ep 93, policy probs = [[ 0.09572019  0.58996773  0.03524911  0.27906293]], value logits = 7.1455E+00, inrwd = 6.3756E-01, exrwd = 0
+0 d 18 hr 33 min, step = 55454/1100084, worker_13, Ep 93, a3c_loss = 8.6633E+00, entropy = 1.3592E+00, piloss = -2.6246E-01, vloss = 1.7824E+01, fwd = 4.5999E-03, inv = 1.2288E-01
+Step 400 of Ep 93, policy probs = [[ 0.09058233  0.5927434   0.03311244  0.28356177]], value logits = 7.0545E+00, inrwd = 6.5145E-01, exrwd = 0
+0 d 18 hr 41 min, step = 55691/1105092, worker_16, Ep 94, a3c_loss = 1.4296E+01, entropy = 1.3598E+00, piloss = 1.3614E+00, vloss = 2.5842E+01, fwd = 1.6754E-02, inv = 7.9500E-02
+Step 600 of Ep 93, policy probs = [[ 0.08098617  0.60738891  0.03459582  0.27702916]], value logits = 6.9681E+00, inrwd = 5.2794E-01, exrwd = 0
+Step 200 of Ep 94, policy probs = [[ 0.08060496  0.59135062  0.04094811  0.28709623]], value logits = 7.1342E+00, inrwd = 6.6846E-01, exrwd = 0
+0 d 18 hr 49 min, step = 56054/1110173, worker_11, Ep 94, a3c_loss = 9.4524E+00, entropy = 1.3589E+00, piloss = -1.0440E-02, vloss = 1.8899E+01, fwd = 6.7969E-03, inv = 2.8373E-01
+Step 400 of Ep 94, policy probs = [[ 0.07829277  0.57990372  0.04164899  0.30015454]], value logits = 7.0670E+00, inrwd = 5.3431E-01, exrwd = 0
+0 d 18 hr 56 min, step = 56296/1115139, worker_4, Ep 95, a3c_loss = 8.9942E+00, entropy = 1.3595E+00, piloss = -9.8456E-02, vloss = 1.8158E+01, fwd = 6.1475E-03, inv = 6.9349E-01
+Step 600 of Ep 94, policy probs = [[ 0.07255491  0.58658302  0.04355159  0.2973105 ]], value logits = 7.0062E+00, inrwd = 5.0097E-01, exrwd = 0
+0 d 19 hr 4 min, step = 53324/1120185, worker_2, Ep 89, a3c_loss = 8.4517E+00, entropy = 1.3600E+00, piloss = -1.9461E-01, vloss = 1.7265E+01, fwd = 5.1600E-03, inv = 7.4906E-01
+Step 200 of Ep 95, policy probs = [[ 0.07510396  0.54044884  0.05269839  0.33174875]], value logits = 7.1126E+00, inrwd = 1.0508E+00, exrwd = 0
+0 d 19 hr 11 min, step = 56635/1125183, worker_0, Ep 95, a3c_loss = 8.8508E+00, entropy = 1.3628E+00, piloss = -4.3026E-02, vloss = 1.7760E+01, fwd = 6.9061E-03, inv = 4.7892E-01
+Step 400 of Ep 95, policy probs = [[ 0.06589297  0.51098472  0.05659975  0.36652264]], value logits = 6.9429E+00, inrwd = 1.1190E+00, exrwd = 0
+Step 600 of Ep 95, policy probs = [[ 0.06426978  0.44991469  0.06955752  0.41625804]], value logits = 6.6902E+00, inrwd = 1.0612E+00, exrwd = 0
+0 d 19 hr 19 min, step = 56879/1130133, worker_18, Ep 95, a3c_loss = 7.3716E+00, entropy = 1.3655E+00, piloss = -2.1159E-01, vloss = 1.5139E+01, fwd = 5.1369E-03, inv = 2.4085E-01
+Step 200 of Ep 96, policy probs = [[ 0.06975707  0.35856947  0.08606557  0.48560786]], value logits = 6.5809E+00, inrwd = 4.4176E-01, exrwd = 0
+0 d 19 hr 27 min, step = 57206/1135155, worker_16, Ep 96, a3c_loss = 7.3658E+00, entropy = 1.3669E+00, piloss = -1.0092E-01, vloss = 1.4906E+01, fwd = 5.6389E-03, inv = 4.5514E-01
+Step 400 of Ep 96, policy probs = [[ 0.07230297  0.35591817  0.10052799  0.47125089]], value logits = 6.3245E+00, inrwd = 3.8275E-01, exrwd = 0
+0 d 19 hr 34 min, step = 57395/1140000, worker_15, Ep 96, a3c_loss = 7.0082E+00, entropy = 1.3682E+00, piloss = -4.7960E-02, vloss = 1.4085E+01, fwd = 5.8715E-03, inv = 4.1296E-01
+Step 600 of Ep 96, policy probs = [[ 0.06469709  0.36275131  0.11052026  0.46203136]], value logits = 6.2897E+00, inrwd = 6.4191E-01, exrwd = 0
+0 d 19 hr 42 min, step = 57716/1145155, worker_16, Ep 97, a3c_loss = 7.2299E+00, entropy = 1.3685E+00, piloss = -1.6528E-01, vloss = 1.4763E+01, fwd = 5.1292E-03, inv = 4.2671E-03
+Step 200 of Ep 97, policy probs = [[ 0.05881827  0.32155883  0.12377077  0.49585211]], value logits = 6.5387E+00, inrwd = 6.9426E-01, exrwd = 0
+Step 400 of Ep 97, policy probs = [[ 0.06212854  0.31562954  0.13354662  0.48869523]], value logits = 6.3651E+00, inrwd = 1.0623E+00, exrwd = 0
+0 d 19 hr 50 min, step = 57967/1150150, worker_19, Ep 97, a3c_loss = 6.8881E+00, entropy = 1.3703E+00, piloss = -1.0371E-01, vloss = 1.3956E+01, fwd = 5.3284E-03, inv = 5.6074E-02
+Step 600 of Ep 97, policy probs = [[ 0.05706027  0.37985805  0.15718544  0.40589625]], value logits = 6.2474E+00, inrwd = 6.1521E-01, exrwd = 0
+0 d 19 hr 58 min, step = 58214/1155140, worker_1, Ep 98, a3c_loss = 1.3096E+01, entropy = 1.3733E+00, piloss = 1.6833E+00, vloss = 2.2799E+01, fwd = 1.9143E-02, inv = 7.8677E-06
+Step 200 of Ep 98, policy probs = [[ 0.05809883  0.35971716  0.1768821   0.4053019 ]], value logits = 6.4825E+00, inrwd = 7.3336E-01, exrwd = 0
+0 d 20 hr 5 min, step = 55806/1160115, worker_6, Ep 94, a3c_loss = 7.6889E+00, entropy = 1.3711E+00, piloss = -4.7353E-02, vloss = 1.5445E+01, fwd = 5.8451E-03, inv = 3.6027E-01
+Step 400 of Ep 98, policy probs = [[ 0.05404897  0.42101344  0.16204605  0.36289153]], value logits = 6.5374E+00, inrwd = 5.4655E-01, exrwd = 0
+Step 600 of Ep 98, policy probs = [[ 0.04951233  0.45357239  0.1533203   0.343595  ]], value logits = 6.7529E+00, inrwd = 2.6966E-01, exrwd = 0
+0 d 20 hr 13 min, step = 58831/1165098, worker_4, Ep 99, a3c_loss = 7.9695E+00, entropy = 1.3698E+00, piloss = -1.4180E-01, vloss = 1.6195E+01, fwd = 5.4825E-03, inv = 5.4386E-01
+Step 200 of Ep 99, policy probs = [[ 0.0488464   0.46397477  0.16378069  0.32339823]], value logits = 7.1469E+00, inrwd = 1.7250E+00, exrwd = 0
+0 d 20 hr 20 min, step = 56286/1170065, worker_6, Ep 95, a3c_loss = 8.9629E+00, entropy = 1.3700E+00, piloss = -6.8685E-02, vloss = 1.8036E+01, fwd = 6.5496E-03, inv = 2.9227E-01
+Step 400 of Ep 99, policy probs = [[ 0.0502254   0.43182024  0.17787969  0.34007472]], value logits = 6.9537E+00, inrwd = 1.1381E+00, exrwd = 0
+0 d 20 hr 28 min, step = 59180/1175070, worker_15, Ep 99, a3c_loss = 8.5762E+00, entropy = 1.3725E+00, piloss = 1.7146E-02, vloss = 1.7091E+01, fwd = 6.4301E-03, inv = 6.3571E-02
+Step 600 of Ep 99, policy probs = [[ 0.05167326  0.42538032  0.19860406  0.32434231]], value logits = 6.8064E+00, inrwd = 5.6566E-01, exrwd = 0
+0 d 20 hr 36 min, step = 59339/1180024, worker_17, Ep 100, a3c_loss = 8.9989E+00, entropy = 1.3715E+00, piloss = -1.4398E-01, vloss = 1.8258E+01, fwd = 5.0317E-03, inv = 1.3881E-02
+Step 200 of Ep 100, policy probs = [[ 0.04590197  0.41205326  0.19673719  0.34530762]], value logits = 7.2590E+00, inrwd = 6.2779E-01, exrwd = 0
+Step 400 of Ep 100, policy probs = [[ 0.04880214  0.38064793  0.2172361   0.35331383]], value logits = 6.9275E+00, inrwd = 2.8164E+00, exrwd = 0
+0 d 20 hr 44 min, step = 59834/1185198, worker_11, Ep 100, a3c_loss = 8.1854E+00, entropy = 1.3736E+00, piloss = -1.7673E-01, vloss = 1.6697E+01, fwd = 5.0747E-03, inv = 1.9553E-01
+Step 600 of Ep 100, policy probs = [[ 0.04293235  0.36153182  0.24143012  0.35410565]], value logits = 6.9967E+00, inrwd = 5.1561E-01, exrwd = 0
+0 d 20 hr 51 min, step = 59977/1190000, worker_19, Ep 101, a3c_loss = 1.1335E+01, entropy = 1.3727E+00, piloss = 1.4089E-01, vloss = 2.2361E+01, fwd = 9.9104E-03, inv = 5.7513E-02
+Step 200 of Ep 101, policy probs = [[ 0.03219352  0.31732088  0.28097904  0.3695066 ]], value logits = 8.0339E+00, inrwd = 8.8053E-01, exrwd = 0
+0 d 20 hr 59 min, step = 59610/1195091, worker_9, Ep 100, a3c_loss = 1.1346E+01, entropy = 1.3717E+00, piloss = -3.0884E-01, vloss = 2.3283E+01, fwd = 4.9451E-03, inv = 2.4936E-02
+Step 400 of Ep 101, policy probs = [[ 0.03080713  0.31092647  0.28979868  0.36846775]], value logits = 8.0047E+00, inrwd = 5.3088E-01, exrwd = 0
+0 d 21 hr 7 min, step = 58843/1200125, worker_14, Ep 99, a3c_loss = 1.8373E+01, entropy = 1.3720E+00, piloss = 1.3164E+00, vloss = 3.4086E+01, fwd = 2.0388E-02, inv = 2.9968E+00
+Step 600 of Ep 101, policy probs = [[ 0.03132538  0.31454358  0.33566782  0.31846324]], value logits = 8.3872E+00, inrwd = 5.4264E-01, exrwd = 0
+Step 200 of Ep 102, policy probs = [[ 0.03315338  0.31371292  0.31995755  0.33317611]], value logits = 8.9131E+00, inrwd = 1.0698E+00, exrwd = 0
+0 d 21 hr 14 min, step = 60749/1205000, worker_1, Ep 102, a3c_loss = 1.4870E+01, entropy = 1.3726E+00, piloss = -1.4867E-01, vloss = 3.0009E+01, fwd = 7.8390E-03, inv = 5.7275E-03
+Step 400 of Ep 102, policy probs = [[ 0.02993995  0.28829876  0.33795252  0.34380877]], value logits = 9.0459E+00, inrwd = 5.4946E-01, exrwd = 0
+0 d 21 hr 22 min, step = 59323/1210027, worker_14, Ep 100, a3c_loss = 1.6821E+01, entropy = 1.3723E+00, piloss = 1.3139E-01, vloss = 3.3351E+01, fwd = 9.4827E-03, inv = 8.4340E-04
+Step 600 of Ep 102, policy probs = [[ 0.02493929  0.23987384  0.38191605  0.3532708 ]], value logits = 9.3299E+00, inrwd = 9.9414E-01, exrwd = 0
+0 d 21 hr 30 min, step = 61124/1215226, worker_17, Ep 103, a3c_loss = 1.5666E+01, entropy = 1.3697E+00, piloss = -4.8190E-01, vloss = 3.2269E+01, fwd = 4.7772E-03, inv = 1.7284E-04
+Success times: 31, worker_18, Episode step = 589, Episode = 102,
+    
+Step 200 of Ep 103, policy probs = [[ 0.0348525   0.19650032  0.41510862  0.35353863]], value logits = 9.7620E+00, inrwd = 5.1328E-01, exrwd = 0
+Success times: 32, worker_17, Episode step = 599, Episode = 103,
+    
+Step 400 of Ep 103, policy probs = [[ 0.04646598  0.20309719  0.43318471  0.31725213]], value logits = 9.6057E+00, inrwd = 1.0640E+00, exrwd = 0
+0 d 21 hr 37 min, step = 61450/1220205, worker_0, Ep 103, a3c_loss = 2.0378E+01, entropy = 1.3715E+00, piloss = 5.4658E-01, vloss = 3.9635E+01, fwd = 1.5016E-02, inv = 2.0670E-01
+Success times: 33, worker_14, Episode step = 588, Episode = 100,
+    
+Success times: 34, worker_13, Episode step = 485, Episode = 103,
+    
+Success times: 35, worker_4, Episode step = 549, Episode = 104,
+    
+Success times: 36, worker_10, Episode step = 467, Episode = 103,
+    
+Step 600 of Ep 103, policy probs = [[ 0.03711239  0.19098288  0.50483084  0.26707399]], value logits = 9.8516E+00, inrwd = 1.5234E+00, exrwd = 0
+Success times: 37, worker_18, Episode step = 452, Episode = 103,
+    
+0 d 21 hr 44 min, step = 61870/1225019, worker_4, Ep 105, a3c_loss = 2.0009E+01, entropy = 1.3633E+00, piloss = -9.5358E-02, vloss = 4.0182E+01, fwd = 8.4768E-03, inv = 6.0803E-04
+Step 200 of Ep 104, policy probs = [[ 0.0284739   0.20400199  0.57699209  0.190532  ]], value logits = 1.0152E+01, inrwd = 5.3910E-01, exrwd = 0
+0 d 21 hr 52 min, step = 61873/1230098, worker_17, Ep 104, a3c_loss = 2.0930E+01, entropy = 1.3601E+00, piloss = 1.9691E-01, vloss = 4.1440E+01, fwd = 1.1219E-02, inv = 7.3536E-01
+Step 400 of Ep 104, policy probs = [[ 0.02537962  0.19988285  0.61910719  0.15563034]], value logits = 9.9729E+00, inrwd = 6.2753E-01, exrwd = 0
+0 d 22 hr 0 min, step = 61173/1235099, worker_3, Ep 103, a3c_loss = 1.6064E+01, entropy = 1.3555E+00, piloss = -4.6910E-01, vloss = 3.3038E+01, fwd = 5.4962E-03, inv = 5.5715E-04
+Step 600 of Ep 104, policy probs = [[ 0.0179286   0.23012236  0.6441952   0.10775389]], value logits = 9.4758E+00, inrwd = 7.7024E-01, exrwd = 0
+Step 200 of Ep 105, policy probs = [[ 0.01836652  0.25515524  0.6374411   0.08903718]], value logits = 8.6221E+00, inrwd = 6.0428E-01, exrwd = 0
+0 d 22 hr 7 min, step = 61413/1240074, worker_3, Ep 103, a3c_loss = 1.3147E+01, entropy = 1.3530E+00, piloss = -2.6301E-01, vloss = 2.6792E+01, fwd = 5.4912E-03, inv = 3.9649E-01
+Step 400 of Ep 105, policy probs = [[ 0.02686066  0.37288907  0.47092348  0.12932679]], value logits = 7.9036E+00, inrwd = 5.3342E-01, exrwd = 0
+0 d 22 hr 15 min, step = 62690/1245139, worker_18, Ep 105, a3c_loss = 1.0407E+01, entropy = 1.3644E+00, piloss = -2.6292E-01, vloss = 2.1312E+01, fwd = 5.4401E-03, inv = 5.9040E-01
+Step 600 of Ep 105, policy probs = [[ 0.03503092  0.39761457  0.38602301  0.18133152]], value logits = 7.3209E+00, inrwd = 7.4523E-01, exrwd = 0
+0 d 22 hr 23 min, step = 63044/1250068, worker_1, Ep 106, a3c_loss = 9.4062E+00, entropy = 1.3700E+00, piloss = -9.9366E-02, vloss = 1.8984E+01, fwd = 6.7400E-03, inv = 8.5273E-06
+Step 200 of Ep 106, policy probs = [[ 0.03802026  0.3993943   0.36477628  0.19780913]], value logits = 7.1761E+00, inrwd = 2.5197E-01, exrwd = 0
+Success times: 38, worker_4, Episode step = 268, Episode = 107,
+    
+Success times: 39, worker_11, Episode step = 341, Episode = 106,
+    
+Success times: 40, worker_0, Episode step = 367, Episode = 106,
+    
+0 d 22 hr 30 min, step = 63086/1255159, worker_7, Ep 106, a3c_loss = 1.3150E+01, entropy = 1.3709E+00, piloss = 8.8225E-01, vloss = 2.4507E+01, fwd = 1.5712E-02, inv = 9.7473E-01
+Step 200 of Ep 107, policy probs = [[ 0.03685207  0.3757014   0.3842164   0.20323016]], value logits = 7.2253E+00, inrwd = 8.3575E-01, exrwd = 0
+0 d 22 hr 38 min, step = 63373/1260020, worker_17, Ep 107, a3c_loss = 8.4877E+00, entropy = 1.3713E+00, piloss = -3.0539E-01, vloss = 1.7559E+01, fwd = 4.1245E-03, inv = 5.0985E-03
+Step 400 of Ep 107, policy probs = [[ 0.0372418   0.36168963  0.38728344  0.21378511]], value logits = 7.1590E+00, inrwd = 3.0756E-01, exrwd = 0
+0 d 22 hr 46 min, step = 63628/1265000, worker_17, Ep 107, a3c_loss = 8.1595E+00, entropy = 1.3716E+00, piloss = -2.8282E-01, vloss = 1.6857E+01, fwd = 4.4823E-03, inv = 1.2327E-03
+Step 600 of Ep 107, policy probs = [[ 0.03614644  0.34925085  0.40366596  0.21093673]], value logits = 6.9324E+00, inrwd = 8.2144E-01, exrwd = 0
+0 d 22 hr 53 min, step = 64010/1270162, worker_15, Ep 107, a3c_loss = 8.0325E+00, entropy = 1.3699E+00, piloss = -1.2975E-01, vloss = 1.6297E+01, fwd = 5.9184E-03, inv = 2.7373E-01
+Step 200 of Ep 108, policy probs = [[ 0.03548633  0.3587521   0.416125    0.18963659]], value logits = 6.8799E+00, inrwd = 8.4922E-01, exrwd = 0
+Success times: 41, worker_0, Episode step = 289, Episode = 108,
+    
+Success times: 42, worker_4, Episode step = 407, Episode = 109,
+    
+0 d 23 hr 1 min, step = 60809/1275023, worker_2, Ep 102, a3c_loss = 7.8457E+00, entropy = 1.3699E+00, piloss = -2.8101E-01, vloss = 1.6226E+01, fwd = 3.8837E-03, inv = 4.8779E-04
+Step 200 of Ep 109, policy probs = [[ 0.04229397  0.39035729  0.40207648  0.16527225]], value logits = 6.9369E+00, inrwd = 2.3374E-01, exrwd = 0
+0 d 23 hr 9 min, step = 64559/1280198, worker_1, Ep 108, a3c_loss = 7.9614E+00, entropy = 1.3688E+00, piloss = -1.6863E-01, vloss = 1.6233E+01, fwd = 5.2390E-03, inv = 3.2484E-01
+Step 400 of Ep 109, policy probs = [[ 0.04200531  0.43134421  0.3809447   0.14570577]], value logits = 6.8610E+00, inrwd = 5.5271E-01, exrwd = 0
+Step 600 of Ep 109, policy probs = [[ 0.04175046  0.44348812  0.38427922  0.13048224]], value logits = 6.6970E+00, inrwd = 3.1366E-01, exrwd = 0
+0 d 23 hr 16 min, step = 64685/1285007, worker_18, Ep 109, a3c_loss = 8.6872E+00, entropy = 1.3686E+00, piloss = 2.6339E-01, vloss = 1.6820E+01, fwd = 1.0148E-02, inv = 1.0625E-05
+Step 200 of Ep 110, policy probs = [[ 0.04630531  0.45972311  0.38640028  0.1075713 ]], value logits = 6.4010E+00, inrwd = 3.0592E-01, exrwd = 0
+0 d 23 hr 24 min, step = 65015/1290018, worker_15, Ep 109, a3c_loss = 6.5528E+00, entropy = 1.3657E+00, piloss = -1.5523E-01, vloss = 1.3389E+01, fwd = 5.0045E-03, inv = 6.0243E-01
+Step 400 of Ep 110, policy probs = [[ 0.04553102  0.46044713  0.40048301  0.09353884]], value logits = 6.1817E+00, inrwd = 6.6534E-01, exrwd = 0
+0 d 23 hr 31 min, step = 64068/1295021, worker_3, Ep 108, a3c_loss = 5.2338E+00, entropy = 1.3638E+00, piloss = -2.0876E-01, vloss = 1.0858E+01, fwd = 3.6685E-03, inv = 1.9464E-01
+Step 600 of Ep 110, policy probs = [[ 0.04302446  0.48173347  0.39273649  0.08250551]], value logits = 5.7374E+00, inrwd = 7.0887E-01, exrwd = 0
+0 d 23 hr 39 min, step = 64308/1300008, worker_3, Ep 108, a3c_loss = 4.6249E+00, entropy = 1.3635E+00, piloss = -1.7027E-01, vloss = 9.5630E+00, fwd = 3.9065E-03, inv = 1.4625E-02
+Step 200 of Ep 111, policy probs = [[ 0.04150875  0.4722673   0.40076628  0.08545762]], value logits = 5.5149E+00, inrwd = 7.6295E-01, exrwd = 0
+Step 400 of Ep 111, policy probs = [[ 0.0422194   0.48142517  0.4076131   0.06874239]], value logits = 5.3386E+00, inrwd = 4.3923E-01, exrwd = 0
+0 d 23 hr 47 min, step = 65782/1305058, worker_19, Ep 110, a3c_loss = 4.4915E+00, entropy = 1.3610E+00, piloss = -5.5469E-02, vloss = 9.0667E+00, fwd = 4.5060E-03, inv = 5.9690E-01
+Step 600 of Ep 111, policy probs = [[ 0.03922965  0.53085947  0.37408376  0.05582716]], value logits = 5.2899E+00, inrwd = 3.2962E-01, exrwd = 0
+0 d 23 hr 55 min, step = 66160/1310055, worker_11, Ep 111, a3c_loss = 4.0368E+00, entropy = 1.3591E+00, piloss = -1.2998E-01, vloss = 8.3063E+00, fwd = 3.7776E-03, inv = 5.4549E-01
+Step 200 of Ep 112, policy probs = [[ 0.04236651  0.52470917  0.37553644  0.05738796]], value logits = 5.0926E+00, inrwd = 5.7604E-01, exrwd = 0
+1 d 0 hr 2 min, step = 66329/1315130, worker_1, Ep 111, a3c_loss = 3.8583E+00, entropy = 1.3615E+00, piloss = 2.7491E-02, vloss = 7.6343E+00, fwd = 5.0502E-03, inv = 6.4112E-01
+Step 400 of Ep 112, policy probs = [[ 0.04924839  0.46244052  0.43729517  0.05101593]], value logits = 4.8578E+00, inrwd = 4.1214E-01, exrwd = 0
+Step 600 of Ep 112, policy probs = [[ 0.04815222  0.48588622  0.41958249  0.0463791 ]], value logits = 4.6340E+00, inrwd = 3.3175E-01, exrwd = 0
+1 d 0 hr 10 min, step = 66418/1320152, worker_17, Ep 112, a3c_loss = 3.0457E+00, entropy = 1.3608E+00, piloss = -1.3070E-01, vloss = 6.3257E+00, fwd = 3.0800E-03, inv = 6.4164E-01
+Step 200 of Ep 113, policy probs = [[ 0.05576158  0.46804601  0.4257504   0.05044201]], value logits = 4.5370E+00, inrwd = 3.7958E-01, exrwd = 0
+1 d 0 hr 18 min, step = 65523/1325138, worker_3, Ep 110, a3c_loss = 2.9103E+00, entropy = 1.3613E+00, piloss = -8.6101E-02, vloss = 5.9656E+00, fwd = 4.0979E-03, inv = 2.0392E-01
+Step 400 of Ep 113, policy probs = [[ 0.0536593   0.49386644  0.40807378  0.04440051]], value logits = 4.4311E+00, inrwd = 2.0863E-01, exrwd = 0
+1 d 0 hr 25 min, step = 64011/1330100, worker_6, Ep 108, a3c_loss = 2.6250E+00, entropy = 1.3616E+00, piloss = -3.2534E-02, vloss = 5.2878E+00, fwd = 3.9220E-03, inv = 1.7768E-01
+Step 600 of Ep 113, policy probs = [[ 0.05547034  0.49378562  0.40060461  0.05013936]], value logits = 4.1169E+00, inrwd = 2.7738E-01, exrwd = 0
+1 d 0 hr 33 min, step = 67259/1335107, worker_10, Ep 113, a3c_loss = 2.3162E+00, entropy = 1.3630E+00, piloss = -6.1156E-02, vloss = 4.7274E+00, fwd = 4.3994E-03, inv = 4.3245E-01
+Step 200 of Ep 114, policy probs = [[ 0.06356868  0.46734291  0.41415671  0.05493173]], value logits = 4.1248E+00, inrwd = 5.3330E-01, exrwd = 0
+Step 400 of Ep 114, policy probs = [[ 0.06696048  0.47139257  0.40490919  0.05673781]], value logits = 4.0817E+00, inrwd = 2.2178E-01, exrwd = 0
+1 d 0 hr 41 min, step = 67579/1340000, worker_13, Ep 113, a3c_loss = 2.0089E+00, entropy = 1.3640E+00, piloss = -1.6420E-01, vloss = 4.3190E+00, fwd = 2.8065E-03, inv = 5.7802E-01
+Step 600 of Ep 114, policy probs = [[ 0.08650828  0.49398568  0.35723197  0.06227416]], value logits = 3.9197E+00, inrwd = 2.0571E-01, exrwd = 0
+1 d 0 hr 49 min, step = 67697/1345000, worker_5, Ep 113, a3c_loss = 2.0238E+00, entropy = 1.3674E+00, piloss = -6.2895E-02, vloss = 4.1459E+00, fwd = 3.4652E-03, inv = 5.8440E-01
+Step 200 of Ep 115, policy probs = [[ 0.11358797  0.46321639  0.35582417  0.06737146]], value logits = 3.9918E+00, inrwd = 6.5359E-01, exrwd = 0
+1 d 0 hr 56 min, step = 68185/1350084, worker_11, Ep 115, a3c_loss = 2.0859E+00, entropy = 1.3715E+00, piloss = -1.7936E-01, vloss = 4.5030E+00, fwd = 2.2041E-03, inv = 9.3456E-06
+Step 400 of Ep 115, policy probs = [[ 0.1261818   0.45208934  0.3705135   0.05121543]], value logits = 4.1320E+00, inrwd = 3.5098E-01, exrwd = 0
+1 d 1 hr 4 min, step = 68440/1355044, worker_11, Ep 115, a3c_loss = 2.7230E+00, entropy = 1.3697E+00, piloss = 6.5837E-02, vloss = 5.2869E+00, fwd = 4.9229E-03, inv = 1.9908E-01
+Step 600 of Ep 115, policy probs = [[ 0.14417401  0.4646692   0.34922987  0.04192685]], value logits = 4.1317E+00, inrwd = 3.2944E-01, exrwd = 0
+Step 200 of Ep 116, policy probs = [[ 0.20114414  0.41323599  0.3441236   0.04149625]], value logits = 4.3604E+00, inrwd = 3.3186E-01, exrwd = 0
+1 d 1 hr 12 min, step = 68519/1360055, worker_10, Ep 115, a3c_loss = 2.9091E+00, entropy = 1.3721E+00, piloss = 4.5696E-02, vloss = 5.6993E+00, fwd = 4.9998E-03, inv = 2.0188E-02
+Step 400 of Ep 116, policy probs = [[ 0.21950087  0.38688865  0.35939381  0.03421671]], value logits = 4.4460E+00, inrwd = 2.7865E-01, exrwd = 0
+1 d 1 hr 19 min, step = 68846/1365122, worker_16, Ep 116, a3c_loss = 3.1787E+00, entropy = 1.3722E+00, piloss = 1.0539E-01, vloss = 6.1193E+00, fwd = 5.6288E-03, inv = 3.4427E-01
+Step 600 of Ep 116, policy probs = [[ 0.25726086  0.37228873  0.34081268  0.02963766]], value logits = 4.5786E+00, inrwd = 3.8507E-01, exrwd = 0
+1 d 1 hr 27 min, step = 67698/1370008, worker_3, Ep 114, a3c_loss = 6.1480E+00, entropy = 1.3734E+00, piloss = 9.6065E-01, vloss = 1.0347E+01, fwd = 1.6378E-02, inv = 3.0577E-04
+Step 200 of Ep 117, policy probs = [[ 0.31649187  0.3177076   0.33703241  0.02876809]], value logits = 4.9219E+00, inrwd = 6.3528E-01, exrwd = 0
+1 d 1 hr 35 min, step = 69212/1375068, worker_5, Ep 116, a3c_loss = 4.3683E+00, entropy = 1.3712E+00, piloss = -3.1937E-02, vloss = 8.7731E+00, fwd = 5.1304E-03, inv = 1.6911E-05
+Step 400 of Ep 117, policy probs = [[ 0.38077766  0.2698735   0.32948795  0.0198609 ]], value logits = 5.2804E+00, inrwd = 3.0415E-01, exrwd = 0
+Step 600 of Ep 117, policy probs = [[ 0.43170026  0.24545731  0.30632153  0.01652086]], value logits = 5.4404E+00, inrwd = 4.7958E-01, exrwd = 0
+1 d 1 hr 42 min, step = 69700/1380047, worker_11, Ep 117, a3c_loss = 5.0359E+00, entropy = 1.3677E+00, piloss = -2.9774E-02, vloss = 1.0104E+01, fwd = 5.7065E-03, inv = 1.1678E-01
+Step 200 of Ep 118, policy probs = [[ 0.5128718   0.21561687  0.25149149  0.02001984]], value logits = 5.9053E+00, inrwd = 8.7988E-01, exrwd = 0
+1 d 1 hr 50 min, step = 69770/1385033, worker_15, Ep 117, a3c_loss = 6.1383E+00, entropy = 1.3662E+00, piloss = 1.4649E-01, vloss = 1.1956E+01, fwd = 7.6579E-03, inv = 1.1528E+00
+Step 400 of Ep 118, policy probs = [[ 0.54638797  0.19887707  0.23658022  0.01815469]], value logits = 5.8207E+00, inrwd = 7.2036E-01, exrwd = 0
+1 d 1 hr 58 min, step = 69030/1390150, worker_9, Ep 116, a3c_loss = 5.1149E+00, entropy = 1.3614E+00, piloss = -1.5355E-01, vloss = 1.0510E+01, fwd = 4.3535E-03, inv = 1.4094E-02
+Step 600 of Ep 118, policy probs = [[ 0.59067768  0.17104122  0.22071514  0.01756596]], value logits = 5.6774E+00, inrwd = 2.5113E-01, exrwd = 0
+1 d 2 hr 5 min, step = 68913/1395027, worker_3, Ep 116, a3c_loss = 4.4816E+00, entropy = 1.3602E+00, piloss = -3.2313E-01, vloss = 9.5822E+00, fwd = 3.0741E-03, inv = 9.3777E-06
+Step 200 of Ep 119, policy probs = [[ 0.60172117  0.16931485  0.20915081  0.01981322]], value logits = 5.6446E+00, inrwd = 3.5378E-01, exrwd = 0
+Step 400 of Ep 119, policy probs = [[ 0.63402426  0.14040081  0.20593269  0.01964229]], value logits = 5.4688E+00, inrwd = 6.6009E-01, exrwd = 0
+1 d 2 hr 13 min, step = 67401/1400022, worker_6, Ep 114, a3c_loss = 6.4909E+00, entropy = 1.3527E+00, piloss = 5.8130E-01, vloss = 1.1792E+01, fwd = 1.0634E-02, inv = 2.2028E-01
+Step 600 of Ep 119, policy probs = [[ 0.69341552  0.10867935  0.1794377   0.01846746]], value logits = 5.3528E+00, inrwd = 4.5459E-01, exrwd = 0
+1 d 2 hr 21 min, step = 69765/1405185, worker_9, Ep 117, a3c_loss = 4.8940E+00, entropy = 1.3567E+00, piloss = 7.2235E-02, vloss = 9.6165E+00, fwd = 6.7606E-03, inv = 4.7719E-01
+Step 200 of Ep 120, policy probs = [[ 0.65269023  0.11245561  0.21165611  0.023198  ]], value logits = 5.3720E+00, inrwd = 2.9484E-01, exrwd = 0
+1 d 2 hr 29 min, step = 71092/1410061, worker_19, Ep 119, a3c_loss = 4.3759E+00, entropy = 1.3556E+00, piloss = -2.7036E-02, vloss = 8.7787E+00, fwd = 4.9417E-03, inv = 1.0375E+00
+Step 400 of Ep 120, policy probs = [[ 0.66215003  0.10841066  0.2081621   0.02127722]], value logits = 5.2797E+00, inrwd = 4.7558E-01, exrwd = 0
+1 d 2 hr 36 min, step = 71126/1415038, worker_7, Ep 119, a3c_loss = 4.0369E+00, entropy = 1.3543E+00, piloss = -6.4418E-02, vloss = 8.1755E+00, fwd = 4.4726E-03, inv = 3.6827E-01
+Step 600 of Ep 120, policy probs = [[ 0.66936094  0.1065606   0.20420329  0.01987517]], value logits = 5.1128E+00, inrwd = 4.7709E-01, exrwd = 0
+Step 200 of Ep 121, policy probs = [[ 0.66456926  0.10734533  0.20478626  0.02329917]], value logits = 5.1467E+00, inrwd = 2.5197E-01, exrwd = 0
+1 d 2 hr 44 min, step = 71540/1420206, worker_15, Ep 120, a3c_loss = 3.6990E+00, entropy = 1.3544E+00, piloss = -1.4007E-01, vloss = 7.6510E+00, fwd = 4.3447E-03, inv = 7.2710E-04
+Step 400 of Ep 121, policy probs = [[ 0.65272933  0.10982756  0.21579728  0.02164575]], value logits = 5.0041E+00, inrwd = 4.2372E-01, exrwd = 0
+1 d 2 hr 51 min, step = 71732/1425113, worker_5, Ep 120, a3c_loss = 3.3153E+00, entropy = 1.3588E+00, piloss = -1.4867E-01, vloss = 6.9008E+00, fwd = 3.6073E-03, inv = 2.1137E-01
+Step 600 of Ep 121, policy probs = [[ 0.5961706   0.12635005  0.25494772  0.02253162]], value logits = 4.8104E+00, inrwd = 4.2476E-01, exrwd = 0
+1 d 2 hr 59 min, step = 72236/1430096, worker_12, Ep 122, a3c_loss = 3.7307E+00, entropy = 1.3612E+00, piloss = 3.3653E-02, vloss = 7.3668E+00, fwd = 5.2614E-03, inv = 4.7172E-05
+Step 200 of Ep 122, policy probs = [[ 0.58615923  0.1247106   0.26386002  0.02527018]], value logits = 4.8355E+00, inrwd = 2.2450E-01, exrwd = 0
+1 d 3 hr 7 min, step = 72215/1435000, worker_18, Ep 121, a3c_loss = 3.1228E+00, entropy = 1.3607E+00, piloss = -6.2652E-02, vloss = 6.3438E+00, fwd = 4.1356E-03, inv = 8.3260E-01
+Step 400 of Ep 122, policy probs = [[ 0.58203149  0.1201797   0.27524981  0.02253894]], value logits = 4.6671E+00, inrwd = 3.3586E-01, exrwd = 0
+Step 600 of Ep 122, policy probs = [[ 0.58002687  0.12786634  0.26992035  0.02218648]], value logits = 4.5935E+00, inrwd = 4.1280E-01, exrwd = 0
+1 d 3 hr 15 min, step = 72416/1440221, worker_7, Ep 121, a3c_loss = 3.9010E+00, entropy = 1.3650E+00, piloss = -3.4668E-03, vloss = 7.7817E+00, fwd = 4.0308E-03, inv = 3.8619E-01
+Step 200 of Ep 123, policy probs = [[ 0.54369694  0.17616419  0.24770169  0.03243715]], value logits = 5.0775E+00, inrwd = 6.4033E-01, exrwd = 0
+1 d 3 hr 22 min, step = 72737/1445033, worker_5, Ep 122, a3c_loss = 4.6524E+00, entropy = 1.3668E+00, piloss = 2.9992E-01, vloss = 8.6776E+00, fwd = 1.0975E-02, inv = 4.5907E-02
+Step 400 of Ep 123, policy probs = [[ 0.52940923  0.20237075  0.2336981   0.03452189]], value logits = 4.9443E+00, inrwd = 3.0559E-01, exrwd = 0
+1 d 3 hr 30 min, step = 73214/1450010, worker_1, Ep 123, a3c_loss = 4.7983E+00, entropy = 1.3690E+00, piloss = 4.9916E-01, vloss = 8.5708E+00, fwd = 7.7835E-03, inv = 3.6557E-07
+Step 600 of Ep 123, policy probs = [[ 0.54260308  0.20833665  0.21554548  0.03351482]], value logits = 4.7863E+00, inrwd = 8.8654E-01, exrwd = 0
+Step 200 of Ep 124, policy probs = [[ 0.56008005  0.19565625  0.20474635  0.03951732]], value logits = 4.8159E+00, inrwd = 3.6013E-01, exrwd = 0
+1 d 3 hr 37 min, step = 73258/1455098, worker_17, Ep 123, a3c_loss = 3.0530E+00, entropy = 1.3660E+00, piloss = -8.2042E-02, vloss = 6.2428E+00, fwd = 4.2053E-03, inv = 2.8040E-01
+Step 400 of Ep 124, policy probs = [[ 0.55549514  0.18060336  0.22802706  0.03587437]], value logits = 4.6088E+00, inrwd = 4.3626E-01, exrwd = 0
+1 d 3 hr 45 min, step = 73631/1460110, worker_16, Ep 123, a3c_loss = 2.7076E+00, entropy = 1.3659E+00, piloss = -1.0056E-01, vloss = 5.5890E+00, fwd = 3.6579E-03, inv = 2.2490E-01
+Step 600 of Ep 124, policy probs = [[ 0.53596789  0.19778839  0.23086615  0.0353776 ]], value logits = 4.5152E+00, inrwd = 3.1507E-01, exrwd = 0
+1 d 3 hr 53 min, step = 73757/1465059, worker_5, Ep 124, a3c_loss = 3.4989E+00, entropy = 1.3701E+00, piloss = 9.8639E-02, vloss = 6.7730E+00, fwd = 3.9660E-03, inv = 4.2379E-05
+Step 200 of Ep 125, policy probs = [[ 0.53200543  0.20708759  0.22141215  0.03949487]], value logits = 4.6908E+00, inrwd = 2.4434E-01, exrwd = 0
+1 d 4 hr 0 min, step = 74114/1470121, worker_10, Ep 124, a3c_loss = 2.8178E+00, entropy = 1.3681E+00, piloss = -4.5482E-02, vloss = 5.6991E+00, fwd = 3.7928E-03, inv = 2.0772E-01
+Step 400 of Ep 125, policy probs = [[ 0.50817853  0.23110475  0.22631468  0.03440207]], value logits = 4.5492E+00, inrwd = 4.9351E-01, exrwd = 0
+Step 600 of Ep 125, policy probs = [[ 0.4781574   0.27640915  0.21336854  0.03206484]], value logits = 4.4496E+00, inrwd = 3.8029E-01, exrwd = 0
+1 d 4 hr 8 min, step = 74419/1475031, worker_13, Ep 125, a3c_loss = 4.0530E+00, entropy = 1.3702E+00, piloss = 3.5157E-01, vloss = 7.3755E+00, fwd = 8.4927E-03, inv = 1.9452E-04
+Step 200 of Ep 126, policy probs = [[ 0.43067488  0.33691213  0.19709323  0.03531978]], value logits = 4.7054E+00, inrwd = 2.1465E-01, exrwd = 0
+1 d 4 hr 16 min, step = 73008/1480057, worker_3, Ep 122, a3c_loss = 2.9032E+00, entropy = 1.3703E+00, piloss = -6.6960E-02, vloss = 5.9128E+00, fwd = 3.9132E-03, inv = 2.8993E-01
+Step 400 of Ep 126, policy probs = [[ 0.3674714   0.4080182   0.1976074   0.02690303]], value logits = 4.7128E+00, inrwd = 7.9729E-01, exrwd = 0
+1 d 4 hr 23 min, step = 72586/1485011, worker_14, Ep 122, a3c_loss = 3.4625E+00, entropy = 1.3687E+00, piloss = -1.3439E-01, vloss = 7.1663E+00, fwd = 4.1953E-03, inv = 1.1291E-02
+Step 600 of Ep 126, policy probs = [[ 0.33670738  0.45680052  0.18340245  0.02308963]], value logits = 4.8144E+00, inrwd = 5.3953E-01, exrwd = 0
+Step 200 of Ep 127, policy probs = [[ 0.29230693  0.50686163  0.17678964  0.02404175]], value logits = 5.0693E+00, inrwd = 3.5515E-01, exrwd = 0
+1 d 4 hr 31 min, step = 74921/1490218, worker_7, Ep 125, a3c_loss = 3.6771E+00, entropy = 1.3664E+00, piloss = 1.9824E-02, vloss = 7.2872E+00, fwd = 4.9736E-03, inv = 3.0638E-01
+Step 400 of Ep 127, policy probs = [[ 0.28664884  0.51087129  0.18157612  0.02090371]], value logits = 4.9479E+00, inrwd = 7.5925E-01, exrwd = 0
+1 d 4 hr 39 min, step = 73728/1495026, worker_3, Ep 124, a3c_loss = 4.1840E+00, entropy = 1.3659E+00, piloss = 8.3297E-02, vloss = 8.1740E+00, fwd = 5.8241E-03, inv = 1.6202E-03
+Step 600 of Ep 127, policy probs = [[ 0.28177541  0.51482773  0.18469849  0.01869843]], value logits = 4.7949E+00, inrwd = 5.6750E-01, exrwd = 0
+1 d 4 hr 47 min, step = 75523/1500152, worker_17, Ep 127, a3c_loss = 5.0807E+00, entropy = 1.3635E+00, piloss = 5.4110E-01, vloss = 9.0520E+00, fwd = 7.8680E-03, inv = 2.6204E-02
+Step 200 of Ep 128, policy probs = [[ 0.27634835  0.54343116  0.1606648   0.01955567]], value logits = 4.9785E+00, inrwd = 3.8613E-01, exrwd = 0
+1 d 4 hr 54 min, step = 75989/1505107, worker_1, Ep 127, a3c_loss = 4.2296E+00, entropy = 1.3620E+00, piloss = 4.3493E-01, vloss = 7.5620E+00, fwd = 9.2607E-03, inv = 3.4017E-02
+Step 400 of Ep 128, policy probs = [[ 0.26025009  0.57100379  0.15118711  0.01755898]], value logits = 4.6418E+00, inrwd = 4.9562E-01, exrwd = 0
+Step 600 of Ep 128, policy probs = [[ 0.22933905  0.61458093  0.14002784  0.01605227]], value logits = 4.4902E+00, inrwd = 5.1707E-01, exrwd = 0
+1 d 5 hr 2 min, step = 76116/1510076, worker_0, Ep 129, a3c_loss = 3.6184E+00, entropy = 1.3589E+00, piloss = 3.1105E-01, vloss = 6.5875E+00, fwd = 5.3714E-03, inv = 5.8966E-05
+Step 200 of Ep 129, policy probs = [[ 0.23580618  0.61194408  0.13467768  0.01757206]], value logits = 4.5319E+00, inrwd = 1.5052E-01, exrwd = 0
+1 d 5 hr 9 min, step = 76181/1515134, worker_7, Ep 128, a3c_loss = 3.1575E+00, entropy = 1.3586E+00, piloss = 2.6525E-01, vloss = 5.7573E+00, fwd = 4.7813E-03, inv = 2.5749E-06
+Step 400 of Ep 129, policy probs = [[ 0.21080409  0.64029741  0.13361061  0.01528785]], value logits = 4.1306E+00, inrwd = 4.8036E-01, exrwd = 0
+1 d 5 hr 17 min, step = 76580/1520013, worker_15, Ep 128, a3c_loss = 2.4031E+00, entropy = 1.3558E+00, piloss = 6.1086E-02, vloss = 4.6569E+00, fwd = 4.2214E-03, inv = 2.5179E-02
+Step 600 of Ep 129, policy probs = [[ 0.19762526  0.65192884  0.1357342   0.01471166]], value logits = 4.0744E+00, inrwd = 5.5019E-01, exrwd = 0
+1 d 5 hr 25 min, step = 76927/1525000, worker_19, Ep 129, a3c_loss = 1.9749E+00, entropy = 1.3529E+00, piloss = -1.7335E-01, vloss = 4.2694E+00, fwd = 2.6769E-03, inv = 3.3347E-04
+Step 200 of Ep 130, policy probs = [[ 0.18347959  0.68645465  0.11507171  0.01499406]], value logits = 4.1357E+00, inrwd = 2.8876E-01, exrwd = 0
+Step 400 of Ep 130, policy probs = [[ 0.17125541  0.70203656  0.11256275  0.01414534]], value logits = 3.9984E+00, inrwd = 1.6623E-01, exrwd = 0
+1 d 5 hr 32 min, step = 77320/1530035, worker_4, Ep 131, a3c_loss = 1.6461E+00, entropy = 1.3499E+00, piloss = -2.0518E-01, vloss = 3.6755E+00, fwd = 1.9678E-03, inv = 1.4741E-03
+Step 600 of Ep 130, policy probs = [[ 0.17285034  0.70578307  0.10843397  0.01293262]], value logits = 3.9704E+00, inrwd = 4.7781E-01, exrwd = 0
+1 d 5 hr 40 min, step = 77376/1535153, worker_0, Ep 131, a3c_loss = 2.4840E+00, entropy = 1.3503E+00, piloss = 3.2440E-03, vloss = 4.9344E+00, fwd = 4.0269E-03, inv = 1.4750E-05
+Step 200 of Ep 131, policy probs = [[ 0.19077177  0.71293473  0.08237894  0.01391457]], value logits = 4.1258E+00, inrwd = 1.5378E-01, exrwd = 0
+1 d 5 hr 48 min, step = 75256/1540089, worker_14, Ep 126, a3c_loss = 1.4845E+00, entropy = 1.3451E+00, piloss = -2.0267E-01, vloss = 3.3474E+00, fwd = 1.6717E-03, inv = 2.2706E-04
+Step 400 of Ep 131, policy probs = [[ 0.14386906  0.76625359  0.07798366  0.01189369]], value logits = 3.8364E+00, inrwd = 8.3539E-02, exrwd = 0
+1 d 5 hr 55 min, step = 77984/1545000, worker_8, Ep 130, a3c_loss = 1.2260E+00, entropy = 1.3391E+00, piloss = -2.1971E-01, vloss = 2.8647E+00, fwd = 1.6091E-03, inv = 1.1476E-04
+Step 600 of Ep 131, policy probs = [[ 0.12741727  0.79116011  0.07055356  0.01086904]], value logits = 3.6290E+00, inrwd = 3.3702E-01, exrwd = 0
+Step 200 of Ep 132, policy probs = [[ 0.12385794  0.80007285  0.065211    0.01085821]], value logits = 3.5174E+00, inrwd = 9.0393E-02, exrwd = 0
+1 d 6 hr 3 min, step = 76770/1550148, worker_9, Ep 129, a3c_loss = 1.4199E+00, entropy = 1.3373E+00, piloss = -2.4447E-02, vloss = 2.8619E+00, fwd = 3.1892E-03, inv = 1.9947E-05
+Step 400 of Ep 132, policy probs = [[ 0.10315853  0.83113015  0.0570129   0.00869848]], value logits = 3.2342E+00, inrwd = 9.5451E-02, exrwd = 0
+1 d 6 hr 11 min, step = 78442/1555000, worker_19, Ep 131, a3c_loss = 8.0401E-01, entropy = 1.3319E+00, piloss = -1.3135E-01, vloss = 1.8441E+00, fwd = 1.8544E-03, inv = 5.4659E-05
+Step 600 of Ep 132, policy probs = [[ 0.09100898  0.84762335  0.05337913  0.0079886 ]], value logits = 3.0242E+00, inrwd = 1.3025E-01, exrwd = 0
+1 d 6 hr 19 min, step = 74594/1560060, worker_2, Ep 125, a3c_loss = 7.2404E-01, entropy = 1.3296E+00, piloss = -1.1916E-01, vloss = 1.6598E+00, fwd = 1.8888E-03, inv = 1.4493E-04
+Step 200 of Ep 133, policy probs = [[ 0.08231293  0.86011875  0.0494303   0.00813803]], value logits = 2.8862E+00, inrwd = 2.8897E-01, exrwd = 0
+1 d 6 hr 27 min, step = 78952/1565152, worker_19, Ep 132, a3c_loss = 2.4077E-01, entropy = 1.3232E+00, piloss = -1.7264E-01, vloss = 8.0037E-01, fwd = 7.3025E-04, inv = 6.1114E-06
+Step 400 of Ep 133, policy probs = [[ 0.06134992  0.89051229  0.0404232   0.00771454]], value logits = 2.4538E+00, inrwd = 8.7755E-02, exrwd = 0
+Step 600 of Ep 133, policy probs = [[ 0.05024692  0.90480947  0.03567658  0.0092671 ]], value logits = 2.1158E+00, inrwd = 7.3835E-02, exrwd = 0
+1 d 6 hr 35 min, step = 79285/1570053, worker_11, Ep 133, a3c_loss = 7.9042E-02, entropy = 1.3202E+00, piloss = -1.3803E-01, vloss = 4.0774E-01, fwd = 6.6202E-04, inv = 3.5977E-05
+Step 200 of Ep 134, policy probs = [[ 0.04157287  0.91618568  0.03166379  0.0105776 ]], value logits = 1.9869E+00, inrwd = 1.3439E-01, exrwd = 0
+1 d 6 hr 42 min, step = 79310/1575081, worker_18, Ep 133, a3c_loss = 6.0474E-02, entropy = 1.3168E+00, piloss = -1.0100E-01, vloss = 2.9662E-01, fwd = 9.3787E-04, inv = 9.6400E-06
+Step 400 of Ep 134, policy probs = [[ 0.03190039  0.93230438  0.02666547  0.00912977]], value logits = 1.7500E+00, inrwd = 8.9955E-02, exrwd = 0
+1 d 6 hr 50 min, step = 79436/1580114, worker_7, Ep 133, a3c_loss = 7.8207E-02, entropy = 1.3123E+00, piloss = -1.5995E-02, vloss = 1.6216E-01, fwd = 1.5224E-03, inv = 4.7683E-05
+Step 600 of Ep 134, policy probs = [[ 0.02588238  0.94251812  0.02323528  0.00836433]], value logits = 1.6028E+00, inrwd = 5.5163E-02, exrwd = 0
+1 d 6 hr 58 min, step = 75809/1585139, worker_2, Ep 127, a3c_loss = -6.3896E-02, entropy = 1.3110E+00, piloss = -1.1981E-01, vloss = 8.5603E-02, fwd = 4.6507E-04, inv = 2.9325E-05
+Step 200 of Ep 135, policy probs = [[ 0.02408429  0.94652539  0.02108061  0.00830975]], value logits = 1.5467E+00, inrwd = 9.5254E-02, exrwd = 0
+Step 400 of Ep 135, policy probs = [[ 0.01940862  0.95596987  0.01778287  0.0068387 ]], value logits = 1.3634E+00, inrwd = 5.1997E-02, exrwd = 0
+1 d 7 hr 5 min, step = 80171/1590069, worker_16, Ep 134, a3c_loss = -6.4649E-02, entropy = 1.3079E+00, piloss = -8.5386E-02, vloss = 1.5316E-02, fwd = 4.9155E-04, inv = 2.5630E-05
+Step 600 of Ep 135, policy probs = [[ 0.01499174  0.96490091  0.01445776  0.00564963]], value logits = 1.1909E+00, inrwd = 6.7126E-02, exrwd = 0
+1 d 7 hr 13 min, step = 80426/1595057, worker_16, Ep 135, a3c_loss = -4.7076E-03, entropy = 1.3055E+00, piloss = -2.2120E-02, vloss = 8.7157E-03, fwd = 1.4126E-03, inv = 2.5871E-01
+Step 200 of Ep 136, policy probs = [[ 0.01326048  0.96858001  0.01267584  0.00548374]], value logits = 1.1491E+00, inrwd = 1.8450E-01, exrwd = 0
+1 d 7 hr 21 min, step = 80681/1600116, worker_16, Ep 135, a3c_loss = -5.1717E-02, entropy = 1.3037E+00, piloss = -6.5006E-02, vloss = 5.0354E-04, fwd = 5.2349E-04, inv = 9.6559E-06
+Step 400 of Ep 136, policy probs = [[ 0.0109946   0.9735685   0.01074638  0.00469053]], value logits = 1.0512E+00, inrwd = 8.5080E-01, exrwd = 0
+1 d 7 hr 30 min, step = 80921/1605072, worker_16, Ep 136, a3c_loss = -2.3935E-05, entropy = 1.3021E+00, piloss = -1.5765E-02, vloss = 5.4401E-03, fwd = 1.1620E-03, inv = 3.5285E-05
+Step 600 of Ep 136, policy probs = [[ 0.00888756  0.97867811  0.00856419  0.00387016]], value logits = 9.9627E-01, inrwd = 9.4280E-02, exrwd = 0
+Step 200 of Ep 137, policy probs = [[ 0.00726254  0.98266888  0.00680892  0.00325961]], value logits = 9.7319E-01, inrwd = 6.0846E-02, exrwd = 0
+1 d 7 hr 38 min, step = 79323/1610197, worker_3, Ep 133, a3c_loss = 4.6944E-02, entropy = 1.3001E+00, piloss = 3.1159E-02, vloss = 5.5672E-03, fwd = 1.1095E-03, inv = 5.7364E-04
+Step 400 of Ep 137, policy probs = [[ 0.0058613   0.98582178  0.00563017  0.00268669]], value logits = 7.4005E-01, inrwd = 8.6175E-02, exrwd = 0
+1 d 7 hr 47 min, step = 81514/1615000, worker_13, Ep 137, a3c_loss = -8.8618E-03, entropy = 1.2993E+00, piloss = -2.5671E-02, vloss = 7.6330E-03, fwd = 8.2136E-04, inv = 1.5211E-05
+Step 600 of Ep 137, policy probs = [[ 0.00504504  0.98755777  0.00494985  0.00244725]], value logits = 6.2626E-01, inrwd = 3.6153E-02, exrwd = 0
+1 d 7 hr 56 min, step = 81880/1620006, worker_4, Ep 139, a3c_loss = 1.1540E-02, entropy = 1.2983E+00, piloss = -3.5212E-02, vloss = 6.7537E-02, fwd = 3.9049E-04, inv = 2.7418E-06
+Step 200 of Ep 138, policy probs = [[ 0.00456323  0.9888742   0.00432961  0.00223291]], value logits = 6.3255E-01, inrwd = 4.0127E-02, exrwd = 0
+1 d 8 hr 4 min, step = 82049/1625021, worker_8, Ep 137, a3c_loss = 7.6652E-02, entropy = 1.2977E+00, piloss = 1.3291E-02, vloss = 1.0077E-01, fwd = 7.1039E-04, inv = 1.6689E-06
+Step 400 of Ep 138, policy probs = [[ 0.00404929  0.99019355  0.00379106  0.00196605]], value logits = 5.7712E-01, inrwd = 4.8192E-02, exrwd = 0
+Step 600 of Ep 138, policy probs = [[ 0.00345239  0.99159604  0.00324233  0.00170929]], value logits = 5.0283E-01, inrwd = 6.1916E-02, exrwd = 0
+1 d 8 hr 13 min, step = 80655/1630018, worker_9, Ep 135, a3c_loss = 5.6491E-02, entropy = 1.2971E+00, piloss = -1.7880E-02, vloss = 1.2280E-01, fwd = 3.8542E-04, inv = 7.0333E-06
+Step 200 of Ep 139, policy probs = [[ 0.00309627  0.99247909  0.0028682   0.00155636]], value logits = 4.9985E-01, inrwd = 1.4391E-01, exrwd = 0
+1 d 8 hr 22 min, step = 79891/1635122, worker_14, Ep 134, a3c_loss = 4.6287E-02, entropy = 1.2966E+00, piloss = -2.8998E-02, vloss = 1.2464E-01, fwd = 2.8929E-04, inv = 1.8835E-05
+Step 400 of Ep 139, policy probs = [[ 0.00268963  0.99341667  0.00252313  0.00137049]], value logits = 4.2916E-01, inrwd = 3.6712E-02, exrwd = 0
+1 d 8 hr 31 min, step = 82588/1640035, worker_17, Ep 139, a3c_loss = 1.0862E-01, entropy = 1.2962E+00, piloss = 8.9022E-04, vloss = 1.8954E-01, fwd = 4.2559E-04, inv = 1.5497E-05
+Step 600 of Ep 139, policy probs = [[ 0.00239413  0.99409491  0.00225755  0.00125342]], value logits = 3.5968E-01, inrwd = 9.4880E-02, exrwd = 0
+Step 200 of Ep 140, policy probs = [[ 0.00237695  0.99408489  0.00225986  0.00127826]], value logits = 4.5286E-01, inrwd = 3.5580E-02, exrwd = 0
+1 d 8 hr 40 min, step = 82865/1645057, worker_15, Ep 139, a3c_loss = 7.6077E-02, entropy = 1.2962E+00, piloss = -2.2009E-02, vloss = 1.7025E-01, fwd = 2.5895E-04, inv = 1.7643E-05
+Step 400 of Ep 140, policy probs = [[ 0.0021467   0.99460161  0.00208114  0.00117063]], value logits = 4.1161E-01, inrwd = 3.6530E-02, exrwd = 0
+1 d 8 hr 48 min, step = 79521/1650013, worker_6, Ep 134, a3c_loss = 8.3270E-02, entropy = 1.2959E+00, piloss = -1.5833E-02, vloss = 1.7229E-01, fwd = 3.2843E-04, inv = 5.7220E-06
+Step 600 of Ep 140, policy probs = [[ 0.00196063  0.99506927  0.00189517  0.00107498]], value logits = 3.5057E-01, inrwd = 4.9982E-02, exrwd = 0
+1 d 8 hr 57 min, step = 83327/1655032, worker_5, Ep 139, a3c_loss = 1.0617E-01, entropy = 1.2957E+00, piloss = -1.6212E-02, vloss = 2.1885E-01, fwd = 2.1161E-04, inv = 6.1989E-06
+Step 200 of Ep 141, policy probs = [[ 0.00189112  0.99524754  0.0018208   0.00104049]], value logits = 3.7907E-01, inrwd = 3.2218E-02, exrwd = 0
+1 d 9 hr 6 min, step = 83608/1660227, worker_17, Ep 141, a3c_loss = 4.4927E-02, entropy = 1.2956E+00, piloss = -4.5376E-02, vloss = 1.5469E-01, fwd = 2.2643E-04, inv = 4.9114E-06
+Step 400 of Ep 141, policy probs = [[  1.72991783e-03   9.95602012e-01   1.70698494e-03   9.61068145e-04]], value logits = 3.2053E-01, inrwd = 4.2097E-02, exrwd = 0
+Step 600 of Ep 141, policy probs = [[  1.58920675e-03   9.95951056e-01   1.57009752e-03   8.89560208e-04]], value logits = 2.8754E-01, inrwd = 5.2107E-02, exrwd = 0
+Exception in thread Thread-4:
+Traceback (most recent call last):
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/train.py", line 143, in <lambda>
+    worker_fn = lambda worker=worker: worker.run(sess, coord, FLAGS.t_max)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/worker.py", line 147, in run
+    self.saver.save(sess, self.checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1581, in save
+    self._RecordLastCheckpoint(model_checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1330, in _RecordLastCheckpoint
+    self._last_checkpoints.remove(p)
+ValueError: list.remove(x): x not in list
+
+1 d 9 hr 15 min, step = 83837/1665178, worker_5, Ep 140, a3c_loss = 1.3511E-01, entropy = 1.2953E+00, piloss = 8.5944E-04, vloss = 2.4259E-01, fwd = 3.1748E-04, inv = 2.2650E-06
+Step 200 of Ep 142, policy probs = [[  1.53052993e-03   9.96127784e-01   1.48636056e-03   8.55316583e-04]], value logits = 2.8271E-01, inrwd = 3.9512E-02, exrwd = 0
+1 d 9 hr 23 min, step = 84171/1670150, worker_0, Ep 142, a3c_loss = 1.5401E-01, entropy = 1.2952E+00, piloss = 2.0204E-02, vloss = 2.4171E-01, fwd = 4.8718E-04, inv = 7.1526E-07
+Step 400 of Ep 142, policy probs = [[  1.40627241e-03   9.96428430e-01   1.37430744e-03   7.91036175e-04]], value logits = 2.4904E-01, inrwd = 1.7679E-02, exrwd = 0
+1 d 9 hr 31 min, step = 84377/1675039, worker_5, Ep 141, a3c_loss = 1.6557E-01, entropy = 1.2951E+00, piloss = -1.4553E-03, vloss = 3.0815E-01, fwd = 1.9940E-04, inv = 2.8610E-06
+Step 600 of Ep 142, policy probs = [[  1.30321435e-03   9.96684730e-01   1.27413007e-03   7.38005387e-04]], value logits = 1.8022E-01, inrwd = 3.0094E-02, exrwd = 0
+1 d 9 hr 39 min, step = 84611/1680177, worker_16, Ep 142, a3c_loss = 1.4333E-01, entropy = 1.2950E+00, piloss = -1.3721E-02, vloss = 2.8820E-01, fwd = 1.3862E-04, inv = 8.8214E-06
+Step 200 of Ep 143, policy probs = [[  1.26781920e-03   9.96769786e-01   1.24227407e-03   7.20191805e-04]], value logits = 2.1773E-01, inrwd = 1.9874E-02, exrwd = 0
+Step 400 of Ep 143, policy probs = [[  1.17092649e-03   9.96998549e-01   1.15882664e-03   6.71752088e-04]], value logits = 2.0008E-01, inrwd = 3.1606E-02, exrwd = 0
+1 d 9 hr 47 min, step = 85240/1685108, worker_4, Ep 144, a3c_loss = 1.7164E-01, entropy = 1.2948E+00, piloss = 1.0706E-02, vloss = 2.9596E-01, fwd = 3.1274E-04, inv = 1.5378E-05
+Step 600 of Ep 143, policy probs = [[  1.09166093e-03   9.97193515e-01   1.08365319e-03   6.31244155e-04]], value logits = 1.8015E-01, inrwd = 1.4861E-02, exrwd = 0
+1 d 9 hr 55 min, step = 85466/1690107, worker_12, Ep 144, a3c_loss = 1.5646E-01, entropy = 1.2947E+00, piloss = -5.3442E-03, vloss = 2.9772E-01, fwd = 1.7689E-04, inv = 6.9141E-06
+Step 200 of Ep 144, policy probs = [[  1.06757914e-03   9.97270286e-01   1.04627456e-03   6.15797297e-04]], value logits = 2.0526E-01, inrwd = 2.6483E-02, exrwd = 0
+1 d 10 hr 3 min, step = 85476/1695097, worker_0, Ep 144, a3c_loss = 1.8622E-01, entropy = 1.2946E+00, piloss = 1.2258E-02, vloss = 3.2203E-01, fwd = 2.8675E-04, inv = 8.5830E-06
+Step 400 of Ep 144, policy probs = [[  9.94774629e-04   9.97442722e-01   9.83081991e-04   5.79428510e-04]], value logits = 1.7075E-01, inrwd = 2.3822E-02, exrwd = 0
+Step 600 of Ep 144, policy probs = [[  9.33842035e-04   9.97592628e-01   9.25646513e-04   5.47911972e-04]], value logits = 1.4672E-01, inrwd = 1.2536E-02, exrwd = 0
+1 d 10 hr 11 min, step = 85712/1700167, worker_5, Ep 143, a3c_loss = 1.8762E-01, entropy = 1.2945E+00, piloss = -8.5396E-04, vloss = 3.5106E-01, fwd = 1.3263E-04, inv = 3.3379E-06
+Step 200 of Ep 145, policy probs = [[  9.18291509e-04   9.97633457e-01   9.09954775e-04   5.38237509e-04]], value logits = 2.2734E-01, inrwd = 1.3594E-02, exrwd = 0
+1 d 10 hr 19 min, step = 85871/1705082, worker_16, Ep 144, a3c_loss = 1.4935E-01, entropy = 1.2945E+00, piloss = -1.0828E-02, vloss = 2.9447E-01, fwd = 1.2061E-04, inv = 5.3644E-06
+Step 400 of Ep 145, policy probs = [[  8.76242819e-04   9.97740507e-01   8.68623261e-04   5.14649088e-04]], value logits = 1.6851E-01, inrwd = 2.1345E-02, exrwd = 0
+1 d 10 hr 27 min, step = 86237/1710000, worker_5, Ep 144, a3c_loss = 1.7669E-01, entropy = 1.2944E+00, piloss = 8.6896E-03, vloss = 3.1010E-01, fwd = 2.6078E-04, inv = 8.5830E-06
+Step 600 of Ep 145, policy probs = [[  8.40055174e-04   9.97837722e-01   8.29202763e-04   4.93050087e-04]], value logits = 1.5267E-01, inrwd = 2.2912E-02, exrwd = 0
+Step 200 of Ep 146, policy probs = [[  8.29351600e-04   9.97869253e-01   8.15288397e-04   4.86091420e-04]], value logits = 1.5729E-01, inrwd = 1.6686E-02, exrwd = 0
+1 d 10 hr 35 min, step = 86507/1715193, worker_5, Ep 145, a3c_loss = 1.7442E-01, entropy = 1.2944E+00, piloss = 2.5129E-03, vloss = 3.1793E-01, fwd = 2.0622E-04, inv = 5.0068E-06
+Step 400 of Ep 146, policy probs = [[  7.81062758e-04   9.97982860e-01   7.73766777e-04   4.62316646e-04]], value logits = 1.0658E-01, inrwd = 1.0535E-02, exrwd = 0
+1 d 10 hr 43 min, step = 86932/1720037, worker_19, Ep 146, a3c_loss = 1.0402E-01, entropy = 1.2944E+00, piloss = -3.2807E-02, vloss = 2.4776E-01, fwd = 2.0380E-04, inv = 5.3962E-06
+Step 600 of Ep 146, policy probs = [[  7.57816597e-04   9.98036325e-01   7.57079746e-04   4.48778708e-04]], value logits = 9.5742E-02, inrwd = 1.0563E-02, exrwd = 0
+1 d 10 hr 51 min, step = 87066/1725173, worker_0, Ep 147, a3c_loss = 1.6715E-01, entropy = 1.2943E+00, piloss = 2.1566E-03, vloss = 3.0410E-01, fwd = 1.7675E-04, inv = 7.1480E-04
+Step 200 of Ep 147, policy probs = [[  7.46620644e-04   9.98072386e-01   7.39920069e-04   4.41046810e-04]], value logits = 1.6428E-01, inrwd = 1.2151E-02, exrwd = 0
+Step 400 of Ep 147, policy probs = [[  7.06190825e-04   9.98167396e-01   7.05108629e-04   4.21250064e-04]], value logits = 1.1945E-01, inrwd = 1.9751E-02, exrwd = 0
+1 d 10 hr 59 min, step = 83556/1730032, worker_6, Ep 141, a3c_loss = 1.9048E-01, entropy = 1.2942E+00, piloss = 2.9791E-03, vloss = 3.4913E-01, fwd = 1.4746E-04, inv = 2.3842E-06
+Step 600 of Ep 147, policy probs = [[  6.71832706e-04   9.98252213e-01   6.72775146e-04   4.03160142e-04]], value logits = 8.5657E-02, inrwd = 1.5155E-02, exrwd = 0
+1 d 11 hr 7 min, step = 87598/1735000, worker_17, Ep 147, a3c_loss = 1.9167E-01, entropy = 1.2941E+00, piloss = -4.6539E-03, vloss = 3.6676E-01, fwd = 5.7895E-05, inv = 2.8610E-06
+Step 200 of Ep 148, policy probs = [[  6.64905063e-04   9.98277426e-01   6.60102640e-04   3.97617259e-04]], value logits = 1.1913E-01, inrwd = 2.6296E-02, exrwd = 0
+1 d 11 hr 15 min, step = 84066/1740085, worker_6, Ep 141, a3c_loss = 1.8640E-01, entropy = 1.2941E+00, piloss = -6.0504E-03, vloss = 3.5901E-01, fwd = 5.1411E-05, inv = 2.5034E-06
+Step 400 of Ep 148, policy probs = [[  6.39444159e-04   9.98330176e-01   6.39378908e-04   3.91051057e-04]], value logits = 9.2489E-02, inrwd = 3.6638E-03, exrwd = 0
+Step 600 of Ep 148, policy probs = [[  6.10906514e-04   9.98400509e-01   6.12642209e-04   3.75926640e-04]], value logits = 7.2516E-02, inrwd = 1.3289E-02, exrwd = 0
+1 d 11 hr 23 min, step = 88406/1745167, worker_12, Ep 149, a3c_loss = 1.6955E-01, entropy = 1.2941E+00, piloss = -7.8914E-03, vloss = 3.2900E-01, fwd = 8.3006E-05, inv = 4.5299E-06
+Step 200 of Ep 149, policy probs = [[  6.06378948e-04   9.98418927e-01   6.03022345e-04   3.71749135e-04]], value logits = 1.0711E-01, inrwd = 1.8174E-02, exrwd = 0
+1 d 11 hr 31 min, step = 88355/1750014, worker_18, Ep 148, a3c_loss = 1.9238E-01, entropy = 1.2940E+00, piloss = -2.1391E-03, vloss = 3.6316E-01, fwd = 7.4636E-05, inv = 2.3842E-06
+Step 400 of Ep 149, policy probs = [[  5.84516441e-04   9.98461843e-01   5.92263066e-04   3.61380808e-04]], value logits = 9.1086E-02, inrwd = 1.3989E-02, exrwd = 0
+1 d 11 hr 39 min, step = 84831/1755049, worker_6, Ep 143, a3c_loss = 1.4269E-01, entropy = 1.2940E+00, piloss = -2.4058E-02, vloss = 3.0761E-01, fwd = 5.7091E-05, inv = 1.3113E-06
+Step 600 of Ep 149, policy probs = [[  5.59953682e-04   9.98522937e-01   5.69341704e-04   3.47854279e-04]], value logits = 4.9454E-02, inrwd = 1.3478E-02, exrwd = 0
+Step 200 of Ep 150, policy probs = [[  5.56973391e-04   9.98536587e-01   5.61631517e-04   3.44830187e-04]], value logits = 1.4060E-01, inrwd = 6.7458E-03, exrwd = 0
+1 d 11 hr 47 min, step = 88910/1760075, worker_15, Ep 149, a3c_loss = 1.6689E-01, entropy = 1.2939E+00, piloss = -8.8416E-03, vloss = 3.2559E-01, fwd = 5.7507E-05, inv = 1.4305E-06
+Step 400 of Ep 150, policy probs = [[  5.30453748e-04   9.98599350e-01   5.38719585e-04   3.31491232e-04]], value logits = 1.0212E-01, inrwd = 1.4692E-02, exrwd = 0
+1 d 11 hr 55 min, step = 89384/1765142, worker_1, Ep 149, a3c_loss = 1.9409E-01, entropy = 1.2939E+00, piloss = 6.5396E-03, vloss = 3.4922E-01, fwd = 1.5463E-04, inv = 2.5034E-06
+Step 600 of Ep 150, policy probs = [[  5.09037869e-04   9.98652935e-01   5.18381130e-04   3.19643557e-04]], value logits = 6.9604E-02, inrwd = 1.5534E-02, exrwd = 0
+1 d 12 hr 3 min, step = 89306/1770000, worker_7, Ep 149, a3c_loss = 1.8397E-01, entropy = 1.2938E+00, piloss = -7.0857E-04, vloss = 3.4349E-01, fwd = 9.6140E-05, inv = 1.3113E-06
+Step 200 of Ep 151, policy probs = [[  5.07363351e-04   9.98663425e-01   5.12166473e-04   3.17087106e-04]], value logits = 1.2723E-01, inrwd = 1.0797E-02, exrwd = 0
+Step 400 of Ep 151, policy probs = [[  4.85414756e-04   9.98714924e-01   4.93512140e-04   3.06157162e-04]], value logits = 6.5848E-02, inrwd = 9.3034E-03, exrwd = 0
+1 d 12 hr 11 min, step = 89899/1775052, worker_13, Ep 151, a3c_loss = 1.2553E-01, entropy = 1.2938E+00, piloss = 3.2527E-03, vloss = 2.1868E-01, fwd = 2.6764E-04, inv = 1.5338E-05
+Step 600 of Ep 151, policy probs = [[  4.70596919e-04   9.98755217e-01   4.77410911e-04   2.96782528e-04]], value logits = 4.1233E-02, inrwd = 1.4544E-02, exrwd = 0
+1 d 12 hr 19 min, step = 87873/1780151, worker_3, Ep 147, a3c_loss = 1.9274E-01, entropy = 1.2937E+00, piloss = 3.3432E-03, vloss = 3.5292E-01, fwd = 1.1362E-04, inv = 3.0994E-06
+Step 200 of Ep 152, policy probs = [[  4.70527477e-04   9.98761177e-01   4.73113876e-04   2.95173668e-04]], value logits = 1.1084E-01, inrwd = 1.0850E-02, exrwd = 0
+1 d 12 hr 27 min, step = 90439/1785114, worker_13, Ep 151, a3c_loss = 2.0469E-01, entropy = 1.2937E+00, piloss = 1.3359E-02, vloss = 3.5678E-01, fwd = 1.9032E-04, inv = 4.4107E-06
+Step 400 of Ep 152, policy probs = [[  4.49939660e-04   9.98809576e-01   4.55648667e-04   2.84822658e-04]], value logits = 8.7543E-02, inrwd = 1.6915E-02, exrwd = 0
+Step 600 of Ep 152, policy probs = [[  4.33470239e-04   9.98850226e-01   4.40163712e-04   2.76104547e-04]], value logits = 8.6026E-02, inrwd = 2.3707E-02, exrwd = 0
+1 d 12 hr 35 min, step = 90835/1790085, worker_4, Ep 154, a3c_loss = 1.5518E-01, entropy = 1.2937E+00, piloss = -2.9268E-03, vloss = 2.9035E-01, fwd = 1.3333E-04, inv = 5.2849E-06
+Step 200 of Ep 153, policy probs = [[  4.44732024e-04   9.98818099e-01   4.52779321e-04   2.84336566e-04]], value logits = 1.0401E-01, inrwd = 7.1933E-03, exrwd = 0
+1 d 12 hr 43 min, step = 87976/1795129, worker_14, Ep 147, a3c_loss = 2.0224E-01, entropy = 1.2936E+00, piloss = 1.1222E-02, vloss = 3.5616E-01, fwd = 1.6567E-04, inv = 1.5497E-06
+Step 400 of Ep 153, policy probs = [[  4.26113955e-04   9.98861909e-01   4.37060284e-04   2.74933758e-04]], value logits = 7.3656E-02, inrwd = 6.3115E-03, exrwd = 0
+1 d 12 hr 51 min, step = 90992/1800000, worker_5, Ep 152, a3c_loss = 1.9057E-01, entropy = 1.2936E+00, piloss = 8.8521E-03, vloss = 3.3757E-01, fwd = 1.6597E-04, inv = 8.3446E-07
+Step 600 of Ep 153, policy probs = [[  4.10227163e-04   9.98901963e-01   4.21957870e-04   2.65817303e-04]], value logits = 5.6367E-02, inrwd = 9.5839E-03, exrwd = 0
+Step 200 of Ep 154, policy probs = [[  4.12331487e-04   9.98901606e-01   4.20233322e-04   2.65729759e-04]], value logits = 9.0119E-02, inrwd = 1.3418E-02, exrwd = 0
+1 d 13 hr 0 min, step = 91586/1805035, worker_12, Ep 154, a3c_loss = 1.8501E-01, entropy = 1.2935E+00, piloss = 2.3621E-03, vloss = 3.3942E-01, fwd = 1.0580E-04, inv = 2.2650E-06
+Step 400 of Ep 154, policy probs = [[  3.97595111e-04   9.98934209e-01   4.08113905e-04   2.60046450e-04]], value logits = 7.7740E-02, inrwd = 7.3211E-03, exrwd = 0
+1 d 13 hr 9 min, step = 91436/1810153, worker_7, Ep 153, a3c_loss = 1.7237E-01, entropy = 1.2935E+00, piloss = -2.2575E-03, vloss = 3.2339E-01, fwd = 8.2886E-05, inv = 3.8147E-06
+Step 600 of Ep 154, policy probs = [[  3.85395688e-04   9.98963356e-01   3.98126343e-04   2.53157777e-04]], value logits = 3.7269E-02, inrwd = 4.7197E-03, exrwd = 0
+1 d 13 hr 18 min, step = 91496/1815054, worker_16, Ep 153, a3c_loss = 1.9667E-01, entropy = 1.2935E+00, piloss = 6.5473E-03, vloss = 3.5437E-01, fwd = 1.1522E-04, inv = 3.2186E-06
+Step 200 of Ep 155, policy probs = [[  3.87497479e-04   9.98962760e-01   3.96705989e-04   2.53068312e-04]], value logits = 8.4948E-02, inrwd = 7.8090E-03, exrwd = 0
+Step 400 of Ep 155, policy probs = [[  3.71599686e-04   9.99000371e-01   3.83142236e-04   2.44815426e-04]], value logits = 6.9124E-02, inrwd = 4.8680E-03, exrwd = 0
+1 d 13 hr 28 min, step = 92128/1820084, worker_17, Ep 155, a3c_loss = 1.6414E-01, entropy = 1.2934E+00, piloss = -6.6757E-03, vloss = 3.1577E-01, fwd = 5.1019E-05, inv = 2.5034E-06
+Step 600 of Ep 155, policy probs = [[  3.59622383e-04   9.99030709e-01   3.71818373e-04   2.37875938e-04]], value logits = 2.7741E-02, inrwd = 6.5477E-03, exrwd = 0
+1 d 13 hr 37 min, step = 92360/1825044, worker_15, Ep 155, a3c_loss = 1.6417E-01, entropy = 1.2934E+00, piloss = -5.3639E-03, vloss = 3.1320E-01, fwd = 6.7907E-05, inv = 1.4305E-06
+Step 200 of Ep 156, policy probs = [[  3.65826127e-04   9.99022126e-01   3.72784445e-04   2.39230474e-04]], value logits = 8.6186E-02, inrwd = 7.0302E-03, exrwd = 0
+1 d 13 hr 46 min, step = 92646/1830145, worker_0, Ep 156, a3c_loss = 1.7901E-01, entropy = 1.2933E+00, piloss = -3.7582E-03, vloss = 3.3967E-01, fwd = 3.6612E-05, inv = 1.1921E-06
+Step 400 of Ep 156, policy probs = [[  3.51938303e-04   9.99054730e-01   3.61200247e-04   2.32102699e-04]], value logits = 5.5288E-02, inrwd = 1.1277E-02, exrwd = 0
+Step 600 of Ep 156, policy probs = [[  3.40667466e-04   9.99083161e-01   3.50626680e-04   2.25524622e-04]], value logits = 8.9152E-03, inrwd = 9.5592E-03, exrwd = 0
+1 d 13 hr 55 min, step = 93176/1835168, worker_12, Ep 157, a3c_loss = 1.7164E-01, entropy = 1.2933E+00, piloss = -2.7081E-03, vloss = 3.2284E-01, fwd = 7.0815E-05, inv = 1.6689E-06
+Step 200 of Ep 157, policy probs = [[  3.43618827e-04   9.99079943e-01   3.50371702e-04   2.26098899e-04]], value logits = 6.0433E-02, inrwd = 7.5591E-03, exrwd = 0
+1 d 14 hr 4 min, step = 93446/1840201, worker_12, Ep 157, a3c_loss = 1.8764E-01, entropy = 1.2933E+00, piloss = 4.3892E-03, vloss = 3.4064E-01, fwd = 9.7457E-05, inv = 5.9605E-07
+Step 400 of Ep 157, policy probs = [[  3.29804432e-04   9.99112546e-01   3.38725600e-04   2.18872330e-04]], value logits = 6.6523E-02, inrwd = 8.4955E-03, exrwd = 0
+1 d 14 hr 13 min, step = 89451/1845104, worker_6, Ep 150, a3c_loss = 1.8365E-01, entropy = 1.2932E+00, piloss = 3.8173E-03, vloss = 3.3381E-01, fwd = 9.6831E-05, inv = 7.1526E-07
+Step 600 of Ep 157, policy probs = [[  3.19579412e-04   9.99138355e-01   3.29136470e-04   2.12898376e-04]], value logits = 3.3365E-02, inrwd = 1.0948E-02, exrwd = 0
+Step 200 of Ep 158, policy probs = [[  3.22966254e-04   9.99133646e-01   3.29595059e-04   2.13838895e-04]], value logits = 5.7106E-02, inrwd = 2.4648E-03, exrwd = 0
+1 d 14 hr 22 min, step = 93914/1850018, worker_1, Ep 157, a3c_loss = 1.8581E-01, entropy = 1.2932E+00, piloss = 4.0686E-03, vloss = 3.3763E-01, fwd = 9.1670E-05, inv = 1.0729E-06
+Step 400 of Ep 158, policy probs = [[  3.11045704e-04   9.99161482e-01   3.19787127e-04   2.07694320e-04]], value logits = 3.8451E-02, inrwd = 4.0157E-03, exrwd = 0
+1 d 14 hr 32 min, step = 94270/1855160, worker_11, Ep 158, a3c_loss = 1.8217E-01, entropy = 1.2931E+00, piloss = 1.0082E-03, vloss = 3.3647E-01, fwd = 6.4793E-05, inv = 1.0729E-06
+Step 600 of Ep 158, policy probs = [[  3.01709835e-04   9.99184906e-01   3.11069598e-04   2.02216383e-04]], value logits = 1.2752E-02, inrwd = 4.7081E-03, exrwd = 0
+Exception in thread Thread-7:
+Traceback (most recent call last):
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/train.py", line 143, in <lambda>
+    worker_fn = lambda worker=worker: worker.run(sess, coord, FLAGS.t_max)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/worker.py", line 147, in run
+    self.saver.save(sess, self.checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1581, in save
+    self._RecordLastCheckpoint(model_checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1330, in _RecordLastCheckpoint
+    self._last_checkpoints.remove(p)
+ValueError: list.remove(x): x not in list
+
+1 d 14 hr 40 min, step = 94484/1860119, worker_8, Ep 158, a3c_loss = 1.8448E-01, entropy = 1.2931E+00, piloss = 4.4381E-03, vloss = 3.3422E-01, fwd = 9.3188E-05, inv = 1.0729E-06
+Step 200 of Ep 159, policy probs = [[  3.05169873e-04   9.99179900e-01   3.11688986e-04   2.03183852e-04]], value logits = 5.7516E-02, inrwd = 7.0544E-03, exrwd = 0
+Step 400 of Ep 159, policy probs = [[  2.94379774e-04   9.99205172e-01   3.02902336e-04   1.97610862e-04]], value logits = 3.8731E-02, inrwd = 5.0908E-03, exrwd = 0
+1 d 14 hr 49 min, step = 94769/1865188, worker_8, Ep 158, a3c_loss = 1.9172E-01, entropy = 1.2930E+00, piloss = 3.3971E-03, vloss = 3.5078E-01, fwd = 5.8847E-05, inv = 5.8412E-06
+Step 600 of Ep 159, policy probs = [[  2.85882794e-04   9.99226570e-01   2.94984144e-04   1.92599124e-04]], value logits = 5.4948E-03, inrwd = 7.7548E-03, exrwd = 0
+1 d 14 hr 57 min, step = 94798/1870000, worker_17, Ep 159, a3c_loss = 1.8554E-01, entropy = 1.2930E+00, piloss = 2.7742E-04, vloss = 3.4466E-01, fwd = 3.7285E-05, inv = 1.9073E-06
+Step 200 of Ep 160, policy probs = [[  2.89516756e-04   9.99220729e-01   2.95967242e-04   1.93790620e-04]], value logits = 5.9642E-02, inrwd = 4.0060E-03, exrwd = 0
+1 d 15 hr 5 min, step = 95091/1875097, worker_0, Ep 160, a3c_loss = 1.7455E-01, entropy = 1.2930E+00, piloss = -7.6384E-04, vloss = 3.2477E-01, fwd = 5.0651E-05, inv = 4.7684E-07
+Step 400 of Ep 160, policy probs = [[  2.79369182e-04   9.99244332e-01   2.87703704e-04   1.88522958e-04]], value logits = 4.3642E-02, inrwd = 4.5728E-03, exrwd = 0
+Step 600 of Ep 160, policy probs = [[  2.71811383e-04   9.99263465e-01   2.80696753e-04   1.84050499e-04]], value logits = 1.1645E-02, inrwd = 6.4473E-03, exrwd = 0
+1 d 15 hr 14 min, step = 92386/1880105, worker_14, Ep 155, a3c_loss = 1.6147E-01, entropy = 1.2929E+00, piloss = -6.1917E-03, vloss = 3.0947E-01, fwd = 2.4649E-05, inv = 1.1921E-06
+Step 200 of Ep 161, policy probs = [[  2.75874801e-04   9.99256313e-01   2.82241701e-04   1.85582758e-04]], value logits = 4.3647E-02, inrwd = 4.3085E-03, exrwd = 0
+1 d 15 hr 22 min, step = 95864/1885162, worker_1, Ep 160, a3c_loss = 1.8262E-01, entropy = 1.2928E+00, piloss = 1.2531E-03, vloss = 3.3688E-01, fwd = 4.4826E-05, inv = 1.1921E-06
+Step 400 of Ep 161, policy probs = [[  2.66112998e-04   9.99279082e-01   2.74304621e-04   1.80489675e-04]], value logits = 3.1932E-02, inrwd = 4.2591E-03, exrwd = 0
+Step 600 of Ep 161, policy probs = [[  2.58957240e-04   9.99297023e-01   2.67720694e-04   1.76264715e-04]], value logits = -8.7264E-03, inrwd = 5.3714E-03, exrwd = 0
+1 d 15 hr 30 min, step = 93588/1890067, worker_3, Ep 157, a3c_loss = 1.6842E-01, entropy = 1.2928E+00, piloss = -1.1351E-03, vloss = 3.1326E-01, fwd = 5.5602E-05, inv = 4.7684E-07
+Step 200 of Ep 162, policy probs = [[  2.62411631e-04   9.99291420e-01   2.68729607e-04   1.77423717e-04]], value logits = 4.9764E-02, inrwd = 2.5528E-03, exrwd = 0
+1 d 15 hr 39 min, step = 96379/1895056, worker_13, Ep 161, a3c_loss = 1.8577E-01, entropy = 1.2928E+00, piloss = 2.7265E-03, vloss = 3.4023E-01, fwd = 4.6750E-05, inv = 1.0729E-06
+Step 400 of Ep 162, policy probs = [[  2.56858038e-04   9.99305844e-01   2.63338501e-04   1.73947425e-04]], value logits = 3.4259E-02, inrwd = 6.7365E-03, exrwd = 0
+1 d 15 hr 47 min, step = 96471/1900063, worker_0, Ep 162, a3c_loss = 1.8439E-01, entropy = 1.2927E+00, piloss = 1.4433E-03, vloss = 3.4005E-01, fwd = 3.2491E-05, inv = 1.1921E-07
+Step 600 of Ep 162, policy probs = [[  2.51453515e-04   9.99317765e-01   2.59919150e-04   1.70843225e-04]], value logits = -9.0516E-04, inrwd = 1.8159E-03, exrwd = 0
+Step 200 of Ep 163, policy probs = [[  2.55158229e-04   9.99311328e-01   2.61299836e-04   1.72230997e-04]], value logits = 5.0132E-02, inrwd = 2.3550E-03, exrwd = 0
+1 d 15 hr 55 min, step = 94755/1905028, worker_9, Ep 159, a3c_loss = 1.5827E-01, entropy = 1.2927E+00, piloss = -4.7941E-03, vloss = 3.0028E-01, fwd = 3.2977E-05, inv = 8.3446E-07
+Step 400 of Ep 163, policy probs = [[  2.46819254e-04   9.99330640e-01   2.54656305e-04   1.67913196e-04]], value logits = 2.9514E-02, inrwd = 7.3170E-03, exrwd = 0
+1 d 16 hr 4 min, step = 96506/1910057, worker_16, Ep 162, a3c_loss = 1.4326E-01, entropy = 1.2926E+00, piloss = -1.4144E-02, vloss = 2.8895E-01, fwd = 2.9142E-05, inv = 8.3446E-07
+Step 600 of Ep 163, policy probs = [[  2.40330119e-04   9.99346912e-01   2.48659722e-04   1.64036479e-04]], value logits = -2.3193E-03, inrwd = 4.8662E-03, exrwd = 0
+Step 200 of Ep 164, policy probs = [[  2.44025185e-04   9.99340355e-01   2.50129146e-04   1.65481586e-04]], value logits = 4.4084E-02, inrwd = 1.2393E-03, exrwd = 0
+1 d 16 hr 12 min, step = 97660/1915020, worker_4, Ep 165, a3c_loss = 1.7082E-01, entropy = 1.2926E+00, piloss = -2.2121E-03, vloss = 3.2022E-01, fwd = 1.6967E-05, inv = 1.0729E-06
+Step 400 of Ep 164, policy probs = [[  2.35994710e-04   9.99358952e-01   2.43739225e-04   1.61307180e-04]], value logits = 2.5825E-02, inrwd = 1.9666E-03, exrwd = 0
+1 d 16 hr 21 min, step = 95565/1920101, worker_9, Ep 160, a3c_loss = 1.6769E-01, entropy = 1.2925E+00, piloss = -3.0308E-03, vloss = 3.1559E-01, fwd = 1.4392E-05, inv = 8.3446E-07
+Step 600 of Ep 164, policy probs = [[  2.32728140e-04   9.99368966e-01   2.39683548e-04   1.58691517e-04]], value logits = -5.4422E-03, inrwd = 3.2890E-03, exrwd = 0
+1 d 16 hr 29 min, step = 97751/1925086, worker_7, Ep 163, a3c_loss = 1.8226E-01, entropy = 1.2925E+00, piloss = 4.1445E-04, vloss = 3.3784E-01, fwd = 9.2840E-06, inv = 1.3113E-06
+Step 200 of Ep 165, policy probs = [[  2.36686174e-04   9.99361694e-01   2.41414033e-04   1.60292431e-04]], value logits = 3.6916E-02, inrwd = 4.1034E-03, exrwd = 0
+Step 400 of Ep 165, policy probs = [[  2.29057026e-04   9.99379158e-01   2.35393032e-04   1.56330003e-04]], value logits = 2.7997E-02, inrwd = 3.9390E-03, exrwd = 0
+1 d 16 hr 37 min, step = 93996/1930013, worker_6, Ep 158, a3c_loss = 1.5661E-01, entropy = 1.2924E+00, piloss = -4.6995E-03, vloss = 2.9677E-01, fwd = 1.8963E-05, inv = 3.5763E-07
+Step 600 of Ep 165, policy probs = [[  2.23107811e-04   9.99394178e-01   2.29928482e-04   1.52768742e-04]], value logits = 1.4483E-03, inrwd = 5.2692E-03, exrwd = 0
+1 d 16 hr 46 min, step = 98420/1935090, worker_18, Ep 165, a3c_loss = 1.5434E-01, entropy = 1.2924E+00, piloss = -4.2749E-03, vloss = 2.9139E-01, fwd = 2.7488E-05, inv = 5.9605E-07
+Step 200 of Ep 166, policy probs = [[  2.27072131e-04   9.99386668e-01   2.31816506e-04   1.54459180e-04]], value logits = 4.6685E-02, inrwd = 4.8527E-03, exrwd = 0
+Step 400 of Ep 166, policy probs = [[  2.19812428e-04   9.99403358e-01   2.26106524e-04   1.50674998e-04]], value logits = 3.4570E-02, inrwd = 4.4721E-03, exrwd = 0
+1 d 16 hr 55 min, step = 98939/1940099, worker_1, Ep 165, a3c_loss = 1.6842E-01, entropy = 1.2923E+00, piloss = 2.5945E-04, vloss = 3.1048E-01, fwd = 3.3559E-05, inv = 1.7881E-06
+Step 600 of Ep 166, policy probs = [[  2.14554442e-04   9.99416590e-01   2.21321025e-04   1.47521176e-04]], value logits = -8.2473E-03, inrwd = 2.7300E-03, exrwd = 0
+1 d 17 hr 3 min, step = 94806/1945054, worker_6, Ep 159, a3c_loss = 1.7092E-01, entropy = 1.2922E+00, piloss = 3.5744E-03, vloss = 3.0885E-01, fwd = 5.9737E-05, inv = 3.5763E-07
+Step 200 of Ep 167, policy probs = [[  2.18251982e-04   9.99409676e-01   2.23019582e-04   1.49075699e-04]], value logits = 4.9348E-02, inrwd = 3.5663E-03, exrwd = 0
+Exception in thread Thread-11:
+Traceback (most recent call last):
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/train.py", line 143, in <lambda>
+    worker_fn = lambda worker=worker: worker.run(sess, coord, FLAGS.t_max)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/worker.py", line 147, in run
+    self.saver.save(sess, self.checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1581, in save
+    self._RecordLastCheckpoint(model_checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1330, in _RecordLastCheckpoint
+    self._last_checkpoints.remove(p)
+ValueError: list.remove(x): x not in list
+
+1 d 17 hr 11 min, step = 99610/1950098, worker_11, Ep 167, a3c_loss = 1.5528E-01, entropy = 1.2922E+00, piloss = -2.4271E-03, vloss = 2.8957E-01, fwd = 3.5018E-05, inv = 7.1526E-07
+Step 400 of Ep 167, policy probs = [[  2.13913299e-04   9.99416471e-01   2.22363582e-04   1.47202561e-04]], value logits = 2.7125E-02, inrwd = 3.1340E-03, exrwd = 0
+Step 600 of Ep 167, policy probs = [[  2.08834768e-04   9.99429286e-01   2.17736932e-04   1.44142512e-04]], value logits = -8.2341E-03, inrwd = 5.1803E-03, exrwd = 0
+1 d 17 hr 19 min, step = 99576/1955123, worker_0, Ep 168, a3c_loss = 1.4618E-01, entropy = 1.2921E+00, piloss = -6.4502E-03, vloss = 2.7941E-01, fwd = 2.4043E-05, inv = 9.5367E-07
+Step 200 of Ep 168, policy probs = [[  2.12734885e-04   9.99421835e-01   2.19682363e-04   1.45854865e-04]], value logits = 4.2631E-02, inrwd = 3.8536E-03, exrwd = 0
+1 d 17 hr 26 min, step = 99928/1960173, worker_17, Ep 168, a3c_loss = 1.5063E-01, entropy = 1.2921E+00, piloss = -5.0357E-03, vloss = 2.8548E-01, fwd = 1.2657E-05, inv = 4.7684E-07
+Step 400 of Ep 168, policy probs = [[  2.06421304e-04   9.99436200e-01   2.14794913e-04   1.42593592e-04]], value logits = 1.5100E-02, inrwd = 2.1990E-03, exrwd = 0
+Step 600 of Ep 168, policy probs = [[  2.01439150e-04   9.99448836e-01   2.10216022e-04   1.39574622e-04]], value logits = -4.8641E-03, inrwd = 2.9685E-03, exrwd = 0
+1 d 17 hr 34 min, step = 100510/1965144, worker_11, Ep 168, a3c_loss = 1.7374E-01, entropy = 1.2920E+00, piloss = 1.5548E-03, vloss = 3.1853E-01, fwd = 1.7623E-05, inv = 9.5367E-07
+Step 200 of Ep 169, policy probs = [[  2.05406424e-04   9.99440849e-01   2.12315732e-04   1.41367505e-04]], value logits = 4.5023E-02, inrwd = 6.7901E-03, exrwd = 0
+1 d 17 hr 41 min, step = 100669/1970000, worker_13, Ep 168, a3c_loss = 1.6994E-01, entropy = 1.2920E+00, piloss = 1.3323E-03, vloss = 3.1138E-01, fwd = 2.1678E-05, inv = 4.7684E-07
+Step 400 of Ep 169, policy probs = [[  1.99353031e-04   9.99454796e-01   2.07627934e-04   1.38224568e-04]], value logits = 2.2119E-02, inrwd = 2.1827E-03, exrwd = 0
+Step 600 of Ep 169, policy probs = [[  1.94788547e-04   9.99466360e-01   2.03442032e-04   1.35460621e-04]], value logits = -1.1743E-02, inrwd = 1.7157E-03, exrwd = 0
+1 d 17 hr 48 min, step = 100957/1975068, worker_19, Ep 169, a3c_loss = 1.5631E-01, entropy = 1.2919E+00, piloss = -1.0373E-03, vloss = 2.8886E-01, fwd = 3.0293E-05, inv = 1.4305E-06
+Step 200 of Ep 170, policy probs = [[  1.98718830e-04   9.99458492e-01   2.05564269e-04   1.37275943e-04]], value logits = 4.0813E-02, inrwd = 3.4007E-03, exrwd = 0
+1 d 17 hr 55 min, step = 101113/1980103, worker_17, Ep 170, a3c_loss = 1.4650E-01, entropy = 1.2918E+00, piloss = -2.5385E-03, vloss = 2.7223E-01, fwd = 3.8228E-05, inv = 5.9605E-07
+Step 400 of Ep 170, policy probs = [[  1.92880805e-04   9.99471843e-01   2.01047646e-04   1.34233371e-04]], value logits = 1.8117E-02, inrwd = 2.6458E-03, exrwd = 0
+Step 600 of Ep 170, policy probs = [[  1.88436039e-04   9.99482989e-01   1.96963170e-04   1.31520457e-04]], value logits = -6.5846E-03, inrwd = 2.6489E-03, exrwd = 0
+1 d 18 hr 3 min, step = 101519/1985049, worker_10, Ep 170, a3c_loss = 1.5197E-01, entropy = 1.2918E+00, piloss = -1.3707E-03, vloss = 2.8085E-01, fwd = 3.2071E-05, inv = 9.5367E-07
+Step 200 of Ep 171, policy probs = [[  1.91983083e-04   9.99475896e-01   1.98915310e-04   1.33200607e-04]], value logits = 4.0450E-02, inrwd = 7.8453E-03, exrwd = 0
+1 d 18 hr 10 min, step = 99093/1990152, worker_3, Ep 166, a3c_loss = 1.4705E-01, entropy = 1.2917E+00, piloss = -2.8181E-03, vloss = 2.7391E-01, fwd = 2.7032E-05, inv = 8.3446E-07
+Step 400 of Ep 171, policy probs = [[  1.87179976e-04   9.99485970e-01   1.95436180e-04   1.31392706e-04]], value logits = 1.5934E-02, inrwd = 4.8353E-03, exrwd = 0
+Step 600 of Ep 171, policy probs = [[  1.82989985e-04   9.99496579e-01   1.91568222e-04   1.28787608e-04]], value logits = -1.4662E-02, inrwd = 2.0593E-03, exrwd = 0
+1 d 18 hr 18 min, step = 102281/1995095, worker_12, Ep 172, a3c_loss = 1.4839E-01, entropy = 1.2916E+00, piloss = -3.9274E-03, vloss = 2.7881E-01, fwd = 8.1056E-06, inv = 7.1526E-07
+Step 200 of Ep 172, policy probs = [[  1.87005222e-04   9.99488473e-01   1.93769723e-04   1.30703920e-04]], value logits = 3.1586E-02, inrwd = 8.5814E-04, exrwd = 0
+1 d 18 hr 25 min, step = 102245/2000185, worker_18, Ep 171, a3c_loss = 1.5449E-01, entropy = 1.2916E+00, piloss = -1.2086E-03, vloss = 2.8557E-01, fwd = 1.5706E-05, inv = 4.7684E-07
+Step 400 of Ep 172, policy probs = [[  1.82377320e-04   9.99497890e-01   1.91248313e-04   1.28399013e-04]], value logits = 1.6387E-02, inrwd = 1.0397E-03, exrwd = 0
+Step 600 of Ep 172, policy probs = [[  1.78338305e-04   9.99508142e-01   1.87547223e-04   1.25918290e-04]], value logits = -1.9943E-02, inrwd = 1.1714E-03, exrwd = 0
+1 d 18 hr 34 min, step = 102881/2005134, worker_12, Ep 173, a3c_loss = 1.4864E-01, entropy = 1.2915E+00, piloss = -3.2526E-03, vloss = 2.7796E-01, fwd = 8.1159E-06, inv = 8.3446E-07
+Step 200 of Ep 173, policy probs = [[  1.81913216e-04   9.99500990e-01   1.89486076e-04   1.27601801e-04]], value logits = 3.9096E-02, inrwd = 3.8775E-03, exrwd = 0
+1 d 18 hr 42 min, step = 103109/2010160, worker_8, Ep 172, a3c_loss = 1.5977E-01, entropy = 1.2914E+00, piloss = -3.4893E-04, vloss = 2.9442E-01, fwd = 3.8902E-06, inv = 5.9605E-07
+Step 400 of Ep 173, policy probs = [[  1.76809233e-04   9.99512672e-01   1.85595156e-04   1.24922022e-04]], value logits = 7.5747E-03, inrwd = 9.5712E-04, exrwd = 0
+Step 600 of Ep 173, policy probs = [[  1.72795277e-04   9.99522805e-01   1.81908690e-04   1.22434998e-04]], value logits = -1.1396E-02, inrwd = 4.6791E-03, exrwd = 0
+1 d 18 hr 51 min, step = 103319/2015124, worker_10, Ep 173, a3c_loss = 1.4617E-01, entropy = 1.2914E+00, piloss = -1.3579E-03, vloss = 2.6923E-01, fwd = 2.8423E-05, inv = 1.0729E-06
+Step 200 of Ep 174, policy probs = [[  1.76538742e-04   9.99515176e-01   1.84072793e-04   1.24257436e-04]], value logits = 3.5968E-02, inrwd = 1.4556E-03, exrwd = 0
+1 d 18 hr 59 min, step = 103619/2020146, worker_10, Ep 173, a3c_loss = 1.6015E-01, entropy = 1.2913E+00, piloss = 3.3074E-03, vloss = 2.8785E-01, fwd = 3.5460E-05, inv = 9.5367E-07
+Step 400 of Ep 174, policy probs = [[  1.73385386e-04   9.99519825e-01   1.83942218e-04   1.22903410e-04]], value logits = 1.6339E-02, inrwd = 1.0090E-03, exrwd = 0
+Step 600 of Ep 174, policy probs = [[  1.69685605e-04   9.99529123e-01   1.80587871e-04   1.20637058e-04]], value logits = -1.7514E-02, inrwd = 5.0522E-03, exrwd = 0
+1 d 19 hr 8 min, step = 104081/2025136, worker_12, Ep 175, a3c_loss = 1.4142E-01, entropy = 1.2912E+00, piloss = -3.5444E-03, vloss = 2.6411E-01, fwd = 1.1949E-05, inv = 8.3446E-07
+Step 200 of Ep 175, policy probs = [[  1.73318578e-04   9.99521613e-01   1.82653181e-04   1.22382204e-04]], value logits = 3.6266E-02, inrwd = 2.2480E-03, exrwd = 0
+1 d 19 hr 16 min, step = 101343/2030071, worker_3, Ep 170, a3c_loss = 1.3125E-01, entropy = 1.2911E+00, piloss = -5.8747E-03, vloss = 2.4843E-01, fwd = 1.2678E-05, inv = 3.5763E-07
+Step 400 of Ep 175, policy probs = [[  1.68617451e-04   9.99532461e-01   1.79063369e-04   1.19903627e-04]], value logits = 8.0659E-03, inrwd = 2.4484E-03, exrwd = 0
+Step 600 of Ep 175, policy probs = [[  1.64892466e-04   9.99541879e-01   1.75604146e-04   1.17579977e-04]], value logits = -1.7826E-02, inrwd = 2.9323E-03, exrwd = 0
+1 d 19 hr 25 min, step = 104624/2035060, worker_8, Ep 175, a3c_loss = 1.4143E-01, entropy = 1.2911E+00, piloss = -7.3510E-04, vloss = 2.5851E-01, fwd = 3.5783E-05, inv = 9.5367E-07
+Step 200 of Ep 176, policy probs = [[  1.68409882e-04   9.99534726e-01   1.77619979e-04   1.19297329e-04]], value logits = 3.7029E-02, inrwd = 1.1884E-03, exrwd = 0
+1 d 19 hr 33 min, step = 104615/2040046, worker_15, Ep 175, a3c_loss = 1.4656E-01, entropy = 1.2910E+00, piloss = 7.3720E-04, vloss = 2.6582E-01, fwd = 3.2364E-05, inv = 2.3842E-07
+Step 400 of Ep 176, policy probs = [[  1.63840275e-04   9.99545157e-01   1.74126195e-04   1.16872696e-04]], value logits = 1.1991E-02, inrwd = 4.1314E-03, exrwd = 0
+Step 600 of Ep 176, policy probs = [[  1.60288939e-04   9.99554217e-01   1.70830841e-04   1.14649942e-04]], value logits = -1.7971E-02, inrwd = 1.8297E-03, exrwd = 0
+1 d 19 hr 42 min, step = 104036/2045115, worker_16, Ep 174, a3c_loss = 1.4822E-01, entropy = 1.2909E+00, piloss = 5.6643E-04, vloss = 2.6948E-01, fwd = 2.2863E-05, inv = 3.5763E-07
+Step 200 of Ep 177, policy probs = [[  1.63780263e-04   9.99546945e-01   1.72869331e-04   1.16378964e-04]], value logits = 3.4152E-02, inrwd = 1.1021E-03, exrwd = 0
+1 d 19 hr 51 min, step = 105419/2050037, worker_10, Ep 176, a3c_loss = 1.5635E-01, entropy = 1.2908E+00, piloss = 4.0773E-03, vloss = 2.7873E-01, fwd = 3.4055E-05, inv = 7.1526E-07
+Step 400 of Ep 177, policy probs = [[  1.59324991e-04   9.99557197e-01   1.69465740e-04   1.14003953e-04]], value logits = 1.3296E-02, inrwd = 3.0187E-03, exrwd = 0
+Step 600 of Ep 177, policy probs = [[  1.55940143e-04   9.99565780e-01   1.66335580e-04   1.11882648e-04]], value logits = -2.3256E-02, inrwd = 1.7016E-03, exrwd = 0
+1 d 19 hr 59 min, step = 105769/2055076, worker_13, Ep 177, a3c_loss = 1.4140E-01, entropy = 1.2908E+00, piloss = -1.9658E-03, vloss = 2.6092E-01, fwd = 9.0692E-06, inv = 8.3446E-07
+Step 200 of Ep 178, policy probs = [[  1.59352290e-04   9.99558747e-01   1.68332670e-04   1.13586742e-04]], value logits = 2.8252E-02, inrwd = 9.6673E-04, exrwd = 0
+1 d 20 hr 8 min, step = 106019/2060166, worker_10, Ep 177, a3c_loss = 1.5425E-01, entropy = 1.2907E+00, piloss = 2.2089E-03, vloss = 2.7827E-01, fwd = 1.2992E-05, inv = 4.7684E-07
+Step 400 of Ep 178, policy probs = [[  1.55090296e-04   9.99568522e-01   1.65102683e-04   1.11313879e-04]], value logits = 5.9608E-03, inrwd = 1.1770E-03, exrwd = 0
+Step 600 of Ep 178, policy probs = [[  1.51753571e-04   9.99576986e-01   1.62014621e-04   1.09212095e-04]], value logits = -2.2643E-02, inrwd = 3.4836E-03, exrwd = 0
+1 d 20 hr 17 min, step = 106436/2065000, worker_12, Ep 179, a3c_loss = 1.3346E-01, entropy = 1.2906E+00, piloss = -2.3160E-03, vloss = 2.4574E-01, fwd = 2.2492E-05, inv = 7.1526E-07
+Step 200 of Ep 179, policy probs = [[  1.55094967e-04   9.99569952e-01   1.63986901e-04   1.10894980e-04]], value logits = 3.2626E-02, inrwd = 1.3305E-03, exrwd = 0
+1 d 20 hr 26 min, step = 106736/2070040, worker_12, Ep 179, a3c_loss = 1.4543E-01, entropy = 1.2905E+00, piloss = 3.0066E-04, vloss = 2.6446E-01, fwd = 1.0948E-05, inv = 4.7684E-07
+Step 400 of Ep 179, policy probs = [[  1.50967826e-04   9.99579489e-01   1.60873082e-04   1.08696368e-04]], value logits = 6.0151E-03, inrwd = 1.3944E-03, exrwd = 0
+Step 600 of Ep 179, policy probs = [[  1.49144806e-04   9.99582231e-01   1.60910364e-04   1.07662723e-04]], value logits = -1.7006E-02, inrwd = 2.9385E-03, exrwd = 0
+1 d 20 hr 34 min, step = 106701/2075050, worker_0, Ep 180, a3c_loss = 1.5144E-01, entropy = 1.2904E+00, piloss = 3.9238E-03, vloss = 2.6922E-01, fwd = 2.9385E-05, inv = 1.0729E-06
+Step 200 of Ep 180, policy probs = [[  1.52730761e-04   9.99574602e-01   1.63193079e-04   1.09550019e-04]], value logits = 2.8550E-02, inrwd = 1.4392E-03, exrwd = 0
+1 d 20 hr 43 min, step = 106046/2080168, worker_16, Ep 178, a3c_loss = 1.5173E-01, entropy = 1.2904E+00, piloss = 4.7458E-03, vloss = 2.6816E-01, fwd = 3.3815E-05, inv = 4.7684E-07
+Step 400 of Ep 180, policy probs = [[  1.50918320e-04   9.99579608e-01   1.61294025e-04   1.08176624e-04]], value logits = 9.1584E-03, inrwd = 1.1414E-03, exrwd = 0
+1 d 20 hr 51 min, step = 107186/2085063, worker_7, Ep 179, a3c_loss = 1.3792E-01, entropy = 1.2903E+00, piloss = 7.9515E-04, vloss = 2.4845E-01, fwd = 2.7212E-05, inv = 3.5763E-07
+Step 600 of Ep 180, policy probs = [[  1.47714542e-04   9.99587834e-01   1.58309325e-04   1.06157633e-04]], value logits = -1.6304E-02, inrwd = 2.2618E-03, exrwd = 0
+Step 200 of Ep 181, policy probs = [[  1.52516455e-04   9.99575198e-01   1.63338773e-04   1.08914734e-04]], value logits = 3.7717E-02, inrwd = 2.6097E-03, exrwd = 0
+1 d 21 hr 0 min, step = 107839/2090057, worker_13, Ep 180, a3c_loss = 1.4478E-01, entropy = 1.2902E+00, piloss = 2.8773E-03, vloss = 2.5800E-01, fwd = 2.7093E-05, inv = 4.7684E-07
+Step 400 of Ep 181, policy probs = [[  1.48514373e-04   9.99584377e-01   1.60308133e-04   1.06784166e-04]], value logits = 1.2615E-02, inrwd = 1.6143E-03, exrwd = 0
+1 d 21 hr 9 min, step = 107645/2095127, worker_18, Ep 180, a3c_loss = 1.3738E-01, entropy = 1.2901E+00, piloss = 1.1321E-03, vloss = 2.4669E-01, fwd = 2.6411E-05, inv = 3.5763E-07
+Step 600 of Ep 181, policy probs = [[  1.45395708e-04   9.99592364e-01   1.57397168e-04   1.04824321e-04]], value logits = -1.8166E-02, inrwd = 1.7993E-03, exrwd = 0
+Step 200 of Ep 182, policy probs = [[  1.48703301e-04   9.99585330e-01   1.59444389e-04   1.06543383e-04]], value logits = 3.5339E-02, inrwd = 4.8196E-03, exrwd = 0
+1 d 21 hr 17 min, step = 108071/2100029, worker_7, Ep 181, a3c_loss = 1.1600E-01, entropy = 1.2900E+00, piloss = -6.1491E-03, vloss = 2.1849E-01, fwd = 4.8579E-06, inv = 1.0729E-06
+Step 400 of Ep 182, policy probs = [[  1.45688085e-04   9.99590933e-01   1.58334879e-04   1.05107465e-04]], value logits = 5.7101E-03, inrwd = 4.9349E-03, exrwd = 0
+1 d 21 hr 26 min, step = 107471/2105161, worker_16, Ep 180, a3c_loss = 1.2727E-01, entropy = 1.2899E+00, piloss = -2.4853E-03, vloss = 2.3371E-01, fwd = 1.2127E-05, inv = 8.3446E-07
+Step 600 of Ep 182, policy probs = [[  1.42691439e-04   9.99598563e-01   1.55533548e-04   1.03225699e-04]], value logits = -2.5608E-02, inrwd = 2.8952E-03, exrwd = 0
+Step 200 of Ep 183, policy probs = [[  1.45924612e-04   9.99591768e-01   1.57496484e-04   1.04877756e-04]], value logits = 3.1949E-02, inrwd = 2.1039E-03, exrwd = 0
+1 d 21 hr 35 min, step = 109109/2110066, worker_8, Ep 182, a3c_loss = 1.3771E-01, entropy = 1.2898E+00, piloss = 1.4503E-04, vloss = 2.4933E-01, fwd = 4.6234E-06, inv = 8.3446E-07
+Step 400 of Ep 183, policy probs = [[  1.42152057e-04   9.99600351e-01   1.54624271e-04   1.02858459e-04]], value logits = 3.1991E-03, inrwd = 1.0450E-03, exrwd = 0
+1 d 21 hr 44 min, step = 109420/2115089, worker_11, Ep 183, a3c_loss = 1.4062E-01, entropy = 1.2897E+00, piloss = 4.2785E-03, vloss = 2.4689E-01, fwd = 3.7869E-05, inv = 8.3446E-07
+Step 600 of Ep 183, policy probs = [[  1.39215786e-04   9.99607861e-01   1.51865970e-04   1.00997873e-04]], value logits = -2.0814E-02, inrwd = 2.6196E-03, exrwd = 0
+Step 200 of Ep 184, policy probs = [[  1.42498946e-04   9.99600828e-01   1.53946035e-04   1.02737140e-04]], value logits = 3.0331E-02, inrwd = 1.5485E-03, exrwd = 0
+1 d 21 hr 52 min, step = 109720/2120063, worker_11, Ep 184, a3c_loss = 1.1942E-01, entropy = 1.2896E+00, piloss = -2.8214E-03, vloss = 2.1870E-01, fwd = 2.3164E-05, inv = 5.9605E-07
+Step 400 of Ep 184, policy probs = [[  1.38714924e-04   9.99609530e-01   1.51029672e-04   1.00687888e-04]], value logits = 1.0040E-02, inrwd = 1.7471E-03, exrwd = 0
+1 d 22 hr 1 min, step = 110020/2125000, worker_11, Ep 184, a3c_loss = 1.3611E-01, entropy = 1.2895E+00, piloss = 3.2545E-03, vloss = 2.3993E-01, fwd = 3.3429E-05, inv = 4.7684E-07
+Step 600 of Ep 184, policy probs = [[  1.37276234e-04   9.99614120e-01   1.49142754e-04   9.94060247e-05]], value logits = -1.6629E-02, inrwd = 2.5092E-03, exrwd = 0
+Step 200 of Ep 185, policy probs = [[  1.40531207e-04   9.99607146e-01   1.51192595e-04   1.01127342e-04]], value logits = 3.1561E-02, inrwd = 1.5132E-03, exrwd = 0
+1 d 22 hr 9 min, step = 106381/2130163, worker_14, Ep 178, a3c_loss = 1.2478E-01, entropy = 1.2894E+00, piloss = -1.3789E-03, vloss = 2.2653E-01, fwd = 1.4100E-05, inv = 3.5763E-07
+Step 400 of Ep 185, policy probs = [[  1.36910865e-04   9.99615431e-01   1.48441963e-04   9.91752968e-05]], value logits = 8.4363E-03, inrwd = 2.6013E-03, exrwd = 0
+1 d 22 hr 18 min, step = 110156/2135040, worker_7, Ep 184, a3c_loss = 1.2545E-01, entropy = 1.2893E+00, piloss = -8.1519E-04, vloss = 2.2674E-01, fwd = 1.3915E-05, inv = 4.7684E-07
+Step 600 of Ep 185, policy probs = [[  1.34135495e-04   9.99622583e-01   1.45846047e-04   9.74166978e-05]], value logits = -2.0068E-02, inrwd = 2.1843E-03, exrwd = 0
+Step 200 of Ep 186, policy probs = [[  1.37269919e-04   9.99615788e-01   1.47810279e-04   9.90849585e-05]], value logits = 3.2410E-02, inrwd = 1.5394E-03, exrwd = 0
+1 d 22 hr 26 min, step = 109436/2140000, worker_16, Ep 183, a3c_loss = 1.2534E-01, entropy = 1.2892E+00, piloss = -6.2690E-04, vloss = 2.2615E-01, fwd = 1.3955E-05, inv = 8.3446E-07
+Step 400 of Ep 186, policy probs = [[  1.33801295e-04   9.99623775e-01   1.45218321e-04   9.72334965e-05]], value logits = 4.1611E-03, inrwd = 1.9000E-03, exrwd = 0
+1 d 22 hr 35 min, step = 107221/2145058, worker_14, Ep 179, a3c_loss = 1.3474E-01, entropy = 1.2891E+00, piloss = 2.8399E-03, vloss = 2.3801E-01, fwd = 1.8694E-05, inv = 3.5763E-07
+Step 600 of Ep 186, policy probs = [[  1.31077933e-04   9.99630809e-01   1.42681223e-04   9.55075811e-05]], value logits = -1.9503E-02, inrwd = 2.3446E-03, exrwd = 0
+Step 200 of Ep 187, policy probs = [[  1.34272341e-04   9.99623775e-01   1.44712467e-04   9.72054986e-05]], value logits = 2.7962E-02, inrwd = 2.3292E-03, exrwd = 0
+1 d 22 hr 44 min, step = 111419/2150136, worker_1, Ep 186, a3c_loss = 1.2479E-01, entropy = 1.2890E+00, piloss = 1.3325E-04, vloss = 2.2353E-01, fwd = 1.6542E-05, inv = 3.5763E-07
+Step 400 of Ep 187, policy probs = [[  1.30841639e-04   9.99631643e-01   1.42117744e-04   9.53389463e-05]], value logits = 7.1140E-03, inrwd = 2.2533E-03, exrwd = 0
+1 d 22 hr 53 min, step = 111341/2155149, worker_7, Ep 186, a3c_loss = 1.2104E-01, entropy = 1.2889E+00, piloss = -7.1608E-04, vloss = 2.1774E-01, fwd = 1.5354E-05, inv = 5.9605E-07
+Step 600 of Ep 187, policy probs = [[  1.28219806e-04   9.99638438e-01   1.39671931e-04   9.36644064e-05]], value logits = -2.0614E-02, inrwd = 1.6814E-03, exrwd = 0
+Step 200 of Ep 188, policy probs = [[  1.31957830e-04   9.99629140e-01   1.43036828e-04   9.58033561e-05]], value logits = 2.9377E-02, inrwd = 1.3323E-03, exrwd = 0
+1 d 23 hr 1 min, step = 111755/2160112, worker_15, Ep 187, a3c_loss = 1.1751E-01, entropy = 1.2888E+00, piloss = -1.5037E-03, vloss = 2.1225E-01, fwd = 1.5287E-05, inv = 2.3842E-07
+Step 400 of Ep 188, policy probs = [[  1.28647560e-04   9.99636769e-01   1.40538323e-04   9.40008977e-05]], value logits = 4.3564E-03, inrwd = 1.0367E-03, exrwd = 0
+1 d 23 hr 10 min, step = 112304/2165103, worker_10, Ep 188, a3c_loss = 1.1734E-01, entropy = 1.2887E+00, piloss = -9.5504E-04, vloss = 2.1082E-01, fwd = 1.9658E-05, inv = 4.7684E-07
+Step 600 of Ep 188, policy probs = [[  1.26064624e-04   9.99643445e-01   1.38114410e-04   9.23457992e-05]], value logits = -2.4424E-02, inrwd = 1.7675E-03, exrwd = 0
+Step 200 of Ep 189, policy probs = [[  1.29078559e-04   9.99636889e-01   1.40042233e-04   9.39802849e-05]], value logits = 2.6139E-02, inrwd = 1.5583E-03, exrwd = 0
+1 d 23 hr 18 min, step = 112355/2170037, worker_15, Ep 188, a3c_loss = 1.1667E-01, entropy = 1.2886E+00, piloss = -1.2742E-03, vloss = 2.1012E-01, fwd = 1.3875E-05, inv = 2.3842E-07
+Step 400 of Ep 189, policy probs = [[  1.25830280e-04   9.99644279e-01   1.37588388e-04   9.22015606e-05]], value logits = 2.0852E-03, inrwd = 2.4331E-03, exrwd = 0
+1 d 23 hr 27 min, step = 111416/2175043, worker_16, Ep 186, a3c_loss = 1.2986E-01, entropy = 1.2885E+00, piloss = 2.6511E-03, vloss = 2.2865E-01, fwd = 1.1593E-05, inv = 3.5763E-07
+Step 600 of Ep 189, policy probs = [[  1.23358943e-04   9.99650836e-01   1.35282666e-04   9.06142450e-05]], value logits = -2.3257E-02, inrwd = 2.4830E-03, exrwd = 0
+Step 200 of Ep 190, policy probs = [[  1.26371437e-04   9.99644160e-01   1.37245675e-04   9.22645268e-05]], value logits = 3.0796E-02, inrwd = 5.3425E-04, exrwd = 0
+1 d 23 hr 36 min, step = 108111/2180000, worker_6, Ep 181, a3c_loss = 1.2402E-01, entropy = 1.2884E+00, piloss = 6.6330E-04, vloss = 2.2095E-01, fwd = 4.0495E-06, inv = 3.5763E-07
+Step 400 of Ep 190, policy probs = [[  1.23239777e-04   9.99651313e-01   1.34896749e-04   9.05519191e-05]], value logits = 4.8256E-04, inrwd = 2.5385E-03, exrwd = 0
+1 d 23 hr 44 min, step = 110148/2185019, worker_3, Ep 184, a3c_loss = 1.2292E-01, entropy = 1.2883E+00, piloss = 1.1360E-03, vloss = 2.1780E-01, fwd = 1.0492E-05, inv = 7.1526E-07
+Step 600 of Ep 190, policy probs = [[  1.20824589e-04   9.99657512e-01   1.32645189e-04   8.89970470e-05]], value logits = -2.4566E-02, inrwd = 8.3864E-04, exrwd = 0
+Step 200 of Ep 191, policy probs = [[  1.24452607e-04   9.99648333e-01   1.36048518e-04   9.11227908e-05]], value logits = 3.0961E-02, inrwd = 1.0075E-03, exrwd = 0
+1 d 23 hr 53 min, step = 113015/2190029, worker_18, Ep 189, a3c_loss = 1.1468E-01, entropy = 1.2881E+00, piloss = -8.0140E-04, vloss = 2.0520E-01, fwd = 1.2077E-05, inv = 3.5763E-07
+Step 400 of Ep 191, policy probs = [[  1.21389676e-04   9.99655366e-01   1.33754365e-04   8.94418627e-05]], value logits = 5.0332E-03, inrwd = 1.3438E-03, exrwd = 0
+2 d 0 hr 2 min, step = 114236/2195184, worker_12, Ep 192, a3c_loss = 1.0539E-01, entropy = 1.2880E+00, piloss = -3.0809E-03, vloss = 1.9118E-01, fwd = 1.5820E-05, inv = 3.5763E-07
+Step 600 of Ep 191, policy probs = [[  1.19025375e-04   9.99661446e-01   1.31536915e-04   8.79176077e-05]], value logits = -2.2038E-02, inrwd = 2.4511E-03, exrwd = 0
+Step 200 of Ep 192, policy probs = [[  1.21926481e-04   9.99655128e-01   1.33450318e-04   8.95334961e-05]], value logits = 3.2380E-02, inrwd = 1.1496E-03, exrwd = 0
+2 d 0 hr 10 min, step = 114439/2200105, worker_13, Ep 191, a3c_loss = 1.2189E-01, entropy = 1.2879E+00, piloss = 1.4532E-03, vloss = 2.1511E-01, fwd = 6.7892E-06, inv = 2.3842E-07
+Step 400 of Ep 192, policy probs = [[  1.18953481e-04   9.99661922e-01   1.31223729e-04   8.79013824e-05]], value logits = 1.1888E-03, inrwd = 1.5832E-03, exrwd = 0
+2 d 0 hr 20 min, step = 110626/2205158, worker_14, Ep 185, a3c_loss = 1.1386E-01, entropy = 1.2878E+00, piloss = 2.9296E-04, vloss = 2.0138E-01, fwd = 1.6779E-05, inv = 3.5763E-07
+Step 600 of Ep 192, policy probs = [[  1.16666764e-04   9.99667883e-01   1.29084889e-04   8.64234898e-05]], value logits = -2.3419E-02, inrwd = 1.4053E-03, exrwd = 0
+Step 200 of Ep 193, policy probs = [[  1.19511053e-04   9.99661446e-01   1.30966626e-04   8.80141670e-05]], value logits = 2.9243E-02, inrwd = 2.2833E-03, exrwd = 0
+2 d 0 hr 30 min, step = 114155/2210162, worker_18, Ep 191, a3c_loss = 1.0691E-01, entropy = 1.2877E+00, piloss = -2.4178E-03, vloss = 1.9291E-01, fwd = 6.8206E-06, inv = 2.3842E-07
+Step 400 of Ep 193, policy probs = [[  1.16537602e-04   9.99668360e-01   1.28732863e-04   8.63629684e-05]], value logits = 3.8595E-03, inrwd = 2.7085E-03, exrwd = 0
+2 d 0 hr 40 min, step = 115297/2215083, worker_19, Ep 193, a3c_loss = 1.0288E-01, entropy = 1.2876E+00, piloss = -3.2225E-03, vloss = 1.8645E-01, fwd = 9.1097E-06, inv = 3.5763E-07
+Step 600 of Ep 193, policy probs = [[  1.14253511e-04   9.99674320e-01   1.26601299e-04   8.48695709e-05]], value logits = -2.5399E-02, inrwd = 2.8925E-03, exrwd = 0
+Step 200 of Ep 194, policy probs = [[  1.17121592e-04   9.99667883e-01   1.28503671e-04   8.64991816e-05]], value logits = 3.3866E-02, inrwd = 1.2297E-03, exrwd = 0
+2 d 0 hr 50 min, step = 115724/2220070, worker_8, Ep 193, a3c_loss = 1.1335E-01, entropy = 1.2875E+00, piloss = 2.9741E-04, vloss = 2.0036E-01, fwd = 8.1339E-06, inv = 3.5763E-07
+Step 400 of Ep 194, policy probs = [[  1.14216506e-04   9.99674678e-01   1.26327563e-04   8.48723503e-05]], value logits = 4.2307E-03, inrwd = 2.1897E-03, exrwd = 0
+2 d 1 hr 0 min, step = 111766/2225176, worker_14, Ep 187, a3c_loss = 1.0681E-01, entropy = 1.2873E+00, piloss = -4.1735E-04, vloss = 1.8870E-01, fwd = 1.9411E-05, inv = 2.3842E-07
+Step 600 of Ep 194, policy probs = [[  1.11983230e-04   9.99680400e-01   1.24233906e-04   8.34031889e-05]], value logits = -2.3359E-02, inrwd = 1.9791E-03, exrwd = 0
+Step 200 of Ep 195, policy probs = [[  1.15516632e-04   9.99671340e-01   1.27583407e-04   8.55491453e-05]], value logits = 3.4216E-02, inrwd = 2.2907E-03, exrwd = 0
+2 d 1 hr 10 min, step = 112713/2230187, worker_3, Ep 189, a3c_loss = 8.5782E-02, entropy = 1.2872E+00, piloss = -1.0403E-02, vloss = 1.6662E-01, fwd = 1.5246E-05, inv = 3.7352E-07
+Step 400 of Ep 195, policy probs = [[  1.12775677e-04   9.99677658e-01   1.25536259e-04   8.40247230e-05]], value logits = 2.3584E-03, inrwd = 1.2986E-03, exrwd = 0
+2 d 1 hr 20 min, step = 116308/2235026, worker_17, Ep 195, a3c_loss = 1.0781E-01, entropy = 1.2871E+00, piloss = 3.7888E-04, vloss = 1.8912E-01, fwd = 1.7811E-05, inv = 2.3842E-07
+Step 600 of Ep 195, policy probs = [[  1.10630353e-04   9.99683261e-01   1.23514808e-04   8.26250543e-05]], value logits = -2.5013E-02, inrwd = 1.3304E-03, exrwd = 0
+Step 200 of Ep 196, policy probs = [[  1.13385875e-04   9.99676943e-01   1.25376813e-04   8.42031441e-05]], value logits = 2.6648E-02, inrwd = 7.0467E-04, exrwd = 0
+2 d 1 hr 29 min, step = 116924/2240000, worker_8, Ep 195, a3c_loss = 1.1270E-01, entropy = 1.2869E+00, piloss = 1.1902E-03, vloss = 1.9728E-01, fwd = 6.7147E-06, inv = 3.5763E-07
+Step 400 of Ep 196, policy probs = [[  1.10668771e-04   9.99683261e-01   1.23337071e-04   8.26882679e-05]], value logits = 1.4045E-03, inrwd = 2.2415E-03, exrwd = 0
+2 d 1 hr 39 min, step = 115406/2245197, worker_16, Ep 193, a3c_loss = 1.0547E-01, entropy = 1.2868E+00, piloss = -6.7338E-04, vloss = 1.8655E-01, fwd = 7.7246E-06, inv = 4.7684E-07
+Step 600 of Ep 196, policy probs = [[  1.08575230e-04   9.99688864e-01   1.21359830e-04   8.13229635e-05]], value logits = -2.7089E-02, inrwd = 6.6498E-04, exrwd = 0
+Step 200 of Ep 197, policy probs = [[  1.11254754e-04   9.99682784e-01   1.23155070e-04   8.28627672e-05]], value logits = 2.8416E-02, inrwd = 2.9120E-03, exrwd = 0
+2 d 1 hr 49 min, step = 117565/2250027, worker_4, Ep 198, a3c_loss = 1.0590E-01, entropy = 1.2867E+00, piloss = 4.9689E-04, vloss = 1.8507E-01, fwd = 1.4213E-05, inv = 2.3842E-07
+Step 400 of Ep 197, policy probs = [[  1.08641398e-04   9.99688745e-01   1.21209217e-04   8.14042796e-05]], value logits = 9.3615E-04, inrwd = 8.8592E-04, exrwd = 0
+2 d 1 hr 59 min, step = 117821/2255066, worker_12, Ep 198, a3c_loss = 9.2233E-02, entropy = 1.2866E+00, piloss = -2.6670E-03, vloss = 1.6407E-01, fwd = 2.6265E-05, inv = 1.1921E-07
+Step 600 of Ep 197, policy probs = [[  1.06522304e-04   9.99694467e-01   1.19127195e-04   8.00087291e-05]], value logits = -1.7420E-02, inrwd = 3.0435E-03, exrwd = 0
+Step 200 of Ep 198, policy probs = [[  1.09210829e-04   9.99688387e-01   1.20947749e-04   8.15658859e-05]], value logits = 3.0089E-02, inrwd = 1.0195E-03, exrwd = 0
+2 d 2 hr 9 min, step = 117741/2260000, worker_0, Ep 198, a3c_loss = 9.3981E-02, entropy = 1.2864E+00, piloss = -2.6991E-03, vloss = 1.6763E-01, fwd = 1.5904E-05, inv = 4.7684E-07
+Step 400 of Ep 198, policy probs = [[  1.06590989e-04   9.99694347e-01   1.18975950e-04   8.00908601e-05]], value logits = 3.0200E-03, inrwd = 1.0505E-03, exrwd = 0
+2 d 2 hr 19 min, step = 118144/2265150, worker_13, Ep 198, a3c_loss = 8.8389E-02, entropy = 1.2863E+00, piloss = -4.1889E-03, vloss = 1.5943E-01, fwd = 1.1868E-05, inv = 2.3842E-07
+Step 600 of Ep 198, policy probs = [[  1.04591702e-04   9.99699593e-01   1.17085103e-04   7.87756289e-05]], value logits = -2.4624E-02, inrwd = 1.9598E-03, exrwd = 0
+Step 200 of Ep 199, policy probs = [[  1.07249602e-04   9.99693513e-01   1.18896678e-04   8.03264702e-05]], value logits = 2.8645E-02, inrwd = 1.3406E-03, exrwd = 0
+2 d 2 hr 29 min, step = 118589/2270152, worker_10, Ep 198, a3c_loss = 1.0785E-01, entropy = 1.2861E+00, piloss = 1.8058E-03, vloss = 1.8637E-01, fwd = 9.4750E-06, inv = 3.5763E-07
+Step 400 of Ep 199, policy probs = [[  1.04708561e-04   9.99699473e-01   1.16996685e-04   7.88944017e-05]], value logits = 9.3704E-04, inrwd = 1.3438E-03, exrwd = 0
+2 d 2 hr 39 min, step = 119065/2275154, worker_4, Ep 201, a3c_loss = 9.0734E-02, entropy = 1.2860E+00, piloss = -2.4241E-03, vloss = 1.6060E-01, fwd = 1.9837E-05, inv = 2.3842E-07
+Step 600 of Ep 199, policy probs = [[  1.02750440e-04   9.99704540e-01   1.15148920e-04   7.76040542e-05]], value logits = -2.3853E-02, inrwd = 1.6247E-03, exrwd = 0
+Step 200 of Ep 200, policy probs = [[  1.05411913e-04   9.99698520e-01   1.16988544e-04   7.91720013e-05]], value logits = 2.4396E-02, inrwd = 9.9008E-04, exrwd = 0
+2 d 2 hr 49 min, step = 118925/2280062, worker_15, Ep 199, a3c_loss = 9.2871E-02, entropy = 1.2859E+00, piloss = -2.8234E-03, vloss = 1.6567E-01, fwd = 4.6464E-06, inv = 8.3446E-07
+Step 400 of Ep 200, policy probs = [[  1.02905658e-04   9.99704301e-01   1.15116607e-04   7.77518944e-05]], value logits = -4.1091E-04, inrwd = 4.7262E-04, exrwd = 0
+2 d 2 hr 59 min, step = 119284/2285145, worker_13, Ep 200, a3c_loss = 1.1246E-01, entropy = 1.2857E+00, piloss = 5.6888E-03, vloss = 1.8782E-01, fwd = 2.6208E-05, inv = 5.9605E-07
+Step 600 of Ep 200, policy probs = [[  1.01007427e-04   9.99709070e-01   1.13329188e-04   7.64982979e-05]], value logits = -2.7916E-02, inrwd = 1.9158E-03, exrwd = 0
+Step 200 of Ep 201, policy probs = [[  1.03612598e-04   9.99703228e-01   1.15127907e-04   7.80390837e-05]], value logits = 2.3209E-02, inrwd = 5.0266E-04, exrwd = 0
+2 d 3 hr 9 min, step = 119905/2290112, worker_11, Ep 201, a3c_loss = 8.7383E-02, entropy = 1.2856E+00, piloss = -3.5700E-03, vloss = 1.5619E-01, fwd = 1.0717E-05, inv = 5.9605E-07
+Step 400 of Ep 201, policy probs = [[  1.01153360e-04   9.99708951e-01   1.13292226e-04   7.66383455e-05]], value logits = 1.0518E-03, inrwd = 1.1153E-03, exrwd = 0
+2 d 3 hr 18 min, step = 120074/2295031, worker_10, Ep 201, a3c_loss = 9.0325E-02, entropy = 1.2854E+00, piloss = -2.5805E-03, vloss = 1.6010E-01, fwd = 7.8082E-06, inv = 4.7684E-07
+Step 600 of Ep 201, policy probs = [[  9.93019421e-05   9.99713719e-01   1.11549089e-04   7.54132780e-05]], value logits = -2.6323E-02, inrwd = 2.0138E-03, exrwd = 0
+Step 200 of Ep 202, policy probs = [[  1.01899546e-04   9.99707758e-01   1.13357259e-04   7.69608887e-05]], value logits = 2.3281E-02, inrwd = 1.3889E-03, exrwd = 0
+2 d 3 hr 28 min, step = 120551/2300079, worker_12, Ep 202, a3c_loss = 1.0137E-01, entropy = 1.2853E+00, piloss = 1.6708E-03, vloss = 1.7369E-01, fwd = 1.0565E-05, inv = 1.1921E-07
+Step 400 of Ep 202, policy probs = [[  9.95116061e-05   9.99713361e-01   1.11584370e-04   7.56001828e-05]], value logits = -3.4672E-04, inrwd = 8.1849E-04, exrwd = 0
+2 d 3 hr 38 min, step = 120851/2305084, worker_12, Ep 203, a3c_loss = 8.6797E-02, entropy = 1.2851E+00, piloss = -2.8149E-03, vloss = 1.5352E-01, fwd = 1.1637E-05, inv = 1.1921E-07
+Step 600 of Ep 202, policy probs = [[  9.76710435e-05   9.99718130e-01   1.09849068e-04   7.43800047e-05]], value logits = -2.6946E-02, inrwd = 5.6476E-04, exrwd = 0
+Step 200 of Ep 203, policy probs = [[  1.00205551e-04   9.99712288e-01   1.11610854e-04   7.58985989e-05]], value logits = 2.3934E-02, inrwd = 1.9892E-03, exrwd = 0
+2 d 3 hr 48 min, step = 120596/2310072, worker_7, Ep 202, a3c_loss = 5.2684E-02, entropy = 1.2850E+00, piloss = -2.8812E-02, vloss = 1.3729E-01, fwd = 4.4204E-05, inv = 7.5499E-07
+Step 400 of Ep 203, policy probs = [[  9.78242533e-05   9.99717653e-01   1.09850698e-04   7.45456346e-05]], value logits = -6.7949E-06, inrwd = 1.6569E-03, exrwd = 0
+2 d 3 hr 58 min, step = 120994/2315144, worker_13, Ep 202, a3c_loss = 1.0088E-01, entropy = 1.2848E+00, piloss = 2.3999E-03, vloss = 1.7127E-01, fwd = 1.0120E-05, inv = 2.3842E-07
+Step 600 of Ep 203, policy probs = [[  9.60439138e-05   9.99722302e-01   1.08183507e-04   7.33692650e-05]], value logits = -2.8055E-02, inrwd = 2.7871E-03, exrwd = 0
+Step 200 of Ep 204, policy probs = [[  9.85437437e-05   9.99716699e-01   1.09910114e-04   7.48607417e-05]], value logits = 2.2729E-02, inrwd = 6.1855E-04, exrwd = 0
+2 d 4 hr 8 min, step = 121574/2320224, worker_1, Ep 203, a3c_loss = 9.1239E-02, entropy = 1.2847E+00, piloss = -3.3608E-04, vloss = 1.5746E-01, fwd = 1.1141E-05, inv = 3.5763E-07
+Step 400 of Ep 204, policy probs = [[  9.62237682e-05   9.99722064e-01   1.08187298e-04   7.35260110e-05]], value logits = -1.5831E-04, inrwd = 9.2995E-04, exrwd = 0
+2 d 4 hr 18 min, step = 121579/2325090, worker_13, Ep 203, a3c_loss = 9.7623E-02, entropy = 1.2845E+00, piloss = 2.0724E-03, vloss = 1.6541E-01, fwd = 1.1523E-05, inv = 2.3842E-07
+Step 600 of Ep 204, policy probs = [[  9.44741769e-05   9.99726593e-01   1.06546046e-04   7.23625417e-05]], value logits = -2.6860E-02, inrwd = 8.6994E-04, exrwd = 0
+Step 200 of Ep 205, policy probs = [[  9.76617303e-05   9.99718130e-01   1.09831053e-04   7.44053323e-05]], value logits = 2.5605E-02, inrwd = 9.2486E-04, exrwd = 0
+2 d 4 hr 28 min, step = 122320/2330053, worker_4, Ep 206, a3c_loss = 9.0173E-02, entropy = 1.2844E+00, piloss = -2.8833E-04, vloss = 1.5523E-01, fwd = 8.0688E-06, inv = 2.3842E-07
+Step 400 of Ep 205, policy probs = [[  9.53831623e-05   9.99723375e-01   1.08137312e-04   7.30924294e-05]], value logits = -2.6762E-04, inrwd = 8.0892E-04, exrwd = 0
+2 d 4 hr 38 min, step = 118713/2335038, worker_3, Ep 199, a3c_loss = 7.3109E-02, entropy = 1.2842E+00, piloss = -7.7266E-03, vloss = 1.3599E-01, fwd = 1.1851E-05, inv = 3.0200E-07
+Step 600 of Ep 205, policy probs = [[  9.36547367e-05   9.99727786e-01   1.06504216e-04   7.19409654e-05]], value logits = -2.7232E-02, inrwd = 4.6072E-04, exrwd = 0
+Step 200 of Ep 206, policy probs = [[  9.61219775e-05   9.99722183e-01   1.08260589e-04   7.34515925e-05]], value logits = 2.3498E-02, inrwd = 1.3279E-03, exrwd = 0
+2 d 4 hr 48 min, step = 122511/2340114, worker_0, Ep 206, a3c_loss = 8.0260E-02, entropy = 1.2841E+00, piloss = -2.7775E-03, vloss = 1.4039E-01, fwd = 1.3279E-05, inv = 4.7684E-07
+Step 400 of Ep 206, policy probs = [[  9.38891826e-05   9.99727428e-01   1.06603453e-04   7.21609540e-05]], value logits = -1.1160E-03, inrwd = 9.2508E-04, exrwd = 0
+2 d 4 hr 58 min, step = 119283/2345071, worker_3, Ep 200, a3c_loss = 4.1662E-02, entropy = 1.2839E+00, piloss = -2.5562E-02, vloss = 1.0877E-01, fwd = 1.1589E-04, inv = 5.6426E-07
+Step 600 of Ep 206, policy probs = [[  9.22134059e-05   9.99731719e-01   1.05024061e-04   7.10418317e-05]], value logits = -2.5980E-02, inrwd = 1.2877E-03, exrwd = 0
+Step 200 of Ep 207, policy probs = [[  9.46825603e-05   9.99725878e-01   1.06800297e-04   7.25659411e-05]], value logits = 2.0927E-02, inrwd = 8.7450E-04, exrwd = 0
+2 d 5 hr 8 min, step = 123111/2350000, worker_0, Ep 207, a3c_loss = 7.9028E-02, entropy = 1.2837E+00, piloss = -3.0281E-03, vloss = 1.3844E-01, fwd = 8.7450E-06, inv = 2.3842E-07
+Step 400 of Ep 207, policy probs = [[  9.24610576e-05   9.99731123e-01   1.05141859e-04   7.12718393e-05]], value logits = -1.7114E-03, inrwd = 8.3525E-04, exrwd = 0
+2 d 5 hr 18 min, step = 121691/2355048, worker_16, Ep 204, a3c_loss = 6.9536E-02, entropy = 1.2836E+00, piloss = -7.4541E-03, vloss = 1.2831E-01, fwd = 1.4011E-05, inv = 3.5763E-07
+Step 600 of Ep 207, policy probs = [[  9.11764146e-05   9.99733984e-01   1.04441009e-04   7.04507038e-05]], value logits = -2.4635E-02, inrwd = 5.8605E-04, exrwd = 0
+Step 200 of Ep 208, policy probs = [[  9.42985571e-05   9.99725640e-01   1.06980195e-04   7.30224419e-05]], value logits = 2.6725E-02, inrwd = 6.5904E-04, exrwd = 0
+2 d 5 hr 28 min, step = 123680/2360086, worker_15, Ep 207, a3c_loss = 7.6883E-02, entropy = 1.2834E+00, piloss = -3.0836E-03, vloss = 1.3427E-01, fwd = 9.5093E-06, inv = 2.3842E-07
+Step 400 of Ep 208, policy probs = [[  9.21530882e-05   9.99730647e-01   1.05384548e-04   7.17637668e-05]], value logits = -3.3566E-03, inrwd = 1.0252E-03, exrwd = 0
+2 d 5 hr 38 min, step = 123859/2365110, worker_13, Ep 207, a3c_loss = 8.4909E-02, entropy = 1.2832E+00, piloss = -4.1041E-04, vloss = 1.4498E-01, fwd = 4.9996E-06, inv = 2.3842E-07
+Step 600 of Ep 208, policy probs = [[  9.04900080e-05   9.99735057e-01   1.03809951e-04   7.06410356e-05]], value logits = -2.7169E-02, inrwd = 9.4956E-04, exrwd = 0
+Step 200 of Ep 209, policy probs = [[  9.28849477e-05   9.99729455e-01   1.05538500e-04   7.21421166e-05]], value logits = 2.4880E-02, inrwd = 1.2571E-03, exrwd = 0
+2 d 5 hr 48 min, step = 124393/2370157, worker_17, Ep 209, a3c_loss = 6.7504E-02, entropy = 1.2830E+00, piloss = -7.1164E-03, vloss = 1.2358E-01, fwd = 1.4993E-05, inv = 1.8279E-07
+Step 400 of Ep 209, policy probs = [[  9.07550057e-05   9.99734342e-01   1.03966617e-04   7.08944790e-05]], value logits = -1.4750E-03, inrwd = 1.8377E-03, exrwd = 0
+2 d 5 hr 58 min, step = 124859/2375057, worker_10, Ep 209, a3c_loss = 7.5560E-02, entropy = 1.2829E+00, piloss = -3.0364E-03, vloss = 1.3154E-01, fwd = 6.4994E-06, inv = 3.5763E-07
+Step 600 of Ep 209, policy probs = [[  8.90883530e-05   9.99738753e-01   1.02392027e-04   6.97719079e-05]], value logits = -2.5917E-02, inrwd = 1.9490E-03, exrwd = 0
+2 d 6 hr 7 min, step = 124993/2380082, worker_17, Ep 210, a3c_loss = 6.6193E-02, entropy = 1.2827E+00, piloss = -7.2423E-03, vloss = 1.2122E-01, fwd = 1.2450E-05, inv = 7.9473E-08
+Step 200 of Ep 210, policy probs = [[  9.14808334e-05   9.99733150e-01   1.04116414e-04   7.12681795e-05]], value logits = 2.3545E-02, inrwd = 9.6302E-04, exrwd = 0
+Step 400 of Ep 210, policy probs = [[  8.94019977e-05   9.99737918e-01   1.02575781e-04   7.00337114e-05]], value logits = -4.2943E-03, inrwd = 7.8965E-04, exrwd = 0
+2 d 6 hr 17 min, step = 121563/2385151, worker_3, Ep 203, a3c_loss = 8.6977E-02, entropy = 1.2825E+00, piloss = 1.5640E-03, vloss = 1.4518E-01, fwd = 5.1537E-06, inv = 3.5763E-07
+Step 600 of Ep 210, policy probs = [[  8.77921630e-05   9.99742210e-01   1.01054517e-04   6.89392909e-05]], value logits = -2.7750E-02, inrwd = 1.2523E-03, exrwd = 0
+2 d 6 hr 27 min, step = 125284/2390174, worker_13, Ep 210, a3c_loss = 9.0858E-02, entropy = 1.2823E+00, piloss = 3.7692E-03, vloss = 1.4853E-01, fwd = 1.1220E-05, inv = 3.5763E-07
+Step 200 of Ep 211, policy probs = [[  9.01237072e-05   9.99736726e-01   1.02749342e-04   7.04175691e-05]], value logits = 2.2565E-02, inrwd = 6.1354E-04, exrwd = 0
+Step 400 of Ep 211, policy probs = [[  8.80706721e-05   9.99741495e-01   1.01221114e-04   6.91897221e-05]], value logits = -3.4018E-03, inrwd = 9.3934E-04, exrwd = 0
+2 d 6 hr 37 min, step = 125765/2395017, worker_15, Ep 210, a3c_loss = 8.5279E-02, entropy = 1.2821E+00, piloss = 1.7689E-03, vloss = 1.4138E-01, fwd = 6.7177E-06, inv = 1.1921E-07
+Step 600 of Ep 211, policy probs = [[  8.64686444e-05   9.99745786e-01   9.97003517e-05   6.80949161e-05]], value logits = -2.5113E-02, inrwd = 5.8250E-04, exrwd = 0
+2 d 6 hr 47 min, step = 126505/2400070, worker_11, Ep 212, a3c_loss = 6.9308E-02, entropy = 1.2820E+00, piloss = -3.5169E-03, vloss = 1.2001E-01, fwd = 9.8008E-06, inv = 2.3842E-07
+Step 200 of Ep 212, policy probs = [[  8.88184586e-05   9.99740183e-01   1.01430480e-04   6.95982235e-05]], value logits = 2.1744E-02, inrwd = 1.0178E-03, exrwd = 0
+Step 400 of Ep 212, policy probs = [[  8.67976341e-05   9.99744833e-01   9.99239492e-05   6.83822363e-05]], value logits = -4.1265E-03, inrwd = 7.1551E-04, exrwd = 0
+2 d 6 hr 58 min, step = 120951/2405110, worker_6, Ep 203, a3c_loss = 6.9850E-02, entropy = 1.2818E+00, piloss = -3.1063E-03, vloss = 1.2028E-01, fwd = 8.5137E-06, inv = 1.1921E-07
+Step 600 of Ep 212, policy probs = [[  8.52206213e-05   9.99749005e-01   9.84316794e-05   6.73064351e-05]], value logits = -2.7626E-02, inrwd = 6.0355E-04, exrwd = 0
+2 d 7 hr 10 min, step = 126944/2410164, worker_1, Ep 212, a3c_loss = 7.4762E-02, entropy = 1.2816E+00, piloss = -1.0260E-03, vloss = 1.2594E-01, fwd = 7.8490E-06, inv = 2.3842E-07
+Step 200 of Ep 213, policy probs = [[  8.75484693e-05   9.99743521e-01   1.00155848e-04   6.88046639e-05]], value logits = 2.1449E-02, inrwd = 9.4986E-04, exrwd = 0
+Step 400 of Ep 213, policy probs = [[  8.55700055e-05   9.99748170e-01   9.86877276e-05   6.76100244e-05]], value logits = -4.0625E-03, inrwd = 3.7109E-04, exrwd = 0
+2 d 7 hr 20 min, step = 127360/2415033, worker_11, Ep 213, a3c_loss = 7.9177E-02, entropy = 1.2814E+00, piloss = 7.4389E-04, vloss = 1.3124E-01, fwd = 7.0899E-06, inv = 2.3842E-07
+Step 600 of Ep 213, policy probs = [[  8.40255452e-05   9.99752223e-01   9.72224370e-05   6.65497864e-05]], value logits = -2.7533E-02, inrwd = 1.3830E-03, exrwd = 0
+2 d 7 hr 31 min, step = 125396/2420036, worker_16, Ep 210, a3c_loss = 6.4414E-02, entropy = 1.2812E+00, piloss = -4.6360E-03, vloss = 1.1248E-01, fwd = 4.1276E-06, inv = 3.5763E-07
+Step 200 of Ep 214, policy probs = [[  8.63183595e-05   9.99746740e-01   9.89317487e-05   6.80390949e-05]], value logits = 2.2456E-02, inrwd = 7.7049E-04, exrwd = 0
+Step 400 of Ep 214, policy probs = [[  8.52143712e-05   9.99748170e-01   9.84556245e-05   6.81957536e-05]], value logits = 2.6501E-03, inrwd = 2.3142E-03, exrwd = 0
+2 d 7 hr 43 min, step = 127930/2425021, worker_11, Ep 214, a3c_loss = 7.4111E-02, entropy = 1.2810E+00, piloss = -8.2225E-04, vloss = 1.2425E-01, fwd = 3.5679E-06, inv = 5.9605E-07
+Step 600 of Ep 214, policy probs = [[  8.38086344e-05   9.99751866e-01   9.71314948e-05   6.72367532e-05]], value logits = -2.7326E-02, inrwd = 2.9675E-04, exrwd = 0
+2 d 7 hr 54 min, step = 128159/2430052, worker_10, Ep 214, a3c_loss = 8.0248E-02, entropy = 1.2808E+00, piloss = 2.3733E-03, vloss = 1.3013E-01, fwd = 1.0448E-05, inv = 4.7684E-07
+Step 200 of Ep 215, policy probs = [[  8.60893633e-05   9.99746263e-01   9.88372922e-05   6.87557913e-05]], value logits = 2.1955E-02, inrwd = 7.0490E-04, exrwd = 0
+Step 400 of Ep 215, policy probs = [[  8.41418660e-05   9.99750912e-01   9.73824717e-05   6.75455667e-05]], value logits = -3.7332E-03, inrwd = 1.2130E-03, exrwd = 0
+2 d 8 hr 5 min, step = 128594/2435041, worker_8, Ep 215, a3c_loss = 6.5374E-02, entropy = 1.2806E+00, piloss = -3.5290E-03, vloss = 1.1219E-01, fwd = 3.3557E-06, inv = 2.3842E-07
+Step 600 of Ep 215, policy probs = [[  8.26481555e-05   9.99754846e-01   9.59618046e-05   6.65037733e-05]], value logits = -2.9742E-02, inrwd = 3.7435E-04, exrwd = 0
+2 d 8 hr 16 min, step = 128351/2440018, worker_7, Ep 214, a3c_loss = 7.8016E-02, entropy = 1.2804E+00, piloss = 2.1866E-03, vloss = 1.2605E-01, fwd = 9.7656E-06, inv = 2.3842E-07
+Step 200 of Ep 216, policy probs = [[  8.48657655e-05   9.99749601e-01   9.76161973e-05   6.79837685e-05]], value logits = 2.3397E-02, inrwd = 1.1281E-03, exrwd = 0
+Step 400 of Ep 216, policy probs = [[  8.29849159e-05   9.99753892e-01   9.62169288e-05   6.68099237e-05]], value logits = -6.8810E-03, inrwd = 3.9019E-04, exrwd = 0
+2 d 8 hr 28 min, step = 129194/2445114, worker_8, Ep 216, a3c_loss = 6.5172E-02, entropy = 1.2802E+00, piloss = -2.6684E-03, vloss = 1.1008E-01, fwd = 7.5183E-06, inv = 2.3842E-07
+Step 600 of Ep 216, policy probs = [[  8.15166422e-05   9.99757826e-01   9.48199522e-05   6.57822311e-05]], value logits = -2.9816E-02, inrwd = 1.2686E-03, exrwd = 0
+2 d 8 hr 39 min, step = 129520/2450113, worker_4, Ep 218, a3c_loss = 7.0916E-02, entropy = 1.2800E+00, piloss = -3.2455E-06, vloss = 1.1624E-01, fwd = 8.0004E-06, inv = 1.1921E-07
+Step 200 of Ep 217, policy probs = [[  8.37011030e-05   9.99752581e-01   9.64591673e-05   6.72546303e-05]], value logits = 2.2758E-02, inrwd = 6.9510E-04, exrwd = 0
+Step 400 of Ep 217, policy probs = [[  8.18510671e-05   9.99756873e-01   9.50772010e-05   6.60899677e-05]], value logits = -5.9514E-03, inrwd = 7.2352E-04, exrwd = 0
+2 d 8 hr 50 min, step = 127406/2455134, worker_16, Ep 213, a3c_loss = 7.0704E-02, entropy = 1.2798E+00, piloss = 1.1579E-04, vloss = 1.1558E-01, fwd = 8.5075E-06, inv = 1.1921E-07
+Step 600 of Ep 217, policy probs = [[  8.04078372e-05   9.99760807e-01   9.37013392e-05   6.50768925e-05]], value logits = -3.0184E-02, inrwd = 6.1129E-04, exrwd = 0
+Exception in thread Thread-16:
+Traceback (most recent call last):
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 801, in __bootstrap_inner
+    self.run()
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/threading.py", line 754, in run
+    self.__target(*self.__args, **self.__kwargs)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/train.py", line 143, in <lambda>
+    worker_fn = lambda worker=worker: worker.run(sess, coord, FLAGS.t_max)
+  File "/home/cougarnet.uh.edu/lhuang28/SwarmDRL/CA3C_beta/worker.py", line 147, in run
+    self.saver.save(sess, self.checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1581, in save
+    self._RecordLastCheckpoint(model_checkpoint_path)
+  File "/home/cougarnet.uh.edu/lhuang28/anaconda2/envs/cpu_env/lib/python2.7/site-packages/tensorflow/python/training/saver.py", line 1330, in _RecordLastCheckpoint
+    self._last_checkpoints.remove(p)
+ValueError: list.remove(x): x not in list
+
+2 d 9 hr 1 min, step = 129952/2460097, worker_19, Ep 217, a3c_loss = 7.2418E-02, entropy = 1.2796E+00, piloss = 7.7045E-04, vloss = 1.1770E-01, fwd = 4.7685E-06, inv = 2.3842E-07
+Step 200 of Ep 218, policy probs = [[  8.26108517e-05   9.99755442e-01   9.53694835e-05   6.65701227e-05]], value logits = 2.0407E-02, inrwd = 6.1123E-04, exrwd = 0
+
+Process finished with exit code 137 (interrupted by signal 9: SIGKILL)
+

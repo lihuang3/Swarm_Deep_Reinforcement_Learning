@@ -18,7 +18,7 @@ from estimators2 import cnn_lstm
 from estimators2 import fwd_inv_model
 
 Transition = collections.namedtuple("Transition", ["state", "action", "reward", "value_logits",
-                                                   "next_state", "done", "feature"])
+                                                   "next_state", "done", "feature", "episode_end"])
 
 
 def make_copy_params_op(v1_list, v2_list):
@@ -100,6 +100,8 @@ class Worker(object):
 
     self.state = None
 
+    self.MDP = []
+
   def run(self, sess, coord, t_max):
     with sess.as_default(), sess.graph.as_default():
       # Initial state
@@ -117,6 +119,8 @@ class Worker(object):
           # Collect some experience
           transitions, local_t, global_t = self.run_n_steps(t_max, sess)
 
+          self.MDP.extend(transitions)
+
           if self.max_global_steps is not None and global_t >= self.max_global_steps:
             tf.logging.info("Reached global step {}. Stopping.".format(global_t))
             coord.request_stop()
@@ -124,6 +128,12 @@ class Worker(object):
 
           # Update the global networks
           loss, entropy, pi_loss, value_loss, _, fwd_loss, inv_loss, _=self.update(transitions, sess)
+
+          if transitions[-1].episode_end:
+            # if transitions[-1].done:
+            #   for _ in range(5):
+            #     loss, entropy, pi_loss, value_loss, _, fwd_loss, inv_loss, _ = self.update(self.MDP, sess)
+            self.MDP = []
 
           if self.display_flag:
             training_time = int(time.time()-self.start_time)
@@ -159,14 +169,20 @@ class Worker(object):
       next_state = np.expand_dims(next_state, 2)
       extrinsic_reward = reward
       intrinsic_reward = self.local_model.intrinsic_reward(self.state, next_state, action_onehot)
-      reward += 100*intrinsic_reward
+      reward += intrinsic_reward
 
       # next_state = atari_helpers.atari_make_next_state(self.state, next_state)
       # next_state = np.append(self.state[:, :, 1:], np.expand_dims(next_state, 2), axis=2)
       # Store transition
+      self.episode_local_step += 1
+      if self.episode_local_step==600 or done:
+        episode_end = True
+      else:
+        episode_end = False
+
       transitions.append(Transition(
         state=self.state, action=action_onehot, reward=reward, value_logits=value_logits[0], next_state=next_state,
-        done=done, feature=self.lstm_state))
+        done=done, feature=self.lstm_state, episode_end=episode_end))
 
       # Increase local and global counters
       local_t = next(self.local_counter)
@@ -177,7 +193,6 @@ class Worker(object):
       if global_t%200000==0:
         self.saver_flag=True
 
-      self.episode_local_step += 1
       if self.name=="worker_0" and self.episode_local_step%200 ==0:
         print ("Step {} of Ep {}, policy probs = {}, value logits = {:.4E}, inrwd = {:.4E}, exrwd = {}".format(
           self.episode_local_step, self.episode, policy_probs, value_logits[0], 100*intrinsic_reward, extrinsic_reward))
@@ -187,10 +202,11 @@ class Worker(object):
         # print("Worker {} local step: {}, running {} of {} steps".format(
         #   self.name, self.episode_local_step, local_t, global_t))
 
-      if done or self.episode_local_step > 600:
+      if done or self.episode_local_step==600:
         if done:
           global_success = next(self.global_success)
           print("Success times: {}, {}, Episode step = {}, Episode = {},".format(global_success, self.name, self.episode_local_step, self.episode))
+          print("    ")
         # reset init state
         self.state = self.env.reset()
         self.state = np.expand_dims(self.state, axis=2)
@@ -218,8 +234,9 @@ class Worker(object):
     # If we episode was not done we bootstrap the value from the last state
     reward = 0.0
     if not transitions[-1].done:
-      reward = transitions[-1].value_logits
-
+      reward = self.local_net.pred_value(observation=transitions[-1].next_state,
+                                         lstm_cin=transitions[-1].feature[0], lstm_hin=transitions[-1].feature[1])
+      reward = reward[0]
     # Accumulate minibatch exmaples
     states = []
     next_states = []
