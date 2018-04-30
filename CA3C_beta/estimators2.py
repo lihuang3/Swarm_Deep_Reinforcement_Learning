@@ -150,7 +150,7 @@ class cnn_lstm():
     # Final A3C loss
     self.loss = self.policy_loss + 0.5 * self.value_fcn_loss + 0.01 * self.entropy
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.000001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
 
     self.grads_and_vars = self.optimizer.compute_gradients(self.loss)
 
@@ -212,7 +212,7 @@ class fwd_inv_model():
     # Actions that have been made (one hot)
     self.acs = tf.placeholder(shape=[None, action_space], dtype=tf.float32)
 
-    self.optimizer = tf.train.RMSPropOptimizer(0.000001, 0.99, 0.0, 1e-8)
+    self.optimizer = tf.train.RMSPropOptimizer(0.00001, 0.99, 0.0, 1e-8)
 
 
     # Inverse dynamics model g(phi1, phi2) --> pred_act
@@ -236,7 +236,7 @@ class fwd_inv_model():
 
     self.fwd_loss = tf.reduce_mean(tf.squared_difference(phi2, pred_phi2))
 
-    self.loss =  (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
+    self.loss = 50 * (0.8 * self.inv_loss + 0.2 * self.fwd_loss)
 
     self.grads_and_vars =self.optimizer.compute_gradients(self.loss)
 
